@@ -1,0 +1,78 @@
+2017-05-23 22:41:45,698 INFO TC39_shutdown_osd_on_single_node.py [line:24] 
+This test case will do the following steps:
+1. start IO on 10 images with randwrite and verify
+2. login the first node 
+3. stop all osds in sequence
+4. start all osds in sequence
+5. check the cluster status
+6. repeat step 2-5 on the other node
+
+2017-05-23 22:41:45,698 INFO TC39_shutdown_osd_on_single_node.py [line:25] the timeout is 6000
+2017-05-23 22:42:25,375 INFO monitors.py [line:123]    "quorum_leader_name": "denali01",
+
+2017-05-23 22:42:25,381 INFO monitors.py [line:126]    "quorum_leader_name": "denali01",
+2017-05-23 22:42:25,385 INFO TC39_shutdown_osd_on_single_node.py [line:31] start to check cluster status before case running
+2017-05-23 22:42:25,500 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-23 22:42:34,750 INFO cluster.py [line:205]    cluster 012dd832-3b17-4cb0-b763-c71908a82dda
+     health HEALTH_ERR
+            80 pgs are stuck inactive for more than 300 seconds
+            1723 pgs degraded
+            80 pgs down
+            80 pgs peering
+            250 pgs stale
+            80 pgs stuck inactive
+            1732 pgs stuck unclean
+            1723 pgs undersized
+            recovery 44950/150558 objects degraded (29.856%)
+            recovery 1193/150558 objects misplaced (0.792%)
+            2/6 in osds are down
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.33:6789/0,denali03=192.168.28.34:6789/0}
+            election epoch 18, quorum 0,1,2 denali01,denali02,denali03
+     osdmap e1232: 9 osds: 4 up, 6 in; 34 remapped pgs
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v89586: 3016 pgs, 13 pools, 283 GB data, 75279 objects
+            54258 MB used, 172 GB / 225 GB avail
+            44950/150558 objects degraded (29.856%)
+            1193/150558 objects misplaced (0.792%)
+                1480 active+undersized+degraded
+                1204 active+clean
+                 241 stale+active+undersized+degraded
+                  49 down+peering
+                  22 down+remapped+peering
+                   9 active+remapped
+                   9 stale+down+peering
+                   2 active+undersized+degraded+remapped
+
+2017-05-23 22:42:34,770 INFO cluster.py [line:207] Now status is HEALTH_ERR, sleep 60s and try again 
+2017-05-23 22:43:34,775 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-23 22:43:44,470 INFO cluster.py [line:205]    cluster 012dd832-3b17-4cb0-b763-c71908a82dda
+     health HEALTH_ERR
+            80 pgs are stuck inactive for more than 300 seconds
+            1723 pgs degraded
+            80 pgs down
+            80 pgs peering
+            250 pgs stale
+            80 pgs stuck inactive
+            1732 pgs stuck unclean
+            1723 pgs undersized
+            recovery 44950/150558 objects degraded (29.856%)
+            recovery 1193/150558 objects misplaced (0.792%)
+            2/6 in osds are down
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.33:6789/0,denali03=192.168.28.34:6789/0}
+            election epoch 18, quorum 0,1,2 denali01,denali02,denali03
+     osdmap e1232: 9 osds: 4 up, 6 in; 34 remapped pgs
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v89586: 3016 pgs, 13 pools, 283 GB data, 75279 objects
+            54258 MB used, 172 GB / 225 GB avail
+            44950/150558 objects degraded (29.856%)
+            1193/150558 objects misplaced (0.792%)
+                1480 active+undersized+degraded
+                1204 active+clean
+                 241 stale+active+undersized+degraded
+                  49 down+peering
+                  22 down+remapped+peering
+                   9 active+remapped
+                   9 stale+down+peering
+                   2 active+undersized+degraded+remapped
+
+2017-05-23 22:43:44,484 INFO cluster.py [line:207] Now status is HEALTH_ERR, sleep 60s and try again 

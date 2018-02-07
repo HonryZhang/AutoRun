@@ -1,0 +1,1130 @@
+2017-05-19 01:04:26,671 INFO TC59_kill_osd_on_three_node.py [line:33] 
+This test case will do the following steps:
+1. start IO on 10 images with randwrite and verify
+2. login the first node 
+3. random pick one osd and kill them
+4. check the cluster status
+5. login the second node 
+6. random pick one osd and kill them
+7. check the cluster status
+8. login the third node 
+9. random pick one osd and kill them
+10. check the cluster status
+11. start the stopped osd from the first node
+12. start the stopped osd from the second node
+13. start the stopped osd from the third node
+14. check the cluster status
+
+2017-05-19 01:05:04,640 INFO monitors.py [line:123]    "quorum_leader_name": "denali02",
+
+2017-05-19 01:05:04,641 INFO monitors.py [line:126]    "quorum_leader_name": "denali02",
+2017-05-19 01:05:04,644 INFO TC59_kill_osd_on_three_node.py [line:38] start to check cluster status before case running
+2017-05-19 01:05:04,647 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-19 01:05:25,967 INFO cluster.py [line:205]    cluster c741cb7b-5f44-4083-8d34-c914389e894f
+     health HEALTH_WARN
+            clock skew detected on mon.denali03
+            Monitor clock skew detected 
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 116, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e272: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v15287: 2048 pgs, 7 pools, 317 GB data, 83243 objects
+            46089 MB used, 293 GB / 338 GB avail
+                2048 active+clean
+
+2017-05-19 01:05:25,974 INFO cluster.py [line:230] PG number is 2048
+2017-05-19 01:05:25,976 INFO cluster.py [line:231] usefull PG number is 2048
+2017-05-19 01:05:25,980 INFO TC59_kill_osd_on_three_node.py [line:41] health status is OK
+2017-05-19 01:05:25,982 INFO TC59_kill_osd_on_three_node.py [line:47] 
+Step1: start IO from clients
+2017-05-19 01:05:25,984 INFO base.py [line:19] 
+Now start IO on  reliablityTestImage0
+2017-05-19 01:05:53,721 INFO client.py [line:56] pid info is 14628
+2017-05-19 01:05:53,724 INFO base.py [line:19] 
+Now start IO on  reliablityTestImage1
+2017-05-19 01:06:19,417 INFO client.py [line:56] pid info is 14659
+2017-05-19 01:06:19,420 INFO base.py [line:19] 
+Now start IO on  reliablityTestImage2
+2017-05-19 01:06:52,066 INFO client.py [line:56] pid info is 14690
+2017-05-19 01:06:52,069 INFO base.py [line:19] 
+Now start IO on  reliablityTestImage3
+2017-05-19 01:07:17,924 INFO client.py [line:56] pid info is 14721
+2017-05-19 01:07:17,927 INFO base.py [line:19] 
+Now start IO on  reliablityTestImage4
+2017-05-19 01:07:38,121 INFO client.py [line:56] pid info is 14751
+2017-05-19 01:07:38,125 INFO base.py [line:19] 
+Now start IO on  reliablityTestImage5
+2017-05-19 01:08:11,410 INFO client.py [line:56] pid info is 14783
+2017-05-19 01:08:11,411 INFO base.py [line:19] 
+Now start IO on  reliablityTestImage6
+2017-05-19 01:08:39,967 INFO client.py [line:56] pid info is 14813
+2017-05-19 01:08:39,971 INFO base.py [line:19] 
+Now start IO on  reliablityTestImage7
+2017-05-19 01:09:08,345 INFO client.py [line:56] pid info is 14844
+2017-05-19 01:09:08,346 INFO base.py [line:19] 
+Now start IO on  reliablityTestImage8
+2017-05-19 01:09:35,259 INFO client.py [line:56] pid info is 14875
+2017-05-19 01:09:35,262 INFO base.py [line:19] 
+Now start IO on  reliablityTestImage9
+2017-05-19 01:09:48,914 INFO client.py [line:56] pid info is 14905
+2017-05-19 01:10:48,917 INFO TC59_kill_osd_on_three_node.py [line:51] 
+Step2: shutdown osd on 3 nodes 10 times
+2017-05-19 01:10:48,920 INFO osd.py [line:37] execute command is sudo -i kill -9  & sleep 3
+2017-05-19 01:11:02,515 INFO client.py [line:90] home/denali
+
+2017-05-19 01:11:07,775 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-19 01:11:13,236 INFO cluster.py [line:205]    cluster c741cb7b-5f44-4083-8d34-c914389e894f
+     health HEALTH_WARN
+            clock skew detected on mon.denali03
+            Monitor clock skew detected 
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 116, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e282: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v15544: 2048 pgs, 7 pools, 317 GB data, 83243 objects
+            46026 MB used, 293 GB / 338 GB avail
+                2048 active+clean
+  client io 11664 B/s rd, 2088 kB/s wr, 14 op/s rd, 522 op/s wr
+
+2017-05-19 01:11:13,246 INFO cluster.py [line:230] PG number is 2048
+2017-05-19 01:11:13,250 INFO cluster.py [line:231] usefull PG number is 2048
+2017-05-19 01:11:13,250 INFO osd.py [line:37] execute command is sudo -i kill -9  & sleep 3
+2017-05-19 01:11:27,224 INFO client.py [line:90] home/denali
+
+2017-05-19 01:11:34,430 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-19 01:11:41,750 INFO cluster.py [line:205]    cluster c741cb7b-5f44-4083-8d34-c914389e894f
+     health HEALTH_WARN
+            clock skew detected on mon.denali03
+            Monitor clock skew detected 
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 116, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e282: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v15562: 2048 pgs, 7 pools, 317 GB data, 83243 objects
+            46026 MB used, 293 GB / 338 GB avail
+                2048 active+clean
+  client io 329 B/s rd, 633 kB/s wr, 0 op/s rd, 158 op/s wr
+
+2017-05-19 01:11:41,759 INFO cluster.py [line:230] PG number is 2048
+2017-05-19 01:11:41,762 INFO cluster.py [line:231] usefull PG number is 2048
+2017-05-19 01:11:41,765 INFO osd.py [line:37] execute command is sudo -i kill -9  & sleep 3
+2017-05-19 01:12:01,835 INFO client.py [line:90] home/denali
+
+2017-05-19 01:12:08,684 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-19 01:12:15,167 INFO cluster.py [line:205]    cluster c741cb7b-5f44-4083-8d34-c914389e894f
+     health HEALTH_WARN
+            clock skew detected on mon.denali03
+            Monitor clock skew detected 
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 116, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e282: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v15586: 2048 pgs, 7 pools, 317 GB data, 83243 objects
+            46026 MB used, 293 GB / 338 GB avail
+                2048 active+clean
+  client io 1903 kB/s wr, 0 op/s rd, 475 op/s wr
+
+2017-05-19 01:12:15,180 INFO cluster.py [line:230] PG number is 2048
+2017-05-19 01:12:15,181 INFO cluster.py [line:231] usefull PG number is 2048
+2017-05-19 01:12:15,184 INFO osd.py [line:86] node is  denali01
+2017-05-19 01:12:15,187 INFO osd.py [line:87] execute command is sudo -i ceph-osd -i 1 & sleep 30
+2017-05-19 01:12:53,082 INFO osd.py [line:91] osd osd.1 is start successfully
+2017-05-19 01:12:53,082 INFO osd.py [line:86] node is  denali02
+2017-05-19 01:12:53,085 INFO osd.py [line:87] execute command is sudo -i ceph-osd -i 4 & sleep 30
+2017-05-19 01:13:28,482 INFO osd.py [line:91] osd osd.4 is start successfully
+2017-05-19 01:13:28,484 INFO osd.py [line:86] node is  denali03
+2017-05-19 01:13:28,486 INFO osd.py [line:87] execute command is sudo -i ceph-osd -i 8 & sleep 30
+2017-05-19 01:14:04,072 INFO osd.py [line:91] osd osd.8 is start successfully
+2017-05-19 01:15:15,826 INFO client.py [line:90] home/denali
+
+2017-05-19 01:15:26,726 INFO osd.py [line:99] node is  denali01
+2017-05-19 01:15:26,730 INFO osd.py [line:100] execute command is ps -ef | grep 'ceph-osd -i 1'
+2017-05-19 01:15:33,019 INFO osd.py [line:102] oot     13777     1 14 May18 ?        01:01:26 ceph-osd -i 1
+denali   31863 31821  0 01:15 ?        00:00:00 bash -c ps -ef | grep 'ceph-osd -i 1'
+denali   31865 31863  0 01:15 ?        00:00:00 grep ceph-osd -i 1
+
+2017-05-19 01:15:33,025 INFO osd.py [line:111] osd.1is alrady started
+2017-05-19 01:15:33,026 INFO osd.py [line:99] node is  denali02
+2017-05-19 01:15:33,029 INFO osd.py [line:100] execute command is ps -ef | grep 'ceph-osd -i 4'
+2017-05-19 01:15:41,157 INFO osd.py [line:102] enali    5905  5864  0 01:15 ?        00:00:00 bash -c ps -ef | grep 'ceph-osd -i 4'
+denali    5907  5905  0 01:15 ?        00:00:00 grep ceph-osd -i 4
+root     28677     1 12 May18 ?        00:53:36 ceph-osd -i 4
+
+2017-05-19 01:15:41,161 INFO osd.py [line:111] osd.4is alrady started
+2017-05-19 01:15:41,161 INFO osd.py [line:99] node is  denali03
+2017-05-19 01:15:41,164 INFO osd.py [line:100] execute command is ps -ef | grep 'ceph-osd -i 8'
+2017-05-19 01:15:49,217 INFO osd.py [line:102] oot     13222     1 13 May18 ?        00:58:43 ceph-osd -i 8
+denali   20485 20481  0 01:16 ?        00:00:00 bash -c ps -ef | grep 'ceph-osd -i 8'
+denali   20487 20485  0 01:16 ?        00:00:00 grep ceph-osd -i 8
+
+2017-05-19 01:15:49,221 INFO osd.py [line:111] osd.8is alrady started
+2017-05-19 01:15:49,224 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-19 01:15:56,490 INFO cluster.py [line:205]    cluster c741cb7b-5f44-4083-8d34-c914389e894f
+     health HEALTH_WARN
+            clock skew detected on mon.denali03
+            Monitor clock skew detected 
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 116, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e282: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v15739: 2048 pgs, 7 pools, 317 GB data, 83243 objects
+            46066 MB used, 293 GB / 338 GB avail
+                2048 active+clean
+  client io 18211 B/s rd, 2280 kB/s wr, 22 op/s rd, 570 op/s wr
+
+2017-05-19 01:15:56,500 INFO cluster.py [line:230] PG number is 2048
+2017-05-19 01:15:56,505 INFO cluster.py [line:231] usefull PG number is 2048
+2017-05-19 01:15:56,506 INFO TC59_kill_osd_on_three_node.py [line:122] stop mon service on denali03 in cluster successfully
+2017-05-19 01:15:56,509 INFO osd.py [line:37] execute command is sudo -i kill -9  & sleep 3
+2017-05-19 01:16:11,476 INFO client.py [line:90] home/denali
+
+2017-05-19 01:16:17,671 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-19 01:16:23,671 INFO cluster.py [line:205]    cluster c741cb7b-5f44-4083-8d34-c914389e894f
+     health HEALTH_WARN
+            clock skew detected on mon.denali03
+            Monitor clock skew detected 
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 116, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e282: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v15759: 2048 pgs, 7 pools, 317 GB data, 83243 objects
+            46066 MB used, 293 GB / 338 GB avail
+                2048 active+clean
+  client io 4282 kB/s wr, 0 op/s rd, 1070 op/s wr
+
+2017-05-19 01:16:23,681 INFO cluster.py [line:230] PG number is 2048
+2017-05-19 01:16:23,681 INFO cluster.py [line:231] usefull PG number is 2048
+2017-05-19 01:16:23,687 INFO osd.py [line:37] execute command is sudo -i kill -9  & sleep 3
+2017-05-19 01:16:41,242 INFO client.py [line:90] home/denali
+
+2017-05-19 01:16:47,940 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-19 01:16:55,371 INFO cluster.py [line:205]    cluster c741cb7b-5f44-4083-8d34-c914389e894f
+     health HEALTH_WARN
+            clock skew detected on mon.denali03
+            Monitor clock skew detected 
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 116, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e282: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v15781: 2048 pgs, 7 pools, 317 GB data, 83243 objects
+            46084 MB used, 293 GB / 338 GB avail
+                2048 active+clean
+  client io 1114 kB/s wr, 0 op/s rd, 278 op/s wr
+
+2017-05-19 01:16:55,381 INFO cluster.py [line:230] PG number is 2048
+2017-05-19 01:16:55,384 INFO cluster.py [line:231] usefull PG number is 2048
+2017-05-19 01:16:55,387 INFO osd.py [line:37] execute command is sudo -i kill -9  & sleep 3
+2017-05-19 01:17:09,832 INFO client.py [line:90] home/denali
+
+2017-05-19 01:17:15,101 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-19 01:17:21,880 INFO cluster.py [line:205]    cluster c741cb7b-5f44-4083-8d34-c914389e894f
+     health HEALTH_WARN
+            clock skew detected on mon.denali03
+            Monitor clock skew detected 
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 116, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e282: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v15800: 2048 pgs, 7 pools, 317 GB data, 83243 objects
+            46105 MB used, 293 GB / 338 GB avail
+                2048 active+clean
+  client io 10710 B/s rd, 2371 kB/s wr, 13 op/s rd, 592 op/s wr
+
+2017-05-19 01:17:21,894 INFO cluster.py [line:230] PG number is 2048
+2017-05-19 01:17:21,894 INFO cluster.py [line:231] usefull PG number is 2048
+2017-05-19 01:17:21,897 INFO osd.py [line:86] node is  denali01
+2017-05-19 01:17:21,900 INFO osd.py [line:87] execute command is sudo -i ceph-osd -i 1 & sleep 30
+2017-05-19 01:17:59,911 INFO osd.py [line:91] osd osd.1 is start successfully
+2017-05-19 01:17:59,914 INFO osd.py [line:86] node is  denali02
+2017-05-19 01:17:59,917 INFO osd.py [line:87] execute command is sudo -i ceph-osd -i 5 & sleep 30
+2017-05-19 01:18:37,961 INFO osd.py [line:91] osd osd.5 is start successfully
+2017-05-19 01:18:37,964 INFO osd.py [line:86] node is  denali03
+2017-05-19 01:18:37,967 INFO osd.py [line:87] execute command is sudo -i ceph-osd -i 6 & sleep 30
+2017-05-19 01:19:18,069 INFO osd.py [line:91] osd osd.6 is start successfully
+2017-05-19 01:20:26,482 INFO client.py [line:90] home/denali
+
+2017-05-19 01:20:34,200 INFO osd.py [line:99] node is  denali01
+2017-05-19 01:20:34,201 INFO osd.py [line:100] execute command is ps -ef | grep 'ceph-osd -i 1'
+2017-05-19 01:20:42,119 INFO osd.py [line:102] enali    1558  1551  0 01:20 ?        00:00:00 bash -c ps -ef | grep 'ceph-osd -i 1'
+denali    1560  1558  0 01:20 ?        00:00:00 grep ceph-osd -i 1
+root     13777     1 14 May18 ?        01:02:18 ceph-osd -i 1
+
+2017-05-19 01:20:42,121 INFO osd.py [line:111] osd.1is alrady started
+2017-05-19 01:20:42,125 INFO osd.py [line:99] node is  denali02
+2017-05-19 01:20:42,125 INFO osd.py [line:100] execute command is ps -ef | grep 'ceph-osd -i 5'
+2017-05-19 01:20:48,585 INFO osd.py [line:102] enali   13309 13245  0 01:21 ?        00:00:00 bash -c ps -ef | grep 'ceph-osd -i 5'
+denali   13311 13309  0 01:21 ?        00:00:00 grep ceph-osd -i 5
+root     29951     1 14 May18 ?        01:03:13 ceph-osd -i 5
+
+2017-05-19 01:20:48,586 INFO osd.py [line:111] osd.5is alrady started
+2017-05-19 01:20:48,589 INFO osd.py [line:99] node is  denali03
+2017-05-19 01:20:48,592 INFO osd.py [line:100] execute command is ps -ef | grep 'ceph-osd -i 6'
+2017-05-19 01:20:54,056 INFO osd.py [line:102] oot     12402     1 11 May18 ?        00:49:39 ceph-osd -i 6
+denali   22533 22532  0 01:21 ?        00:00:00 bash -c ps -ef | grep 'ceph-osd -i 6'
+denali   22536 22533  0 01:21 ?        00:00:00 grep ceph-osd -i 6
+
+2017-05-19 01:20:54,062 INFO osd.py [line:111] osd.6is alrady started
+2017-05-19 01:20:54,065 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-19 01:21:01,367 INFO cluster.py [line:205]    cluster c741cb7b-5f44-4083-8d34-c914389e894f
+     health HEALTH_WARN
+            clock skew detected on mon.denali03
+            Monitor clock skew detected 
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 116, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e282: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v15957: 2048 pgs, 7 pools, 317 GB data, 83243 objects
+            46137 MB used, 293 GB / 338 GB avail
+                2048 active+clean
+  client io 11337 B/s rd, 1468 kB/s wr, 14 op/s rd, 367 op/s wr
+
+2017-05-19 01:21:01,377 INFO cluster.py [line:230] PG number is 2048
+2017-05-19 01:21:01,380 INFO cluster.py [line:231] usefull PG number is 2048
+2017-05-19 01:21:01,381 INFO TC59_kill_osd_on_three_node.py [line:122] stop mon service on denali03 in cluster successfully
+2017-05-19 01:21:01,384 INFO osd.py [line:37] execute command is sudo -i kill -9  & sleep 3
+2017-05-19 01:21:15,937 INFO client.py [line:90] home/denali
+
+2017-05-19 01:21:21,200 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-19 01:21:28,897 INFO cluster.py [line:205]    cluster c741cb7b-5f44-4083-8d34-c914389e894f
+     health HEALTH_WARN
+            clock skew detected on mon.denali03
+            Monitor clock skew detected 
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 116, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e282: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v15975: 2048 pgs, 7 pools, 317 GB data, 83243 objects
+            46137 MB used, 293 GB / 338 GB avail
+                2048 active+clean
+  client io 9817 B/s rd, 1535 kB/s wr, 12 op/s rd, 383 op/s wr
+
+2017-05-19 01:21:28,907 INFO cluster.py [line:230] PG number is 2048
+2017-05-19 01:21:28,910 INFO cluster.py [line:231] usefull PG number is 2048
+2017-05-19 01:21:28,911 INFO osd.py [line:37] execute command is sudo -i kill -9  & sleep 3
+2017-05-19 01:21:43,619 INFO client.py [line:90] home/denali
+
+2017-05-19 01:21:48,789 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-19 01:21:55,191 INFO cluster.py [line:205]    cluster c741cb7b-5f44-4083-8d34-c914389e894f
+     health HEALTH_WARN
+            clock skew detected on mon.denali03
+            Monitor clock skew detected 
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 116, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e282: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v15994: 2048 pgs, 7 pools, 317 GB data, 83243 objects
+            46137 MB used, 293 GB / 338 GB avail
+                2048 active+clean
+  client io 563 kB/s wr, 0 op/s rd, 140 op/s wr
+
+2017-05-19 01:21:55,200 INFO cluster.py [line:230] PG number is 2048
+2017-05-19 01:21:55,204 INFO cluster.py [line:231] usefull PG number is 2048
+2017-05-19 01:21:55,207 INFO osd.py [line:37] execute command is sudo -i kill -9  & sleep 3
+2017-05-19 01:22:13,835 INFO client.py [line:90] home/denali
+
+2017-05-19 01:22:24,411 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-19 01:22:30,022 INFO cluster.py [line:205]    cluster c741cb7b-5f44-4083-8d34-c914389e894f
+     health HEALTH_WARN
+            clock skew detected on mon.denali03
+            Monitor clock skew detected 
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 116, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e282: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v16018: 2048 pgs, 7 pools, 317 GB data, 83243 objects
+            46170 MB used, 293 GB / 338 GB avail
+                2048 active+clean
+  client io 4096 kB/s wr, 0 op/s rd, 1024 op/s wr
+
+2017-05-19 01:22:30,032 INFO cluster.py [line:230] PG number is 2048
+2017-05-19 01:22:30,032 INFO cluster.py [line:231] usefull PG number is 2048
+2017-05-19 01:22:30,035 INFO osd.py [line:86] node is  denali01
+2017-05-19 01:22:30,036 INFO osd.py [line:87] execute command is sudo -i ceph-osd -i 0 & sleep 30
+2017-05-19 01:23:05,272 INFO osd.py [line:91] osd osd.0 is start successfully
+2017-05-19 01:23:05,275 INFO osd.py [line:86] node is  denali02
+2017-05-19 01:23:05,276 INFO osd.py [line:87] execute command is sudo -i ceph-osd -i 4 & sleep 30
+2017-05-19 01:23:42,786 INFO osd.py [line:91] osd osd.4 is start successfully
+2017-05-19 01:23:42,789 INFO osd.py [line:86] node is  denali03
+2017-05-19 01:23:42,792 INFO osd.py [line:87] execute command is sudo -i ceph-osd -i 6 & sleep 30
+2017-05-19 01:24:18,285 INFO osd.py [line:91] osd osd.6 is start successfully
+2017-05-19 01:25:23,457 INFO client.py [line:90] home/denali
+
+2017-05-19 01:25:29,812 INFO osd.py [line:99] node is  denali01
+2017-05-19 01:25:29,815 INFO osd.py [line:100] execute command is ps -ef | grep 'ceph-osd -i 0'
+2017-05-19 01:25:36,674 INFO osd.py [line:102] enali    4048  4024  0 01:25 ?        00:00:00 bash -c ps -ef | grep 'ceph-osd -i 0'
+denali    4050  4048  0 01:25 ?        00:00:00 grep ceph-osd -i 0
+root     13382     1 11 May18 ?        00:50:28 ceph-osd -i 0
+
+2017-05-19 01:25:36,680 INFO osd.py [line:111] osd.0is alrady started
+2017-05-19 01:25:36,680 INFO osd.py [line:99] node is  denali02
+2017-05-19 01:25:36,681 INFO osd.py [line:100] execute command is ps -ef | grep 'ceph-osd -i 4'
+2017-05-19 01:25:42,052 INFO osd.py [line:102] enali   19801 19758  0 01:25 ?        00:00:00 bash -c ps -ef | grep 'ceph-osd -i 4'
+denali   19803 19801  0 01:25 ?        00:00:00 grep ceph-osd -i 4
+root     28677     1 12 May18 ?        00:55:09 ceph-osd -i 4
+
+2017-05-19 01:25:42,059 INFO osd.py [line:111] osd.4is alrady started
+2017-05-19 01:25:42,059 INFO osd.py [line:99] node is  denali03
+2017-05-19 01:25:42,062 INFO osd.py [line:100] execute command is ps -ef | grep 'ceph-osd -i 6'
+2017-05-19 01:25:48,637 INFO osd.py [line:102] oot     12402     1 11 May18 ?        00:50:16 ceph-osd -i 6
+denali   24542 24518  0 01:26 ?        00:00:00 bash -c ps -ef | grep 'ceph-osd -i 6'
+denali   24544 24542  0 01:26 ?        00:00:00 grep ceph-osd -i 6
+
+2017-05-19 01:25:48,641 INFO osd.py [line:111] osd.6is alrady started
+2017-05-19 01:25:48,641 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-19 01:25:54,381 INFO cluster.py [line:205]    cluster c741cb7b-5f44-4083-8d34-c914389e894f
+     health HEALTH_WARN
+            clock skew detected on mon.denali03
+            Monitor clock skew detected 
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 116, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e282: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v16168: 2048 pgs, 7 pools, 317 GB data, 83243 objects
+            46280 MB used, 293 GB / 338 GB avail
+                2048 active+clean
+  client io 2389 B/s rd, 2501 kB/s wr, 3 op/s rd, 625 op/s wr
+
+2017-05-19 01:25:54,391 INFO cluster.py [line:230] PG number is 2048
+2017-05-19 01:25:54,391 INFO cluster.py [line:231] usefull PG number is 2048
+2017-05-19 01:25:54,394 INFO TC59_kill_osd_on_three_node.py [line:122] stop mon service on denali03 in cluster successfully
+2017-05-19 01:25:54,397 INFO osd.py [line:37] execute command is sudo -i kill -9  & sleep 3
+2017-05-19 01:26:09,210 INFO client.py [line:90] home/denali
+
+2017-05-19 01:26:14,361 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-19 01:26:20,137 INFO cluster.py [line:205]    cluster c741cb7b-5f44-4083-8d34-c914389e894f
+     health HEALTH_WARN
+            clock skew detected on mon.denali03
+            Monitor clock skew detected 
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 116, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e282: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v16186: 2048 pgs, 7 pools, 317 GB data, 83243 objects
+            46280 MB used, 293 GB / 338 GB avail
+                2048 active+clean
+  client io 7804 B/s rd, 2295 kB/s wr, 9 op/s rd, 573 op/s wr
+
+2017-05-19 01:26:20,147 INFO cluster.py [line:230] PG number is 2048
+2017-05-19 01:26:20,150 INFO cluster.py [line:231] usefull PG number is 2048
+2017-05-19 01:26:20,151 INFO osd.py [line:37] execute command is sudo -i kill -9  & sleep 3
+2017-05-19 01:26:36,957 INFO client.py [line:90] home/denali
+
+2017-05-19 01:26:42,200 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-19 01:26:48,740 INFO cluster.py [line:205]    cluster c741cb7b-5f44-4083-8d34-c914389e894f
+     health HEALTH_WARN
+            clock skew detected on mon.denali03
+            Monitor clock skew detected 
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 116, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e282: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v16207: 2048 pgs, 7 pools, 317 GB data, 83243 objects
+            46280 MB used, 293 GB / 338 GB avail
+                2048 active+clean
+  client io 22898 B/s rd, 2047 kB/s wr, 29 op/s rd, 511 op/s wr
+
+2017-05-19 01:26:48,750 INFO cluster.py [line:230] PG number is 2048
+2017-05-19 01:26:48,752 INFO cluster.py [line:231] usefull PG number is 2048
+2017-05-19 01:26:48,755 INFO osd.py [line:37] execute command is sudo -i kill -9  & sleep 3
+2017-05-19 01:27:04,897 INFO client.py [line:90] home/denali
+
+2017-05-19 01:27:10,062 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-19 01:27:16,082 INFO cluster.py [line:205]    cluster c741cb7b-5f44-4083-8d34-c914389e894f
+     health HEALTH_WARN
+            clock skew detected on mon.denali03
+            Monitor clock skew detected 
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 116, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e282: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v16223: 2048 pgs, 7 pools, 317 GB data, 83243 objects
+            46280 MB used, 293 GB / 338 GB avail
+                2048 active+clean
+  client io 10522 B/s rd, 3583 kB/s wr, 15 op/s rd, 895 op/s wr
+
+2017-05-19 01:27:16,095 INFO cluster.py [line:230] PG number is 2048
+2017-05-19 01:27:16,096 INFO cluster.py [line:231] usefull PG number is 2048
+2017-05-19 01:27:16,099 INFO osd.py [line:86] node is  denali01
+2017-05-19 01:27:16,101 INFO osd.py [line:87] execute command is sudo -i ceph-osd -i 2 & sleep 30
+2017-05-19 01:27:53,000 INFO osd.py [line:91] osd osd.2 is start successfully
+2017-05-19 01:27:53,002 INFO osd.py [line:86] node is  denali02
+2017-05-19 01:27:53,005 INFO osd.py [line:87] execute command is sudo -i ceph-osd -i 5 & sleep 30
+2017-05-19 01:28:29,339 INFO osd.py [line:91] osd osd.5 is start successfully
+2017-05-19 01:28:29,342 INFO osd.py [line:86] node is  denali03
+2017-05-19 01:28:29,345 INFO osd.py [line:87] execute command is sudo -i ceph-osd -i 7 & sleep 30
+2017-05-19 01:29:08,174 INFO osd.py [line:91] osd osd.7 is start successfully
+2017-05-19 01:30:13,450 INFO client.py [line:90] home/denali
+
+2017-05-19 01:30:18,714 INFO osd.py [line:99] node is  denali01
+2017-05-19 01:30:18,717 INFO osd.py [line:100] execute command is ps -ef | grep 'ceph-osd -i 2'
+2017-05-19 01:30:24,167 INFO osd.py [line:102] enali    5975  5974  0 01:30 ?        00:00:00 bash -c ps -ef | grep 'ceph-osd -i 2'
+denali    5977  5975  0 01:30 ?        00:00:00 grep ceph-osd -i 2
+root     14208     1 11 May18 ?        00:50:49 ceph-osd -i 2
+
+2017-05-19 01:30:24,170 INFO osd.py [line:111] osd.2is alrady started
+2017-05-19 01:30:24,171 INFO osd.py [line:99] node is  denali02
+2017-05-19 01:30:24,171 INFO osd.py [line:100] execute command is ps -ef | grep 'ceph-osd -i 5'
+2017-05-19 01:30:29,562 INFO osd.py [line:102] enali   26122 26107  0 01:30 ?        00:00:00 bash -c ps -ef | grep 'ceph-osd -i 5'
+denali   26124 26122  0 01:30 ?        00:00:00 grep ceph-osd -i 5
+root     29951     1 14 May18 ?        01:04:57 ceph-osd -i 5
+
+2017-05-19 01:30:29,565 INFO osd.py [line:111] osd.5is alrady started
+2017-05-19 01:30:29,569 INFO osd.py [line:99] node is  denali03
+2017-05-19 01:30:29,572 INFO osd.py [line:100] execute command is ps -ef | grep 'ceph-osd -i 7'
+2017-05-19 01:30:35,825 INFO osd.py [line:102] oot     12791     1 11 May18 ?        00:52:31 ceph-osd -i 7
+denali   26496 26460  0 01:30 ?        00:00:00 bash -c ps -ef | grep 'ceph-osd -i 7'
+denali   26498 26496  0 01:30 ?        00:00:00 grep ceph-osd -i 7
+
+2017-05-19 01:30:35,829 INFO osd.py [line:111] osd.7is alrady started
+2017-05-19 01:30:35,832 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-19 01:30:41,694 INFO cluster.py [line:205]    cluster c741cb7b-5f44-4083-8d34-c914389e894f
+     health HEALTH_WARN
+            clock skew detected on mon.denali03
+            Monitor clock skew detected 
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 116, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e282: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v16326: 2048 pgs, 7 pools, 317 GB data, 83243 objects
+            46142 MB used, 293 GB / 338 GB avail
+                2048 active+clean
+  client io 6910 B/s rd, 1662 kB/s wr, 8 op/s rd, 415 op/s wr
+
+2017-05-19 01:30:41,701 INFO cluster.py [line:230] PG number is 2048
+2017-05-19 01:30:41,704 INFO cluster.py [line:231] usefull PG number is 2048
+2017-05-19 01:30:41,707 INFO TC59_kill_osd_on_three_node.py [line:122] stop mon service on denali03 in cluster successfully
+2017-05-19 01:30:41,710 INFO osd.py [line:37] execute command is sudo -i kill -9  & sleep 3
+2017-05-19 01:30:56,262 INFO client.py [line:90] home/denali
+
+2017-05-19 01:31:03,605 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-19 01:31:10,951 INFO cluster.py [line:205]    cluster c741cb7b-5f44-4083-8d34-c914389e894f
+     health HEALTH_WARN
+            clock skew detected on mon.denali03
+            Monitor clock skew detected 
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 116, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e282: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v16339: 2048 pgs, 7 pools, 317 GB data, 83243 objects
+            46142 MB used, 293 GB / 338 GB avail
+                2048 active+clean
+  client io 1543 B/s rd, 1161 kB/s wr, 2 op/s rd, 290 op/s wr
+
+2017-05-19 01:31:10,960 INFO cluster.py [line:230] PG number is 2048
+2017-05-19 01:31:10,961 INFO cluster.py [line:231] usefull PG number is 2048
+2017-05-19 01:31:10,961 INFO osd.py [line:37] execute command is sudo -i kill -9  & sleep 3
+2017-05-19 01:31:27,424 INFO client.py [line:90] home/denali
+
+2017-05-19 01:31:33,325 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-19 01:31:40,407 INFO cluster.py [line:205]    cluster c741cb7b-5f44-4083-8d34-c914389e894f
+     health HEALTH_WARN
+            clock skew detected on mon.denali03
+            Monitor clock skew detected 
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 116, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e282: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v16353: 2048 pgs, 7 pools, 317 GB data, 83243 objects
+            46100 MB used, 293 GB / 338 GB avail
+                2048 active+clean
+  client io 8447 B/s rd, 1578 kB/s wr, 10 op/s rd, 394 op/s wr
+
+2017-05-19 01:31:40,417 INFO cluster.py [line:230] PG number is 2048
+2017-05-19 01:31:40,420 INFO cluster.py [line:231] usefull PG number is 2048
+2017-05-19 01:31:40,421 INFO osd.py [line:37] execute command is sudo -i kill -9  & sleep 3
+2017-05-19 01:31:55,525 INFO client.py [line:90] home/denali
+
+2017-05-19 01:32:00,901 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-19 01:32:08,130 INFO cluster.py [line:205]    cluster c741cb7b-5f44-4083-8d34-c914389e894f
+     health HEALTH_WARN
+            clock skew detected on mon.denali03
+            Monitor clock skew detected 
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 116, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e282: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v16370: 2048 pgs, 7 pools, 317 GB data, 83243 objects
+            46061 MB used, 293 GB / 338 GB avail
+                2048 active+clean
+  client io 3482 B/s rd, 1696 kB/s wr, 3 op/s rd, 424 op/s wr
+
+2017-05-19 01:32:08,140 INFO cluster.py [line:230] PG number is 2048
+2017-05-19 01:32:08,141 INFO cluster.py [line:231] usefull PG number is 2048
+2017-05-19 01:32:08,144 INFO osd.py [line:86] node is  denali01
+2017-05-19 01:32:08,147 INFO osd.py [line:87] execute command is sudo -i ceph-osd -i 1 & sleep 30
+2017-05-19 01:32:43,525 INFO osd.py [line:91] osd osd.1 is start successfully
+2017-05-19 01:32:43,526 INFO osd.py [line:86] node is  denali02
+2017-05-19 01:32:43,529 INFO osd.py [line:87] execute command is sudo -i ceph-osd -i 4 & sleep 30
+2017-05-19 01:33:19,944 INFO osd.py [line:91] osd osd.4 is start successfully
+2017-05-19 01:33:19,947 INFO osd.py [line:86] node is  denali03
+2017-05-19 01:33:19,950 INFO osd.py [line:87] execute command is sudo -i ceph-osd -i 6 & sleep 30
+2017-05-19 01:33:56,127 INFO osd.py [line:91] osd osd.6 is start successfully
+2017-05-19 01:35:03,394 INFO client.py [line:90] home/denali
+
+2017-05-19 01:35:09,660 INFO osd.py [line:99] node is  denali01
+2017-05-19 01:35:09,661 INFO osd.py [line:100] execute command is ps -ef | grep 'ceph-osd -i 1'
+2017-05-19 01:35:15,075 INFO osd.py [line:102] enali    7994  7993  0 01:35 ?        00:00:00 bash -c ps -ef | grep 'ceph-osd -i 1'
+denali    7996  7994  0 01:35 ?        00:00:00 grep ceph-osd -i 1
+root     13777     1 14 May18 ?        01:04:48 ceph-osd -i 1
+
+2017-05-19 01:35:15,076 INFO osd.py [line:111] osd.1is alrady started
+2017-05-19 01:35:15,079 INFO osd.py [line:99] node is  denali02
+2017-05-19 01:35:15,082 INFO osd.py [line:100] execute command is ps -ef | grep 'ceph-osd -i 4'
+2017-05-19 01:35:22,907 INFO osd.py [line:102] enali     586   581  0 01:35 ?        00:00:00 bash -c ps -ef | grep 'ceph-osd -i 4'
+denali     589   586  0 01:35 ?        00:00:00 grep ceph-osd -i 4
+root     28677     1 12 May18 ?        00:56:36 ceph-osd -i 4
+
+2017-05-19 01:35:22,910 INFO osd.py [line:111] osd.4is alrady started
+2017-05-19 01:35:22,911 INFO osd.py [line:99] node is  denali03
+2017-05-19 01:35:22,914 INFO osd.py [line:100] execute command is ps -ef | grep 'ceph-osd -i 6'
+2017-05-19 01:35:28,207 INFO osd.py [line:102] oot     12402     1 11 May18 ?        00:51:31 ceph-osd -i 6
+denali   28446 28445  0 01:35 ?        00:00:00 bash -c ps -ef | grep 'ceph-osd -i 6'
+denali   28448 28446  0 01:35 ?        00:00:00 grep ceph-osd -i 6
+
+2017-05-19 01:35:28,211 INFO osd.py [line:111] osd.6is alrady started
+2017-05-19 01:35:28,214 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-19 01:35:36,026 INFO cluster.py [line:205]    cluster c741cb7b-5f44-4083-8d34-c914389e894f
+     health HEALTH_WARN
+            clock skew detected on mon.denali03
+            Monitor clock skew detected 
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 116, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e282: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v16494: 2048 pgs, 7 pools, 317 GB data, 83243 objects
+            46028 MB used, 293 GB / 338 GB avail
+                2048 active+clean
+  client io 18277 B/s rd, 3311 kB/s wr, 23 op/s rd, 827 op/s wr
+
+2017-05-19 01:35:36,036 INFO cluster.py [line:230] PG number is 2048
+2017-05-19 01:35:36,036 INFO cluster.py [line:231] usefull PG number is 2048
+2017-05-19 01:35:36,039 INFO TC59_kill_osd_on_three_node.py [line:122] stop mon service on denali03 in cluster successfully
+2017-05-19 01:35:36,045 INFO osd.py [line:37] execute command is sudo -i kill -9  & sleep 3
+2017-05-19 01:35:52,371 INFO client.py [line:90] home/denali
+
+2017-05-19 01:35:57,684 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-19 01:36:05,451 INFO cluster.py [line:205]    cluster c741cb7b-5f44-4083-8d34-c914389e894f
+     health HEALTH_WARN
+            clock skew detected on mon.denali03
+            Monitor clock skew detected 
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 116, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e282: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v16511: 2048 pgs, 7 pools, 317 GB data, 83243 objects
+            46028 MB used, 293 GB / 338 GB avail
+                2048 active+clean
+  client io 9212 B/s rd, 2665 kB/s wr, 11 op/s rd, 666 op/s wr
+
+2017-05-19 01:36:05,461 INFO cluster.py [line:230] PG number is 2048
+2017-05-19 01:36:05,461 INFO cluster.py [line:231] usefull PG number is 2048
+2017-05-19 01:36:05,464 INFO osd.py [line:37] execute command is sudo -i kill -9  & sleep 3
+2017-05-19 01:36:20,302 INFO client.py [line:90] home/denali
+
+2017-05-19 01:36:26,522 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-19 01:36:34,674 INFO cluster.py [line:205]    cluster c741cb7b-5f44-4083-8d34-c914389e894f
+     health HEALTH_WARN
+            clock skew detected on mon.denali03
+            Monitor clock skew detected 
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 116, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e282: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v16528: 2048 pgs, 7 pools, 317 GB data, 83243 objects
+            46028 MB used, 293 GB / 338 GB avail
+                2048 active+clean
+  client io 11475 B/s rd, 2183 kB/s wr, 16 op/s rd, 545 op/s wr
+
+2017-05-19 01:36:34,681 INFO cluster.py [line:230] PG number is 2048
+2017-05-19 01:36:34,684 INFO cluster.py [line:231] usefull PG number is 2048
+2017-05-19 01:36:34,684 INFO osd.py [line:37] execute command is sudo -i kill -9  & sleep 3
+2017-05-19 01:36:49,269 INFO client.py [line:90] home/denali
+
+2017-05-19 01:36:56,947 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-19 01:37:02,806 INFO cluster.py [line:205]    cluster c741cb7b-5f44-4083-8d34-c914389e894f
+     health HEALTH_WARN
+            clock skew detected on mon.denali03
+            Monitor clock skew detected 
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 116, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e282: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v16543: 2048 pgs, 7 pools, 317 GB data, 83243 objects
+            46032 MB used, 293 GB / 338 GB avail
+                2048 active+clean
+  client io 8273 B/s rd, 2423 kB/s wr, 10 op/s rd, 605 op/s wr
+
+2017-05-19 01:37:02,819 INFO cluster.py [line:230] PG number is 2048
+2017-05-19 01:37:02,822 INFO cluster.py [line:231] usefull PG number is 2048
+2017-05-19 01:37:02,825 INFO osd.py [line:86] node is  denali01
+2017-05-19 01:37:02,826 INFO osd.py [line:87] execute command is sudo -i ceph-osd -i 2 & sleep 30
+2017-05-19 01:37:38,194 INFO osd.py [line:91] osd osd.2 is start successfully
+2017-05-19 01:37:38,197 INFO osd.py [line:86] node is  denali02
+2017-05-19 01:37:38,197 INFO osd.py [line:87] execute command is sudo -i ceph-osd -i 5 & sleep 30
+2017-05-19 01:38:14,444 INFO osd.py [line:91] osd osd.5 is start successfully
+2017-05-19 01:38:14,444 INFO osd.py [line:86] node is  denali03
+2017-05-19 01:38:14,447 INFO osd.py [line:87] execute command is sudo -i ceph-osd -i 8 & sleep 30
+2017-05-19 01:38:50,619 INFO osd.py [line:91] osd osd.8 is start successfully
+2017-05-19 01:39:58,890 INFO client.py [line:90] home/denali
+
+2017-05-19 01:40:06,592 INFO osd.py [line:99] node is  denali01
+2017-05-19 01:40:06,595 INFO osd.py [line:100] execute command is ps -ef | grep 'ceph-osd -i 2'
+2017-05-19 01:40:13,992 INFO osd.py [line:102] enali   10086 10072  0 01:40 ?        00:00:00 bash -c ps -ef | grep 'ceph-osd -i 2'
+denali   10088 10086  0 01:40 ?        00:00:00 grep ceph-osd -i 2
+root     14208     1 11 May18 ?        00:52:07 ceph-osd -i 2
+
+2017-05-19 01:40:13,994 INFO osd.py [line:111] osd.2is alrady started
+2017-05-19 01:40:13,996 INFO osd.py [line:99] node is  denali02
+2017-05-19 01:40:13,996 INFO osd.py [line:100] execute command is ps -ef | grep 'ceph-osd -i 5'
+2017-05-19 01:40:21,150 INFO osd.py [line:102] enali    8153  8143  0 01:40 ?        00:00:00 bash -c ps -ef | grep 'ceph-osd -i 5'
+denali    8155  8153  0 01:40 ?        00:00:00 grep ceph-osd -i 5
+root     29951     1 14 May18 ?        01:06:41 ceph-osd -i 5
+
+2017-05-19 01:40:21,151 INFO osd.py [line:111] osd.5is alrady started
+2017-05-19 01:40:21,157 INFO osd.py [line:99] node is  denali03
+2017-05-19 01:40:21,160 INFO osd.py [line:100] execute command is ps -ef | grep 'ceph-osd -i 8'
+2017-05-19 01:40:26,964 INFO osd.py [line:102] oot     13222     1 13 May18 ?        01:02:46 ceph-osd -i 8
+denali   30436 30429  0 01:40 ?        00:00:00 bash -c ps -ef | grep 'ceph-osd -i 8'
+denali   30438 30436  0 01:40 ?        00:00:00 grep ceph-osd -i 8
+
+2017-05-19 01:40:26,970 INFO osd.py [line:111] osd.8is alrady started
+2017-05-19 01:40:26,971 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-19 01:40:35,221 INFO cluster.py [line:205]    cluster c741cb7b-5f44-4083-8d34-c914389e894f
+     health HEALTH_WARN
+            clock skew detected on mon.denali03
+            Monitor clock skew detected 
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 116, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e282: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v16645: 2048 pgs, 7 pools, 317 GB data, 83243 objects
+            46082 MB used, 293 GB / 338 GB avail
+                2048 active+clean
+  client io 9218 B/s rd, 2371 kB/s wr, 11 op/s rd, 592 op/s wr
+
+2017-05-19 01:40:35,236 INFO cluster.py [line:230] PG number is 2048
+2017-05-19 01:40:35,240 INFO cluster.py [line:231] usefull PG number is 2048
+2017-05-19 01:40:35,242 INFO TC59_kill_osd_on_three_node.py [line:122] stop mon service on denali03 in cluster successfully
+2017-05-19 01:40:35,244 INFO osd.py [line:37] execute command is sudo -i kill -9  & sleep 3
+2017-05-19 01:40:57,049 INFO client.py [line:90] home/denali
+
+2017-05-19 01:41:05,130 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-19 01:41:12,500 INFO cluster.py [line:205]    cluster c741cb7b-5f44-4083-8d34-c914389e894f
+     health HEALTH_WARN
+            clock skew detected on mon.denali03
+            Monitor clock skew detected 
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 116, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e282: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v16665: 2048 pgs, 7 pools, 317 GB data, 83243 objects
+            46092 MB used, 293 GB / 338 GB avail
+                2048 active+clean
+  client io 8479 B/s rd, 2631 kB/s wr, 10 op/s rd, 657 op/s wr
+
+2017-05-19 01:41:12,509 INFO cluster.py [line:230] PG number is 2048
+2017-05-19 01:41:12,512 INFO cluster.py [line:231] usefull PG number is 2048
+2017-05-19 01:41:12,515 INFO osd.py [line:37] execute command is sudo -i kill -9  & sleep 3
+2017-05-19 01:41:26,089 INFO client.py [line:90] home/denali
+
+2017-05-19 01:41:31,305 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-19 01:41:39,871 INFO cluster.py [line:205]    cluster c741cb7b-5f44-4083-8d34-c914389e894f
+     health HEALTH_WARN
+            clock skew detected on mon.denali03
+            Monitor clock skew detected 
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 116, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e282: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v16676: 2048 pgs, 7 pools, 317 GB data, 83243 objects
+            46060 MB used, 293 GB / 338 GB avail
+                2048 active+clean
+  client io 8426 B/s rd, 1884 kB/s wr, 10 op/s rd, 471 op/s wr
+
+2017-05-19 01:41:39,881 INFO cluster.py [line:230] PG number is 2048
+2017-05-19 01:41:39,884 INFO cluster.py [line:231] usefull PG number is 2048
+2017-05-19 01:41:39,887 INFO osd.py [line:37] execute command is sudo -i kill -9  & sleep 3
+2017-05-19 01:41:55,625 INFO client.py [line:90] home/denali
+
+2017-05-19 01:42:03,525 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-19 01:42:09,214 INFO cluster.py [line:205]    cluster c741cb7b-5f44-4083-8d34-c914389e894f
+     health HEALTH_WARN
+            clock skew detected on mon.denali03
+            Monitor clock skew detected 
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 116, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e282: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v16690: 2048 pgs, 7 pools, 317 GB data, 83243 objects
+            46060 MB used, 293 GB / 338 GB avail
+                2048 active+clean
+  client io 9263 B/s rd, 2007 kB/s wr, 11 op/s rd, 501 op/s wr
+
+2017-05-19 01:42:09,221 INFO cluster.py [line:230] PG number is 2048
+2017-05-19 01:42:09,224 INFO cluster.py [line:231] usefull PG number is 2048
+2017-05-19 01:42:09,226 INFO osd.py [line:86] node is  denali01
+2017-05-19 01:42:09,226 INFO osd.py [line:87] execute command is sudo -i ceph-osd -i 0 & sleep 30
+2017-05-19 01:42:45,855 INFO osd.py [line:91] osd osd.0 is start successfully
+2017-05-19 01:42:45,855 INFO osd.py [line:86] node is  denali02
+2017-05-19 01:42:45,857 INFO osd.py [line:87] execute command is sudo -i ceph-osd -i 3 & sleep 30
+2017-05-19 01:43:23,907 INFO osd.py [line:91] osd osd.3 is start successfully
+2017-05-19 01:43:23,910 INFO osd.py [line:86] node is  denali03
+2017-05-19 01:43:23,911 INFO osd.py [line:87] execute command is sudo -i ceph-osd -i 7 & sleep 30
+2017-05-19 01:44:00,361 INFO osd.py [line:91] osd osd.7 is start successfully
+2017-05-19 01:45:08,296 INFO client.py [line:90] home/denali
+
+2017-05-19 01:45:16,881 INFO osd.py [line:99] node is  denali01
+2017-05-19 01:45:16,887 INFO osd.py [line:100] execute command is ps -ef | grep 'ceph-osd -i 0'
+2017-05-19 01:45:25,812 INFO osd.py [line:102] enali   12176 12146  0 01:45 ?        00:00:00 bash -c ps -ef | grep 'ceph-osd -i 0'
+denali   12180 12176  0 01:45 ?        00:00:00 grep ceph-osd -i 0
+root     13382     1 11 May18 ?        00:53:06 ceph-osd -i 0
+
+2017-05-19 01:45:25,822 INFO osd.py [line:111] osd.0is alrady started
+2017-05-19 01:45:25,826 INFO osd.py [line:99] node is  denali02
+2017-05-19 01:45:25,829 INFO osd.py [line:100] execute command is ps -ef | grep 'ceph-osd -i 3'
+2017-05-19 01:45:35,861 INFO osd.py [line:102] enali   15700 15632  0 01:45 ?        00:00:00 bash -c ps -ef | grep 'ceph-osd -i 3'
+denali   15702 15700  0 01:45 ?        00:00:00 grep ceph-osd -i 3
+root     27389     1 11 May18 ?        00:52:41 ceph-osd -i 3
+
+2017-05-19 01:45:35,875 INFO osd.py [line:111] osd.3is alrady started
+2017-05-19 01:45:35,877 INFO osd.py [line:99] node is  denali03
+2017-05-19 01:45:35,881 INFO osd.py [line:100] execute command is ps -ef | grep 'ceph-osd -i 7'
+2017-05-19 01:45:41,857 INFO osd.py [line:102] oot     12791     1 11 May18 ?        00:54:32 ceph-osd -i 7
+denali   32548 32528  0 01:45 ?        00:00:00 bash -c ps -ef | grep 'ceph-osd -i 7'
+denali   32550 32548  0 01:45 ?        00:00:00 grep ceph-osd -i 7
+
+2017-05-19 01:45:41,869 INFO osd.py [line:111] osd.7is alrady started
+2017-05-19 01:45:41,871 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-19 01:45:48,869 INFO cluster.py [line:205]    cluster c741cb7b-5f44-4083-8d34-c914389e894f
+     health HEALTH_WARN
+            clock skew detected on mon.denali03
+            Monitor clock skew detected 
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 116, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e282: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v16803: 2048 pgs, 7 pools, 317 GB data, 83243 objects
+            46105 MB used, 293 GB / 338 GB avail
+                2048 active+clean
+  client io 5882 B/s rd, 1721 kB/s wr, 5 op/s rd, 430 op/s wr
+
+2017-05-19 01:45:48,900 INFO cluster.py [line:230] PG number is 2048
+2017-05-19 01:45:48,901 INFO cluster.py [line:231] usefull PG number is 2048
+2017-05-19 01:45:48,904 INFO TC59_kill_osd_on_three_node.py [line:122] stop mon service on denali03 in cluster successfully
+2017-05-19 01:45:48,910 INFO osd.py [line:37] execute command is sudo -i kill -9  & sleep 3
+2017-05-19 01:46:07,536 INFO client.py [line:90] home/denali
+
+2017-05-19 01:46:17,336 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-19 01:46:25,200 INFO cluster.py [line:205]    cluster c741cb7b-5f44-4083-8d34-c914389e894f
+     health HEALTH_WARN
+            clock skew detected on mon.denali03
+            Monitor clock skew detected 
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 116, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e282: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v16827: 2048 pgs, 7 pools, 317 GB data, 83243 objects
+            46107 MB used, 293 GB / 338 GB avail
+                2048 active+clean
+  client io 5688 B/s rd, 1578 kB/s wr, 8 op/s rd, 394 op/s wr
+
+2017-05-19 01:46:25,226 INFO cluster.py [line:230] PG number is 2048
+2017-05-19 01:46:25,232 INFO cluster.py [line:231] usefull PG number is 2048
+2017-05-19 01:46:25,234 INFO osd.py [line:37] execute command is sudo -i kill -9  & sleep 3
+2017-05-19 01:46:42,934 INFO client.py [line:90] home/denali
+
+2017-05-19 01:46:52,269 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-19 01:47:00,765 INFO cluster.py [line:205]    cluster c741cb7b-5f44-4083-8d34-c914389e894f
+     health HEALTH_OK
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 116, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e282: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v16845: 2048 pgs, 7 pools, 317 GB data, 83243 objects
+            46107 MB used, 293 GB / 338 GB avail
+                2048 active+clean
+  client io 9477 B/s rd, 2352 kB/s wr, 12 op/s rd, 588 op/s wr
+
+2017-05-19 01:47:00,786 INFO cluster.py [line:230] PG number is 2048
+2017-05-19 01:47:00,789 INFO cluster.py [line:231] usefull PG number is 2048
+2017-05-19 01:47:00,792 INFO osd.py [line:37] execute command is sudo -i kill -9  & sleep 3
+2017-05-19 01:47:26,065 INFO client.py [line:90] home/denali
+
+2017-05-19 01:47:31,815 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-19 01:47:39,976 INFO cluster.py [line:205]    cluster c741cb7b-5f44-4083-8d34-c914389e894f
+     health HEALTH_WARN
+            clock skew detected on mon.denali03
+            Monitor clock skew detected 
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 116, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e282: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v16870: 2048 pgs, 7 pools, 317 GB data, 83243 objects
+            46107 MB used, 293 GB / 338 GB avail
+                2048 active+clean
+  client io 2988 B/s rd, 1958 kB/s wr, 4 op/s rd, 489 op/s wr
+
+2017-05-19 01:47:40,006 INFO cluster.py [line:230] PG number is 2048
+2017-05-19 01:47:40,012 INFO cluster.py [line:231] usefull PG number is 2048
+2017-05-19 01:47:40,015 INFO osd.py [line:86] node is  denali01
+2017-05-19 01:47:40,019 INFO osd.py [line:87] execute command is sudo -i ceph-osd -i 1 & sleep 30
+2017-05-19 01:48:18,691 INFO osd.py [line:91] osd osd.1 is start successfully
+2017-05-19 01:48:18,697 INFO osd.py [line:86] node is  denali02
+2017-05-19 01:48:18,700 INFO osd.py [line:87] execute command is sudo -i ceph-osd -i 5 & sleep 30
+2017-05-19 01:48:54,345 INFO osd.py [line:91] osd osd.5 is start successfully
+2017-05-19 01:48:54,346 INFO osd.py [line:86] node is  denali03
+2017-05-19 01:48:54,355 INFO osd.py [line:87] execute command is sudo -i ceph-osd -i 6 & sleep 30
+2017-05-19 01:49:33,246 INFO osd.py [line:91] osd osd.6 is start successfully
+2017-05-19 01:50:39,785 INFO client.py [line:90] home/denali
+
+2017-05-19 01:50:53,355 INFO osd.py [line:99] node is  denali01
+2017-05-19 01:50:53,357 INFO osd.py [line:100] execute command is ps -ef | grep 'ceph-osd -i 1'
+2017-05-19 01:50:59,562 INFO osd.py [line:102] oot     13777     1 14 May18 ?        01:07:30 ceph-osd -i 1
+denali   14719 14718  0 01:51 ?        00:00:00 bash -c ps -ef | grep 'ceph-osd -i 1'
+denali   14721 14719  0 01:51 ?        00:00:00 grep ceph-osd -i 1
+
+2017-05-19 01:50:59,579 INFO osd.py [line:111] osd.1is alrady started
+2017-05-19 01:50:59,585 INFO osd.py [line:99] node is  denali02
+2017-05-19 01:50:59,586 INFO osd.py [line:100] execute command is ps -ef | grep 'ceph-osd -i 5'
+2017-05-19 01:51:08,207 INFO osd.py [line:102] enali   23404 23354  0 01:51 ?        00:00:00 bash -c ps -ef | grep 'ceph-osd -i 5'
+denali   23408 23404  0 01:51 ?        00:00:00 grep ceph-osd -i 5
+root     29951     1 14 May18 ?        01:08:30 ceph-osd -i 5
+
+2017-05-19 01:51:08,217 INFO osd.py [line:111] osd.5is alrady started
+2017-05-19 01:51:08,221 INFO osd.py [line:99] node is  denali03
+2017-05-19 01:51:08,224 INFO osd.py [line:100] execute command is ps -ef | grep 'ceph-osd -i 6'
+2017-05-19 01:51:13,701 INFO osd.py [line:102] enali    2687  2663  0 01:51 ?        00:00:00 bash -c ps -ef | grep 'ceph-osd -i 6'
+denali    2689  2687  0 01:51 ?        00:00:00 grep ceph-osd -i 6
+root     12402     1 11 May18 ?        00:53:38 ceph-osd -i 6
+
+2017-05-19 01:51:13,714 INFO osd.py [line:111] osd.6is alrady started
+2017-05-19 01:51:13,717 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-19 01:51:21,480 INFO cluster.py [line:205]    cluster c741cb7b-5f44-4083-8d34-c914389e894f
+     health HEALTH_WARN
+            clock skew detected on mon.denali03
+            Monitor clock skew detected 
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 116, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e282: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v17002: 2048 pgs, 7 pools, 317 GB data, 83243 objects
+            46067 MB used, 293 GB / 338 GB avail
+                2048 active+clean
+  client io 1989 B/s rd, 2130 kB/s wr, 2 op/s rd, 532 op/s wr
+
+2017-05-19 01:51:21,512 INFO cluster.py [line:230] PG number is 2048
+2017-05-19 01:51:21,515 INFO cluster.py [line:231] usefull PG number is 2048
+2017-05-19 01:51:21,516 INFO TC59_kill_osd_on_three_node.py [line:122] stop mon service on denali03 in cluster successfully
+2017-05-19 01:51:21,522 INFO osd.py [line:37] execute command is sudo -i kill -9  & sleep 3
+2017-05-19 01:51:36,720 INFO client.py [line:90] home/denali
+
+2017-05-19 01:51:42,904 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-19 01:51:50,454 INFO cluster.py [line:205]    cluster c741cb7b-5f44-4083-8d34-c914389e894f
+     health HEALTH_WARN
+            clock skew detected on mon.denali03
+            Monitor clock skew detected 
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 116, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e282: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v17018: 2048 pgs, 7 pools, 317 GB data, 83243 objects
+            46099 MB used, 293 GB / 338 GB avail
+                2048 active+clean
+  client io 5043 B/s rd, 1652 kB/s wr, 4 op/s rd, 413 op/s wr
+
+2017-05-19 01:51:50,486 INFO cluster.py [line:230] PG number is 2048
+2017-05-19 01:51:50,492 INFO cluster.py [line:231] usefull PG number is 2048
+2017-05-19 01:51:50,494 INFO osd.py [line:37] execute command is sudo -i kill -9  & sleep 3
+2017-05-19 01:52:10,941 INFO client.py [line:90] home/denali
+
+2017-05-19 01:52:17,204 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-19 01:52:24,430 INFO cluster.py [line:205]    cluster c741cb7b-5f44-4083-8d34-c914389e894f
+     health HEALTH_OK
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 116, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e282: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v17039: 2048 pgs, 7 pools, 317 GB data, 83243 objects
+            46110 MB used, 293 GB / 338 GB avail
+                2048 active+clean
+  client io 12518 B/s rd, 2310 kB/s wr, 12 op/s rd, 577 op/s wr
+
+2017-05-19 01:52:24,457 INFO cluster.py [line:230] PG number is 2048
+2017-05-19 01:52:24,460 INFO cluster.py [line:231] usefull PG number is 2048
+2017-05-19 01:52:24,464 INFO osd.py [line:37] execute command is sudo -i kill -9  & sleep 3
+2017-05-19 01:52:41,792 INFO client.py [line:90] home/denali
+
+2017-05-19 01:52:50,117 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-19 01:52:56,369 INFO cluster.py [line:205]    cluster c741cb7b-5f44-4083-8d34-c914389e894f
+     health HEALTH_WARN
+            clock skew detected on mon.denali03
+            Monitor clock skew detected 
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 116, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e282: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v17059: 2048 pgs, 7 pools, 317 GB data, 83243 objects
+            46110 MB used, 293 GB / 338 GB avail
+                2048 active+clean
+  client io 5991 B/s rd, 2241 kB/s wr, 8 op/s rd, 560 op/s wr
+
+2017-05-19 01:52:56,400 INFO cluster.py [line:230] PG number is 2048
+2017-05-19 01:52:56,401 INFO cluster.py [line:231] usefull PG number is 2048
+2017-05-19 01:52:56,404 INFO osd.py [line:86] node is  denali01
+2017-05-19 01:52:56,407 INFO osd.py [line:87] execute command is sudo -i ceph-osd -i 1 & sleep 30
+2017-05-19 01:53:32,944 INFO osd.py [line:91] osd osd.1 is start successfully
+2017-05-19 01:53:32,947 INFO osd.py [line:86] node is  denali02
+2017-05-19 01:53:32,950 INFO osd.py [line:87] execute command is sudo -i ceph-osd -i 5 & sleep 30
+2017-05-19 01:54:08,690 INFO osd.py [line:91] osd osd.5 is start successfully
+2017-05-19 01:54:08,694 INFO osd.py [line:86] node is  denali03
+2017-05-19 01:54:08,697 INFO osd.py [line:87] execute command is sudo -i ceph-osd -i 7 & sleep 30
+2017-05-19 01:54:46,230 INFO osd.py [line:91] osd osd.7 is start successfully
+2017-05-19 01:55:57,690 INFO client.py [line:90] home/denali
+
+2017-05-19 01:56:08,201 INFO osd.py [line:99] node is  denali01
+2017-05-19 01:56:08,204 INFO osd.py [line:100] execute command is ps -ef | grep 'ceph-osd -i 1'
+2017-05-19 01:56:14,607 INFO osd.py [line:102] oot     13777     1 14 May18 ?        01:08:22 ceph-osd -i 1
+denali   16816 16795  0 01:56 ?        00:00:00 bash -c ps -ef | grep 'ceph-osd -i 1'
+denali   16818 16816  0 01:56 ?        00:00:00 grep ceph-osd -i 1
+
+2017-05-19 01:56:14,621 INFO osd.py [line:111] osd.1is alrady started
+2017-05-19 01:56:14,627 INFO osd.py [line:99] node is  denali02
+2017-05-19 01:56:14,630 INFO osd.py [line:100] execute command is ps -ef | grep 'ceph-osd -i 5'
+2017-05-19 01:56:26,161 INFO osd.py [line:102] oot     29951     1 14 May18 ?        01:09:29 ceph-osd -i 5
+denali   30897 30842  0 01:56 ?        00:00:00 bash -c ps -ef | grep 'ceph-osd -i 5'
+denali   30899 30897  0 01:56 ?        00:00:00 grep ceph-osd -i 5
+
+2017-05-19 01:56:26,177 INFO osd.py [line:111] osd.5is alrady started
+2017-05-19 01:56:26,180 INFO osd.py [line:99] node is  denali03
+2017-05-19 01:56:26,184 INFO osd.py [line:100] execute command is ps -ef | grep 'ceph-osd -i 7'
+2017-05-19 01:56:34,147 INFO osd.py [line:102] enali    5126  5096  0 01:56 ?        00:00:00 bash -c ps -ef | grep 'ceph-osd -i 7'
+denali    5128  5126  0 01:56 ?        00:00:00 grep ceph-osd -i 7
+root     12791     1 11 May18 ?        00:56:01 ceph-osd -i 7
+
+2017-05-19 01:56:34,160 INFO osd.py [line:111] osd.7is alrady started
+2017-05-19 01:56:34,161 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-19 01:56:41,302 INFO cluster.py [line:205]    cluster c741cb7b-5f44-4083-8d34-c914389e894f
+     health HEALTH_WARN
+            clock skew detected on mon.denali03
+            Monitor clock skew detected 
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 116, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e282: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v17197: 2048 pgs, 7 pools, 317 GB data, 83243 objects
+            46139 MB used, 293 GB / 338 GB avail
+                2048 active+clean
+  client io 1095 B/s rd, 1807 kB/s wr, 1 op/s rd, 451 op/s wr
+
+2017-05-19 01:56:41,335 INFO cluster.py [line:230] PG number is 2048
+2017-05-19 01:56:41,339 INFO cluster.py [line:231] usefull PG number is 2048
+2017-05-19 01:56:41,342 INFO TC59_kill_osd_on_three_node.py [line:122] stop mon service on denali03 in cluster successfully
+2017-05-19 01:56:41,346 INFO osd.py [line:37] execute command is sudo -i kill -9  & sleep 3
+2017-05-19 01:56:56,187 INFO client.py [line:90] home/denali
+
+2017-05-19 01:57:03,795 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-19 01:57:18,397 INFO cluster.py [line:205]    cluster c741cb7b-5f44-4083-8d34-c914389e894f
+     health HEALTH_WARN
+            clock skew detected on mon.denali03
+            Monitor clock skew detected 
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 116, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e282: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v17218: 2048 pgs, 7 pools, 317 GB data, 83243 objects
+            46139 MB used, 293 GB / 338 GB avail
+                2048 active+clean
+  client io 10882 B/s rd, 1175 kB/s wr, 13 op/s rd, 293 op/s wr
+
+2017-05-19 01:57:18,430 INFO cluster.py [line:230] PG number is 2048
+2017-05-19 01:57:18,434 INFO cluster.py [line:231] usefull PG number is 2048
+2017-05-19 01:57:18,437 INFO osd.py [line:37] execute command is sudo -i kill -9  & sleep 3
+2017-05-19 01:57:34,730 INFO client.py [line:90] home/denali
+
+2017-05-19 01:57:39,894 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-19 01:57:50,171 INFO cluster.py [line:205]    cluster c741cb7b-5f44-4083-8d34-c914389e894f
+     health HEALTH_WARN
+            clock skew detected on mon.denali03
+            Monitor clock skew detected 
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 116, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e282: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v17238: 2048 pgs, 7 pools, 317 GB data, 83243 objects
+            46172 MB used, 293 GB / 338 GB avail
+                2048 active+clean
+  client io 1949 B/s rd, 2081 kB/s wr, 2 op/s rd, 520 op/s wr
+
+2017-05-19 01:57:50,200 INFO cluster.py [line:230] PG number is 2048
+2017-05-19 01:57:50,204 INFO cluster.py [line:231] usefull PG number is 2048
+2017-05-19 01:57:50,207 INFO osd.py [line:37] execute command is sudo -i kill -9  & sleep 3
+2017-05-19 01:58:10,637 INFO client.py [line:90] home/denali
+
+2017-05-19 01:58:24,592 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-19 01:58:31,431 INFO cluster.py [line:205]    cluster c741cb7b-5f44-4083-8d34-c914389e894f
+     health HEALTH_WARN
+            clock skew detected on mon.denali03
+            Monitor clock skew detected 
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 116, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e282: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v17267: 2048 pgs, 7 pools, 317 GB data, 83243 objects
+            46172 MB used, 293 GB / 338 GB avail
+                2048 active+clean
+  client io 3964 B/s rd, 2071 kB/s wr, 3 op/s rd, 517 op/s wr
+
+2017-05-19 01:58:31,464 INFO cluster.py [line:230] PG number is 2048
+2017-05-19 01:58:31,470 INFO cluster.py [line:231] usefull PG number is 2048
+2017-05-19 01:58:31,471 INFO osd.py [line:86] node is  denali01
+2017-05-19 01:58:31,474 INFO osd.py [line:87] execute command is sudo -i ceph-osd -i 1 & sleep 30
+2017-05-19 01:59:08,430 INFO osd.py [line:91] osd osd.1 is start successfully
+2017-05-19 01:59:08,431 INFO osd.py [line:86] node is  denali02
+2017-05-19 01:59:08,437 INFO osd.py [line:87] execute command is sudo -i ceph-osd -i 5 & sleep 30
+2017-05-19 01:59:49,460 INFO osd.py [line:91] osd osd.5 is start successfully
+2017-05-19 01:59:49,464 INFO osd.py [line:86] node is  denali03
+2017-05-19 01:59:49,470 INFO osd.py [line:87] execute command is sudo -i ceph-osd -i 6 & sleep 30
+2017-05-19 02:00:30,752 INFO osd.py [line:91] osd osd.6 is start successfully
+2017-05-19 02:01:39,940 INFO client.py [line:90] home/denali
+
+2017-05-19 02:01:47,486 INFO osd.py [line:99] node is  denali01
+2017-05-19 02:01:47,492 INFO osd.py [line:100] execute command is ps -ef | grep 'ceph-osd -i 1'
+2017-05-19 02:01:56,710 INFO osd.py [line:102] oot     13777     1 14 May18 ?        01:09:21 ceph-osd -i 1
+denali   19090 19042  0 02:02 ?        00:00:00 bash -c ps -ef | grep 'ceph-osd -i 1'
+denali   19092 19090  0 02:02 ?        00:00:00 grep ceph-osd -i 1
+
+2017-05-19 02:01:56,721 INFO osd.py [line:111] osd.1is alrady started
+2017-05-19 02:01:56,726 INFO osd.py [line:99] node is  denali02
+2017-05-19 02:01:56,732 INFO osd.py [line:100] execute command is ps -ef | grep 'ceph-osd -i 5'
+2017-05-19 02:02:04,914 INFO osd.py [line:102] enali    6193  6167  0 02:02 ?        00:00:00 bash -c ps -ef | grep 'ceph-osd -i 5'
+denali    6195  6193  0 02:02 ?        00:00:00 grep ceph-osd -i 5
+root     29951     1 14 May18 ?        01:10:29 ceph-osd -i 5
+
+2017-05-19 02:02:04,927 INFO osd.py [line:111] osd.5is alrady started
+2017-05-19 02:02:04,930 INFO osd.py [line:99] node is  denali03
+2017-05-19 02:02:04,934 INFO osd.py [line:100] execute command is ps -ef | grep 'ceph-osd -i 6'
+2017-05-19 02:02:10,474 INFO osd.py [line:102] enali    7573  7546  0 02:02 ?        00:00:00 bash -c ps -ef | grep 'ceph-osd -i 6'
+denali    7575  7573  0 02:02 ?        00:00:00 grep ceph-osd -i 6
+root     12402     1 11 May18 ?        00:55:04 ceph-osd -i 6
+
+2017-05-19 02:02:10,484 INFO osd.py [line:111] osd.6is alrady started
+2017-05-19 02:02:10,492 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-19 02:02:17,776 INFO cluster.py [line:205]    cluster c741cb7b-5f44-4083-8d34-c914389e894f
+     health HEALTH_WARN
+            clock skew detected on mon.denali03
+            Monitor clock skew detected 
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 116, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e282: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v17418: 2048 pgs, 7 pools, 317 GB data, 83243 objects
+            46129 MB used, 293 GB / 338 GB avail
+                2048 active+clean
+  client io 6781 B/s rd, 2461 kB/s wr, 9 op/s rd, 615 op/s wr
+
+2017-05-19 02:02:17,809 INFO cluster.py [line:230] PG number is 2048
+2017-05-19 02:02:17,812 INFO cluster.py [line:231] usefull PG number is 2048
+2017-05-19 02:02:17,816 INFO TC59_kill_osd_on_three_node.py [line:122] stop mon service on denali03 in cluster successfully
+2017-05-19 02:02:17,822 INFO TC59_kill_osd_on_three_node.py [line:134] 
+Step3: stop IO from clients
+2017-05-19 02:03:28,525 INFO TC59_kill_osd_on_three_node.py [line:137] TC59_kill_osd_on_three_node runs complete

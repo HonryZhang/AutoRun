@@ -1,0 +1,23 @@
+2017-06-03 11:48:43,169 INFO monitors.py [line:126]    "quorum_leader_name": "ubuntu-A",
+stdin: is not a tty
+
+2017-06-03 11:48:43,169 INFO monitors.py [line:129]    "quorum_leader_name": "ubuntu-A",
+2017-06-03 11:48:43,169 INFO initConfig.py [line:18] Init osd process
+2017-06-03 11:48:45,572 INFO node.py [line:79] pool reliablityTestPool was founded
+2017-06-03 11:48:45,948 INFO node.py [line:84] pgnumber is 512 in  reliablityTestPool 
+2017-06-03 11:48:46,266 INFO client.py [line:118] tdin: is not a tty
+
+2017-06-03 11:48:46,267 INFO client.py [line:123] image client112rbdImg0 create successfully
+2017-06-03 11:48:46,551 INFO client.py [line:118] tdin: is not a tty
+
+2017-06-03 11:48:46,551 INFO client.py [line:123] image client112rbdImg1 create successfully
+2017-06-03 11:48:46,871 INFO client.py [line:118] tdin: is not a tty
+
+2017-06-03 11:48:46,871 INFO client.py [line:123] image client112rbdImg2 create successfully
+2017-06-03 11:48:47,264 INFO client.py [line:118] tdin: is not a tty
+
+2017-06-03 11:48:47,265 INFO client.py [line:123] image client112rbdImg3 create successfully
+2017-06-03 11:48:47,550 INFO client.py [line:118] tdin: is not a tty
+
+2017-06-03 11:48:47,550 INFO client.py [line:123] image client112rbdImg4 create successfully
+2017-06-03 11:48:47,550 INFO initConfig.py [line:46] Init config complete

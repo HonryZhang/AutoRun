@@ -1,0 +1,27 @@
+2017-06-12 21:05:31,077 INFO monitors.py [line:126]    "quorum_leader_name": "taheo125",
+stdin: is not a tty
+
+2017-06-12 21:05:31,077 INFO monitors.py [line:129]    "quorum_leader_name": "taheo125",
+2017-06-12 21:05:31,077 INFO initConfig.py [line:18] Init osd process
+2017-06-12 21:05:34,406 ERROR node.py [line:55] tdin: is not a tty
+pool 'reliablityTestPool' created
+
+2017-06-12 21:05:34,407 INFO node.py [line:63] pool reliablityTestPool created successfully
+2017-06-12 21:05:36,792 INFO node.py [line:79] pool reliablityTestPool was founded
+2017-06-12 21:05:37,163 INFO node.py [line:84] pgnumber is 512 in  reliablityTestPool 
+2017-06-12 21:05:39,618 INFO client.py [line:118] tdin: is not a tty
+
+2017-06-12 21:05:39,619 INFO client.py [line:123] image client100rbdImg0 create successfully
+2017-06-12 21:05:39,899 INFO client.py [line:118] tdin: is not a tty
+
+2017-06-12 21:05:39,899 INFO client.py [line:123] image client100rbdImg1 create successfully
+2017-06-12 21:05:40,178 INFO client.py [line:118] tdin: is not a tty
+
+2017-06-12 21:05:40,178 INFO client.py [line:123] image client100rbdImg2 create successfully
+2017-06-12 21:05:40,455 INFO client.py [line:118] tdin: is not a tty
+
+2017-06-12 21:05:40,455 INFO client.py [line:123] image client100rbdImg3 create successfully
+2017-06-12 21:05:40,707 INFO client.py [line:118] tdin: is not a tty
+
+2017-06-12 21:05:40,708 INFO client.py [line:123] image client100rbdImg4 create successfully
+2017-06-12 21:05:40,708 INFO initConfig.py [line:46] Init config complete

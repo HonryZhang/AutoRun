@@ -1,0 +1,27 @@
+2017-05-26 22:02:18,250 INFO monitors.py [line:126]    "quorum_leader_name": "ubuntu-A",
+stdin: is not a tty
+
+2017-05-26 22:02:18,253 INFO monitors.py [line:129]    "quorum_leader_name": "ubuntu-A",
+2017-05-26 22:02:22,966 INFO client.py [line:149] ['enali   132389 132388  0 22:02 ?        00:00:00 bash -c sudo -i ps -ef | grep fio', 'denali   132391 132389  0 22:02 ?        00:00:00 grep fio', 'stdin: is not a tty', '']
+2017-05-26 22:02:22,967 INFO client.py [line:154] IO stopped
+2017-05-26 22:02:22,973 INFO client.py [line:155] start IO again
+2017-05-26 22:02:22,976 INFO base.py [line:37] 
+Now start IO on  client100rbdImg0
+2017-05-26 22:02:33,822 INFO base.py [line:37] 
+Now start IO on  client100rbdImg1
+2017-05-26 22:02:47,812 INFO base.py [line:37] 
+Now start IO on  client100rbdImg2
+2017-05-26 22:02:58,355 INFO base.py [line:37] 
+Now start IO on  client100rbdImg3
+2017-05-26 22:03:08,530 INFO base.py [line:37] 
+Now start IO on  client100rbdImg4
+2017-05-26 22:03:18,937 INFO base.py [line:37] 
+Now start IO on  client100rbdImg5
+2017-05-26 22:03:29,621 INFO base.py [line:37] 
+Now start IO on  client100rbdImg6
+2017-05-26 22:03:41,625 INFO base.py [line:37] 
+Now start IO on  client100rbdImg7
+2017-05-26 22:03:51,551 INFO base.py [line:37] 
+Now start IO on  client100rbdImg8
+2017-05-26 22:04:01,542 INFO base.py [line:37] 
+Now start IO on  client100rbdImg9

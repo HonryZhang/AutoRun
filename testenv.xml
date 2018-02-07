@@ -1,0 +1,25 @@
+<testenvinfo env_type="BM" >
+	<builds>
+		<vboxbuildpath>/samba/fileshare/my_workspace/int_nightly_builds</vboxbuildpath>
+		<vagrantfile >Vagrantfile_nightly</vagrantfile >
+		<sdopd >IstTest1234</sdopd >
+	</builds>
+	<hardwares>
+		<clients>
+			<client id="1">
+				<communication ip_address="192.168.28.57" password="admin" username="denali" />
+			</client>
+		</clients>
+		<nodes>
+			<node id="1">
+				<communication ip_address="192.168.28.58" password="admin" username="denali" />
+			</node>
+		</nodes>
+		<monitors>
+			<monitor id="1">
+				<communication ip_address="192.168.28.59" password="admin" username="denali" />
+			</monitor>
+		</monitors>
+	</hardwares>
+
+</testenvinfo>

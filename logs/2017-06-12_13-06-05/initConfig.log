@@ -1,0 +1,12 @@
+2017-06-12 13:06:07,045 INFO monitors.py [line:126]    "quorum_leader_name": "CW113",
+stdin: is not a tty
+
+2017-06-12 13:06:07,046 INFO monitors.py [line:129]    "quorum_leader_name": "CW113",
+2017-06-12 13:06:07,046 INFO initConfig.py [line:18] Init osd process
+2017-06-12 13:06:09,665 ERROR node.py [line:55] tdin: is not a tty
+pool 'reliablityTestPool' already exists
+
+2017-06-12 13:06:09,665 ERROR node.py [line:57] pool reliablityTestPool created failed
+2017-06-12 13:06:09,665 ERROR node.py [line:58] Error message is tdin: is not a tty
+pool 'reliablityTestPool' already exists
+

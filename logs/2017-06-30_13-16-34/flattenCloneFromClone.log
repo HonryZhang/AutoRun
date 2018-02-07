@@ -1,0 +1,12 @@
+2017-06-30 13:29:42,664 INFO flattenCloneFromClone.py [line:20] 
+UI test for invalid login
+
+2017-06-30 13:29:50,022 INFO monitors.py [line:126]    "quorum_leader_name": "denali1",
+stdin: is not a tty
+
+2017-06-30 13:29:50,022 INFO monitors.py [line:129]    "quorum_leader_name": "denali1",
+2017-06-30 13:30:01,078 INFO loginlogout.py [line:13] login
+2017-06-30 13:30:07,862 INFO loginlogout.py [line:24] now we have loggin
+2017-06-30 13:30:07,864 INFO poolManagement.py [line:50] Create pool
+2017-06-30 13:30:58,882 INFO poolManagement.py [line:135] create block device img 
+2017-06-30 13:31:55,734 INFO poolManagement.py [line:287] Create snap for block device 

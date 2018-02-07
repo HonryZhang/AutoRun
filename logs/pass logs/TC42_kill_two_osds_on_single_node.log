@@ -1,0 +1,2979 @@
+2017-05-17 20:05:55,325 INFO TC42_kill_two_osds_on_single_node.py [line:25] 
+This test case will do the following steps:
+1. start IO on 10 images with randwrite and verify
+2. login the first node 
+3. random pick two osds and kill them
+4. start the killed osds
+5. check the cluster status
+6. repeat step 2-5 on the other node
+
+2017-05-17 20:05:57,029 INFO monitors.py [line:123]    "quorum_leader_name": "denali02",
+
+2017-05-17 20:05:57,029 INFO monitors.py [line:126]    "quorum_leader_name": "denali02",
+2017-05-17 20:05:57,029 INFO TC42_kill_two_osds_on_single_node.py [line:29] 
+Step1:start IO from clients
+2017-05-17 20:05:57,029 INFO base.py [line:19] 
+Now start IO on  reliablityTestImage0
+2017-05-17 20:05:58,061 INFO client.py [line:56] pid info is 30027
+2017-05-17 20:05:58,061 INFO base.py [line:19] 
+Now start IO on  reliablityTestImage1
+2017-05-17 20:05:59,265 INFO client.py [line:56] pid info is 30056
+2017-05-17 20:05:59,265 INFO base.py [line:19] 
+Now start IO on  reliablityTestImage2
+2017-05-17 20:06:00,436 INFO client.py [line:56] pid info is 30085
+2017-05-17 20:06:00,436 INFO base.py [line:19] 
+Now start IO on  reliablityTestImage3
+2017-05-17 20:06:01,621 INFO client.py [line:56] pid info is 30114
+2017-05-17 20:06:01,621 INFO base.py [line:19] 
+Now start IO on  reliablityTestImage4
+2017-05-17 20:06:02,763 INFO client.py [line:56] pid info is 30143
+2017-05-17 20:06:02,842 INFO base.py [line:19] 
+Now start IO on  reliablityTestImage5
+2017-05-17 20:06:04,154 INFO client.py [line:56] pid info is 30172
+2017-05-17 20:06:04,154 INFO base.py [line:19] 
+Now start IO on  reliablityTestImage6
+2017-05-17 20:06:05,203 INFO client.py [line:56] pid info is 30202
+2017-05-17 20:06:05,203 INFO base.py [line:19] 
+Now start IO on  reliablityTestImage7
+2017-05-17 20:06:06,236 INFO client.py [line:56] pid info is 30231
+2017-05-17 20:06:06,236 INFO base.py [line:19] 
+Now start IO on  reliablityTestImage8
+2017-05-17 20:06:07,266 INFO client.py [line:56] pid info is 30260
+2017-05-17 20:06:07,266 INFO base.py [line:19] 
+Now start IO on  reliablityTestImage9
+2017-05-17 20:06:08,315 INFO client.py [line:56] pid info is 30289
+2017-05-17 20:07:08,328 INFO TC42_kill_two_osds_on_single_node.py [line:32] 
+Step2:start force kill osd
+2017-05-17 20:07:08,328 INFO TC42_kill_two_osds_on_single_node.py [line:36] 
+Now operate denali01
+2017-05-17 20:07:08,907 INFO node.py [line:165] osd.0  ---> processId 26458
+2017-05-17 20:07:08,907 INFO node.py [line:165] osd.1  ---> processId 27114
+2017-05-17 20:07:08,907 INFO node.py [line:165] osd.2  ---> processId 27734
+2017-05-17 20:07:08,907 INFO TC42_kill_two_osds_on_single_node.py [line:40] shutdown two osds on node denali01
+2017-05-17 20:07:08,907 INFO osd.py [line:37] execute command is sudo -i kill -9 26458 & sleep 3
+2017-05-17 20:07:12,661 INFO osd.py [line:37] execute command is sudo -i kill -9 27734 & sleep 3
+2017-05-17 20:08:16,733 INFO client.py [line:90] home/denali
+
+2017-05-17 20:08:17,266 INFO TC42_kill_two_osds_on_single_node.py [line:50] start osd on node denali01
+2017-05-17 20:08:17,266 INFO osd.py [line:86] node is  denali01
+2017-05-17 20:08:17,266 INFO osd.py [line:87] execute command is sudo -i ceph-osd -i 0 & sleep 30
+2017-05-17 20:08:47,947 INFO osd.py [line:91] osd osd.0 is start successfully
+2017-05-17 20:08:47,947 INFO osd.py [line:86] node is  denali01
+2017-05-17 20:08:47,947 INFO osd.py [line:87] execute command is sudo -i ceph-osd -i 2 & sleep 30
+2017-05-17 20:09:18,605 INFO osd.py [line:91] osd osd.2 is start successfully
+2017-05-17 20:09:18,605 INFO osd.py [line:99] node is  denali01
+2017-05-17 20:09:18,605 INFO osd.py [line:100] execute command is ps -ef | grep 'ceph-osd -i 0'
+2017-05-17 20:09:19,230 INFO osd.py [line:102] oot     31396     1 37 12:08 ?        00:00:22 ceph-osd -i 0
+denali   32069 32068  0 12:09 ?        00:00:00 bash -c ps -ef | grep 'ceph-osd -i 0'
+denali   32071 32069  0 12:09 ?        00:00:00 grep ceph-osd -i 0
+
+2017-05-17 20:09:19,230 INFO osd.py [line:111] osd.0is alrady started
+2017-05-17 20:09:19,230 INFO osd.py [line:99] node is  denali01
+2017-05-17 20:09:19,230 INFO osd.py [line:100] execute command is ps -ef | grep 'ceph-osd -i 2'
+2017-05-17 20:09:19,931 INFO osd.py [line:102] oot     31736     1 27 12:08 ?        00:00:08 ceph-osd -i 2
+denali   32075 32074  0 12:09 ?        00:00:00 bash -c ps -ef | grep 'ceph-osd -i 2'
+denali   32077 32075  0 12:09 ?        00:00:00 grep ceph-osd -i 2
+
+2017-05-17 20:09:19,931 INFO osd.py [line:111] osd.2is alrady started
+2017-05-17 20:09:50,476 INFO client.py [line:90] home/denali
+
+2017-05-17 20:09:51,007 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:09:52,167 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            42 pgs degraded
+            5 pgs recovering
+            36 pgs recovery_wait
+            1 pgs stuck unclean
+            recovery 5385/166872 objects degraded (3.227%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e818: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10080: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24928 MB used, 314 GB / 338 GB avail
+            5385/166872 objects degraded (3.227%)
+                2662 active+clean
+                  36 active+recovery_wait+degraded
+                   5 active+recovering+degraded
+                   1 active+degraded
+recovery io 139 MB/s, 126 objects/s
+  client io 1064 kB/s wr, 0 op/s rd, 266 op/s wr
+
+2017-05-17 20:09:52,167 INFO cluster.py [line:207]             recovery 5385/166872 objects degraded (3.227%)
+2017-05-17 20:09:52,167 INFO cluster.py [line:210]             election epoch 8
+2017-05-17 20:09:52,167 INFO cluster.py [line:212] PG number is 8
+2017-05-17 20:09:52,167 INFO cluster.py [line:214] usefull PG number is 8012020301
+2017-05-17 20:09:52,167 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:09:53,247 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            41 pgs degraded
+            5 pgs recovering
+            35 pgs recovery_wait
+            1 pgs stuck unclean
+            recovery 5227/166872 objects degraded (3.132%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e818: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10081: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24928 MB used, 314 GB / 338 GB avail
+            5227/166872 objects degraded (3.132%)
+                2663 active+clean
+                  35 active+recovery_wait+degraded
+                   5 active+recovering+degraded
+                   1 active+degraded
+recovery io 300 MB/s, 204 objects/s
+  client io 7933 B/s rd, 2090 kB/s wr, 11 op/s rd, 522 op/s wr
+
+2017-05-17 20:09:53,247 INFO cluster.py [line:207]             recovery 5227/166872 objects degraded (3.132%)
+2017-05-17 20:09:53,247 INFO cluster.py [line:210]             election epoch 8
+2017-05-17 20:09:53,247 INFO cluster.py [line:212] PG number is 8
+2017-05-17 20:09:53,247 INFO cluster.py [line:214] usefull PG number is 8012020301
+2017-05-17 20:09:53,247 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:09:54,390 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            41 pgs degraded
+            5 pgs recovering
+            35 pgs recovery_wait
+            1 pgs stuck unclean
+            recovery 5227/166872 objects degraded (3.132%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e818: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10081: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24928 MB used, 314 GB / 338 GB avail
+            5227/166872 objects degraded (3.132%)
+                2663 active+clean
+                  35 active+recovery_wait+degraded
+                   5 active+recovering+degraded
+                   1 active+degraded
+recovery io 300 MB/s, 204 objects/s
+  client io 7933 B/s rd, 2090 kB/s wr, 11 op/s rd, 522 op/s wr
+
+2017-05-17 20:09:54,390 INFO cluster.py [line:207]             recovery 5227/166872 objects degraded (3.132%)
+2017-05-17 20:09:54,390 INFO cluster.py [line:210]             election epoch 8
+2017-05-17 20:09:54,390 INFO cluster.py [line:212] PG number is 8
+2017-05-17 20:09:54,390 INFO cluster.py [line:214] usefull PG number is 8012020301
+2017-05-17 20:09:54,390 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:09:55,513 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            39 pgs degraded
+            3 pgs recovering
+            35 pgs recovery_wait
+            1 pgs stuck unclean
+            recovery 5000/166872 objects degraded (2.996%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e818: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10082: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24928 MB used, 314 GB / 338 GB avail
+            5000/166872 objects degraded (2.996%)
+                2665 active+clean
+                  35 active+recovery_wait+degraded
+                   3 active+recovering+degraded
+                   1 active+degraded
+recovery io 480 MB/s, 249 objects/s
+  client io 5318 B/s rd, 2002 kB/s wr, 7 op/s rd, 500 op/s wr
+
+2017-05-17 20:09:55,513 INFO cluster.py [line:207]             recovery 5000/166872 objects degraded (2.996%)
+2017-05-17 20:09:55,513 INFO cluster.py [line:210]             election epoch 8
+2017-05-17 20:09:55,513 INFO cluster.py [line:212] PG number is 8
+2017-05-17 20:09:55,513 INFO cluster.py [line:214] usefull PG number is 8012020301
+2017-05-17 20:09:55,513 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:09:56,624 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            39 pgs degraded
+            4 pgs recovering
+            34 pgs recovery_wait
+            1 pgs stuck unclean
+            recovery 4862/166872 objects degraded (2.914%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e818: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10083: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24928 MB used, 314 GB / 338 GB avail
+            4862/166872 objects degraded (2.914%)
+                2665 active+clean
+                  34 active+recovery_wait+degraded
+                   4 active+recovering+degraded
+                   1 active+degraded
+recovery io 428 MB/s, 224 objects/s
+  client io 1331 kB/s wr, 0 op/s rd, 332 op/s wr
+
+2017-05-17 20:09:56,624 INFO cluster.py [line:207]             recovery 4862/166872 objects degraded (2.914%)
+2017-05-17 20:09:56,624 INFO cluster.py [line:210]             election epoch 8
+2017-05-17 20:09:56,624 INFO cluster.py [line:212] PG number is 8
+2017-05-17 20:09:56,624 INFO cluster.py [line:214] usefull PG number is 8012020301
+2017-05-17 20:09:56,624 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:09:57,673 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            38 pgs degraded
+            4 pgs recovering
+            33 pgs recovery_wait
+            1 pgs stuck unclean
+            recovery 4693/166872 objects degraded (2.812%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e818: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10084: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24928 MB used, 314 GB / 338 GB avail
+            4693/166872 objects degraded (2.812%)
+                2666 active+clean
+                  33 active+recovery_wait+degraded
+                   4 active+recovering+degraded
+                   1 active+degraded
+recovery io 243 MB/s, 200 objects/s
+  client io 7377 B/s rd, 1914 kB/s wr, 10 op/s rd, 478 op/s wr
+
+2017-05-17 20:09:57,673 INFO cluster.py [line:207]             recovery 4693/166872 objects degraded (2.812%)
+2017-05-17 20:09:57,673 INFO cluster.py [line:210]             election epoch 8
+2017-05-17 20:09:57,673 INFO cluster.py [line:212] PG number is 8
+2017-05-17 20:09:57,673 INFO cluster.py [line:214] usefull PG number is 8012020301
+2017-05-17 20:09:57,673 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:09:58,875 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            36 pgs degraded
+            3 pgs recovering
+            32 pgs recovery_wait
+            1 pgs stuck unclean
+            recovery 4515/166872 objects degraded (2.706%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e818: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10086: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24928 MB used, 314 GB / 338 GB avail
+            4515/166872 objects degraded (2.706%)
+                2668 active+clean
+                  32 active+recovery_wait+degraded
+                   3 active+recovering+degraded
+                   1 active+degraded
+recovery io 334 MB/s, 174 objects/s
+  client io 1513 kB/s wr, 0 op/s rd, 378 op/s wr
+
+2017-05-17 20:09:58,875 INFO cluster.py [line:207]             recovery 4515/166872 objects degraded (2.706%)
+2017-05-17 20:09:58,875 INFO cluster.py [line:210]             election epoch 8
+2017-05-17 20:09:58,875 INFO cluster.py [line:212] PG number is 8
+2017-05-17 20:09:58,875 INFO cluster.py [line:214] usefull PG number is 8012020301
+2017-05-17 20:09:58,875 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:09:59,984 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            35 pgs degraded
+            4 pgs recovering
+            30 pgs recovery_wait
+            1 pgs stuck unclean
+            recovery 4260/166872 objects degraded (2.553%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e818: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10087: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24928 MB used, 314 GB / 338 GB avail
+            4260/166872 objects degraded (2.553%)
+                2669 active+clean
+                  30 active+recovery_wait+degraded
+                   4 active+recovering+degraded
+                   1 active+degraded
+recovery io 617 MB/s, 321 objects/s
+  client io 2199 kB/s wr, 0 op/s rd, 549 op/s wr
+
+2017-05-17 20:09:59,984 INFO cluster.py [line:207]             recovery 4260/166872 objects degraded (2.553%)
+2017-05-17 20:09:59,984 INFO cluster.py [line:210]             election epoch 8
+2017-05-17 20:09:59,984 INFO cluster.py [line:212] PG number is 8
+2017-05-17 20:09:59,984 INFO cluster.py [line:214] usefull PG number is 8012020301
+2017-05-17 20:09:59,984 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:10:00,923 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            35 pgs degraded
+            4 pgs recovering
+            30 pgs recovery_wait
+            1 pgs stuck unclean
+            recovery 4260/166872 objects degraded (2.553%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e818: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10087: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24928 MB used, 314 GB / 338 GB avail
+            4260/166872 objects degraded (2.553%)
+                2669 active+clean
+                  30 active+recovery_wait+degraded
+                   4 active+recovering+degraded
+                   1 active+degraded
+recovery io 617 MB/s, 321 objects/s
+  client io 2199 kB/s wr, 0 op/s rd, 549 op/s wr
+
+2017-05-17 20:10:00,923 INFO cluster.py [line:207]             recovery 4260/166872 objects degraded (2.553%)
+2017-05-17 20:10:00,923 INFO cluster.py [line:210]             election epoch 8
+2017-05-17 20:10:00,923 INFO cluster.py [line:212] PG number is 8
+2017-05-17 20:10:00,923 INFO cluster.py [line:214] usefull PG number is 8012020301
+2017-05-17 20:10:00,923 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:10:01,953 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            34 pgs degraded
+            4 pgs recovering
+            29 pgs recovery_wait
+            1 pgs stuck unclean
+            recovery 4081/166872 objects degraded (2.446%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e818: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10088: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24928 MB used, 314 GB / 338 GB avail
+            4081/166872 objects degraded (2.446%)
+                2670 active+clean
+                  29 active+recovery_wait+degraded
+                   4 active+recovering+degraded
+                   1 active+degraded
+recovery io 388 MB/s, 270 objects/s
+  client io 1667 kB/s wr, 0 op/s rd, 416 op/s wr
+
+2017-05-17 20:10:01,953 INFO cluster.py [line:207]             recovery 4081/166872 objects degraded (2.446%)
+2017-05-17 20:10:01,953 INFO cluster.py [line:210]             election epoch 8
+2017-05-17 20:10:01,953 INFO cluster.py [line:212] PG number is 8
+2017-05-17 20:10:01,953 INFO cluster.py [line:214] usefull PG number is 8012020301
+2017-05-17 20:10:01,953 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:10:03,046 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            33 pgs degraded
+            3 pgs recovering
+            29 pgs recovery_wait
+            1 pgs stuck unclean
+            recovery 3958/166872 objects degraded (2.372%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e818: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10089: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24928 MB used, 314 GB / 338 GB avail
+            3958/166872 objects degraded (2.372%)
+                2671 active+clean
+                  29 active+recovery_wait+degraded
+                   3 active+recovering+degraded
+                   1 active+degraded
+recovery io 191 MB/s, 168 objects/s
+  client io 6481 B/s rd, 1764 kB/s wr, 9 op/s rd, 441 op/s wr
+
+2017-05-17 20:10:03,046 INFO cluster.py [line:207]             recovery 3958/166872 objects degraded (2.372%)
+2017-05-17 20:10:03,046 INFO cluster.py [line:210]             election epoch 8
+2017-05-17 20:10:03,046 INFO cluster.py [line:212] PG number is 8
+2017-05-17 20:10:03,046 INFO cluster.py [line:214] usefull PG number is 8012020301
+2017-05-17 20:10:03,046 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:10:04,154 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            33 pgs degraded
+            3 pgs recovering
+            29 pgs recovery_wait
+            1 pgs stuck unclean
+            recovery 3958/166872 objects degraded (2.372%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e818: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10089: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24928 MB used, 314 GB / 338 GB avail
+            3958/166872 objects degraded (2.372%)
+                2671 active+clean
+                  29 active+recovery_wait+degraded
+                   3 active+recovering+degraded
+                   1 active+degraded
+recovery io 191 MB/s, 168 objects/s
+  client io 6481 B/s rd, 1764 kB/s wr, 9 op/s rd, 441 op/s wr
+
+2017-05-17 20:10:04,154 INFO cluster.py [line:207]             recovery 3958/166872 objects degraded (2.372%)
+2017-05-17 20:10:04,154 INFO cluster.py [line:210]             election epoch 8
+2017-05-17 20:10:04,154 INFO cluster.py [line:212] PG number is 8
+2017-05-17 20:10:04,154 INFO cluster.py [line:214] usefull PG number is 8012020301
+2017-05-17 20:10:04,154 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:10:05,516 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            30 pgs degraded
+            2 pgs recovering
+            27 pgs recovery_wait
+            1 pgs stuck unclean
+            recovery 3660/166872 objects degraded (2.193%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e818: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10091: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24928 MB used, 314 GB / 338 GB avail
+            3660/166872 objects degraded (2.193%)
+                2674 active+clean
+                  27 active+recovery_wait+degraded
+                   2 active+recovering+degraded
+                   1 active+degraded
+recovery io 372 MB/s, 194 objects/s
+  client io 1564 kB/s wr, 0 op/s rd, 391 op/s wr
+
+2017-05-17 20:10:05,516 INFO cluster.py [line:207]             recovery 3660/166872 objects degraded (2.193%)
+2017-05-17 20:10:05,516 INFO cluster.py [line:210]             election epoch 8
+2017-05-17 20:10:05,516 INFO cluster.py [line:212] PG number is 8
+2017-05-17 20:10:05,516 INFO cluster.py [line:214] usefull PG number is 8012020301
+2017-05-17 20:10:05,516 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:10:06,611 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            30 pgs degraded
+            2 pgs recovering
+            27 pgs recovery_wait
+            1 pgs stuck unclean
+            recovery 3506/166872 objects degraded (2.101%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e818: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10092: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24928 MB used, 314 GB / 338 GB avail
+            3506/166872 objects degraded (2.101%)
+                2674 active+clean
+                  27 active+recovery_wait+degraded
+                   2 active+recovering+degraded
+                   1 active+degraded
+recovery io 267 MB/s, 209 objects/s
+  client io 1251 kB/s wr, 0 op/s rd, 312 op/s wr
+
+2017-05-17 20:10:06,611 INFO cluster.py [line:207]             recovery 3506/166872 objects degraded (2.101%)
+2017-05-17 20:10:06,611 INFO cluster.py [line:210]             election epoch 8
+2017-05-17 20:10:06,611 INFO cluster.py [line:212] PG number is 8
+2017-05-17 20:10:06,611 INFO cluster.py [line:214] usefull PG number is 8012020301
+2017-05-17 20:10:06,611 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:10:07,594 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            28 pgs degraded
+            3 pgs recovering
+            24 pgs recovery_wait
+            1 pgs stuck unclean
+            recovery 3270/166872 objects degraded (1.960%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e818: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10093: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24928 MB used, 314 GB / 338 GB avail
+            3270/166872 objects degraded (1.960%)
+                2676 active+clean
+                  24 active+recovery_wait+degraded
+                   3 active+recovering+degraded
+                   1 active+degraded
+recovery io 439 MB/s, 300 objects/s
+  client io 7884 B/s rd, 2105 kB/s wr, 11 op/s rd, 526 op/s wr
+
+2017-05-17 20:10:07,594 INFO cluster.py [line:207]             recovery 3270/166872 objects degraded (1.960%)
+2017-05-17 20:10:07,594 INFO cluster.py [line:210]             election epoch 8
+2017-05-17 20:10:07,594 INFO cluster.py [line:212] PG number is 8
+2017-05-17 20:10:07,594 INFO cluster.py [line:214] usefull PG number is 8012020301
+2017-05-17 20:10:07,594 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:10:08,706 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            28 pgs degraded
+            3 pgs recovering
+            24 pgs recovery_wait
+            1 pgs stuck unclean
+            recovery 3270/166872 objects degraded (1.960%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e818: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10093: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24928 MB used, 314 GB / 338 GB avail
+            3270/166872 objects degraded (1.960%)
+                2676 active+clean
+                  24 active+recovery_wait+degraded
+                   3 active+recovering+degraded
+                   1 active+degraded
+recovery io 439 MB/s, 300 objects/s
+  client io 7884 B/s rd, 2105 kB/s wr, 11 op/s rd, 526 op/s wr
+
+2017-05-17 20:10:08,706 INFO cluster.py [line:207]             recovery 3270/166872 objects degraded (1.960%)
+2017-05-17 20:10:08,706 INFO cluster.py [line:210]             election epoch 8
+2017-05-17 20:10:08,706 INFO cluster.py [line:212] PG number is 8
+2017-05-17 20:10:08,706 INFO cluster.py [line:214] usefull PG number is 8012020301
+2017-05-17 20:10:08,706 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:10:09,785 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            27 pgs degraded
+            3 pgs recovering
+            23 pgs recovery_wait
+            1 pgs stuck unclean
+            recovery 3080/166872 objects degraded (1.846%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e818: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10094: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24928 MB used, 314 GB / 338 GB avail
+            3080/166872 objects degraded (1.846%)
+                2677 active+clean
+                  23 active+recovery_wait+degraded
+                   3 active+recovering+degraded
+                   1 active+degraded
+recovery io 529 MB/s, 276 objects/s
+  client io 5321 B/s rd, 2013 kB/s wr, 7 op/s rd, 503 op/s wr
+
+2017-05-17 20:10:09,785 INFO cluster.py [line:207]             recovery 3080/166872 objects degraded (1.846%)
+2017-05-17 20:10:09,785 INFO cluster.py [line:210]             election epoch 8
+2017-05-17 20:10:09,785 INFO cluster.py [line:212] PG number is 8
+2017-05-17 20:10:09,785 INFO cluster.py [line:214] usefull PG number is 8012020301
+2017-05-17 20:10:09,785 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:10:11,115 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            27 pgs degraded
+            4 pgs recovering
+            22 pgs recovery_wait
+            1 pgs stuck unclean
+            recovery 2945/166872 objects degraded (1.765%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e818: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10095: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24928 MB used, 314 GB / 338 GB avail
+            2945/166872 objects degraded (1.765%)
+                2677 active+clean
+                  22 active+recovery_wait+degraded
+                   4 active+recovering+degraded
+                   1 active+degraded
+recovery io 404 MB/s, 211 objects/s
+  client io 1462 kB/s wr, 0 op/s rd, 365 op/s wr
+
+2017-05-17 20:10:11,117 INFO cluster.py [line:207]             recovery 2945/166872 objects degraded (1.765%)
+2017-05-17 20:10:11,117 INFO cluster.py [line:210]             election epoch 8
+2017-05-17 20:10:11,117 INFO cluster.py [line:212] PG number is 8
+2017-05-17 20:10:11,117 INFO cluster.py [line:214] usefull PG number is 8012020301
+2017-05-17 20:10:11,117 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:10:11,927 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            25 pgs degraded
+            4 pgs recovering
+            20 pgs recovery_wait
+            1 pgs stuck unclean
+            recovery 2750/166872 objects degraded (1.648%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e818: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10096: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24928 MB used, 314 GB / 338 GB avail
+            2750/166872 objects degraded (1.648%)
+                2679 active+clean
+                  20 active+recovery_wait+degraded
+                   4 active+recovering+degraded
+                   1 active+degraded
+recovery io 237 MB/s, 209 objects/s
+  client io 7375 B/s rd, 1980 kB/s wr, 10 op/s rd, 495 op/s wr
+
+2017-05-17 20:10:11,944 INFO cluster.py [line:207]             recovery 2750/166872 objects degraded (1.648%)
+2017-05-17 20:10:11,944 INFO cluster.py [line:210]             election epoch 8
+2017-05-17 20:10:11,944 INFO cluster.py [line:212] PG number is 8
+2017-05-17 20:10:11,944 INFO cluster.py [line:214] usefull PG number is 8012020301
+2017-05-17 20:10:11,944 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:10:12,678 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            25 pgs degraded
+            4 pgs recovering
+            20 pgs recovery_wait
+            1 pgs stuck unclean
+            recovery 2750/166872 objects degraded (1.648%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e818: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10096: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24928 MB used, 314 GB / 338 GB avail
+            2750/166872 objects degraded (1.648%)
+                2679 active+clean
+                  20 active+recovery_wait+degraded
+                   4 active+recovering+degraded
+                   1 active+degraded
+recovery io 237 MB/s, 209 objects/s
+  client io 7375 B/s rd, 1980 kB/s wr, 10 op/s rd, 495 op/s wr
+
+2017-05-17 20:10:12,678 INFO cluster.py [line:207]             recovery 2750/166872 objects degraded (1.648%)
+2017-05-17 20:10:12,694 INFO cluster.py [line:210]             election epoch 8
+2017-05-17 20:10:12,694 INFO cluster.py [line:212] PG number is 8
+2017-05-17 20:10:12,694 INFO cluster.py [line:214] usefull PG number is 8012020301
+2017-05-17 20:10:12,694 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:10:13,900 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            24 pgs degraded
+            3 pgs recovering
+            20 pgs recovery_wait
+            1 pgs stuck unclean
+            recovery 2722/166872 objects degraded (1.631%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e818: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10098: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24928 MB used, 314 GB / 338 GB avail
+            2722/166872 objects degraded (1.631%)
+                2680 active+clean
+                  20 active+recovery_wait+degraded
+                   3 active+recovering+degraded
+                   1 active+degraded
+recovery io 54063 kB/s, 27 objects/s
+  client io 1371 kB/s wr, 0 op/s rd, 342 op/s wr
+
+2017-05-17 20:10:13,914 INFO cluster.py [line:207]             recovery 2722/166872 objects degraded (1.631%)
+2017-05-17 20:10:13,914 INFO cluster.py [line:210]             election epoch 8
+2017-05-17 20:10:13,914 INFO cluster.py [line:212] PG number is 8
+2017-05-17 20:10:13,914 INFO cluster.py [line:214] usefull PG number is 8012020301
+2017-05-17 20:10:13,914 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:10:14,979 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            22 pgs degraded
+            3 pgs recovering
+            18 pgs recovery_wait
+            1 pgs stuck unclean
+            recovery 2456/166872 objects degraded (1.472%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e818: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10099: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24928 MB used, 314 GB / 338 GB avail
+            2456/166872 objects degraded (1.472%)
+                2682 active+clean
+                  18 active+recovery_wait+degraded
+                   3 active+recovering+degraded
+                   1 active+degraded
+recovery io 509 MB/s, 266 objects/s
+  client io 1525 kB/s wr, 0 op/s rd, 381 op/s wr
+
+2017-05-17 20:10:14,979 INFO cluster.py [line:207]             recovery 2456/166872 objects degraded (1.472%)
+2017-05-17 20:10:14,994 INFO cluster.py [line:210]             election epoch 8
+2017-05-17 20:10:14,994 INFO cluster.py [line:212] PG number is 8
+2017-05-17 20:10:14,994 INFO cluster.py [line:214] usefull PG number is 8012020301
+2017-05-17 20:10:14,994 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:10:16,026 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            22 pgs degraded
+            3 pgs recovering
+            18 pgs recovery_wait
+            1 pgs stuck unclean
+            recovery 2456/166872 objects degraded (1.472%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e818: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10099: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24928 MB used, 314 GB / 338 GB avail
+            2456/166872 objects degraded (1.472%)
+                2682 active+clean
+                  18 active+recovery_wait+degraded
+                   3 active+recovering+degraded
+                   1 active+degraded
+recovery io 509 MB/s, 266 objects/s
+  client io 1525 kB/s wr, 0 op/s rd, 381 op/s wr
+
+2017-05-17 20:10:16,026 INFO cluster.py [line:207]             recovery 2456/166872 objects degraded (1.472%)
+2017-05-17 20:10:16,042 INFO cluster.py [line:210]             election epoch 8
+2017-05-17 20:10:16,042 INFO cluster.py [line:212] PG number is 8
+2017-05-17 20:10:16,042 INFO cluster.py [line:214] usefull PG number is 8012020301
+2017-05-17 20:10:16,042 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:10:16,947 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            22 pgs degraded
+            3 pgs recovering
+            18 pgs recovery_wait
+            1 pgs stuck unclean
+            recovery 2456/166872 objects degraded (1.472%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e818: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10099: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24928 MB used, 314 GB / 338 GB avail
+            2456/166872 objects degraded (1.472%)
+                2682 active+clean
+                  18 active+recovery_wait+degraded
+                   3 active+recovering+degraded
+                   1 active+degraded
+recovery io 509 MB/s, 266 objects/s
+  client io 1525 kB/s wr, 0 op/s rd, 381 op/s wr
+
+2017-05-17 20:10:16,963 INFO cluster.py [line:207]             recovery 2456/166872 objects degraded (1.472%)
+2017-05-17 20:10:16,963 INFO cluster.py [line:210]             election epoch 8
+2017-05-17 20:10:16,963 INFO cluster.py [line:212] PG number is 8
+2017-05-17 20:10:16,963 INFO cluster.py [line:214] usefull PG number is 8012020301
+2017-05-17 20:10:16,963 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:10:18,042 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            21 pgs degraded
+            3 pgs recovering
+            17 pgs recovery_wait
+            1 pgs stuck unclean
+            recovery 2316/166872 objects degraded (1.388%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e818: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10100: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24928 MB used, 314 GB / 338 GB avail
+            2316/166872 objects degraded (1.388%)
+                2683 active+clean
+                  17 active+recovery_wait+degraded
+                   3 active+recovering+degraded
+                   1 active+degraded
+recovery io 334 MB/s, 219 objects/s
+  client io 5335 B/s rd, 1341 kB/s wr, 7 op/s rd, 335 op/s wr
+
+2017-05-17 20:10:18,042 INFO cluster.py [line:207]             recovery 2316/166872 objects degraded (1.388%)
+2017-05-17 20:10:18,058 INFO cluster.py [line:210]             election epoch 8
+2017-05-17 20:10:18,058 INFO cluster.py [line:212] PG number is 8
+2017-05-17 20:10:18,058 INFO cluster.py [line:214] usefull PG number is 8012020301
+2017-05-17 20:10:18,058 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:10:19,017 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            21 pgs degraded
+            3 pgs recovering
+            17 pgs recovery_wait
+            1 pgs stuck unclean
+            recovery 2291/166872 objects degraded (1.373%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e818: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10101: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24928 MB used, 314 GB / 338 GB avail
+            2291/166872 objects degraded (1.373%)
+                2683 active+clean
+                  17 active+recovery_wait+degraded
+                   3 active+recovering+degraded
+                   1 active+degraded
+recovery io 32225 kB/s, 55 objects/s
+  client io 4750 B/s rd, 1059 kB/s wr, 6 op/s rd, 264 op/s wr
+
+2017-05-17 20:10:19,017 INFO cluster.py [line:207]             recovery 2291/166872 objects degraded (1.373%)
+2017-05-17 20:10:19,033 INFO cluster.py [line:210]             election epoch 8
+2017-05-17 20:10:19,033 INFO cluster.py [line:212] PG number is 8
+2017-05-17 20:10:19,033 INFO cluster.py [line:214] usefull PG number is 8012020301
+2017-05-17 20:10:19,033 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:10:19,984 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            21 pgs degraded
+            4 pgs recovering
+            16 pgs recovery_wait
+            1 pgs stuck unclean
+            recovery 2280/166872 objects degraded (1.366%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e818: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10102: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24928 MB used, 314 GB / 338 GB avail
+            2280/166872 objects degraded (1.366%)
+                2683 active+clean
+                  16 active+recovery_wait+degraded
+                   4 active+recovering+degraded
+                   1 active+degraded
+recovery io 60044 kB/s, 29 objects/s
+  client io 1676 kB/s wr, 0 op/s rd, 419 op/s wr
+
+2017-05-17 20:10:20,000 INFO cluster.py [line:207]             recovery 2280/166872 objects degraded (1.366%)
+2017-05-17 20:10:20,000 INFO cluster.py [line:210]             election epoch 8
+2017-05-17 20:10:20,000 INFO cluster.py [line:212] PG number is 8
+2017-05-17 20:10:20,000 INFO cluster.py [line:214] usefull PG number is 8012020301
+2017-05-17 20:10:20,000 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:10:21,176 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            19 pgs degraded
+            2 pgs recovering
+            16 pgs recovery_wait
+            1 pgs stuck unclean
+            recovery 2070/166872 objects degraded (1.240%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e818: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10103: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24928 MB used, 314 GB / 338 GB avail
+            2070/166872 objects degraded (1.240%)
+                2685 active+clean
+                  16 active+recovery_wait+degraded
+                   2 active+recovering+degraded
+                   1 active+degraded
+recovery io 407 MB/s, 211 objects/s
+  client io 2658 kB/s wr, 0 op/s rd, 664 op/s wr
+
+2017-05-17 20:10:21,190 INFO cluster.py [line:207]             recovery 2070/166872 objects degraded (1.240%)
+2017-05-17 20:10:21,190 INFO cluster.py [line:210]             election epoch 8
+2017-05-17 20:10:21,190 INFO cluster.py [line:212] PG number is 8
+2017-05-17 20:10:21,190 INFO cluster.py [line:214] usefull PG number is 8012020301
+2017-05-17 20:10:21,190 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:10:21,908 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            18 pgs degraded
+            2 pgs recovering
+            15 pgs recovery_wait
+            1 pgs stuck unclean
+            recovery 1852/166872 objects degraded (1.110%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e818: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10104: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24928 MB used, 314 GB / 338 GB avail
+            1852/166872 objects degraded (1.110%)
+                2686 active+clean
+                  15 active+recovery_wait+degraded
+                   2 active+recovering+degraded
+                   1 active+degraded
+recovery io 393 MB/s, 306 objects/s
+  client io 2020 kB/s wr, 0 op/s rd, 505 op/s wr
+
+2017-05-17 20:10:21,924 INFO cluster.py [line:207]             recovery 1852/166872 objects degraded (1.110%)
+2017-05-17 20:10:21,924 INFO cluster.py [line:210]             election epoch 8
+2017-05-17 20:10:21,924 INFO cluster.py [line:212] PG number is 8
+2017-05-17 20:10:21,924 INFO cluster.py [line:214] usefull PG number is 8012020301
+2017-05-17 20:10:21,924 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:10:22,861 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            17 pgs degraded
+            3 pgs recovering
+            14 pgs recovery_wait
+            recovery 1796/166872 objects degraded (1.076%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e818: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10105: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24928 MB used, 314 GB / 338 GB avail
+            1796/166872 objects degraded (1.076%)
+                2687 active+clean
+                  14 active+recovery_wait+degraded
+                   3 active+recovering+degraded
+recovery io 93611 kB/s, 159 objects/s
+  client io 7926 B/s rd, 2614 kB/s wr, 11 op/s rd, 653 op/s wr
+
+2017-05-17 20:10:22,861 INFO cluster.py [line:207]      monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+2017-05-17 20:10:22,861 INFO cluster.py [line:210]      osdmap e818
+2017-05-17 20:10:22,875 INFO cluster.py [line:212] PG number is 818
+2017-05-17 20:10:22,875 INFO cluster.py [line:214] usefull PG number is 818999
+2017-05-17 20:10:22,875 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:10:23,938 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            17 pgs degraded
+            3 pgs recovering
+            14 pgs recovery_wait
+            recovery 1796/166872 objects degraded (1.076%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e818: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10105: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24928 MB used, 314 GB / 338 GB avail
+            1796/166872 objects degraded (1.076%)
+                2687 active+clean
+                  14 active+recovery_wait+degraded
+                   3 active+recovering+degraded
+recovery io 93611 kB/s, 159 objects/s
+  client io 7926 B/s rd, 2614 kB/s wr, 11 op/s rd, 653 op/s wr
+
+2017-05-17 20:10:23,938 INFO cluster.py [line:207]      monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+2017-05-17 20:10:23,954 INFO cluster.py [line:210]      osdmap e818
+2017-05-17 20:10:23,954 INFO cluster.py [line:212] PG number is 818
+2017-05-17 20:10:23,954 INFO cluster.py [line:214] usefull PG number is 818999
+2017-05-17 20:10:23,954 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:10:25,048 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            16 pgs degraded
+            3 pgs recovering
+            13 pgs recovery_wait
+            recovery 1696/166872 objects degraded (1.016%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e818: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10106: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24928 MB used, 314 GB / 338 GB avail
+            1696/166872 objects degraded (1.016%)
+                2688 active+clean
+                  13 active+recovery_wait+degraded
+                   3 active+recovering+degraded
+recovery io 179 MB/s, 101 objects/s
+  client io 5322 B/s rd, 2479 kB/s wr, 7 op/s rd, 619 op/s wr
+
+2017-05-17 20:10:25,048 INFO cluster.py [line:207]      monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+2017-05-17 20:10:25,048 INFO cluster.py [line:210]      osdmap e818
+2017-05-17 20:10:25,062 INFO cluster.py [line:212] PG number is 818
+2017-05-17 20:10:25,062 INFO cluster.py [line:214] usefull PG number is 818999
+2017-05-17 20:10:25,062 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:10:26,062 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            16 pgs degraded
+            3 pgs recovering
+            13 pgs recovery_wait
+            recovery 1679/166872 objects degraded (1.006%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e818: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10107: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24928 MB used, 314 GB / 338 GB avail
+            1679/166872 objects degraded (1.006%)
+                2688 active+clean
+                  13 active+recovery_wait+degraded
+                   3 active+recovering+degraded
+recovery io 144 MB/s, 76 objects/s
+  client io 1751 kB/s wr, 0 op/s rd, 437 op/s wr
+
+2017-05-17 20:10:26,062 INFO cluster.py [line:207]      monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+2017-05-17 20:10:26,076 INFO cluster.py [line:210]      osdmap e818
+2017-05-17 20:10:26,076 INFO cluster.py [line:212] PG number is 818
+2017-05-17 20:10:26,076 INFO cluster.py [line:214] usefull PG number is 818999
+2017-05-17 20:10:26,076 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:10:27,098 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            13 pgs degraded
+            3 pgs recovering
+            10 pgs recovery_wait
+            recovery 1458/166872 objects degraded (0.874%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e818: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10108: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24928 MB used, 314 GB / 338 GB avail
+            1458/166872 objects degraded (0.874%)
+                2691 active+clean
+                  10 active+recovery_wait+degraded
+                   3 active+recovering+degraded
+recovery io 40115 kB/s, 123 objects/s
+  client io 7936 B/s rd, 2526 kB/s wr, 11 op/s rd, 631 op/s wr
+
+2017-05-17 20:10:27,098 INFO cluster.py [line:207]      monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+2017-05-17 20:10:27,114 INFO cluster.py [line:210]      osdmap e818
+2017-05-17 20:10:27,114 INFO cluster.py [line:212] PG number is 818
+2017-05-17 20:10:27,114 INFO cluster.py [line:214] usefull PG number is 818999
+2017-05-17 20:10:27,114 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:10:28,101 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            12 pgs degraded
+            2 pgs recovering
+            10 pgs recovery_wait
+            recovery 1352/166872 objects degraded (0.810%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e818: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10109: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24928 MB used, 314 GB / 338 GB avail
+            1352/166872 objects degraded (0.810%)
+                2692 active+clean
+                  10 active+recovery_wait+degraded
+                   2 active+recovering+degraded
+recovery io 202 MB/s, 208 objects/s
+  client io 7890 B/s rd, 2700 kB/s wr, 11 op/s rd, 675 op/s wr
+
+2017-05-17 20:10:28,101 INFO cluster.py [line:207]      monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+2017-05-17 20:10:28,115 INFO cluster.py [line:210]      osdmap e818
+2017-05-17 20:10:28,115 INFO cluster.py [line:212] PG number is 818
+2017-05-17 20:10:28,115 INFO cluster.py [line:214] usefull PG number is 818999
+2017-05-17 20:10:28,115 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:10:29,115 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            12 pgs degraded
+            2 pgs recovering
+            10 pgs recovery_wait
+            recovery 1352/166872 objects degraded (0.810%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e818: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10109: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24928 MB used, 314 GB / 338 GB avail
+            1352/166872 objects degraded (0.810%)
+                2692 active+clean
+                  10 active+recovery_wait+degraded
+                   2 active+recovering+degraded
+recovery io 202 MB/s, 208 objects/s
+  client io 7890 B/s rd, 2700 kB/s wr, 11 op/s rd, 675 op/s wr
+
+2017-05-17 20:10:29,115 INFO cluster.py [line:207]      monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+2017-05-17 20:10:29,130 INFO cluster.py [line:210]      osdmap e818
+2017-05-17 20:10:29,131 INFO cluster.py [line:212] PG number is 818
+2017-05-17 20:10:29,132 INFO cluster.py [line:214] usefull PG number is 818999
+2017-05-17 20:10:29,132 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:10:30,213 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            11 pgs degraded
+            2 pgs recovering
+            9 pgs recovery_wait
+            recovery 1143/166872 objects degraded (0.685%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e818: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10110: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24928 MB used, 314 GB / 338 GB avail
+            1143/166872 objects degraded (0.685%)
+                2693 active+clean
+                   9 active+recovery_wait+degraded
+                   2 active+recovering+degraded
+recovery io 388 MB/s, 204 objects/s
+  client io 2369 kB/s wr, 0 op/s rd, 592 op/s wr
+
+2017-05-17 20:10:30,213 INFO cluster.py [line:207]      monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+2017-05-17 20:10:30,227 INFO cluster.py [line:210]      osdmap e818
+2017-05-17 20:10:30,227 INFO cluster.py [line:212] PG number is 818
+2017-05-17 20:10:30,227 INFO cluster.py [line:214] usefull PG number is 818999
+2017-05-17 20:10:30,227 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:10:31,260 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            11 pgs degraded
+            2 pgs recovering
+            9 pgs recovery_wait
+            recovery 1138/166872 objects degraded (0.682%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e818: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10111: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24928 MB used, 314 GB / 338 GB avail
+            1138/166872 objects degraded (0.682%)
+                2693 active+clean
+                   9 active+recovery_wait+degraded
+                   2 active+recovering+degraded
+recovery io 264 MB/s, 139 objects/s
+  client io 1881 kB/s wr, 0 op/s rd, 470 op/s wr
+
+2017-05-17 20:10:31,260 INFO cluster.py [line:207]      monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+2017-05-17 20:10:31,260 INFO cluster.py [line:210]      osdmap e818
+2017-05-17 20:10:31,276 INFO cluster.py [line:212] PG number is 818
+2017-05-17 20:10:31,276 INFO cluster.py [line:214] usefull PG number is 818999
+2017-05-17 20:10:31,276 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:10:32,279 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            10 pgs degraded
+            1 pgs recovering
+            9 pgs recovery_wait
+            recovery 1064/166872 objects degraded (0.638%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e818: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10112: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24928 MB used, 314 GB / 338 GB avail
+            1064/166872 objects degraded (0.638%)
+                2694 active+clean
+                   9 active+recovery_wait+degraded
+                   1 active+recovering+degraded
+recovery io 12288 kB/s, 41 objects/s
+  client io 7931 B/s rd, 1940 kB/s wr, 11 op/s rd, 485 op/s wr
+
+2017-05-17 20:10:32,279 INFO cluster.py [line:207]      monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+2017-05-17 20:10:32,293 INFO cluster.py [line:210]      osdmap e818
+2017-05-17 20:10:32,293 INFO cluster.py [line:212] PG number is 818
+2017-05-17 20:10:32,293 INFO cluster.py [line:214] usefull PG number is 818999
+2017-05-17 20:10:32,293 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:10:33,265 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            10 pgs degraded
+            1 pgs recovering
+            9 pgs recovery_wait
+            recovery 1043/166872 objects degraded (0.625%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e818: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10113: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24928 MB used, 314 GB / 338 GB avail
+            1043/166872 objects degraded (0.625%)
+                2694 active+clean
+                   9 active+recovery_wait+degraded
+                   1 active+recovering+degraded
+recovery io 39505 kB/s, 52 objects/s
+  client io 7411 B/s rd, 2493 kB/s wr, 10 op/s rd, 623 op/s wr
+
+2017-05-17 20:10:33,265 INFO cluster.py [line:207]      monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+2017-05-17 20:10:33,265 INFO cluster.py [line:210]      osdmap e818
+2017-05-17 20:10:33,279 INFO cluster.py [line:212] PG number is 818
+2017-05-17 20:10:33,279 INFO cluster.py [line:214] usefull PG number is 818999
+2017-05-17 20:10:33,279 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:10:34,293 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            10 pgs degraded
+            1 pgs recovering
+            9 pgs recovery_wait
+            recovery 1043/166872 objects degraded (0.625%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e818: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10114: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24928 MB used, 314 GB / 338 GB avail
+            1043/166872 objects degraded (0.625%)
+                2694 active+clean
+                   9 active+recovery_wait+degraded
+                   1 active+recovering+degraded
+recovery io 37006 kB/s, 18 objects/s
+  client io 1840 kB/s wr, 0 op/s rd, 460 op/s wr
+
+2017-05-17 20:10:34,293 INFO cluster.py [line:207]      monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+2017-05-17 20:10:34,309 INFO cluster.py [line:210]      osdmap e818
+2017-05-17 20:10:34,309 INFO cluster.py [line:212] PG number is 818
+2017-05-17 20:10:34,309 INFO cluster.py [line:214] usefull PG number is 818999
+2017-05-17 20:10:34,309 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:10:35,483 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            9 pgs degraded
+            1 pgs recovering
+            8 pgs recovery_wait
+            recovery 846/166872 objects degraded (0.507%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e818: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10115: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24928 MB used, 314 GB / 338 GB avail
+            846/166872 objects degraded (0.507%)
+                2695 active+clean
+                   8 active+recovery_wait+degraded
+                   1 active+recovering+degraded
+recovery io 366 MB/s, 191 objects/s
+  client io 2831 kB/s wr, 0 op/s rd, 707 op/s wr
+
+2017-05-17 20:10:35,483 INFO cluster.py [line:207]      monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+2017-05-17 20:10:35,483 INFO cluster.py [line:210]      osdmap e818
+2017-05-17 20:10:35,499 INFO cluster.py [line:212] PG number is 818
+2017-05-17 20:10:35,499 INFO cluster.py [line:214] usefull PG number is 818999
+2017-05-17 20:10:35,499 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:10:36,609 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            9 pgs degraded
+            1 pgs recovering
+            8 pgs recovery_wait
+            recovery 846/166872 objects degraded (0.507%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e818: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10115: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24928 MB used, 314 GB / 338 GB avail
+            846/166872 objects degraded (0.507%)
+                2695 active+clean
+                   8 active+recovery_wait+degraded
+                   1 active+recovering+degraded
+recovery io 366 MB/s, 191 objects/s
+  client io 2831 kB/s wr, 0 op/s rd, 707 op/s wr
+
+2017-05-17 20:10:36,609 INFO cluster.py [line:207]      monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+2017-05-17 20:10:36,625 INFO cluster.py [line:210]      osdmap e818
+2017-05-17 20:10:36,625 INFO cluster.py [line:212] PG number is 818
+2017-05-17 20:10:36,625 INFO cluster.py [line:214] usefull PG number is 818999
+2017-05-17 20:10:36,625 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:10:37,562 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            9 pgs degraded
+            1 pgs recovering
+            8 pgs recovery_wait
+            recovery 840/166872 objects degraded (0.503%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e818: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10116: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24928 MB used, 314 GB / 338 GB avail
+            840/166872 objects degraded (0.503%)
+                2695 active+clean
+                   8 active+recovery_wait+degraded
+                   1 active+recovering+degraded
+recovery io 253 MB/s, 132 objects/s
+  client io 5330 B/s rd, 2799 kB/s wr, 7 op/s rd, 699 op/s wr
+
+2017-05-17 20:10:37,562 INFO cluster.py [line:207]      monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+2017-05-17 20:10:37,576 INFO cluster.py [line:210]      osdmap e818
+2017-05-17 20:10:37,576 INFO cluster.py [line:212] PG number is 818
+2017-05-17 20:10:37,576 INFO cluster.py [line:214] usefull PG number is 818999
+2017-05-17 20:10:37,576 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:10:38,250 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            9 pgs degraded
+            1 pgs recovering
+            8 pgs recovery_wait
+            recovery 840/166872 objects degraded (0.503%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e818: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10116: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24928 MB used, 314 GB / 338 GB avail
+            840/166872 objects degraded (0.503%)
+                2695 active+clean
+                   8 active+recovery_wait+degraded
+                   1 active+recovering+degraded
+recovery io 253 MB/s, 132 objects/s
+  client io 5330 B/s rd, 2799 kB/s wr, 7 op/s rd, 699 op/s wr
+
+2017-05-17 20:10:38,250 INFO cluster.py [line:207]      monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+2017-05-17 20:10:38,266 INFO cluster.py [line:210]      osdmap e818
+2017-05-17 20:10:38,266 INFO cluster.py [line:212] PG number is 818
+2017-05-17 20:10:38,266 INFO cluster.py [line:214] usefull PG number is 818999
+2017-05-17 20:10:38,266 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:10:39,000 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            9 pgs degraded
+            1 pgs recovering
+            8 pgs recovery_wait
+            recovery 840/166872 objects degraded (0.503%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e818: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10116: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24928 MB used, 314 GB / 338 GB avail
+            840/166872 objects degraded (0.503%)
+                2695 active+clean
+                   8 active+recovery_wait+degraded
+                   1 active+recovering+degraded
+recovery io 253 MB/s, 132 objects/s
+  client io 5330 B/s rd, 2799 kB/s wr, 7 op/s rd, 699 op/s wr
+
+2017-05-17 20:10:39,000 INFO cluster.py [line:207]      monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+2017-05-17 20:10:39,015 INFO cluster.py [line:210]      osdmap e818
+2017-05-17 20:10:39,015 INFO cluster.py [line:212] PG number is 818
+2017-05-17 20:10:39,015 INFO cluster.py [line:214] usefull PG number is 818999
+2017-05-17 20:10:39,015 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:10:39,766 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            9 pgs degraded
+            1 pgs recovering
+            8 pgs recovery_wait
+            recovery 840/166872 objects degraded (0.503%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e818: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10116: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24928 MB used, 314 GB / 338 GB avail
+            840/166872 objects degraded (0.503%)
+                2695 active+clean
+                   8 active+recovery_wait+degraded
+                   1 active+recovering+degraded
+recovery io 253 MB/s, 132 objects/s
+  client io 5330 B/s rd, 2799 kB/s wr, 7 op/s rd, 699 op/s wr
+
+2017-05-17 20:10:39,766 INFO cluster.py [line:207]      monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+2017-05-17 20:10:39,782 INFO cluster.py [line:210]      osdmap e818
+2017-05-17 20:10:39,782 INFO cluster.py [line:212] PG number is 818
+2017-05-17 20:10:39,782 INFO cluster.py [line:214] usefull PG number is 818999
+2017-05-17 20:10:39,782 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:10:40,515 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            9 pgs degraded
+            2 pgs recovering
+            7 pgs recovery_wait
+            recovery 720/166872 objects degraded (0.431%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e818: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10117: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24928 MB used, 314 GB / 338 GB avail
+            720/166872 objects degraded (0.431%)
+                2695 active+clean
+                   7 active+recovery_wait+degraded
+                   2 active+recovering+degraded
+recovery io 90973 kB/s, 46 objects/s
+  client io 270 kB/s rd, 992 kB/s wr, 271 op/s rd, 248 op/s wr
+
+2017-05-17 20:10:40,515 INFO cluster.py [line:207]      monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+2017-05-17 20:10:40,530 INFO cluster.py [line:210]      osdmap e818
+2017-05-17 20:10:40,530 INFO cluster.py [line:212] PG number is 818
+2017-05-17 20:10:40,530 INFO cluster.py [line:214] usefull PG number is 818999
+2017-05-17 20:10:40,530 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:10:41,220 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            9 pgs degraded
+            2 pgs recovering
+            7 pgs recovery_wait
+            recovery 720/166872 objects degraded (0.431%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e818: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10117: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24928 MB used, 314 GB / 338 GB avail
+            720/166872 objects degraded (0.431%)
+                2695 active+clean
+                   7 active+recovery_wait+degraded
+                   2 active+recovering+degraded
+recovery io 90973 kB/s, 46 objects/s
+  client io 270 kB/s rd, 992 kB/s wr, 271 op/s rd, 248 op/s wr
+
+2017-05-17 20:10:41,220 INFO cluster.py [line:207]      monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+2017-05-17 20:10:41,236 INFO cluster.py [line:210]      osdmap e818
+2017-05-17 20:10:41,236 INFO cluster.py [line:212] PG number is 818
+2017-05-17 20:10:41,236 INFO cluster.py [line:214] usefull PG number is 818999
+2017-05-17 20:10:41,236 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:10:42,125 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            8 pgs degraded
+            1 pgs recovering
+            7 pgs recovery_wait
+            recovery 709/166872 objects degraded (0.425%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e818: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10118: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24928 MB used, 314 GB / 338 GB avail
+            709/166872 objects degraded (0.425%)
+                2696 active+clean
+                   7 active+recovery_wait+degraded
+                   1 active+recovering+degraded
+recovery io 113 MB/s, 59 objects/s
+  client io 328 kB/s rd, 1280 kB/s wr, 328 op/s rd, 320 op/s wr
+
+2017-05-17 20:10:42,128 INFO cluster.py [line:207]      monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+2017-05-17 20:10:42,128 INFO cluster.py [line:210]      osdmap e818
+2017-05-17 20:10:42,128 INFO cluster.py [line:212] PG number is 818
+2017-05-17 20:10:42,142 INFO cluster.py [line:214] usefull PG number is 818999
+2017-05-17 20:10:42,142 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:10:43,188 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            8 pgs degraded
+            1 pgs recovering
+            7 pgs recovery_wait
+            recovery 644/166872 objects degraded (0.386%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e818: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10119: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24928 MB used, 314 GB / 338 GB avail
+            644/166872 objects degraded (0.386%)
+                2696 active+clean
+                   7 active+recovery_wait+degraded
+                   1 active+recovering+degraded
+recovery io 139 MB/s, 73 objects/s
+  client io 15309 B/s rd, 2810 kB/s wr, 18 op/s rd, 702 op/s wr
+
+2017-05-17 20:10:43,188 INFO cluster.py [line:207]      monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+2017-05-17 20:10:43,203 INFO cluster.py [line:210]      osdmap e818
+2017-05-17 20:10:43,203 INFO cluster.py [line:212] PG number is 818
+2017-05-17 20:10:43,203 INFO cluster.py [line:214] usefull PG number is 818999
+2017-05-17 20:10:43,203 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:10:44,299 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            8 pgs degraded
+            1 pgs recovering
+            7 pgs recovery_wait
+            recovery 644/166872 objects degraded (0.386%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e818: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10119: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24928 MB used, 314 GB / 338 GB avail
+            644/166872 objects degraded (0.386%)
+                2696 active+clean
+                   7 active+recovery_wait+degraded
+                   1 active+recovering+degraded
+recovery io 139 MB/s, 73 objects/s
+  client io 15309 B/s rd, 2810 kB/s wr, 18 op/s rd, 702 op/s wr
+
+2017-05-17 20:10:44,299 INFO cluster.py [line:207]      monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+2017-05-17 20:10:44,315 INFO cluster.py [line:210]      osdmap e818
+2017-05-17 20:10:44,315 INFO cluster.py [line:212] PG number is 818
+2017-05-17 20:10:44,315 INFO cluster.py [line:214] usefull PG number is 818999
+2017-05-17 20:10:44,315 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:10:45,348 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            8 pgs degraded
+            1 pgs recovering
+            7 pgs recovery_wait
+            recovery 644/166872 objects degraded (0.386%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e818: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10120: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24928 MB used, 314 GB / 338 GB avail
+            644/166872 objects degraded (0.386%)
+                2696 active+clean
+                   7 active+recovery_wait+degraded
+                   1 active+recovering+degraded
+recovery io 82126 kB/s, 42 objects/s
+  client io 10292 B/s rd, 1076 kB/s wr, 12 op/s rd, 269 op/s wr
+
+2017-05-17 20:10:45,348 INFO cluster.py [line:207]      monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+2017-05-17 20:10:45,365 INFO cluster.py [line:210]      osdmap e818
+2017-05-17 20:10:45,365 INFO cluster.py [line:212] PG number is 818
+2017-05-17 20:10:45,365 INFO cluster.py [line:214] usefull PG number is 818999
+2017-05-17 20:10:45,365 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:10:46,440 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            8 pgs degraded
+            1 pgs recovering
+            7 pgs recovery_wait
+            recovery 640/166872 objects degraded (0.384%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e818: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10121: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24928 MB used, 314 GB / 338 GB avail
+            640/166872 objects degraded (0.384%)
+                2696 active+clean
+                   7 active+recovery_wait+degraded
+                   1 active+recovering+degraded
+recovery io 4878 kB/s, 2 objects/s
+  client io 1235 kB/s wr, 0 op/s rd, 308 op/s wr
+
+2017-05-17 20:10:46,440 INFO cluster.py [line:207]      monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+2017-05-17 20:10:46,440 INFO cluster.py [line:210]      osdmap e818
+2017-05-17 20:10:46,440 INFO cluster.py [line:212] PG number is 818
+2017-05-17 20:10:46,440 INFO cluster.py [line:214] usefull PG number is 818999
+2017-05-17 20:10:46,440 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:10:47,283 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            8 pgs degraded
+            1 pgs recovering
+            7 pgs recovery_wait
+            recovery 640/166872 objects degraded (0.384%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e818: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10122: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24928 MB used, 314 GB / 338 GB avail
+            640/166872 objects degraded (0.384%)
+                2696 active+clean
+                   7 active+recovery_wait+degraded
+                   1 active+recovering+degraded
+recovery io 7300 kB/s, 3 objects/s
+  client io 1287 kB/s wr, 0 op/s rd, 321 op/s wr
+
+2017-05-17 20:10:47,283 INFO cluster.py [line:207]      monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+2017-05-17 20:10:47,283 INFO cluster.py [line:210]      osdmap e818
+2017-05-17 20:10:47,299 INFO cluster.py [line:212] PG number is 818
+2017-05-17 20:10:47,299 INFO cluster.py [line:214] usefull PG number is 818999
+2017-05-17 20:10:47,299 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:10:48,176 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            6 pgs degraded
+            6 pgs recovery_wait
+            recovery 460/166872 objects degraded (0.276%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e818: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10123: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24928 MB used, 314 GB / 338 GB avail
+            460/166872 objects degraded (0.276%)
+                2698 active+clean
+                   6 active+recovery_wait+degraded
+recovery io 333 MB/s, 173 objects/s
+  client io 13854 B/s rd, 2814 kB/s wr, 17 op/s rd, 703 op/s wr
+
+2017-05-17 20:10:48,176 INFO cluster.py [line:207]             election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+2017-05-17 20:10:48,176 INFO cluster.py [line:210]             flags sortbitwise
+2017-05-17 20:10:48,176 INFO cluster.py [line:212] PG number is 
+2017-05-17 20:10:48,191 INFO cluster.py [line:214] usefull PG number is 
+2017-05-17 20:10:48,191 INFO TC42_kill_two_osds_on_single_node.py [line:74] kill two osds in cluster successfully
+2017-05-17 20:10:48,191 INFO TC42_kill_two_osds_on_single_node.py [line:36] 
+Now operate denali02
+2017-05-17 20:10:48,753 INFO node.py [line:165] osd.6  ---> processId 17061
+2017-05-17 20:10:48,753 INFO node.py [line:165] osd.7  ---> processId 13007
+2017-05-17 20:10:48,753 INFO node.py [line:165] osd.8  ---> processId 15061
+2017-05-17 20:10:48,753 INFO TC42_kill_two_osds_on_single_node.py [line:40] shutdown two osds on node denali02
+2017-05-17 20:10:48,753 INFO osd.py [line:37] execute command is sudo -i kill -9 13007 & sleep 3
+2017-05-17 20:10:52,312 INFO osd.py [line:37] execute command is sudo -i kill -9 15061 & sleep 3
+2017-05-17 20:11:56,352 INFO client.py [line:90] home/denali
+
+2017-05-17 20:11:56,868 INFO TC42_kill_two_osds_on_single_node.py [line:50] start osd on node denali02
+2017-05-17 20:11:56,868 INFO osd.py [line:86] node is  denali02
+2017-05-17 20:11:56,868 INFO osd.py [line:87] execute command is sudo -i ceph-osd -i 7 & sleep 30
+2017-05-17 20:12:27,397 INFO osd.py [line:91] osd osd.7 is start successfully
+2017-05-17 20:12:27,397 INFO osd.py [line:86] node is  denali02
+2017-05-17 20:12:27,397 INFO osd.py [line:87] execute command is sudo -i ceph-osd -i 8 & sleep 30
+2017-05-17 20:12:58,007 INFO osd.py [line:91] osd osd.8 is start successfully
+2017-05-17 20:12:58,007 INFO osd.py [line:99] node is  denali02
+2017-05-17 20:12:58,007 INFO osd.py [line:100] execute command is ps -ef | grep 'ceph-osd -i 7'
+2017-05-17 20:12:58,631 INFO osd.py [line:102] oot     29690     1 14 12:12 ?        00:00:08 ceph-osd -i 7
+denali   31629 31628  0 12:13 ?        00:00:00 bash -c ps -ef | grep 'ceph-osd -i 7'
+denali   31631 31629  0 12:13 ?        00:00:00 grep ceph-osd -i 7
+
+2017-05-17 20:12:58,631 INFO osd.py [line:111] osd.7is alrady started
+2017-05-17 20:12:58,631 INFO osd.py [line:99] node is  denali02
+2017-05-17 20:12:58,631 INFO osd.py [line:100] execute command is ps -ef | grep 'ceph-osd -i 8'
+2017-05-17 20:12:59,213 INFO osd.py [line:102] oot     30642     1 51 12:12 ?        00:00:15 ceph-osd -i 8
+denali   31635 31634  0 12:13 ?        00:00:00 bash -c ps -ef | grep 'ceph-osd -i 8'
+denali   31637 31635  0 12:13 ?        00:00:00 grep ceph-osd -i 8
+
+2017-05-17 20:12:59,213 INFO osd.py [line:111] osd.8is alrady started
+2017-05-17 20:13:29,726 INFO client.py [line:90] home/denali
+
+2017-05-17 20:13:30,246 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:13:31,135 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_OK
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e827: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10228: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24937 MB used, 314 GB / 338 GB avail
+                2704 active+clean
+  client io 2340 kB/s wr, 0 op/s rd, 585 op/s wr
+
+2017-05-17 20:13:31,135 INFO cluster.py [line:207]       pgmap v10228: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+2017-05-17 20:13:31,135 INFO cluster.py [line:210]                 2704 active+clean
+2017-05-17 20:13:31,151 INFO cluster.py [line:212] PG number is 2704
+2017-05-17 20:13:31,151 INFO cluster.py [line:214] usefull PG number is 2704
+2017-05-17 20:13:31,151 INFO TC42_kill_two_osds_on_single_node.py [line:74] kill two osds in cluster successfully
+2017-05-17 20:13:31,151 INFO TC42_kill_two_osds_on_single_node.py [line:36] 
+Now operate denali03
+2017-05-17 20:13:31,775 INFO node.py [line:165] osd.3  ---> processId 17196
+2017-05-17 20:13:31,775 INFO node.py [line:165] osd.4  ---> processId 17853
+2017-05-17 20:13:31,775 INFO node.py [line:165] osd.5  ---> processId 18461
+2017-05-17 20:13:31,775 INFO TC42_kill_two_osds_on_single_node.py [line:40] shutdown two osds on node denali03
+2017-05-17 20:13:31,775 INFO osd.py [line:37] execute command is sudo -i kill -9 17196 & sleep 3
+2017-05-17 20:13:35,345 INFO osd.py [line:37] execute command is sudo -i kill -9 17853 & sleep 3
+2017-05-17 20:14:39,641 INFO client.py [line:90] home/denali
+
+2017-05-17 20:14:40,171 INFO TC42_kill_two_osds_on_single_node.py [line:50] start osd on node denali03
+2017-05-17 20:14:40,171 INFO osd.py [line:86] node is  denali03
+2017-05-17 20:14:40,171 INFO osd.py [line:87] execute command is sudo -i ceph-osd -i 3 & sleep 30
+2017-05-17 20:15:10,719 INFO osd.py [line:91] osd osd.3 is start successfully
+2017-05-17 20:15:10,723 INFO osd.py [line:86] node is  denali03
+2017-05-17 20:15:10,723 INFO osd.py [line:87] execute command is sudo -i ceph-osd -i 4 & sleep 30
+2017-05-17 20:15:41,341 INFO osd.py [line:91] osd osd.4 is start successfully
+2017-05-17 20:15:41,341 INFO osd.py [line:99] node is  denali03
+2017-05-17 20:15:41,341 INFO osd.py [line:100] execute command is ps -ef | grep 'ceph-osd -i 3'
+2017-05-17 20:15:41,980 INFO osd.py [line:102] oot     28031     1 41 12:14 ?        00:00:25 ceph-osd -i 3
+denali   28726 28725  0 12:15 ?        00:00:00 bash -c ps -ef | grep 'ceph-osd -i 3'
+denali   28728 28726  0 12:15 ?        00:00:00 grep ceph-osd -i 3
+
+2017-05-17 20:15:41,980 INFO osd.py [line:111] osd.3is alrady started
+2017-05-17 20:15:41,980 INFO osd.py [line:99] node is  denali03
+2017-05-17 20:15:41,980 INFO osd.py [line:100] execute command is ps -ef | grep 'ceph-osd -i 4'
+2017-05-17 20:15:42,575 INFO osd.py [line:102] oot     28393     1 37 12:15 ?        00:00:11 ceph-osd -i 4
+denali   28732 28731  0 12:15 ?        00:00:00 bash -c ps -ef | grep 'ceph-osd -i 4'
+denali   28734 28732  0 12:15 ?        00:00:00 grep ceph-osd -i 4
+
+2017-05-17 20:15:42,575 INFO osd.py [line:111] osd.4is alrady started
+2017-05-17 20:16:13,214 INFO client.py [line:90] home/denali
+
+2017-05-17 20:16:13,746 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:16:14,716 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            36 pgs degraded
+            1 pgs recovering
+            35 pgs recovery_wait
+            recovery 5064/166872 objects degraded (3.035%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e839: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10338: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24913 MB used, 314 GB / 338 GB avail
+            5064/166872 objects degraded (3.035%)
+                2668 active+clean
+                  35 active+recovery_wait+degraded
+                   1 active+recovering+degraded
+recovery io 143 MB/s, 126 objects/s
+  client io 3406 B/s rd, 1911 kB/s wr, 4 op/s rd, 477 op/s wr
+
+2017-05-17 20:16:14,716 INFO cluster.py [line:207]      monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+2017-05-17 20:16:14,732 INFO cluster.py [line:210]      osdmap e839
+2017-05-17 20:16:14,732 INFO cluster.py [line:212] PG number is 839
+2017-05-17 20:16:14,732 INFO cluster.py [line:214] usefull PG number is 839999
+2017-05-17 20:16:14,732 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:16:15,717 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            36 pgs degraded
+            2 pgs recovering
+            34 pgs recovery_wait
+            recovery 4975/166872 objects degraded (2.981%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e839: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10339: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24913 MB used, 314 GB / 338 GB avail
+            4975/166872 objects degraded (2.981%)
+                2668 active+clean
+                  34 active+recovery_wait+degraded
+                   2 active+recovering+degraded
+recovery io 208 MB/s, 160 objects/s
+  client io 3424 B/s rd, 1554 kB/s wr, 5 op/s rd, 388 op/s wr
+
+2017-05-17 20:16:15,717 INFO cluster.py [line:207]      monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+2017-05-17 20:16:15,733 INFO cluster.py [line:210]      osdmap e839
+2017-05-17 20:16:15,733 INFO cluster.py [line:212] PG number is 839
+2017-05-17 20:16:15,733 INFO cluster.py [line:214] usefull PG number is 839999
+2017-05-17 20:16:15,733 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:16:16,653 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            35 pgs degraded
+            2 pgs recovering
+            33 pgs recovery_wait
+            recovery 4833/166872 objects degraded (2.896%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e839: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10340: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24914 MB used, 314 GB / 338 GB avail
+            4833/166872 objects degraded (2.896%)
+                2669 active+clean
+                  33 active+recovery_wait+degraded
+                   2 active+recovering+degraded
+recovery io 115 MB/s, 103 objects/s
+  client io 915 kB/s wr, 0 op/s rd, 228 op/s wr
+
+2017-05-17 20:16:16,653 INFO cluster.py [line:207]      monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+2017-05-17 20:16:16,668 INFO cluster.py [line:210]      osdmap e839
+2017-05-17 20:16:16,668 INFO cluster.py [line:212] PG number is 839
+2017-05-17 20:16:16,668 INFO cluster.py [line:214] usefull PG number is 839999
+2017-05-17 20:16:16,668 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:16:17,592 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            35 pgs degraded
+            2 pgs recovering
+            33 pgs recovery_wait
+            recovery 4833/166872 objects degraded (2.896%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e839: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10341: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24914 MB used, 314 GB / 338 GB avail
+            4833/166872 objects degraded (2.896%)
+                2669 active+clean
+                  33 active+recovery_wait+degraded
+                   2 active+recovering+degraded
+recovery io 6045 kB/s, 67 objects/s
+  client io 1268 kB/s wr, 0 op/s rd, 317 op/s wr
+
+2017-05-17 20:16:17,592 INFO cluster.py [line:207]      monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+2017-05-17 20:16:17,608 INFO cluster.py [line:210]      osdmap e839
+2017-05-17 20:16:17,608 INFO cluster.py [line:212] PG number is 839
+2017-05-17 20:16:17,608 INFO cluster.py [line:214] usefull PG number is 839999
+2017-05-17 20:16:17,608 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:16:18,657 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            35 pgs degraded
+            3 pgs recovering
+            32 pgs recovery_wait
+            recovery 4748/166872 objects degraded (2.845%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e839: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10342: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24914 MB used, 314 GB / 338 GB avail
+            4748/166872 objects degraded (2.845%)
+                2669 active+clean
+                  32 active+recovery_wait+degraded
+                   3 active+recovering+degraded
+recovery io 123 MB/s, 63 objects/s
+  client io 6132 B/s rd, 1450 kB/s wr, 8 op/s rd, 362 op/s wr
+
+2017-05-17 20:16:18,657 INFO cluster.py [line:207]      monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+2017-05-17 20:16:18,673 INFO cluster.py [line:210]      osdmap e839
+2017-05-17 20:16:18,673 INFO cluster.py [line:212] PG number is 839
+2017-05-17 20:16:18,673 INFO cluster.py [line:214] usefull PG number is 839999
+2017-05-17 20:16:18,673 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:16:19,733 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            35 pgs degraded
+            3 pgs recovering
+            32 pgs recovery_wait
+            recovery 4748/166872 objects degraded (2.845%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e839: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10343: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24914 MB used, 314 GB / 338 GB avail
+            4748/166872 objects degraded (2.845%)
+                2669 active+clean
+                  32 active+recovery_wait+degraded
+                   3 active+recovering+degraded
+recovery io 123 MB/s, 63 objects/s
+  client io 6128 B/s rd, 1373 kB/s wr, 8 op/s rd, 343 op/s wr
+
+2017-05-17 20:16:19,733 INFO cluster.py [line:207]      monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+2017-05-17 20:16:19,749 INFO cluster.py [line:210]      osdmap e839
+2017-05-17 20:16:19,749 INFO cluster.py [line:212] PG number is 839
+2017-05-17 20:16:19,749 INFO cluster.py [line:214] usefull PG number is 839999
+2017-05-17 20:16:19,749 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:16:20,687 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            34 pgs degraded
+            2 pgs recovering
+            32 pgs recovery_wait
+            recovery 4713/166872 objects degraded (2.824%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e839: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10344: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24914 MB used, 314 GB / 338 GB avail
+            4713/166872 objects degraded (2.824%)
+                2670 active+clean
+                  32 active+recovery_wait+degraded
+                   2 active+recovering+degraded
+recovery io 65613 kB/s, 33 objects/s
+  client io 1140 kB/s wr, 0 op/s rd, 285 op/s wr
+
+2017-05-17 20:16:20,687 INFO cluster.py [line:207]      monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+2017-05-17 20:16:20,703 INFO cluster.py [line:210]      osdmap e839
+2017-05-17 20:16:20,703 INFO cluster.py [line:212] PG number is 839
+2017-05-17 20:16:20,703 INFO cluster.py [line:214] usefull PG number is 839999
+2017-05-17 20:16:20,703 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:16:22,033 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            33 pgs degraded
+            2 pgs recovering
+            31 pgs recovery_wait
+            recovery 4521/166872 objects degraded (2.709%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e839: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10345: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24915 MB used, 314 GB / 338 GB avail
+            4521/166872 objects degraded (2.709%)
+                2671 active+clean
+                  31 active+recovery_wait+degraded
+                   2 active+recovering+degraded
+recovery io 73486 kB/s, 126 objects/s
+  client io 1688 kB/s wr, 0 op/s rd, 422 op/s wr
+
+2017-05-17 20:16:22,033 INFO cluster.py [line:207]      monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+2017-05-17 20:16:22,049 INFO cluster.py [line:210]      osdmap e839
+2017-05-17 20:16:22,049 INFO cluster.py [line:212] PG number is 839
+2017-05-17 20:16:22,049 INFO cluster.py [line:214] usefull PG number is 839999
+2017-05-17 20:16:22,049 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:16:23,255 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            32 pgs degraded
+            2 pgs recovering
+            30 pgs recovery_wait
+            recovery 4347/166872 objects degraded (2.605%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e839: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10346: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24915 MB used, 314 GB / 338 GB avail
+            4347/166872 objects degraded (2.605%)
+                2672 active+clean
+                  30 active+recovery_wait+degraded
+                   2 active+recovering+degraded
+recovery io 332 MB/s, 263 objects/s
+  client io 7971 B/s rd, 2633 kB/s wr, 11 op/s rd, 658 op/s wr
+
+2017-05-17 20:16:23,255 INFO cluster.py [line:207]      monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+2017-05-17 20:16:23,255 INFO cluster.py [line:210]      osdmap e839
+2017-05-17 20:16:23,269 INFO cluster.py [line:212] PG number is 839
+2017-05-17 20:16:23,269 INFO cluster.py [line:214] usefull PG number is 839999
+2017-05-17 20:16:23,269 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:16:24,273 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            32 pgs degraded
+            2 pgs recovering
+            30 pgs recovery_wait
+            recovery 4347/166872 objects degraded (2.605%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e839: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10346: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24915 MB used, 314 GB / 338 GB avail
+            4347/166872 objects degraded (2.605%)
+                2672 active+clean
+                  30 active+recovery_wait+degraded
+                   2 active+recovering+degraded
+recovery io 332 MB/s, 263 objects/s
+  client io 7971 B/s rd, 2633 kB/s wr, 11 op/s rd, 658 op/s wr
+
+2017-05-17 20:16:24,289 INFO cluster.py [line:207]      monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+2017-05-17 20:16:24,289 INFO cluster.py [line:210]      osdmap e839
+2017-05-17 20:16:24,289 INFO cluster.py [line:212] PG number is 839
+2017-05-17 20:16:24,289 INFO cluster.py [line:214] usefull PG number is 839999
+2017-05-17 20:16:24,289 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:16:25,319 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            32 pgs degraded
+            2 pgs recovering
+            30 pgs recovery_wait
+            recovery 4342/166872 objects degraded (2.602%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e839: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10347: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24915 MB used, 314 GB / 338 GB avail
+            4342/166872 objects degraded (2.602%)
+                2672 active+clean
+                  30 active+recovery_wait+degraded
+                   2 active+recovering+degraded
+recovery io 215 MB/s, 112 objects/s
+  client io 5149 B/s rd, 1829 kB/s wr, 7 op/s rd, 457 op/s wr
+
+2017-05-17 20:16:25,319 INFO cluster.py [line:207]      monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+2017-05-17 20:16:25,319 INFO cluster.py [line:210]      osdmap e839
+2017-05-17 20:16:25,335 INFO cluster.py [line:212] PG number is 839
+2017-05-17 20:16:25,335 INFO cluster.py [line:214] usefull PG number is 839999
+2017-05-17 20:16:25,335 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:16:26,463 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            31 pgs degraded
+            1 pgs recovering
+            30 pgs recovery_wait
+            recovery 4080/166872 objects degraded (2.445%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e839: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10348: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24914 MB used, 314 GB / 338 GB avail
+            4080/166872 objects degraded (2.445%)
+                2673 active+clean
+                  30 active+recovery_wait+degraded
+                   1 active+recovering+degraded
+recovery io 12604 kB/s, 85 objects/s
+  client io 1643 kB/s wr, 0 op/s rd, 410 op/s wr
+
+2017-05-17 20:16:26,463 INFO cluster.py [line:207]      monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+2017-05-17 20:16:26,463 INFO cluster.py [line:210]      osdmap e839
+2017-05-17 20:16:26,479 INFO cluster.py [line:212] PG number is 839
+2017-05-17 20:16:26,479 INFO cluster.py [line:214] usefull PG number is 839999
+2017-05-17 20:16:26,479 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:16:27,450 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            31 pgs degraded
+            1 pgs recovering
+            30 pgs recovery_wait
+            recovery 4080/166872 objects degraded (2.445%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e839: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10349: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24914 MB used, 314 GB / 338 GB avail
+            4080/166872 objects degraded (2.445%)
+                2673 active+clean
+                  30 active+recovery_wait+degraded
+                   1 active+recovering+degraded
+recovery io 9913 kB/s, 128 objects/s
+  client io 2052 kB/s wr, 0 op/s rd, 513 op/s wr
+
+2017-05-17 20:16:27,450 INFO cluster.py [line:207]      monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+2017-05-17 20:16:27,466 INFO cluster.py [line:210]      osdmap e839
+2017-05-17 20:16:27,466 INFO cluster.py [line:212] PG number is 839
+2017-05-17 20:16:27,466 INFO cluster.py [line:214] usefull PG number is 839999
+2017-05-17 20:16:27,466 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:16:28,371 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            30 pgs degraded
+            1 pgs recovering
+            29 pgs recovery_wait
+            recovery 3861/166872 objects degraded (2.314%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e839: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10350: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24914 MB used, 314 GB / 338 GB avail
+            3861/166872 objects degraded (2.314%)
+                2674 active+clean
+                  29 active+recovery_wait+degraded
+                   1 active+recovering+degraded
+recovery io 404 MB/s, 212 objects/s
+  client io 7946 B/s rd, 2361 kB/s wr, 11 op/s rd, 590 op/s wr
+
+2017-05-17 20:16:28,371 INFO cluster.py [line:207]      monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+2017-05-17 20:16:28,385 INFO cluster.py [line:210]      osdmap e839
+2017-05-17 20:16:28,385 INFO cluster.py [line:212] PG number is 839
+2017-05-17 20:16:28,385 INFO cluster.py [line:214] usefull PG number is 839999
+2017-05-17 20:16:28,385 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:16:29,153 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            30 pgs degraded
+            1 pgs recovering
+            29 pgs recovery_wait
+            recovery 3861/166872 objects degraded (2.314%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e839: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10350: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24914 MB used, 314 GB / 338 GB avail
+            3861/166872 objects degraded (2.314%)
+                2674 active+clean
+                  29 active+recovery_wait+degraded
+                   1 active+recovering+degraded
+recovery io 404 MB/s, 212 objects/s
+  client io 7946 B/s rd, 2361 kB/s wr, 11 op/s rd, 590 op/s wr
+
+2017-05-17 20:16:29,157 INFO cluster.py [line:207]      monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+2017-05-17 20:16:29,157 INFO cluster.py [line:210]      osdmap e839
+2017-05-17 20:16:29,171 INFO cluster.py [line:212] PG number is 839
+2017-05-17 20:16:29,171 INFO cluster.py [line:214] usefull PG number is 839999
+2017-05-17 20:16:29,171 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:16:31,703 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            29 pgs degraded
+            2 pgs recovering
+            27 pgs recovery_wait
+            recovery 3684/166872 objects degraded (2.208%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e839: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10351: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24917 MB used, 314 GB / 338 GB avail
+            3684/166872 objects degraded (2.208%)
+                2675 active+clean
+                  27 active+recovery_wait+degraded
+                   2 active+recovering+degraded
+recovery io 188 MB/s, 135 objects/s
+  client io 3608 B/s rd, 1642 kB/s wr, 5 op/s rd, 410 op/s wr
+
+2017-05-17 20:16:31,703 INFO cluster.py [line:207]      monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+2017-05-17 20:16:31,717 INFO cluster.py [line:210]      osdmap e839
+2017-05-17 20:16:31,717 INFO cluster.py [line:212] PG number is 839
+2017-05-17 20:16:31,717 INFO cluster.py [line:214] usefull PG number is 839999
+2017-05-17 20:16:31,717 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:16:32,924 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            28 pgs degraded
+            1 pgs recovering
+            27 pgs recovery_wait
+            recovery 3583/166872 objects degraded (2.147%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e839: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10352: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24917 MB used, 314 GB / 338 GB avail
+            3583/166872 objects degraded (2.147%)
+                2676 active+clean
+                  27 active+recovery_wait+degraded
+                   1 active+recovering+degraded
+recovery io 93865 kB/s, 83 objects/s
+  client io 3630 B/s rd, 1327 kB/s wr, 5 op/s rd, 331 op/s wr
+
+2017-05-17 20:16:32,924 INFO cluster.py [line:207]      monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+2017-05-17 20:16:32,940 INFO cluster.py [line:210]      osdmap e839
+2017-05-17 20:16:32,940 INFO cluster.py [line:212] PG number is 839
+2017-05-17 20:16:32,940 INFO cluster.py [line:214] usefull PG number is 839999
+2017-05-17 20:16:32,940 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:16:33,918 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            28 pgs degraded
+            1 pgs recovering
+            27 pgs recovery_wait
+            recovery 3583/166872 objects degraded (2.147%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e839: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10352: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24917 MB used, 314 GB / 338 GB avail
+            3583/166872 objects degraded (2.147%)
+                2676 active+clean
+                  27 active+recovery_wait+degraded
+                   1 active+recovering+degraded
+recovery io 93865 kB/s, 83 objects/s
+  client io 3630 B/s rd, 1327 kB/s wr, 5 op/s rd, 331 op/s wr
+
+2017-05-17 20:16:33,934 INFO cluster.py [line:207]      monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+2017-05-17 20:16:33,934 INFO cluster.py [line:210]      osdmap e839
+2017-05-17 20:16:33,934 INFO cluster.py [line:212] PG number is 839
+2017-05-17 20:16:33,934 INFO cluster.py [line:214] usefull PG number is 839999
+2017-05-17 20:16:33,934 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:16:34,855 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            28 pgs degraded
+            1 pgs recovering
+            27 pgs recovery_wait
+            recovery 3583/166872 objects degraded (2.147%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e839: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10353: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24927 MB used, 314 GB / 338 GB avail
+            3583/166872 objects degraded (2.147%)
+                2676 active+clean
+                  27 active+recovery_wait+degraded
+                   1 active+recovering+degraded
+recovery io 128 MB/s, 66 objects/s
+  client io 5395 B/s rd, 893 kB/s wr, 7 op/s rd, 223 op/s wr
+
+2017-05-17 20:16:34,855 INFO cluster.py [line:207]      monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+2017-05-17 20:16:34,871 INFO cluster.py [line:210]      osdmap e839
+2017-05-17 20:16:34,871 INFO cluster.py [line:212] PG number is 839
+2017-05-17 20:16:34,871 INFO cluster.py [line:214] usefull PG number is 839999
+2017-05-17 20:16:34,871 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:16:35,996 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            28 pgs degraded
+            2 pgs recovering
+            26 pgs recovery_wait
+            recovery 3484/166872 objects degraded (2.088%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e839: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10354: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24927 MB used, 314 GB / 338 GB avail
+            3484/166872 objects degraded (2.088%)
+                2676 active+clean
+                  26 active+recovery_wait+degraded
+                   2 active+recovering+degraded
+recovery io 123 MB/s, 65 objects/s
+  client io 616 kB/s wr, 0 op/s rd, 154 op/s wr
+
+2017-05-17 20:16:35,996 INFO cluster.py [line:207]      monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+2017-05-17 20:16:35,996 INFO cluster.py [line:210]      osdmap e839
+2017-05-17 20:16:36,013 INFO cluster.py [line:212] PG number is 839
+2017-05-17 20:16:36,013 INFO cluster.py [line:214] usefull PG number is 839999
+2017-05-17 20:16:36,013 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:16:37,046 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            25 pgs degraded
+            2 pgs recovering
+            23 pgs recovery_wait
+            recovery 3267/166872 objects degraded (1.958%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e839: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10355: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24927 MB used, 314 GB / 338 GB avail
+            3267/166872 objects degraded (1.958%)
+                2679 active+clean
+                  23 active+recovery_wait+degraded
+                   2 active+recovering+degraded
+recovery io 184 MB/s, 196 objects/s
+  client io 1595 kB/s wr, 0 op/s rd, 398 op/s wr
+
+2017-05-17 20:16:37,046 INFO cluster.py [line:207]      monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+2017-05-17 20:16:37,062 INFO cluster.py [line:210]      osdmap e839
+2017-05-17 20:16:37,062 INFO cluster.py [line:212] PG number is 839
+2017-05-17 20:16:37,062 INFO cluster.py [line:214] usefull PG number is 839999
+2017-05-17 20:16:37,062 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:16:38,124 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            25 pgs degraded
+            3 pgs recovering
+            22 pgs recovery_wait
+            recovery 3182/166872 objects degraded (1.907%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e839: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10356: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24927 MB used, 314 GB / 338 GB avail
+            3182/166872 objects degraded (1.907%)
+                2679 active+clean
+                  22 active+recovery_wait+degraded
+                   3 active+recovering+degraded
+recovery io 159 MB/s, 183 objects/s
+  client io 7711 B/s rd, 3247 kB/s wr, 11 op/s rd, 811 op/s wr
+
+2017-05-17 20:16:38,124 INFO cluster.py [line:207]      monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+2017-05-17 20:16:38,138 INFO cluster.py [line:210]      osdmap e839
+2017-05-17 20:16:38,138 INFO cluster.py [line:212] PG number is 839
+2017-05-17 20:16:38,138 INFO cluster.py [line:214] usefull PG number is 839999
+2017-05-17 20:16:38,138 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:16:39,158 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            25 pgs degraded
+            3 pgs recovering
+            22 pgs recovery_wait
+            recovery 3182/166872 objects degraded (1.907%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e839: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10356: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24927 MB used, 314 GB / 338 GB avail
+            3182/166872 objects degraded (1.907%)
+                2679 active+clean
+                  22 active+recovery_wait+degraded
+                   3 active+recovering+degraded
+recovery io 159 MB/s, 183 objects/s
+  client io 7711 B/s rd, 3247 kB/s wr, 11 op/s rd, 811 op/s wr
+
+2017-05-17 20:16:39,161 INFO cluster.py [line:207]      monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+2017-05-17 20:16:39,161 INFO cluster.py [line:210]      osdmap e839
+2017-05-17 20:16:39,161 INFO cluster.py [line:212] PG number is 839
+2017-05-17 20:16:39,161 INFO cluster.py [line:214] usefull PG number is 839999
+2017-05-17 20:16:39,177 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:16:40,223 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            25 pgs degraded
+            3 pgs recovering
+            22 pgs recovery_wait
+            recovery 3182/166872 objects degraded (1.907%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e839: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10357: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24931 MB used, 314 GB / 338 GB avail
+            3182/166872 objects degraded (1.907%)
+                2679 active+clean
+                  22 active+recovery_wait+degraded
+                   3 active+recovering+degraded
+recovery io 105 MB/s, 55 objects/s
+  client io 5332 B/s rd, 1907 kB/s wr, 7 op/s rd, 476 op/s wr
+
+2017-05-17 20:16:40,223 INFO cluster.py [line:207]      monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+2017-05-17 20:16:40,239 INFO cluster.py [line:210]      osdmap e839
+2017-05-17 20:16:40,239 INFO cluster.py [line:212] PG number is 839
+2017-05-17 20:16:40,239 INFO cluster.py [line:214] usefull PG number is 839999
+2017-05-17 20:16:40,239 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:16:41,400 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            24 pgs degraded
+            2 pgs recovering
+            22 pgs recovery_wait
+            recovery 3158/166872 objects degraded (1.892%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e839: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10358: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24931 MB used, 314 GB / 338 GB avail
+            3158/166872 objects degraded (1.892%)
+                2680 active+clean
+                  22 active+recovery_wait+degraded
+                   2 active+recovering+degraded
+recovery io 31538 kB/s, 15 objects/s
+  client io 1017 kB/s wr, 0 op/s rd, 254 op/s wr
+
+2017-05-17 20:16:41,400 INFO cluster.py [line:207]      monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+2017-05-17 20:16:41,415 INFO cluster.py [line:210]      osdmap e839
+2017-05-17 20:16:41,415 INFO cluster.py [line:212] PG number is 839
+2017-05-17 20:16:41,415 INFO cluster.py [line:214] usefull PG number is 839999
+2017-05-17 20:16:41,415 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:16:42,309 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            23 pgs degraded
+            2 pgs recovering
+            21 pgs recovery_wait
+            recovery 2940/166872 objects degraded (1.762%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e839: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10359: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24931 MB used, 314 GB / 338 GB avail
+            2940/166872 objects degraded (1.762%)
+                2681 active+clean
+                  21 active+recovery_wait+degraded
+                   2 active+recovering+degraded
+recovery io 47579 kB/s, 111 objects/s
+  client io 1921 kB/s wr, 0 op/s rd, 480 op/s wr
+
+2017-05-17 20:16:42,309 INFO cluster.py [line:207]      monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+2017-05-17 20:16:42,325 INFO cluster.py [line:210]      osdmap e839
+2017-05-17 20:16:42,325 INFO cluster.py [line:212] PG number is 839
+2017-05-17 20:16:42,325 INFO cluster.py [line:214] usefull PG number is 839999
+2017-05-17 20:16:42,325 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:16:43,448 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            21 pgs degraded
+            1 pgs recovering
+            20 pgs recovery_wait
+            recovery 2724/166872 objects degraded (1.632%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e839: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10360: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24931 MB used, 314 GB / 338 GB avail
+            2724/166872 objects degraded (1.632%)
+                2683 active+clean
+                  20 active+recovery_wait+degraded
+                   1 active+recovering+degraded
+recovery io 350 MB/s, 270 objects/s
+  client io 6802 B/s rd, 3004 kB/s wr, 9 op/s rd, 751 op/s wr
+
+2017-05-17 20:16:43,448 INFO cluster.py [line:207]      monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+2017-05-17 20:16:43,463 INFO cluster.py [line:210]      osdmap e839
+2017-05-17 20:16:43,463 INFO cluster.py [line:212] PG number is 839
+2017-05-17 20:16:43,463 INFO cluster.py [line:214] usefull PG number is 839999
+2017-05-17 20:16:43,463 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:16:44,496 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            21 pgs degraded
+            1 pgs recovering
+            20 pgs recovery_wait
+            recovery 2724/166872 objects degraded (1.632%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e839: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10360: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24931 MB used, 314 GB / 338 GB avail
+            2724/166872 objects degraded (1.632%)
+                2683 active+clean
+                  20 active+recovery_wait+degraded
+                   1 active+recovering+degraded
+recovery io 350 MB/s, 270 objects/s
+  client io 6802 B/s rd, 3004 kB/s wr, 9 op/s rd, 751 op/s wr
+
+2017-05-17 20:16:44,496 INFO cluster.py [line:207]      monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+2017-05-17 20:16:44,512 INFO cluster.py [line:210]      osdmap e839
+2017-05-17 20:16:44,512 INFO cluster.py [line:212] PG number is 839
+2017-05-17 20:16:44,512 INFO cluster.py [line:214] usefull PG number is 839999
+2017-05-17 20:16:44,512 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:16:45,701 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            21 pgs degraded
+            2 pgs recovering
+            19 pgs recovery_wait
+            recovery 2640/166872 objects degraded (1.582%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e839: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10361: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24931 MB used, 314 GB / 338 GB avail
+            2640/166872 objects degraded (1.582%)
+                2683 active+clean
+                  19 active+recovery_wait+degraded
+                   2 active+recovering+degraded
+recovery io 374 MB/s, 194 objects/s
+  client io 5319 B/s rd, 2518 kB/s wr, 7 op/s rd, 629 op/s wr
+
+2017-05-17 20:16:45,701 INFO cluster.py [line:207]      monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+2017-05-17 20:16:45,717 INFO cluster.py [line:210]      osdmap e839
+2017-05-17 20:16:45,717 INFO cluster.py [line:212] PG number is 839
+2017-05-17 20:16:45,717 INFO cluster.py [line:214] usefull PG number is 839999
+2017-05-17 20:16:45,717 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:16:46,825 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            20 pgs degraded
+            2 pgs recovering
+            18 pgs recovery_wait
+            recovery 2461/166872 objects degraded (1.475%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e839: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10362: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24931 MB used, 314 GB / 338 GB avail
+            2461/166872 objects degraded (1.475%)
+                2684 active+clean
+                  18 active+recovery_wait+degraded
+                   2 active+recovering+degraded
+recovery io 109 MB/s, 112 objects/s
+  client io 1756 kB/s wr, 0 op/s rd, 439 op/s wr
+
+2017-05-17 20:16:46,825 INFO cluster.py [line:207]      monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+2017-05-17 20:16:46,841 INFO cluster.py [line:210]      osdmap e839
+2017-05-17 20:16:46,841 INFO cluster.py [line:212] PG number is 839
+2017-05-17 20:16:46,841 INFO cluster.py [line:214] usefull PG number is 839999
+2017-05-17 20:16:46,841 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:16:48,061 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            20 pgs degraded
+            3 pgs recovering
+            17 pgs recovery_wait
+            recovery 2376/166872 objects degraded (1.424%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e839: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10363: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24931 MB used, 314 GB / 338 GB avail
+            2376/166872 objects degraded (1.424%)
+                2684 active+clean
+                  17 active+recovery_wait+degraded
+                   3 active+recovering+degraded
+recovery io 133 MB/s, 138 objects/s
+  client io 6493 B/s rd, 2658 kB/s wr, 9 op/s rd, 664 op/s wr
+
+2017-05-17 20:16:48,061 INFO cluster.py [line:207]      monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+2017-05-17 20:16:48,075 INFO cluster.py [line:210]      osdmap e839
+2017-05-17 20:16:48,075 INFO cluster.py [line:212] PG number is 839
+2017-05-17 20:16:48,075 INFO cluster.py [line:214] usefull PG number is 839999
+2017-05-17 20:16:48,075 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:16:49,111 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            20 pgs degraded
+            3 pgs recovering
+            17 pgs recovery_wait
+            recovery 2355/166872 objects degraded (1.411%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e839: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10364: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24931 MB used, 314 GB / 338 GB avail
+            2355/166872 objects degraded (1.411%)
+                2684 active+clean
+                  17 active+recovery_wait+degraded
+                   3 active+recovering+degraded
+recovery io 159 MB/s, 84 objects/s
+  client io 6504 B/s rd, 2196 kB/s wr, 9 op/s rd, 549 op/s wr
+
+2017-05-17 20:16:49,111 INFO cluster.py [line:207]      monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+2017-05-17 20:16:49,125 INFO cluster.py [line:210]      osdmap e839
+2017-05-17 20:16:49,125 INFO cluster.py [line:212] PG number is 839
+2017-05-17 20:16:49,125 INFO cluster.py [line:214] usefull PG number is 839999
+2017-05-17 20:16:49,125 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:16:50,207 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            20 pgs degraded
+            3 pgs recovering
+            17 pgs recovery_wait
+            recovery 2355/166872 objects degraded (1.411%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e839: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10365: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24931 MB used, 314 GB / 338 GB avail
+            2355/166872 objects degraded (1.411%)
+                2684 active+clean
+                  17 active+recovery_wait+degraded
+                   3 active+recovering+degraded
+recovery io 39275 kB/s, 20 objects/s
+  client io 1049 kB/s wr, 0 op/s rd, 262 op/s wr
+
+2017-05-17 20:16:50,207 INFO cluster.py [line:207]      monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+2017-05-17 20:16:50,221 INFO cluster.py [line:210]      osdmap e839
+2017-05-17 20:16:50,221 INFO cluster.py [line:212] PG number is 839
+2017-05-17 20:16:50,221 INFO cluster.py [line:214] usefull PG number is 839999
+2017-05-17 20:16:50,221 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:16:51,286 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            19 pgs degraded
+            2 pgs recovering
+            17 pgs recovery_wait
+            recovery 2345/166872 objects degraded (1.405%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e839: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10366: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24931 MB used, 314 GB / 338 GB avail
+            2345/166872 objects degraded (1.405%)
+                2685 active+clean
+                  17 active+recovery_wait+degraded
+                   2 active+recovering+degraded
+recovery io 18847 kB/s, 9 objects/s
+  client io 1541 kB/s wr, 0 op/s rd, 385 op/s wr
+
+2017-05-17 20:16:51,286 INFO cluster.py [line:207]      monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+2017-05-17 20:16:51,302 INFO cluster.py [line:210]      osdmap e839
+2017-05-17 20:16:51,302 INFO cluster.py [line:212] PG number is 839
+2017-05-17 20:16:51,302 INFO cluster.py [line:214] usefull PG number is 839999
+2017-05-17 20:16:51,302 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:16:52,191 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            17 pgs degraded
+            2 pgs recovering
+            15 pgs recovery_wait
+            recovery 2119/166872 objects degraded (1.270%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e839: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10367: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24931 MB used, 314 GB / 338 GB avail
+            2119/166872 objects degraded (1.270%)
+                2687 active+clean
+                  15 active+recovery_wait+degraded
+                   2 active+recovering+degraded
+recovery io 26669 kB/s, 119 objects/s
+  client io 2337 kB/s wr, 0 op/s rd, 584 op/s wr
+
+2017-05-17 20:16:52,191 INFO cluster.py [line:207]      monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+2017-05-17 20:16:52,207 INFO cluster.py [line:210]      osdmap e839
+2017-05-17 20:16:52,207 INFO cluster.py [line:212] PG number is 839
+2017-05-17 20:16:52,207 INFO cluster.py [line:214] usefull PG number is 839999
+2017-05-17 20:16:52,207 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:16:53,049 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            16 pgs degraded
+            2 pgs recovering
+            14 pgs recovery_wait
+            recovery 1928/166872 objects degraded (1.155%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e839: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10368: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24931 MB used, 314 GB / 338 GB avail
+            1928/166872 objects degraded (1.155%)
+                2688 active+clean
+                  14 active+recovery_wait+degraded
+                   2 active+recovering+degraded
+recovery io 346 MB/s, 281 objects/s
+  client io 7586 B/s rd, 3758 kB/s wr, 11 op/s rd, 939 op/s wr
+
+2017-05-17 20:16:53,065 INFO cluster.py [line:207]      monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+2017-05-17 20:16:53,065 INFO cluster.py [line:210]      osdmap e839
+2017-05-17 20:16:53,065 INFO cluster.py [line:212] PG number is 839
+2017-05-17 20:16:53,065 INFO cluster.py [line:214] usefull PG number is 839999
+2017-05-17 20:16:53,081 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:16:53,987 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            16 pgs degraded
+            2 pgs recovering
+            14 pgs recovery_wait
+            recovery 1928/166872 objects degraded (1.155%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e839: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10368: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24931 MB used, 314 GB / 338 GB avail
+            1928/166872 objects degraded (1.155%)
+                2688 active+clean
+                  14 active+recovery_wait+degraded
+                   2 active+recovering+degraded
+recovery io 346 MB/s, 281 objects/s
+  client io 7586 B/s rd, 3758 kB/s wr, 11 op/s rd, 939 op/s wr
+
+2017-05-17 20:16:53,987 INFO cluster.py [line:207]      monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+2017-05-17 20:16:54,003 INFO cluster.py [line:210]      osdmap e839
+2017-05-17 20:16:54,003 INFO cluster.py [line:212] PG number is 839
+2017-05-17 20:16:54,003 INFO cluster.py [line:214] usefull PG number is 839999
+2017-05-17 20:16:54,003 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:16:55,114 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            16 pgs degraded
+            2 pgs recovering
+            14 pgs recovery_wait
+            recovery 1928/166872 objects degraded (1.155%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e839: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10369: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24931 MB used, 314 GB / 338 GB avail
+            1928/166872 objects degraded (1.155%)
+                2688 active+clean
+                  14 active+recovery_wait+degraded
+                   2 active+recovering+degraded
+recovery io 228 MB/s, 119 objects/s
+  client io 5113 B/s rd, 2339 kB/s wr, 7 op/s rd, 584 op/s wr
+
+2017-05-17 20:16:55,114 INFO cluster.py [line:207]      monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+2017-05-17 20:16:55,114 INFO cluster.py [line:210]      osdmap e839
+2017-05-17 20:16:55,130 INFO cluster.py [line:212] PG number is 839
+2017-05-17 20:16:55,130 INFO cluster.py [line:214] usefull PG number is 839999
+2017-05-17 20:16:55,130 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:16:56,368 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            14 pgs degraded
+            2 pgs recovering
+            12 pgs recovery_wait
+            recovery 1739/166872 objects degraded (1.042%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e839: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10370: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24931 MB used, 314 GB / 338 GB avail
+            1739/166872 objects degraded (1.042%)
+                2690 active+clean
+                  12 active+recovery_wait+degraded
+                   2 active+recovering+degraded
+recovery io 4264 kB/s, 61 objects/s
+  client io 1579 kB/s wr, 0 op/s rd, 394 op/s wr
+
+2017-05-17 20:16:56,368 INFO cluster.py [line:207]      monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+2017-05-17 20:16:56,384 INFO cluster.py [line:210]      osdmap e839
+2017-05-17 20:16:56,384 INFO cluster.py [line:212] PG number is 839
+2017-05-17 20:16:56,384 INFO cluster.py [line:214] usefull PG number is 839999
+2017-05-17 20:16:56,384 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:16:57,401 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            14 pgs degraded
+            2 pgs recovering
+            12 pgs recovery_wait
+            recovery 1739/166872 objects degraded (1.042%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e839: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10371: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24931 MB used, 314 GB / 338 GB avail
+            1739/166872 objects degraded (1.042%)
+                2690 active+clean
+                  12 active+recovery_wait+degraded
+                   2 active+recovering+degraded
+recovery io 6429 kB/s, 92 objects/s
+  client io 2438 kB/s wr, 0 op/s rd, 609 op/s wr
+
+2017-05-17 20:16:57,401 INFO cluster.py [line:207]      monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+2017-05-17 20:16:57,415 INFO cluster.py [line:210]      osdmap e839
+2017-05-17 20:16:57,415 INFO cluster.py [line:212] PG number is 839
+2017-05-17 20:16:57,415 INFO cluster.py [line:214] usefull PG number is 839999
+2017-05-17 20:16:57,415 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:16:58,259 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            14 pgs degraded
+            2 pgs recovering
+            12 pgs recovery_wait
+            recovery 1739/166872 objects degraded (1.042%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e839: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10371: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24931 MB used, 314 GB / 338 GB avail
+            1739/166872 objects degraded (1.042%)
+                2690 active+clean
+                  12 active+recovery_wait+degraded
+                   2 active+recovering+degraded
+recovery io 6429 kB/s, 92 objects/s
+  client io 2438 kB/s wr, 0 op/s rd, 609 op/s wr
+
+2017-05-17 20:16:58,259 INFO cluster.py [line:207]      monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+2017-05-17 20:16:58,273 INFO cluster.py [line:210]      osdmap e839
+2017-05-17 20:16:58,273 INFO cluster.py [line:212] PG number is 839
+2017-05-17 20:16:58,273 INFO cluster.py [line:214] usefull PG number is 839999
+2017-05-17 20:16:58,273 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:16:59,309 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            12 pgs degraded
+            2 pgs recovering
+            10 pgs recovery_wait
+            recovery 1551/166872 objects degraded (0.929%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e839: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10372: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24931 MB used, 314 GB / 338 GB avail
+            1551/166872 objects degraded (0.929%)
+                2692 active+clean
+                  10 active+recovery_wait+degraded
+                   2 active+recovering+degraded
+recovery io 347 MB/s, 183 objects/s
+  client io 7983 B/s rd, 2506 kB/s wr, 11 op/s rd, 626 op/s wr
+
+2017-05-17 20:16:59,309 INFO cluster.py [line:207]      monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+2017-05-17 20:16:59,325 INFO cluster.py [line:210]      osdmap e839
+2017-05-17 20:16:59,325 INFO cluster.py [line:212] PG number is 839
+2017-05-17 20:16:59,325 INFO cluster.py [line:214] usefull PG number is 839999
+2017-05-17 20:16:59,325 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:17:00,296 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            12 pgs degraded
+            2 pgs recovering
+            10 pgs recovery_wait
+            recovery 1551/166872 objects degraded (0.929%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e839: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10373: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24931 MB used, 314 GB / 338 GB avail
+            1551/166872 objects degraded (0.929%)
+                2692 active+clean
+                  10 active+recovery_wait+degraded
+                   2 active+recovering+degraded
+recovery io 283 MB/s, 149 objects/s
+  client io 6507 B/s rd, 1585 kB/s wr, 9 op/s rd, 396 op/s wr
+
+2017-05-17 20:17:00,296 INFO cluster.py [line:207]      monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+2017-05-17 20:17:00,312 INFO cluster.py [line:210]      osdmap e839
+2017-05-17 20:17:00,312 INFO cluster.py [line:212] PG number is 839
+2017-05-17 20:17:00,312 INFO cluster.py [line:214] usefull PG number is 839999
+2017-05-17 20:17:00,312 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:17:01,559 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            12 pgs degraded
+            2 pgs recovering
+            10 pgs recovery_wait
+            recovery 1551/166872 objects degraded (0.929%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e839: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10374: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24931 MB used, 314 GB / 338 GB avail
+            1551/166872 objects degraded (0.929%)
+                2692 active+clean
+                  10 active+recovery_wait+degraded
+                   2 active+recovering+degraded
+  client io 1165 kB/s wr, 0 op/s rd, 291 op/s wr
+
+2017-05-17 20:17:01,575 INFO cluster.py [line:207]      monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+2017-05-17 20:17:01,575 INFO cluster.py [line:210]      osdmap e839
+2017-05-17 20:17:01,592 INFO cluster.py [line:212] PG number is 839
+2017-05-17 20:17:01,592 INFO cluster.py [line:214] usefull PG number is 839999
+2017-05-17 20:17:01,592 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:17:02,499 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            10 pgs degraded
+            2 pgs recovering
+            8 pgs recovery_wait
+            recovery 1352/166872 objects degraded (0.810%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e839: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10375: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24931 MB used, 314 GB / 338 GB avail
+            1352/166872 objects degraded (0.810%)
+                2694 active+clean
+                   8 active+recovery_wait+degraded
+                   2 active+recovering+degraded
+recovery io 6851 kB/s, 96 objects/s
+  client io 2088 kB/s wr, 0 op/s rd, 522 op/s wr
+
+2017-05-17 20:17:02,499 INFO cluster.py [line:207]      monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+2017-05-17 20:17:02,515 INFO cluster.py [line:210]      osdmap e839
+2017-05-17 20:17:02,515 INFO cluster.py [line:212] PG number is 839
+2017-05-17 20:17:02,515 INFO cluster.py [line:214] usefull PG number is 839999
+2017-05-17 20:17:02,515 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:17:03,529 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            8 pgs degraded
+            2 pgs recovering
+            6 pgs recovery_wait
+            recovery 1158/166872 objects degraded (0.694%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e839: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10376: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24931 MB used, 314 GB / 338 GB avail
+            1158/166872 objects degraded (0.694%)
+                2696 active+clean
+                   6 active+recovery_wait+degraded
+                   2 active+recovering+degraded
+recovery io 367 MB/s, 287 objects/s
+  client io 8034 B/s rd, 3583 kB/s wr, 11 op/s rd, 895 op/s wr
+
+2017-05-17 20:17:03,529 INFO cluster.py [line:207]      monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+2017-05-17 20:17:03,546 INFO cluster.py [line:210]      osdmap e839
+2017-05-17 20:17:03,546 INFO cluster.py [line:212] PG number is 839
+2017-05-17 20:17:03,546 INFO cluster.py [line:214] usefull PG number is 839999
+2017-05-17 20:17:03,546 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:17:04,466 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            8 pgs degraded
+            2 pgs recovering
+            6 pgs recovery_wait
+            recovery 1158/166872 objects degraded (0.694%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e839: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10376: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24931 MB used, 314 GB / 338 GB avail
+            1158/166872 objects degraded (0.694%)
+                2696 active+clean
+                   6 active+recovery_wait+degraded
+                   2 active+recovering+degraded
+recovery io 367 MB/s, 287 objects/s
+  client io 8034 B/s rd, 3583 kB/s wr, 11 op/s rd, 895 op/s wr
+
+2017-05-17 20:17:04,466 INFO cluster.py [line:207]      monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+2017-05-17 20:17:04,466 INFO cluster.py [line:210]      osdmap e839
+2017-05-17 20:17:04,466 INFO cluster.py [line:212] PG number is 839
+2017-05-17 20:17:04,466 INFO cluster.py [line:214] usefull PG number is 839999
+2017-05-17 20:17:04,466 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:17:05,530 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            8 pgs degraded
+            2 pgs recovering
+            6 pgs recovery_wait
+            recovery 1158/166872 objects degraded (0.694%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e839: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10377: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24931 MB used, 314 GB / 338 GB avail
+            1158/166872 objects degraded (0.694%)
+                2696 active+clean
+                   6 active+recovery_wait+degraded
+                   2 active+recovering+degraded
+recovery io 229 MB/s, 121 objects/s
+  client io 5120 B/s rd, 1901 kB/s wr, 7 op/s rd, 475 op/s wr
+
+2017-05-17 20:17:05,530 INFO cluster.py [line:207]      monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+2017-05-17 20:17:05,530 INFO cluster.py [line:210]      osdmap e839
+2017-05-17 20:17:05,546 INFO cluster.py [line:212] PG number is 839
+2017-05-17 20:17:05,546 INFO cluster.py [line:214] usefull PG number is 839999
+2017-05-17 20:17:05,546 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:17:06,782 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            8 pgs degraded
+            2 pgs recovering
+            6 pgs recovery_wait
+            recovery 1158/166872 objects degraded (0.694%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e839: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10378: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24931 MB used, 314 GB / 338 GB avail
+            1158/166872 objects degraded (0.694%)
+                2696 active+clean
+                   6 active+recovery_wait+degraded
+                   2 active+recovering+degraded
+  client io 1055 kB/s wr, 0 op/s rd, 263 op/s wr
+
+2017-05-17 20:17:06,782 INFO cluster.py [line:207]      monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+2017-05-17 20:17:06,796 INFO cluster.py [line:210]      osdmap e839
+2017-05-17 20:17:06,796 INFO cluster.py [line:212] PG number is 839
+2017-05-17 20:17:06,796 INFO cluster.py [line:214] usefull PG number is 839999
+2017-05-17 20:17:06,796 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:17:07,733 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            7 pgs degraded
+            2 pgs recovering
+            5 pgs recovery_wait
+            recovery 950/166872 objects degraded (0.569%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e839: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10379: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24931 MB used, 314 GB / 338 GB avail
+            950/166872 objects degraded (0.569%)
+                2697 active+clean
+                   5 active+recovery_wait+degraded
+                   2 active+recovering+degraded
+recovery io 7191 kB/s, 102 objects/s
+  client io 3033 kB/s wr, 0 op/s rd, 758 op/s wr
+
+2017-05-17 20:17:07,733 INFO cluster.py [line:207]      monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+2017-05-17 20:17:07,749 INFO cluster.py [line:210]      osdmap e839
+2017-05-17 20:17:07,749 INFO cluster.py [line:212] PG number is 839
+2017-05-17 20:17:07,749 INFO cluster.py [line:214] usefull PG number is 839999
+2017-05-17 20:17:07,749 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:17:08,891 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            6 pgs degraded
+            2 pgs recovering
+            4 pgs recovery_wait
+            recovery 777/166872 objects degraded (0.466%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e839: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10380: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24931 MB used, 314 GB / 338 GB avail
+            777/166872 objects degraded (0.466%)
+                2698 active+clean
+                   4 active+recovery_wait+degraded
+                   2 active+recovering+degraded
+recovery io 326 MB/s, 271 objects/s
+  client io 8017 B/s rd, 3861 kB/s wr, 11 op/s rd, 965 op/s wr
+
+2017-05-17 20:17:08,891 INFO cluster.py [line:207]      monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+2017-05-17 20:17:08,905 INFO cluster.py [line:210]      osdmap e839
+2017-05-17 20:17:08,905 INFO cluster.py [line:212] PG number is 839
+2017-05-17 20:17:08,905 INFO cluster.py [line:214] usefull PG number is 839999
+2017-05-17 20:17:08,905 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:17:09,937 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            6 pgs degraded
+            2 pgs recovering
+            4 pgs recovery_wait
+            recovery 777/166872 objects degraded (0.466%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e839: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10380: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24931 MB used, 314 GB / 338 GB avail
+            777/166872 objects degraded (0.466%)
+                2698 active+clean
+                   4 active+recovery_wait+degraded
+                   2 active+recovering+degraded
+recovery io 326 MB/s, 271 objects/s
+  client io 8017 B/s rd, 3861 kB/s wr, 11 op/s rd, 965 op/s wr
+
+2017-05-17 20:17:09,937 INFO cluster.py [line:207]      monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+2017-05-17 20:17:09,953 INFO cluster.py [line:210]      osdmap e839
+2017-05-17 20:17:09,953 INFO cluster.py [line:212] PG number is 839
+2017-05-17 20:17:09,953 INFO cluster.py [line:214] usefull PG number is 839999
+2017-05-17 20:17:09,953 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:17:10,921 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            6 pgs degraded
+            2 pgs recovering
+            4 pgs recovery_wait
+            recovery 777/166872 objects degraded (0.466%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e839: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10381: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24931 MB used, 314 GB / 338 GB avail
+            777/166872 objects degraded (0.466%)
+                2698 active+clean
+                   4 active+recovery_wait+degraded
+                   2 active+recovering+degraded
+recovery io 203 MB/s, 107 objects/s
+  client io 5109 B/s rd, 2068 kB/s wr, 7 op/s rd, 517 op/s wr
+
+2017-05-17 20:17:10,921 INFO cluster.py [line:207]      monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+2017-05-17 20:17:10,936 INFO cluster.py [line:210]      osdmap e839
+2017-05-17 20:17:10,936 INFO cluster.py [line:212] PG number is 839
+2017-05-17 20:17:10,936 INFO cluster.py [line:214] usefull PG number is 839999
+2017-05-17 20:17:10,936 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:17:11,944 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            5 pgs degraded
+            2 pgs recovering
+            3 pgs recovery_wait
+            recovery 575/166872 objects degraded (0.345%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e839: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10382: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24931 MB used, 314 GB / 338 GB avail
+            575/166872 objects degraded (0.345%)
+                2699 active+clean
+                   3 active+recovery_wait+degraded
+                   2 active+recovering+degraded
+recovery io 4609 kB/s, 62 objects/s
+  client io 1925 kB/s wr, 0 op/s rd, 481 op/s wr
+
+2017-05-17 20:17:11,960 INFO cluster.py [line:207]      monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+2017-05-17 20:17:11,960 INFO cluster.py [line:210]      osdmap e839
+2017-05-17 20:17:11,960 INFO cluster.py [line:212] PG number is 839
+2017-05-17 20:17:11,960 INFO cluster.py [line:214] usefull PG number is 839999
+2017-05-17 20:17:11,960 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:17:12,930 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            4 pgs degraded
+            1 pgs recovering
+            3 pgs recovery_wait
+            recovery 512/166872 objects degraded (0.307%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e839: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10383: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24931 MB used, 314 GB / 338 GB avail
+            512/166872 objects degraded (0.307%)
+                2700 active+clean
+                   3 active+recovery_wait+degraded
+                   1 active+recovering+degraded
+recovery io 121 MB/s, 158 objects/s
+  client io 7902 B/s rd, 3964 kB/s wr, 11 op/s rd, 991 op/s wr
+
+2017-05-17 20:17:12,930 INFO cluster.py [line:207]      monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+2017-05-17 20:17:12,944 INFO cluster.py [line:210]      osdmap e839
+2017-05-17 20:17:12,944 INFO cluster.py [line:212] PG number is 839
+2017-05-17 20:17:12,944 INFO cluster.py [line:214] usefull PG number is 839999
+2017-05-17 20:17:12,944 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:17:13,865 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            3 pgs degraded
+            1 pgs recovering
+            2 pgs recovery_wait
+            recovery 353/166872 objects degraded (0.212%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e839: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10384: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24931 MB used, 314 GB / 338 GB avail
+            353/166872 objects degraded (0.212%)
+                2701 active+clean
+                   2 active+recovery_wait+degraded
+                   1 active+recovering+degraded
+recovery io 401 MB/s, 213 objects/s
+  client io 7862 B/s rd, 2864 kB/s wr, 11 op/s rd, 716 op/s wr
+
+2017-05-17 20:17:13,865 INFO cluster.py [line:207]      monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+2017-05-17 20:17:13,881 INFO cluster.py [line:210]      osdmap e839
+2017-05-17 20:17:13,881 INFO cluster.py [line:212] PG number is 839
+2017-05-17 20:17:13,881 INFO cluster.py [line:214] usefull PG number is 839999
+2017-05-17 20:17:13,881 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:17:14,835 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            3 pgs degraded
+            1 pgs recovering
+            2 pgs recovery_wait
+            recovery 353/166872 objects degraded (0.212%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e839: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10384: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24931 MB used, 314 GB / 338 GB avail
+            353/166872 objects degraded (0.212%)
+                2701 active+clean
+                   2 active+recovery_wait+degraded
+                   1 active+recovering+degraded
+recovery io 401 MB/s, 213 objects/s
+  client io 7862 B/s rd, 2864 kB/s wr, 11 op/s rd, 716 op/s wr
+
+2017-05-17 20:17:14,851 INFO cluster.py [line:207]      monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+2017-05-17 20:17:14,851 INFO cluster.py [line:210]      osdmap e839
+2017-05-17 20:17:14,851 INFO cluster.py [line:212] PG number is 839
+2017-05-17 20:17:14,851 INFO cluster.py [line:214] usefull PG number is 839999
+2017-05-17 20:17:14,851 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:17:15,901 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            3 pgs degraded
+            1 pgs recovering
+            2 pgs recovery_wait
+            recovery 353/166872 objects degraded (0.212%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e839: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10385: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24931 MB used, 314 GB / 338 GB avail
+            353/166872 objects degraded (0.212%)
+                2701 active+clean
+                   2 active+recovery_wait+degraded
+                   1 active+recovering+degraded
+recovery io 193 MB/s, 102 objects/s
+  client io 1555 kB/s wr, 0 op/s rd, 388 op/s wr
+
+2017-05-17 20:17:15,915 INFO cluster.py [line:207]      monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+2017-05-17 20:17:15,915 INFO cluster.py [line:210]      osdmap e839
+2017-05-17 20:17:15,915 INFO cluster.py [line:212] PG number is 839
+2017-05-17 20:17:15,915 INFO cluster.py [line:214] usefull PG number is 839999
+2017-05-17 20:17:15,931 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-17 20:17:16,900 INFO cluster.py [line:206]    cluster 78b6937b-1cd7-40e3-b176-6ac6507d6374
+     health HEALTH_WARN
+            1 pgs degraded
+            1 pgs recovering
+            recovery 120/166872 objects degraded (0.072%)
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e839: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10386: 2704 pgs, 13 pools, 302 GB data, 83436 objects
+            24931 MB used, 314 GB / 338 GB avail
+            120/166872 objects degraded (0.072%)
+                2703 active+clean
+                   1 active+recovering+degraded
+recovery io 4977 kB/s, 75 objects/s
+  client io 2033 kB/s wr, 0 op/s rd, 508 op/s wr
+
+2017-05-17 20:17:16,900 INFO cluster.py [line:207]             election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+2017-05-17 20:17:16,900 INFO cluster.py [line:210]             flags sortbitwise
+2017-05-17 20:17:16,915 INFO cluster.py [line:212] PG number is 
+2017-05-17 20:17:16,915 INFO cluster.py [line:214] usefull PG number is 
+2017-05-17 20:17:16,915 INFO TC42_kill_two_osds_on_single_node.py [line:74] kill two osds in cluster successfully
+2017-05-17 20:17:16,915 INFO TC42_kill_two_osds_on_single_node.py [line:84] 
+Step3: stop IO from clients
+2017-05-17 20:17:17,464 INFO TC42_kill_two_osds_on_single_node.py [line:87] TC42_kill_two_osds_on_single_node runs complete

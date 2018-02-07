@@ -1,0 +1,14 @@
+2017-05-26 22:15:53,713 INFO monitors.py [line:126] tdin: is not a tty
+Traceback (most recent call last):
+  File "/usr/local/bin/ceph", line 124, in <module>
+    from ceph_argparse import \
+ImportError: cannot import name descsort_key
+
+2017-05-26 22:15:53,721 INFO monitors.py [line:129] tdin: is not a tty
+2017-05-26 22:15:53,723 INFO monitors.py [line:129] Traceback (most recent call last):
+2017-05-26 22:15:53,729 INFO monitors.py [line:129]   File "/usr/local/bin/ceph", line 124, in <module>
+2017-05-26 22:15:53,732 INFO monitors.py [line:129]     from ceph_argparse import \
+2017-05-26 22:15:53,733 INFO monitors.py [line:129] ImportError: cannot import name descsort_key
+2017-05-26 22:15:53,739 INFO monitors.py [line:129] 
+2017-05-26 22:15:53,742 INFO initConfig.py [line:18] Init osd process
+2017-05-26 22:15:58,441 ERROR node.py [line:87] reliablityTestPool was not found

@@ -1,0 +1,15 @@
+2017-05-24 14:09:57,740 INFO monitors.py [line:123]    "quorum_leader_name": "denali01",
+
+2017-05-24 14:09:57,740 INFO monitors.py [line:126]    "quorum_leader_name": "denali01",
+2017-05-24 14:09:57,740 INFO initConfig.py [line:18] Init osd process
+2017-05-24 14:09:58,450 ERROR node.py [line:94] image clientrbdImg0 create failed
+2017-05-24 14:09:59,075 ERROR node.py [line:94] image clientrbdImg1 create failed
+2017-05-24 14:09:59,760 ERROR node.py [line:94] image clientrbdImg2 create failed
+2017-05-24 14:10:00,447 ERROR node.py [line:94] image clientrbdImg3 create failed
+2017-05-24 14:10:01,243 ERROR node.py [line:94] image clientrbdImg4 create failed
+2017-05-24 14:10:02,226 ERROR node.py [line:94] image clientrbdImg5 create failed
+2017-05-24 14:10:02,947 ERROR node.py [line:94] image clientrbdImg6 create failed
+2017-05-24 14:10:03,555 ERROR node.py [line:94] image clientrbdImg7 create failed
+2017-05-24 14:10:04,256 ERROR node.py [line:94] image clientrbdImg8 create failed
+2017-05-24 14:10:05,020 ERROR node.py [line:94] image clientrbdImg9 create failed
+2017-05-24 14:10:05,020 INFO initConfig.py [line:46] Init config complete

@@ -1,0 +1,69 @@
+2017-06-03 13:54:58,057 INFO TC186_shutdown_leader_mon_nbd.py [line:22] 
+This test case will do the following steps:
+1. start IO on 10 images with randwrite and verify
+2. login the mon node 
+3. stop mon service
+4. start mon service
+
+2017-06-03 13:54:58,695 INFO monitors.py [line:126]    "quorum_leader_name": "ubuntu-A",
+stdin: is not a tty
+
+2017-06-03 13:54:58,695 INFO monitors.py [line:129]    "quorum_leader_name": "ubuntu-A",
+2017-06-03 13:54:58,695 INFO TC186_shutdown_leader_mon_nbd.py [line:25] start to check cluster status before case running
+2017-06-03 13:55:00,699 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-03 13:55:01,116 INFO cluster.py [line:213]    cluster e93f3143-8693-4060-a247-132bae28385e
+     health HEALTH_OK
+     monmap e3: 3 mons at {ubuntu-A=192.168.40.170:6789/0,ubuntu-B=192.168.40.171:6789/0,ubuntu-C=192.168.40.172:6789/0}
+            election epoch 8, quorum 0,1,2 ubuntu-A,ubuntu-B,ubuntu-C
+     osdmap e2090: 20 osds: 20 up, 16 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10375: 1536 pgs, 2 pools, 299 GB data, 80231 objects
+            733 GB used, 44566 GB / 45300 GB avail
+                1536 active+clean
+  client io 11016 kB/s wr, 0 op/s rd, 1377 op/s wr
+2017-06-03 05:55:02.855769 7fc0c27eb700 -1 asok(0x7fc0bc000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.59978.140465764569472.asok': (13) Permission denied
+
+2017-06-03 13:55:01,116 INFO cluster.py [line:238] PG number is 1536
+2017-06-03 13:55:01,116 INFO cluster.py [line:239] usefull PG number is 1536
+2017-06-03 13:55:01,116 INFO TC186_shutdown_leader_mon_nbd.py [line:28] health status is OK
+2017-06-03 13:55:03,698 INFO client.py [line:172] 4
+stdin: is not a tty
+
+2017-06-03 13:55:03,698 INFO client.py [line:174] IO is running
+2017-06-03 13:56:03,985 INFO monitors.py [line:45] ['oot      2436     1  0 Jun02 ?        00:03:24 /usr/local/bin/ceph-mon --cluster=ceph -i ubuntu-A -f --setuser root --setgroup root', 'denali   60530 60529  0 05:56 ?        00:00:00 bash -c ps -ef | grep ceph-mon', 'denali   60533 60530  0 05:56 ?        00:00:00 grep ceph-mon', '']
+2017-06-03 13:56:03,986 INFO monitors.py [line:51] mon pid is 2436
+2017-06-03 13:56:03,986 INFO monitors.py [line:55] mon is  ubuntu-A
+2017-06-03 13:56:03,986 INFO monitors.py [line:56] execute command is sudo -i stop ceph-mon id=ubuntu-A & sleep 5
+2017-06-03 13:56:09,170 INFO monitors.py [line:59] mon ubuntu-A is shutdown successfully
+2017-06-03 13:56:39,198 INFO monitors.py [line:68] mon is  ubuntu-A
+2017-06-03 13:56:39,198 INFO monitors.py [line:69] execute command is sudo -i ceph-mon -i ubuntu-A & sleep 30
+2017-06-03 13:57:09,386 INFO monitors.py [line:73] mon ubuntu-A is start successfully
+2017-06-03 13:57:09,386 INFO monitors.py [line:103] node is  ubuntu-A
+2017-06-03 13:57:09,386 INFO monitors.py [line:104] execute command is ps -ef | grep 'ceph-mon' 
+2017-06-03 13:57:09,628 INFO monitors.py [line:106] oot     60856     1  1 05:56 ?        00:00:00 ceph-mon -i ubuntu-A
+denali   61121 61120  0 05:57 ?        00:00:00 bash -c ps -ef | grep 'ceph-mon' 
+denali   61123 61121  0 05:57 ?        00:00:00 grep ceph-mon
+
+2017-06-03 13:57:09,629 INFO monitors.py [line:114] ubuntu-A is alrady started
+2017-06-03 13:57:39,659 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-03 13:57:40,019 INFO cluster.py [line:213]    cluster e93f3143-8693-4060-a247-132bae28385e
+     health HEALTH_OK
+     monmap e3: 3 mons at {ubuntu-A=192.168.40.170:6789/0,ubuntu-B=192.168.40.171:6789/0,ubuntu-C=192.168.40.172:6789/0}
+            election epoch 12, quorum 0,1,2 ubuntu-A,ubuntu-B,ubuntu-C
+     osdmap e2090: 20 osds: 20 up, 16 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10469: 1536 pgs, 2 pools, 299 GB data, 80246 objects
+            733 GB used, 44566 GB / 45300 GB avail
+                1536 active+clean
+  client io 25075 kB/s wr, 0 op/s rd, 3133 op/s wr
+2017-06-03 05:57:41.767342 7f57b1e74700 -1 asok(0x7f57ac000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.61377.140014524567936.asok': (13) Permission denied
+
+2017-06-03 13:57:40,019 INFO cluster.py [line:238] PG number is 1536
+2017-06-03 13:57:40,019 INFO cluster.py [line:239] usefull PG number is 1536
+2017-06-03 13:57:40,019 INFO TC186_shutdown_leader_mon_nbd.py [line:57] stop mon service on ubuntu-A in cluster successfully
+2017-06-03 13:57:40,535 INFO client.py [line:172] 4
+stdin: is not a tty
+
+2017-06-03 13:57:40,535 INFO client.py [line:174] IO is running
+2017-06-03 13:57:40,536 INFO TC186_shutdown_leader_mon_nbd.py [line:75] 
+case runs complete

@@ -1,0 +1,11 @@
+2017-06-01 11:56:38,619 INFO TC38_osd_out_in_cluster.py [line:25] 
+This test case will do the following steps:
+1. start IO on 10 images with randwrite and verify
+2. login the first node 
+3. out all osds in sequence
+4. stop all osds in sequence
+5. start all osds in sequence
+6. add in all osds in sequence
+7. check the cluster status
+8. repeat step 2-7 on the other node
+

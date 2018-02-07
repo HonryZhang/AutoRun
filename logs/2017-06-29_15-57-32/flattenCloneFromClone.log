@@ -1,0 +1,52 @@
+2017-06-29 16:10:41,000 INFO flattenCloneFromClone.py [line:20] 
+UI test for invalid login
+
+2017-06-29 16:10:48,792 INFO monitors.py [line:126]    "quorum_leader_name": "denali1",
+stdin: is not a tty
+
+2017-06-29 16:10:48,793 INFO monitors.py [line:129]    "quorum_leader_name": "denali1",
+2017-06-29 16:10:59,979 INFO loginlogout.py [line:13] login
+2017-06-29 16:11:06,779 INFO loginlogout.py [line:24] now we have loggin
+2017-06-29 16:11:06,779 INFO poolManagement.py [line:50] Create pool
+2017-06-29 16:11:58,161 INFO poolManagement.py [line:135] create block device img 
+2017-06-29 16:12:55,187 INFO poolManagement.py [line:287] Create snap for block device 
+2017-06-29 16:13:11,523 INFO poolManagement.py [line:317] 当前没有块镜像。
+2017-06-29 16:13:11,523 INFO poolManagement.py [line:318] The info you input for snap is illegal 
+2017-06-29 16:13:13,525 INFO flattenCloneFromClone.py [line:40] create clone UITestClone on snap UITestSnap
+2017-06-29 16:13:13,526 INFO poolManagement.py [line:370] Create clone for block device 
+2017-06-29 16:13:25,744 INFO poolManagement.py [line:377] 0
+2017-06-29 16:13:28,165 INFO poolManagement.py [line:345] Create snap for clone 
+2017-06-29 16:13:44,496 INFO poolManagement.py [line:355] 0
+2017-06-29 16:13:53,387 INFO flattenCloneFromClone.py [line:45] create clone with name UITestClonewithClone
+2017-06-29 16:13:53,388 INFO poolManagement.py [line:370] Create clone for block device 
+2017-06-29 16:14:05,520 INFO poolManagement.py [line:377] 0
+2017-06-29 16:14:07,878 INFO flattenCloneFromClone.py [line:49] flatten clone  UITestClonewithClone
+2017-06-29 16:14:08,191 INFO poolManagement.py [line:438] flatten clone for block device 
+2017-06-29 16:14:09,997 INFO poolManagement.py [line:443] 0
+2017-06-29 16:14:19,999 INFO flattenCloneFromClone.py [line:52] delete clone UITestClonewithClone
+2017-06-29 16:14:20,000 INFO poolManagement.py [line:237] Delete block device img 
+2017-06-29 16:14:35,694 INFO poolManagement.py [line:244] 1
+2017-06-29 16:14:35,744 INFO poolManagement.py [line:247] UITestImg
+2017-06-29 16:14:38,257 INFO flattenCloneFromClone.py [line:55] delete snap UITestCloneSnap
+2017-06-29 16:14:38,576 INFO poolManagement.py [line:412] Create clone for block device 
+2017-06-29 16:14:40,339 INFO poolManagement.py [line:417] 0
+2017-06-29 16:14:42,342 INFO flattenCloneFromClone.py [line:58] delete clone UITestClone
+2017-06-29 16:14:42,701 INFO poolManagement.py [line:462] delete clone 
+2017-06-29 16:14:45,453 INFO poolManagement.py [line:467] 0
+2017-06-29 16:14:47,453 INFO flattenCloneFromClone.py [line:61] delete snap UITestSnap
+2017-06-29 16:14:47,773 INFO poolManagement.py [line:412] Create clone for block device 
+2017-06-29 16:14:49,516 INFO poolManagement.py [line:417] 0
+2017-06-29 16:14:51,516 INFO poolManagement.py [line:237] Delete block device img 
+2017-06-29 16:15:07,085 INFO poolManagement.py [line:244] 1
+2017-06-29 16:15:07,135 INFO poolManagement.py [line:247] UITestImg
+2017-06-29 16:15:07,496 INFO poolManagement.py [line:255] 确定要删除这个镜像: UITestImg?
+
+此操作不可恢复
+2017-06-29 16:15:16,618 INFO poolManagement.py [line:102] delete pool
+2017-06-29 16:15:24,457 INFO poolManagement.py [line:111] 1
+2017-06-29 16:15:24,499 INFO poolManagement.py [line:113] UITestpool
+2017-06-29 16:15:24,697 INFO poolManagement.py [line:120] 确定删除这个存储池: UITestpool?
+
+此操作不可恢复
+2017-06-29 16:15:52,434 INFO loginlogout.py [line:32] logout
+2017-06-29 16:15:53,871 INFO flattenCloneFromClone.py [line:69] logout

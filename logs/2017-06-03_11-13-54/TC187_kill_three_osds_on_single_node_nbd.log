@@ -1,0 +1,582 @@
+2017-06-03 13:57:40,538 INFO TC187_kill_three_osds_on_single_node_nbd.py [line:28] 
+This test case will do the following steps:
+1. start IO on 10 images with randwrite and verify
+2. login the first node 
+3. kill osd.0
+4. kill osd.1
+5. kill osd.2
+5. start osd.0 
+6. start osd.1
+7. start osd.2
+8. check the cluster status
+
+2017-06-03 13:57:41,228 INFO monitors.py [line:126]    "quorum_leader_name": "ubuntu-A",
+stdin: is not a tty
+
+2017-06-03 13:57:41,228 INFO monitors.py [line:129]    "quorum_leader_name": "ubuntu-A",
+2017-06-03 13:57:41,229 INFO node.py [line:97] init osd on node ubuntu-A
+2017-06-03 13:57:41,482 INFO node.py [line:112] osd.0  ---> processId 25304
+2017-06-03 13:57:41,482 INFO node.py [line:112] osd.1  ---> processId 33198
+2017-06-03 13:57:41,482 INFO node.py [line:112] osd.2  ---> processId 42654
+2017-06-03 13:57:41,483 INFO osd.py [line:28] node is  ubuntu-A
+2017-06-03 13:57:41,483 INFO osd.py [line:29] execute command is sudo -i stop ceph-osd id=0 & sleep 3
+2017-06-03 13:57:47,587 INFO osd.py [line:32] osd osd.0 is shutdown successfully
+2017-06-03 13:57:52,593 INFO osd.py [line:102] node is  ubuntu-A
+2017-06-03 13:57:52,593 INFO osd.py [line:103] execute command is sudo -i ceph-osd -i 0 & sleep 30
+2017-06-03 13:58:22,748 INFO osd.py [line:107] osd osd.0 is start successfully
+2017-06-03 13:58:22,748 INFO osd.py [line:28] node is  ubuntu-A
+2017-06-03 13:58:22,748 INFO osd.py [line:29] execute command is sudo -i stop ceph-osd id=1 & sleep 3
+2017-06-03 13:58:28,292 INFO osd.py [line:32] osd osd.1 is shutdown successfully
+2017-06-03 13:58:33,297 INFO osd.py [line:102] node is  ubuntu-A
+2017-06-03 13:58:33,298 INFO osd.py [line:103] execute command is sudo -i ceph-osd -i 1 & sleep 30
+2017-06-03 13:59:03,496 INFO osd.py [line:107] osd osd.1 is start successfully
+2017-06-03 13:59:03,496 INFO osd.py [line:28] node is  ubuntu-A
+2017-06-03 13:59:03,496 INFO osd.py [line:29] execute command is sudo -i stop ceph-osd id=2 & sleep 3
+2017-06-03 13:59:08,466 INFO osd.py [line:32] osd osd.2 is shutdown successfully
+2017-06-03 13:59:13,472 INFO osd.py [line:102] node is  ubuntu-A
+2017-06-03 13:59:13,472 INFO osd.py [line:103] execute command is sudo -i ceph-osd -i 2 & sleep 30
+2017-06-03 13:59:43,691 INFO osd.py [line:107] osd osd.2 is start successfully
+2017-06-03 13:59:43,943 INFO node.py [line:133] osd.0  ---> processId 61593
+2017-06-03 13:59:43,944 INFO node.py [line:133] osd.1  ---> processId 62090
+2017-06-03 13:59:43,944 INFO node.py [line:133] osd.2  ---> processId 62537
+2017-06-03 13:59:43,944 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-03 13:59:44,303 INFO cluster.py [line:213]    cluster e93f3143-8693-4060-a247-132bae28385e
+     health HEALTH_WARN
+            121 pgs degraded
+            5 pgs recovering
+            116 pgs recovery_wait
+            recovery 2819/160516 objects degraded (1.756%)
+     monmap e3: 3 mons at {ubuntu-A=192.168.40.170:6789/0,ubuntu-B=192.168.40.171:6789/0,ubuntu-C=192.168.40.172:6789/0}
+            election epoch 12, quorum 0,1,2 ubuntu-A,ubuntu-B,ubuntu-C
+     osdmap e2105: 20 osds: 20 up, 16 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10548: 1536 pgs, 2 pools, 299 GB data, 80258 objects
+            733 GB used, 44566 GB / 45300 GB avail
+            2819/160516 objects degraded (1.756%)
+                1415 active+clean
+                 116 active+recovery_wait+degraded
+                   5 active+recovering+degraded
+recovery io 291 MB/s, 73 objects/s
+  client io 2827 kB/s wr, 0 op/s rd, 353 op/s wr
+2017-06-03 05:59:46.059258 7f4c89c58700 -1 asok(0x7f4c84000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.62893.139966608839040.asok': (13) Permission denied
+
+2017-06-03 13:59:44,303 INFO cluster.py [line:238] PG number is 1536
+2017-06-03 13:59:44,303 INFO cluster.py [line:239] usefull PG number is 1415
+2017-06-03 14:00:44,332 INFO cluster.py [line:247] cost 61 seconds, left 5939 seconds when check the ceph status
+2017-06-03 14:00:44,332 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-03 14:00:44,708 INFO cluster.py [line:213]    cluster e93f3143-8693-4060-a247-132bae28385e
+     health HEALTH_OK
+     monmap e3: 3 mons at {ubuntu-A=192.168.40.170:6789/0,ubuntu-B=192.168.40.171:6789/0,ubuntu-C=192.168.40.172:6789/0}
+            election epoch 12, quorum 0,1,2 ubuntu-A,ubuntu-B,ubuntu-C
+     osdmap e2105: 20 osds: 20 up, 16 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10584: 1536 pgs, 2 pools, 299 GB data, 80264 objects
+            733 GB used, 44566 GB / 45300 GB avail
+                1536 active+clean
+  client io 7806 kB/s wr, 0 op/s rd, 975 op/s wr
+2017-06-03 06:00:46.457094 7f660a625700 -1 asok(0x7f6604000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.63413.140076130505088.asok': (13) Permission denied
+
+2017-06-03 14:00:44,709 INFO cluster.py [line:238] PG number is 1536
+2017-06-03 14:00:44,709 INFO cluster.py [line:239] usefull PG number is 1536
+2017-06-03 14:00:44,709 INFO cluster.py [line:302] osd on node ubuntu-A were init successfully
+2017-06-03 14:00:44,709 INFO node.py [line:97] init osd on node ubuntu-B
+2017-06-03 14:00:45,014 INFO node.py [line:112] osd.7  ---> processId 
+2017-06-03 14:00:45,014 INFO node.py [line:112] osd.8  ---> processId 
+2017-06-03 14:00:45,014 INFO node.py [line:112] osd.9  ---> processId 
+2017-06-03 14:00:45,014 INFO node.py [line:112] osd.10  ---> processId 
+2017-06-03 14:00:45,014 INFO node.py [line:112] osd.11  ---> processId 
+2017-06-03 14:00:45,014 INFO node.py [line:112] osd.12  ---> processId 
+2017-06-03 14:00:45,015 INFO osd.py [line:28] node is  ubuntu-B
+2017-06-03 14:00:45,015 INFO osd.py [line:29] execute command is sudo -i stop ceph-osd id=7 & sleep 3
+2017-06-03 14:00:48,236 ERROR osd.py [line:34] Error when shutdown osdosd.7
+2017-06-03 14:00:48,236 ERROR osd.py [line:35] sudo -i stop ceph-osd id=7 & sleep 3
+2017-06-03 14:00:48,236 ERROR osd.py [line:36] tdin: is not a tty
+stop: Unknown instance: ceph/7
+
+2017-06-03 14:00:53,242 INFO osd.py [line:102] node is  ubuntu-B
+2017-06-03 14:00:53,242 INFO osd.py [line:103] execute command is sudo -i ceph-osd -i 7 & sleep 30
+2017-06-03 14:01:23,465 INFO osd.py [line:107] osd osd.7 is start successfully
+2017-06-03 14:01:23,465 INFO osd.py [line:28] node is  ubuntu-B
+2017-06-03 14:01:23,465 INFO osd.py [line:29] execute command is sudo -i stop ceph-osd id=8 & sleep 3
+2017-06-03 14:01:26,686 ERROR osd.py [line:34] Error when shutdown osdosd.8
+2017-06-03 14:01:26,686 ERROR osd.py [line:35] sudo -i stop ceph-osd id=8 & sleep 3
+2017-06-03 14:01:26,687 ERROR osd.py [line:36] tdin: is not a tty
+stop: Unknown instance: ceph/8
+
+2017-06-03 14:01:31,692 INFO osd.py [line:102] node is  ubuntu-B
+2017-06-03 14:01:31,692 INFO osd.py [line:103] execute command is sudo -i ceph-osd -i 8 & sleep 30
+2017-06-03 14:02:01,914 INFO osd.py [line:107] osd osd.8 is start successfully
+2017-06-03 14:02:01,914 INFO osd.py [line:28] node is  ubuntu-B
+2017-06-03 14:02:01,914 INFO osd.py [line:29] execute command is sudo -i stop ceph-osd id=9 & sleep 3
+2017-06-03 14:02:05,136 ERROR osd.py [line:34] Error when shutdown osdosd.9
+2017-06-03 14:02:05,136 ERROR osd.py [line:35] sudo -i stop ceph-osd id=9 & sleep 3
+2017-06-03 14:02:05,136 ERROR osd.py [line:36] tdin: is not a tty
+stop: Unknown instance: ceph/9
+
+2017-06-03 14:02:10,142 INFO osd.py [line:102] node is  ubuntu-B
+2017-06-03 14:02:10,142 INFO osd.py [line:103] execute command is sudo -i ceph-osd -i 9 & sleep 30
+2017-06-03 14:02:40,399 INFO osd.py [line:107] osd osd.9 is start successfully
+2017-06-03 14:02:40,399 INFO osd.py [line:28] node is  ubuntu-B
+2017-06-03 14:02:40,399 INFO osd.py [line:29] execute command is sudo -i stop ceph-osd id=10 & sleep 3
+2017-06-03 14:02:43,622 ERROR osd.py [line:34] Error when shutdown osdosd.10
+2017-06-03 14:02:43,622 ERROR osd.py [line:35] sudo -i stop ceph-osd id=10 & sleep 3
+2017-06-03 14:02:43,622 ERROR osd.py [line:36] tdin: is not a tty
+stop: Unknown instance: ceph/10
+
+2017-06-03 14:02:48,627 INFO osd.py [line:102] node is  ubuntu-B
+2017-06-03 14:02:48,628 INFO osd.py [line:103] execute command is sudo -i ceph-osd -i 10 & sleep 30
+2017-06-03 14:03:18,880 INFO osd.py [line:107] osd osd.10 is start successfully
+2017-06-03 14:03:18,880 INFO osd.py [line:28] node is  ubuntu-B
+2017-06-03 14:03:18,880 INFO osd.py [line:29] execute command is sudo -i stop ceph-osd id=11 & sleep 3
+2017-06-03 14:03:22,215 ERROR osd.py [line:34] Error when shutdown osdosd.11
+2017-06-03 14:03:22,215 ERROR osd.py [line:35] sudo -i stop ceph-osd id=11 & sleep 3
+2017-06-03 14:03:22,215 ERROR osd.py [line:36] tdin: is not a tty
+stop: Unknown instance: ceph/11
+
+2017-06-03 14:03:27,220 INFO osd.py [line:102] node is  ubuntu-B
+2017-06-03 14:03:27,220 INFO osd.py [line:103] execute command is sudo -i ceph-osd -i 11 & sleep 30
+2017-06-03 14:03:57,444 INFO osd.py [line:107] osd osd.11 is start successfully
+2017-06-03 14:03:57,444 INFO osd.py [line:28] node is  ubuntu-B
+2017-06-03 14:03:57,444 INFO osd.py [line:29] execute command is sudo -i stop ceph-osd id=12 & sleep 3
+2017-06-03 14:04:00,666 ERROR osd.py [line:34] Error when shutdown osdosd.12
+2017-06-03 14:04:00,667 ERROR osd.py [line:35] sudo -i stop ceph-osd id=12 & sleep 3
+2017-06-03 14:04:00,667 ERROR osd.py [line:36] tdin: is not a tty
+stop: Unknown instance: ceph/12
+
+2017-06-03 14:04:05,672 INFO osd.py [line:102] node is  ubuntu-B
+2017-06-03 14:04:05,672 INFO osd.py [line:103] execute command is sudo -i ceph-osd -i 12 & sleep 30
+2017-06-03 14:04:35,927 INFO osd.py [line:107] osd osd.12 is start successfully
+2017-06-03 14:04:36,200 INFO node.py [line:133] osd.7  ---> processId 2025
+2017-06-03 14:04:36,200 INFO node.py [line:133] osd.8  ---> processId 9198
+2017-06-03 14:04:36,201 INFO node.py [line:133] osd.9  ---> processId 16982
+2017-06-03 14:04:36,201 INFO node.py [line:133] osd.10  ---> processId 24755
+2017-06-03 14:04:36,201 INFO node.py [line:133] osd.11  ---> processId 26267
+2017-06-03 14:04:36,201 INFO node.py [line:133] osd.12  ---> processId 33005
+2017-06-03 14:04:36,201 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-03 14:04:36,599 INFO cluster.py [line:213]    cluster e93f3143-8693-4060-a247-132bae28385e
+     health HEALTH_OK
+     monmap e3: 3 mons at {ubuntu-A=192.168.40.170:6789/0,ubuntu-B=192.168.40.171:6789/0,ubuntu-C=192.168.40.172:6789/0}
+            election epoch 12, quorum 0,1,2 ubuntu-A,ubuntu-B,ubuntu-C
+     osdmap e2105: 20 osds: 20 up, 16 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10724: 1536 pgs, 2 pools, 299 GB data, 80288 objects
+            733 GB used, 44566 GB / 45300 GB avail
+                1536 active+clean
+  client io 6562 B/s rd, 55161 kB/s wr, 4 op/s rd, 6896 op/s wr
+2017-06-03 06:04:38.351719 7f1972cef700 -1 asok(0x7f196c000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.48482.139747162853760.asok': (13) Permission denied
+
+2017-06-03 14:04:36,599 INFO cluster.py [line:238] PG number is 1536
+2017-06-03 14:04:36,599 INFO cluster.py [line:239] usefull PG number is 1536
+2017-06-03 14:04:36,599 INFO cluster.py [line:302] osd on node ubuntu-B were init successfully
+2017-06-03 14:04:36,599 INFO node.py [line:97] init osd on node ubuntu-C
+2017-06-03 14:04:36,879 INFO node.py [line:112] osd.13  ---> processId 
+2017-06-03 14:04:36,879 INFO node.py [line:112] osd.14  ---> processId 
+2017-06-03 14:04:36,879 INFO node.py [line:112] osd.15  ---> processId 
+2017-06-03 14:04:36,879 INFO node.py [line:112] osd.16  ---> processId 
+2017-06-03 14:04:36,879 INFO node.py [line:112] osd.17  ---> processId 
+2017-06-03 14:04:36,880 INFO node.py [line:112] osd.18  ---> processId 
+2017-06-03 14:04:36,880 INFO node.py [line:112] osd.19  ---> processId 
+2017-06-03 14:04:36,880 INFO osd.py [line:28] node is  ubuntu-C
+2017-06-03 14:04:36,880 INFO osd.py [line:29] execute command is sudo -i stop ceph-osd id=13 & sleep 3
+2017-06-03 14:04:40,102 ERROR osd.py [line:34] Error when shutdown osdosd.13
+2017-06-03 14:04:40,102 ERROR osd.py [line:35] sudo -i stop ceph-osd id=13 & sleep 3
+2017-06-03 14:04:40,102 ERROR osd.py [line:36] tdin: is not a tty
+stop: Unknown instance: ceph/13
+
+2017-06-03 14:04:45,107 INFO osd.py [line:102] node is  ubuntu-C
+2017-06-03 14:04:45,108 INFO osd.py [line:103] execute command is sudo -i ceph-osd -i 13 & sleep 30
+2017-06-03 14:05:15,330 INFO osd.py [line:107] osd osd.13 is start successfully
+2017-06-03 14:05:15,330 INFO osd.py [line:28] node is  ubuntu-C
+2017-06-03 14:05:15,330 INFO osd.py [line:29] execute command is sudo -i stop ceph-osd id=14 & sleep 3
+2017-06-03 14:05:18,554 ERROR osd.py [line:34] Error when shutdown osdosd.14
+2017-06-03 14:05:18,554 ERROR osd.py [line:35] sudo -i stop ceph-osd id=14 & sleep 3
+2017-06-03 14:05:18,554 ERROR osd.py [line:36] tdin: is not a tty
+stop: Unknown instance: ceph/14
+
+2017-06-03 14:05:23,558 INFO osd.py [line:102] node is  ubuntu-C
+2017-06-03 14:05:23,558 INFO osd.py [line:103] execute command is sudo -i ceph-osd -i 14 & sleep 30
+2017-06-03 14:05:53,781 INFO osd.py [line:107] osd osd.14 is start successfully
+2017-06-03 14:05:53,781 INFO osd.py [line:28] node is  ubuntu-C
+2017-06-03 14:05:53,781 INFO osd.py [line:29] execute command is sudo -i stop ceph-osd id=15 & sleep 3
+2017-06-03 14:05:57,002 ERROR osd.py [line:34] Error when shutdown osdosd.15
+2017-06-03 14:05:57,002 ERROR osd.py [line:35] sudo -i stop ceph-osd id=15 & sleep 3
+2017-06-03 14:05:57,002 ERROR osd.py [line:36] tdin: is not a tty
+stop: Unknown instance: ceph/15
+
+2017-06-03 14:06:02,008 INFO osd.py [line:102] node is  ubuntu-C
+2017-06-03 14:06:02,008 INFO osd.py [line:103] execute command is sudo -i ceph-osd -i 15 & sleep 30
+2017-06-03 14:06:32,230 INFO osd.py [line:107] osd osd.15 is start successfully
+2017-06-03 14:06:32,230 INFO osd.py [line:28] node is  ubuntu-C
+2017-06-03 14:06:32,230 INFO osd.py [line:29] execute command is sudo -i stop ceph-osd id=16 & sleep 3
+2017-06-03 14:06:35,451 ERROR osd.py [line:34] Error when shutdown osdosd.16
+2017-06-03 14:06:35,451 ERROR osd.py [line:35] sudo -i stop ceph-osd id=16 & sleep 3
+2017-06-03 14:06:35,451 ERROR osd.py [line:36] tdin: is not a tty
+stop: Unknown instance: ceph/16
+
+2017-06-03 14:06:40,457 INFO osd.py [line:102] node is  ubuntu-C
+2017-06-03 14:06:40,457 INFO osd.py [line:103] execute command is sudo -i ceph-osd -i 16 & sleep 30
+2017-06-03 14:07:10,792 INFO osd.py [line:107] osd osd.16 is start successfully
+2017-06-03 14:07:10,793 INFO osd.py [line:28] node is  ubuntu-C
+2017-06-03 14:07:10,793 INFO osd.py [line:29] execute command is sudo -i stop ceph-osd id=17 & sleep 3
+2017-06-03 14:07:14,015 ERROR osd.py [line:34] Error when shutdown osdosd.17
+2017-06-03 14:07:14,015 ERROR osd.py [line:35] sudo -i stop ceph-osd id=17 & sleep 3
+2017-06-03 14:07:14,016 ERROR osd.py [line:36] tdin: is not a tty
+stop: Unknown instance: ceph/17
+
+2017-06-03 14:07:19,021 INFO osd.py [line:102] node is  ubuntu-C
+2017-06-03 14:07:19,021 INFO osd.py [line:103] execute command is sudo -i ceph-osd -i 17 & sleep 30
+2017-06-03 14:07:49,245 INFO osd.py [line:107] osd osd.17 is start successfully
+2017-06-03 14:07:49,245 INFO osd.py [line:28] node is  ubuntu-C
+2017-06-03 14:07:49,245 INFO osd.py [line:29] execute command is sudo -i stop ceph-osd id=18 & sleep 3
+2017-06-03 14:07:52,468 ERROR osd.py [line:34] Error when shutdown osdosd.18
+2017-06-03 14:07:52,469 ERROR osd.py [line:35] sudo -i stop ceph-osd id=18 & sleep 3
+2017-06-03 14:07:52,469 ERROR osd.py [line:36] tdin: is not a tty
+stop: Unknown instance: ceph/18
+
+2017-06-03 14:07:57,474 INFO osd.py [line:102] node is  ubuntu-C
+2017-06-03 14:07:57,475 INFO osd.py [line:103] execute command is sudo -i ceph-osd -i 18 & sleep 30
+2017-06-03 14:08:27,698 INFO osd.py [line:107] osd osd.18 is start successfully
+2017-06-03 14:08:27,698 INFO osd.py [line:28] node is  ubuntu-C
+2017-06-03 14:08:27,699 INFO osd.py [line:29] execute command is sudo -i stop ceph-osd id=19 & sleep 3
+2017-06-03 14:08:30,936 ERROR osd.py [line:34] Error when shutdown osdosd.19
+2017-06-03 14:08:30,936 ERROR osd.py [line:35] sudo -i stop ceph-osd id=19 & sleep 3
+2017-06-03 14:08:30,936 ERROR osd.py [line:36] tdin: is not a tty
+stop: Unknown instance: ceph/19
+
+2017-06-03 14:08:35,941 INFO osd.py [line:102] node is  ubuntu-C
+2017-06-03 14:08:35,942 INFO osd.py [line:103] execute command is sudo -i ceph-osd -i 19 & sleep 30
+2017-06-03 14:09:06,165 INFO osd.py [line:107] osd osd.19 is start successfully
+2017-06-03 14:09:06,431 INFO node.py [line:133] osd.13  ---> processId 33033
+2017-06-03 14:09:06,431 INFO node.py [line:133] osd.14  ---> processId 34546
+2017-06-03 14:09:06,432 INFO node.py [line:133] osd.15  ---> processId 36063
+2017-06-03 14:09:06,432 INFO node.py [line:133] osd.16  ---> processId 37618
+2017-06-03 14:09:06,432 INFO node.py [line:133] osd.17  ---> processId 39131
+2017-06-03 14:09:06,432 INFO node.py [line:133] osd.18  ---> processId 40639
+2017-06-03 14:09:06,432 INFO node.py [line:133] osd.19  ---> processId 42148
+2017-06-03 14:09:06,432 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-03 14:09:06,821 INFO cluster.py [line:213]    cluster e93f3143-8693-4060-a247-132bae28385e
+     health HEALTH_OK
+     monmap e3: 3 mons at {ubuntu-A=192.168.40.170:6789/0,ubuntu-B=192.168.40.171:6789/0,ubuntu-C=192.168.40.172:6789/0}
+            election epoch 12, quorum 0,1,2 ubuntu-A,ubuntu-B,ubuntu-C
+     osdmap e2105: 20 osds: 20 up, 16 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10886: 1536 pgs, 2 pools, 299 GB data, 80314 objects
+            733 GB used, 44566 GB / 45300 GB avail
+                1536 active+clean
+  client io 3532 B/s rd, 57096 kB/s wr, 2 op/s rd, 7137 op/s wr
+2017-06-03 06:09:08.596490 7fc3f3c63700 -1 asok(0x7fc3ec000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.50503.140479454777728.asok': (13) Permission denied
+
+2017-06-03 14:09:06,821 INFO cluster.py [line:238] PG number is 1536
+2017-06-03 14:09:06,822 INFO cluster.py [line:239] usefull PG number is 1536
+2017-06-03 14:09:06,822 INFO cluster.py [line:302] osd on node ubuntu-C were init successfully
+2017-06-03 14:09:06,822 INFO TC187_kill_three_osds_on_single_node_nbd.py [line:35] start to check cluster status before case running
+2017-06-03 14:09:08,827 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-03 14:09:09,216 INFO cluster.py [line:213]    cluster e93f3143-8693-4060-a247-132bae28385e
+     health HEALTH_OK
+     monmap e3: 3 mons at {ubuntu-A=192.168.40.170:6789/0,ubuntu-B=192.168.40.171:6789/0,ubuntu-C=192.168.40.172:6789/0}
+            election epoch 12, quorum 0,1,2 ubuntu-A,ubuntu-B,ubuntu-C
+     osdmap e2105: 20 osds: 20 up, 16 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v10887: 1536 pgs, 2 pools, 299 GB data, 80314 objects
+            733 GB used, 44566 GB / 45300 GB avail
+                1536 active+clean
+  client io 8027 kB/s wr, 0 op/s rd, 1003 op/s wr
+2017-06-03 06:09:10.958093 7f1421959700 -1 asok(0x7f141c000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.67641.139724345840000.asok': (13) Permission denied
+
+2017-06-03 14:09:09,217 INFO cluster.py [line:238] PG number is 1536
+2017-06-03 14:09:09,217 INFO cluster.py [line:239] usefull PG number is 1536
+2017-06-03 14:09:09,217 INFO TC187_kill_three_osds_on_single_node_nbd.py [line:38] health status is OK
+2017-06-03 14:09:09,217 INFO TC187_kill_three_osds_on_single_node_nbd.py [line:43] 
+Step1: start IO from clients
+2017-06-03 14:09:09,826 INFO client.py [line:172] 4
+stdin: is not a tty
+
+2017-06-03 14:09:09,827 INFO client.py [line:174] IO is running
+2017-06-03 14:10:09,887 INFO TC187_kill_three_osds_on_single_node_nbd.py [line:50] 
+Step2: kill three osds 
+2017-06-03 14:10:09,887 INFO TC187_kill_three_osds_on_single_node_nbd.py [line:54] 
+Now operate ubuntu-A
+2017-06-03 14:10:10,130 INFO node.py [line:150] osd.0  ---> processId 61593
+2017-06-03 14:10:10,130 INFO node.py [line:150] osd.1  ---> processId 62090
+2017-06-03 14:10:10,130 INFO node.py [line:150] osd.2  ---> processId 62537
+2017-06-03 14:10:10,130 INFO TC187_kill_three_osds_on_single_node_nbd.py [line:58] shutdown three osds on node ubuntu-A
+2017-06-03 14:10:10,130 INFO osd.py [line:40] execute command is sudo -i kill -9 61593 & sleep 3
+2017-06-03 14:10:13,315 INFO osd.py [line:40] execute command is sudo -i kill -9 62090 & sleep 3
+2017-06-03 14:10:16,502 INFO osd.py [line:40] execute command is sudo -i kill -9 62537 & sleep 3
+2017-06-03 14:10:19,891 INFO TC187_kill_three_osds_on_single_node_nbd.py [line:66] start osd on node ubuntu-A
+2017-06-03 14:10:19,891 INFO osd.py [line:102] node is  ubuntu-A
+2017-06-03 14:10:19,891 INFO osd.py [line:103] execute command is sudo -i ceph-osd -i 0 & sleep 30
+2017-06-03 14:10:50,079 INFO osd.py [line:107] osd osd.0 is start successfully
+2017-06-03 14:10:50,079 INFO osd.py [line:102] node is  ubuntu-A
+2017-06-03 14:10:50,079 INFO osd.py [line:103] execute command is sudo -i ceph-osd -i 1 & sleep 30
+2017-06-03 14:11:20,266 INFO osd.py [line:107] osd osd.1 is start successfully
+2017-06-03 14:11:20,266 INFO osd.py [line:102] node is  ubuntu-A
+2017-06-03 14:11:20,266 INFO osd.py [line:103] execute command is sudo -i ceph-osd -i 2 & sleep 30
+2017-06-03 14:11:50,420 INFO osd.py [line:107] osd osd.2 is start successfully
+2017-06-03 14:11:50,421 INFO osd.py [line:115] node is  ubuntu-A
+2017-06-03 14:11:50,421 INFO osd.py [line:116] execute command is ps -ef | grep 'ceph-osd -i 0'
+2017-06-03 14:11:50,650 INFO osd.py [line:118] oot     68345     1 31 06:10 ?        00:00:28 ceph-osd -i 0
+denali   69458 69457  0 06:11 ?        00:00:00 bash -c ps -ef | grep 'ceph-osd -i 0'
+denali   69460 69458  0 06:11 ?        00:00:00 grep ceph-osd -i 0
+
+2017-06-03 14:11:50,650 INFO osd.py [line:127] osd.0has already started
+2017-06-03 14:11:50,650 INFO osd.py [line:115] node is  ubuntu-A
+2017-06-03 14:11:50,650 INFO osd.py [line:116] execute command is ps -ef | grep 'ceph-osd -i 1'
+2017-06-03 14:11:50,898 INFO osd.py [line:118] oot     68726     1 99 06:10 ?        00:01:21 ceph-osd -i 1
+denali   69473 69472  0 06:11 ?        00:00:00 bash -c ps -ef | grep 'ceph-osd -i 1'
+denali   69475 69473  0 06:11 ?        00:00:00 grep ceph-osd -i 1
+
+2017-06-03 14:11:50,898 INFO osd.py [line:127] osd.1has already started
+2017-06-03 14:11:50,898 INFO osd.py [line:115] node is  ubuntu-A
+2017-06-03 14:11:50,899 INFO osd.py [line:116] execute command is ps -ef | grep 'ceph-osd -i 2'
+2017-06-03 14:11:51,144 INFO osd.py [line:118] oot     69120     1 99 06:11 ?        00:00:30 ceph-osd -i 2
+denali   69488 69487  0 06:11 ?        00:00:00 bash -c ps -ef | grep 'ceph-osd -i 2'
+denali   69490 69488  0 06:11 ?        00:00:00 grep ceph-osd -i 2
+
+2017-06-03 14:11:51,144 INFO osd.py [line:127] osd.2has already started
+2017-06-03 14:12:21,404 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-03 14:12:21,790 INFO cluster.py [line:213]    cluster e93f3143-8693-4060-a247-132bae28385e
+     health HEALTH_WARN
+            121 pgs degraded
+            3 pgs recovering
+            118 pgs recovery_wait
+            recovery 6536/160664 objects degraded (4.068%)
+     monmap e3: 3 mons at {ubuntu-A=192.168.40.170:6789/0,ubuntu-B=192.168.40.171:6789/0,ubuntu-C=192.168.40.172:6789/0}
+            election epoch 12, quorum 0,1,2 ubuntu-A,ubuntu-B,ubuntu-C
+     osdmap e2118: 20 osds: 20 up, 16 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v11022: 1536 pgs, 2 pools, 299 GB data, 80332 objects
+            733 GB used, 44566 GB / 45300 GB avail
+            6536/160664 objects degraded (4.068%)
+                1415 active+clean
+                 118 active+recovery_wait+degraded
+                   3 active+recovering+degraded
+recovery io 950 MB/s, 237 objects/s
+  client io 13168 kB/s wr, 0 op/s rd, 1646 op/s wr
+2017-06-03 06:12:23.535098 7f3d60bc6700 -1 asok(0x7f3d5c000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.69753.139901513240960.asok': (13) Permission denied
+
+2017-06-03 14:12:21,791 INFO cluster.py [line:238] PG number is 1536
+2017-06-03 14:12:21,791 INFO cluster.py [line:239] usefull PG number is 1415
+2017-06-03 14:13:21,833 INFO cluster.py [line:247] cost 60 seconds, left 5940 seconds when check the ceph status
+2017-06-03 14:13:21,833 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-03 14:13:22,243 INFO cluster.py [line:213]    cluster e93f3143-8693-4060-a247-132bae28385e
+     health HEALTH_WARN
+            33 pgs degraded
+            2 pgs recovering
+            31 pgs recovery_wait
+            recovery 851/160676 objects degraded (0.530%)
+     monmap e3: 3 mons at {ubuntu-A=192.168.40.170:6789/0,ubuntu-B=192.168.40.171:6789/0,ubuntu-C=192.168.40.172:6789/0}
+            election epoch 12, quorum 0,1,2 ubuntu-A,ubuntu-B,ubuntu-C
+     osdmap e2118: 20 osds: 20 up, 16 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v11072: 1536 pgs, 2 pools, 299 GB data, 80338 objects
+            733 GB used, 44566 GB / 45300 GB avail
+            851/160676 objects degraded (0.530%)
+                1503 active+clean
+                  31 active+recovery_wait+degraded
+                   2 active+recovering+degraded
+recovery io 530 MB/s, 132 objects/s
+  client io 19214 kB/s wr, 0 op/s rd, 2401 op/s wr
+2017-06-03 06:13:23.986188 7fb7cb12f700 -1 asok(0x7fb7c4000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.70272.140427244081536.asok': (13) Permission denied
+
+2017-06-03 14:13:22,244 INFO cluster.py [line:238] PG number is 1536
+2017-06-03 14:13:22,244 INFO cluster.py [line:239] usefull PG number is 1503
+2017-06-03 14:14:22,286 INFO cluster.py [line:247] cost 61 seconds, left 5879 seconds when check the ceph status
+2017-06-03 14:14:22,287 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-03 14:14:22,662 INFO cluster.py [line:213]    cluster e93f3143-8693-4060-a247-132bae28385e
+     health HEALTH_OK
+     monmap e3: 3 mons at {ubuntu-A=192.168.40.170:6789/0,ubuntu-B=192.168.40.171:6789/0,ubuntu-C=192.168.40.172:6789/0}
+            election epoch 12, quorum 0,1,2 ubuntu-A,ubuntu-B,ubuntu-C
+     osdmap e2118: 20 osds: 20 up, 16 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v11119: 1536 pgs, 2 pools, 299 GB data, 80344 objects
+            733 GB used, 44566 GB / 45300 GB avail
+                1536 active+clean
+  client io 37276 kB/s wr, 0 op/s rd, 4659 op/s wr
+2017-06-03 06:14:24.410751 7fe675031700 -1 asok(0x7fe670000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.70792.140627698258304.asok': (13) Permission denied
+
+2017-06-03 14:14:22,663 INFO cluster.py [line:238] PG number is 1536
+2017-06-03 14:14:22,663 INFO cluster.py [line:239] usefull PG number is 1536
+2017-06-03 14:14:22,663 INFO TC187_kill_three_osds_on_single_node_nbd.py [line:99] stop three osds in cluster successfully
+2017-06-03 14:14:23,180 INFO client.py [line:172] 4
+stdin: is not a tty
+
+2017-06-03 14:14:23,180 INFO client.py [line:174] IO is running
+2017-06-03 14:14:23,180 INFO TC187_kill_three_osds_on_single_node_nbd.py [line:54] 
+Now operate ubuntu-B
+2017-06-03 14:14:23,451 INFO node.py [line:150] osd.7  ---> processId 2025
+2017-06-03 14:14:23,451 INFO node.py [line:150] osd.8  ---> processId 9198
+2017-06-03 14:14:23,452 INFO node.py [line:150] osd.9  ---> processId 16982
+2017-06-03 14:14:23,452 INFO node.py [line:150] osd.10  ---> processId 24755
+2017-06-03 14:14:23,452 INFO node.py [line:150] osd.11  ---> processId 26267
+2017-06-03 14:14:23,452 INFO node.py [line:150] osd.12  ---> processId 33005
+2017-06-03 14:14:23,452 INFO TC187_kill_three_osds_on_single_node_nbd.py [line:58] shutdown three osds on node ubuntu-B
+2017-06-03 14:14:23,452 INFO osd.py [line:40] execute command is sudo -i kill -9 2025 & sleep 3
+2017-06-03 14:14:26,673 INFO osd.py [line:40] execute command is sudo -i kill -9 9198 & sleep 3
+2017-06-03 14:14:29,896 INFO osd.py [line:40] execute command is sudo -i kill -9 16982 & sleep 3
+2017-06-03 14:14:33,353 INFO TC187_kill_three_osds_on_single_node_nbd.py [line:66] start osd on node ubuntu-B
+2017-06-03 14:14:33,354 INFO osd.py [line:102] node is  ubuntu-B
+2017-06-03 14:14:33,354 INFO osd.py [line:103] execute command is sudo -i ceph-osd -i 7 & sleep 30
+2017-06-03 14:15:03,560 INFO osd.py [line:107] osd osd.7 is start successfully
+2017-06-03 14:15:03,561 INFO osd.py [line:102] node is  ubuntu-B
+2017-06-03 14:15:03,561 INFO osd.py [line:103] execute command is sudo -i ceph-osd -i 8 & sleep 30
+2017-06-03 14:15:33,783 INFO osd.py [line:107] osd osd.8 is start successfully
+2017-06-03 14:15:33,783 INFO osd.py [line:102] node is  ubuntu-B
+2017-06-03 14:15:33,783 INFO osd.py [line:103] execute command is sudo -i ceph-osd -i 9 & sleep 30
+2017-06-03 14:16:04,006 INFO osd.py [line:107] osd osd.9 is start successfully
+2017-06-03 14:16:04,007 INFO osd.py [line:115] node is  ubuntu-B
+2017-06-03 14:16:04,007 INFO osd.py [line:116] execute command is ps -ef | grep 'ceph-osd -i 7'
+2017-06-03 14:16:04,282 INFO osd.py [line:118] oot     53417     1 30 06:14 ?        00:00:27 ceph-osd -i 7
+denali   54450 54449  0 06:16 ?        00:00:00 bash -c ps -ef | grep 'ceph-osd -i 7'
+denali   54452 54450  0 06:16 ?        00:00:00 grep ceph-osd -i 7
+
+2017-06-03 14:16:04,282 INFO osd.py [line:127] osd.7has already started
+2017-06-03 14:16:04,283 INFO osd.py [line:115] node is  ubuntu-B
+2017-06-03 14:16:04,283 INFO osd.py [line:116] execute command is ps -ef | grep 'ceph-osd -i 8'
+2017-06-03 14:16:04,675 INFO osd.py [line:118] oot     53766     1 99 06:15 ?        00:01:25 ceph-osd -i 8
+denali   54465 54464  0 06:16 ?        00:00:00 bash -c ps -ef | grep 'ceph-osd -i 8'
+denali   54467 54465  0 06:16 ?        00:00:00 grep ceph-osd -i 8
+
+2017-06-03 14:16:04,675 INFO osd.py [line:127] osd.8has already started
+2017-06-03 14:16:04,675 INFO osd.py [line:115] node is  ubuntu-B
+2017-06-03 14:16:04,675 INFO osd.py [line:116] execute command is ps -ef | grep 'ceph-osd -i 9'
+2017-06-03 14:16:04,968 INFO osd.py [line:118] oot     54110     1 99 06:15 ?        00:00:38 ceph-osd -i 9
+denali   54481 54480  0 06:16 ?        00:00:00 bash -c ps -ef | grep 'ceph-osd -i 9'
+denali   54483 54481  0 06:16 ?        00:00:00 grep ceph-osd -i 9
+
+2017-06-03 14:16:04,968 INFO osd.py [line:127] osd.9has already started
+2017-06-03 14:16:35,229 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-03 14:16:35,633 INFO cluster.py [line:213]    cluster e93f3143-8693-4060-a247-132bae28385e
+     health HEALTH_WARN
+            72 pgs degraded
+            3 pgs recovering
+            69 pgs recovery_wait
+            recovery 3778/160716 objects degraded (2.351%)
+     monmap e3: 3 mons at {ubuntu-A=192.168.40.170:6789/0,ubuntu-B=192.168.40.171:6789/0,ubuntu-C=192.168.40.172:6789/0}
+            election epoch 12, quorum 0,1,2 ubuntu-A,ubuntu-B,ubuntu-C
+     osdmap e2129: 20 osds: 20 up, 16 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v11243: 1536 pgs, 2 pools, 299 GB data, 80358 objects
+            733 GB used, 44566 GB / 45300 GB avail
+            3778/160716 objects degraded (2.351%)
+                1464 active+clean
+                  69 active+recovery_wait+degraded
+                   3 active+recovering+degraded
+recovery io 576 MB/s, 144 objects/s
+  client io 4310 kB/s wr, 0 op/s rd, 538 op/s wr
+2017-06-03 06:16:37.382615 7f86073d3700 -1 asok(0x7f8600000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.54743.140213502349696.asok': (13) Permission denied
+
+2017-06-03 14:16:35,633 INFO cluster.py [line:238] PG number is 1536
+2017-06-03 14:16:35,634 INFO cluster.py [line:239] usefull PG number is 1464
+2017-06-03 14:17:35,663 INFO cluster.py [line:247] cost 60 seconds, left 5940 seconds when check the ceph status
+2017-06-03 14:17:35,663 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-03 14:17:36,124 INFO cluster.py [line:213]    cluster e93f3143-8693-4060-a247-132bae28385e
+     health HEALTH_OK
+     monmap e3: 3 mons at {ubuntu-A=192.168.40.170:6789/0,ubuntu-B=192.168.40.171:6789/0,ubuntu-C=192.168.40.172:6789/0}
+            election epoch 12, quorum 0,1,2 ubuntu-A,ubuntu-B,ubuntu-C
+     osdmap e2129: 20 osds: 20 up, 16 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v11303: 1536 pgs, 2 pools, 299 GB data, 80364 objects
+            733 GB used, 44566 GB / 45300 GB avail
+                1536 active+clean
+recovery io 64471 kB/s, 15 objects/s
+  client io 5036 B/s rd, 37621 kB/s wr, 4 op/s rd, 4704 op/s wr
+2017-06-03 06:17:37.869270 7fe47eb48700 -1 asok(0x7fe478000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.55292.140619242541440.asok': (13) Permission denied
+
+2017-06-03 14:17:36,124 INFO cluster.py [line:238] PG number is 1536
+2017-06-03 14:17:36,124 INFO cluster.py [line:239] usefull PG number is 1536
+2017-06-03 14:17:36,124 INFO TC187_kill_three_osds_on_single_node_nbd.py [line:99] stop three osds in cluster successfully
+2017-06-03 14:17:36,608 INFO client.py [line:172] 4
+stdin: is not a tty
+
+2017-06-03 14:17:36,608 INFO client.py [line:174] IO is running
+2017-06-03 14:17:36,608 INFO TC187_kill_three_osds_on_single_node_nbd.py [line:54] 
+Now operate ubuntu-C
+2017-06-03 14:17:36,894 INFO node.py [line:150] osd.13  ---> processId 33033
+2017-06-03 14:17:36,894 INFO node.py [line:150] osd.14  ---> processId 34546
+2017-06-03 14:17:36,895 INFO node.py [line:150] osd.15  ---> processId 36063
+2017-06-03 14:17:36,895 INFO node.py [line:150] osd.16  ---> processId 37618
+2017-06-03 14:17:36,895 INFO node.py [line:150] osd.17  ---> processId 39131
+2017-06-03 14:17:36,895 INFO node.py [line:150] osd.18  ---> processId 40639
+2017-06-03 14:17:36,895 INFO node.py [line:150] osd.19  ---> processId 42148
+2017-06-03 14:17:36,895 INFO TC187_kill_three_osds_on_single_node_nbd.py [line:58] shutdown three osds on node ubuntu-C
+2017-06-03 14:17:36,895 INFO osd.py [line:40] execute command is sudo -i kill -9 33033 & sleep 3
+2017-06-03 14:17:40,118 INFO osd.py [line:40] execute command is sudo -i kill -9 34546 & sleep 3
+2017-06-03 14:17:43,341 INFO osd.py [line:40] execute command is sudo -i kill -9 36063 & sleep 3
+2017-06-03 14:17:46,802 INFO TC187_kill_three_osds_on_single_node_nbd.py [line:66] start osd on node ubuntu-C
+2017-06-03 14:17:46,802 INFO osd.py [line:102] node is  ubuntu-C
+2017-06-03 14:17:46,802 INFO osd.py [line:103] execute command is sudo -i ceph-osd -i 13 & sleep 30
+2017-06-03 14:18:17,024 INFO osd.py [line:107] osd osd.13 is start successfully
+2017-06-03 14:18:17,024 INFO osd.py [line:102] node is  ubuntu-C
+2017-06-03 14:18:17,025 INFO osd.py [line:103] execute command is sudo -i ceph-osd -i 14 & sleep 30
+2017-06-03 14:18:47,247 INFO osd.py [line:107] osd osd.14 is start successfully
+2017-06-03 14:18:47,247 INFO osd.py [line:102] node is  ubuntu-C
+2017-06-03 14:18:47,248 INFO osd.py [line:103] execute command is sudo -i ceph-osd -i 15 & sleep 30
+2017-06-03 14:19:17,470 INFO osd.py [line:107] osd osd.15 is start successfully
+2017-06-03 14:19:17,470 INFO osd.py [line:115] node is  ubuntu-C
+2017-06-03 14:19:17,470 INFO osd.py [line:116] execute command is ps -ef | grep 'ceph-osd -i 13'
+2017-06-03 14:19:17,764 INFO osd.py [line:118] oot     54827     1 28 06:17 ?        00:00:25 ceph-osd -i 13
+denali   55863 55862  0 06:19 ?        00:00:00 bash -c ps -ef | grep 'ceph-osd -i 13'
+denali   55865 55863  0 06:19 ?        00:00:00 grep ceph-osd -i 13
+
+2017-06-03 14:19:17,764 INFO osd.py [line:127] osd.13has already started
+2017-06-03 14:19:17,764 INFO osd.py [line:115] node is  ubuntu-C
+2017-06-03 14:19:17,764 INFO osd.py [line:116] execute command is ps -ef | grep 'ceph-osd -i 14'
+2017-06-03 14:19:18,049 INFO osd.py [line:118] oot     55179     1 99 06:18 ?        00:01:13 ceph-osd -i 14
+denali   55878 55877  0 06:19 ?        00:00:00 bash -c ps -ef | grep 'ceph-osd -i 14'
+denali   55880 55878  0 06:19 ?        00:00:00 grep ceph-osd -i 14
+
+2017-06-03 14:19:18,049 INFO osd.py [line:127] osd.14has already started
+2017-06-03 14:19:18,050 INFO osd.py [line:115] node is  ubuntu-C
+2017-06-03 14:19:18,050 INFO osd.py [line:116] execute command is ps -ef | grep 'ceph-osd -i 15'
+2017-06-03 14:19:18,332 INFO osd.py [line:118] oot     55523     1 99 06:18 ?        00:00:46 ceph-osd -i 15
+denali   55895 55894  0 06:19 ?        00:00:00 bash -c ps -ef | grep 'ceph-osd -i 15'
+denali   55897 55895  0 06:19 ?        00:00:00 grep ceph-osd -i 15
+
+2017-06-03 14:19:18,332 INFO osd.py [line:127] osd.15has already started
+2017-06-03 14:19:48,711 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-03 14:19:49,106 INFO cluster.py [line:213]    cluster e93f3143-8693-4060-a247-132bae28385e
+     health HEALTH_WARN
+            50 pgs degraded
+            3 pgs recovering
+            47 pgs recovery_wait
+            recovery 2287/160752 objects degraded (1.423%)
+     monmap e3: 3 mons at {ubuntu-A=192.168.40.170:6789/0,ubuntu-B=192.168.40.171:6789/0,ubuntu-C=192.168.40.172:6789/0}
+            election epoch 12, quorum 0,1,2 ubuntu-A,ubuntu-B,ubuntu-C
+     osdmap e2142: 20 osds: 20 up, 16 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v11435: 1536 pgs, 2 pools, 299 GB data, 80376 objects
+            733 GB used, 44566 GB / 45300 GB avail
+            2287/160752 objects degraded (1.423%)
+                1486 active+clean
+                  47 active+recovery_wait+degraded
+                   3 active+recovering+degraded
+recovery io 667 MB/s, 167 objects/s
+  client io 10855 kB/s wr, 0 op/s rd, 1356 op/s wr
+2017-06-03 06:19:50.870392 7f7b44d58700 -1 asok(0x7f7b40000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.56157.140167331451264.asok': (13) Permission denied
+
+2017-06-03 14:19:49,107 INFO cluster.py [line:238] PG number is 1536
+2017-06-03 14:19:49,107 INFO cluster.py [line:239] usefull PG number is 1486
+2017-06-03 14:20:49,130 INFO cluster.py [line:247] cost 61 seconds, left 5939 seconds when check the ceph status
+2017-06-03 14:20:49,130 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-03 14:20:49,548 INFO cluster.py [line:213]    cluster e93f3143-8693-4060-a247-132bae28385e
+     health HEALTH_OK
+     monmap e3: 3 mons at {ubuntu-A=192.168.40.170:6789/0,ubuntu-B=192.168.40.171:6789/0,ubuntu-C=192.168.40.172:6789/0}
+            election epoch 12, quorum 0,1,2 ubuntu-A,ubuntu-B,ubuntu-C
+     osdmap e2142: 20 osds: 20 up, 16 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v11494: 1536 pgs, 2 pools, 300 GB data, 80382 objects
+            733 GB used, 44566 GB / 45300 GB avail
+                1536 active+clean
+recovery io 108 MB/s, 27 objects/s
+  client io 17590 kB/s wr, 0 op/s rd, 2198 op/s wr
+2017-06-03 06:20:51.307013 7f6af830d700 -1 asok(0x7f6af0000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.56678.140097269797248.asok': (13) Permission denied
+
+2017-06-03 14:20:49,548 INFO cluster.py [line:238] PG number is 1536
+2017-06-03 14:20:49,548 INFO cluster.py [line:239] usefull PG number is 1536
+2017-06-03 14:20:49,548 INFO TC187_kill_three_osds_on_single_node_nbd.py [line:99] stop three osds in cluster successfully
+2017-06-03 14:20:50,066 INFO client.py [line:172] 4
+stdin: is not a tty
+
+2017-06-03 14:20:50,066 INFO client.py [line:174] IO is running
+2017-06-03 14:20:50,066 INFO TC187_kill_three_osds_on_single_node_nbd.py [line:115] TC187_kill_three_osds_on_single_node_nbd runs complete

@@ -1,0 +1,15 @@
+2017-05-17 16:57:01,736 INFO monitors.py [line:123]    "quorum_leader_name": "denali02",
+
+2017-05-17 16:57:01,736 INFO monitors.py [line:126]    "quorum_leader_name": "denali02",
+2017-05-17 16:57:02,332 ERROR node.py [line:105] image reliablityTestImage0 delete error
+2017-05-17 16:57:02,913 ERROR node.py [line:105] image reliablityTestImage1 delete error
+2017-05-17 16:57:03,492 ERROR node.py [line:105] image reliablityTestImage2 delete error
+2017-05-17 16:57:04,058 ERROR node.py [line:105] image reliablityTestImage3 delete error
+2017-05-17 16:57:04,651 ERROR node.py [line:105] image reliablityTestImage4 delete error
+2017-05-17 16:57:05,243 ERROR node.py [line:105] image reliablityTestImage5 delete error
+2017-05-17 16:57:05,867 ERROR node.py [line:105] image reliablityTestImage6 delete error
+2017-05-17 16:57:06,430 ERROR node.py [line:105] image reliablityTestImage7 delete error
+2017-05-17 16:57:07,023 ERROR node.py [line:105] image reliablityTestImage8 delete error
+2017-05-17 16:57:07,619 ERROR node.py [line:105] image reliablityTestImage9 delete error
+2017-05-17 16:57:08,309 INFO node.py [line:69] pool reliablityTestPool remove successfully
+2017-05-17 16:57:08,309 INFO deConfig.py [line:25] Deconfig complete

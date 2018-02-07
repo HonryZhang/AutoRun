@@ -1,0 +1,156 @@
+2017-06-19 15:15:21,489 INFO TC190_191_remove_create_osd_on_single_node.py [line:24] 
+This test case will do the following steps:
+1. start IO on 10 images with randwrite and verify
+2. login the first node 
+3. remove the osd one by one on the first node
+4. check the status
+5. create osd on the node
+
+2017-06-19 15:15:22,451 INFO monitors.py [line:126]    "quorum_leader_name": "server113",
+stdin: is not a tty
+
+2017-06-19 15:15:22,451 INFO monitors.py [line:129]    "quorum_leader_name": "server113",
+2017-06-19 15:15:24,455 INFO TC190_191_remove_create_osd_on_single_node.py [line:29] start to check cluster status before case running
+2017-06-19 15:15:26,459 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-19 15:15:26,865 INFO cluster.py [line:213]    cluster e95425c5-dda1-4a27-be7b-9baccd00f2ec
+     health HEALTH_WARN
+            mon.server113 low disk space
+            mon.server114 low disk space
+     monmap e3: 3 mons at {server113=192.168.1.113:6789/0,server114=192.168.1.114:6789/0,server115=192.168.1.115:6789/0}
+            election epoch 62, quorum 0,1,2 server113,server114,server115
+     osdmap e4046: 15 osds: 15 up, 15 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v217829: 2192 pgs, 13 pools, 1832 GB data, 470 kobjects
+            2614 GB used, 7873 GB / 10488 GB avail
+                2192 active+clean
+  client io 127 kB/s rd, 160 op/s rd, 0 op/s wr
+stdin: is not a tty
+
+2017-06-19 15:15:26,866 INFO cluster.py [line:238] PG number is 2192
+2017-06-19 15:15:26,866 INFO cluster.py [line:239] usefull PG number is 2192
+2017-06-19 15:15:26,866 INFO TC190_191_remove_create_osd_on_single_node.py [line:32] health status is OK
+2017-06-19 15:15:26,867 INFO TC190_191_remove_create_osd_on_single_node.py [line:37] 
+Step1: start IO from clients
+2017-06-19 15:15:27,355 INFO client.py [line:172] ['oot      54937      1  0 Jun16 ?        00:00:00 sudo -i fio -direct=1 -name=/dev/nbd0 -iodepth_batch_complete=1 -ioengine=libaio -bs=8k -rw=randwrite -verify_fatal=1 -verify=md5 -verify_interval=512 -verify_dump=1 -do_verify=1 -overwrite=1 -filename=/dev/nbd0 -rate=400 -size=100G', 'root      54938  54937  0 Jun16 ?        00:09:05 fio -direct=1 -name=/dev/nbd0 -iodepth_batch_complete=1 -ioengine=libaio -bs=8k -rw=randwrite -verify_fatal=1 -verify=md5 -verify_interval=512 -verify_dump=1 -do_verify=1 -overwrite=1 -filename=/dev/nbd0 -rate=400 -size=100G', 'root      54949  54938  0 Jun16 ?        00:00:01 fio -direct=1 -name=/dev/nbd0 -iodepth_batch_complete=1 -ioengine=libaio -bs=8k -rw=randwrite -verify_fatal=1 -verify=md5 -verify_interval=512 -verify_dump=1 -do_verify=1 -overwrite=1 -filename=/dev/nbd0 -rate=400 -size=100G', 'root      55038      1  0 Jun16 ?        00:00:00 sudo -i fio -direct=1 -name=/dev/nbd1 -iodepth_batch_complete=1 -ioengine=libaio -bs=8k -rw=randwrite -verify_fatal=1 -verify=md5 -verify_interval=512 -verify_dump=1 -do_verify=1 -overwrite=1 -filename=/dev/nbd1 -rate=400 -size=200G', 'root      55039  55038  0 Jun16 ?        00:09:04 fio -direct=1 -name=/dev/nbd1 -iodepth_batch_complete=1 -ioengine=libaio -bs=8k -rw=randwrite -verify_fatal=1 -verify=md5 -verify_interval=512 -verify_dump=1 -do_verify=1 -overwrite=1 -filename=/dev/nbd1 -rate=400 -size=200G', 'root      55120  55039  0 Jun16 ?        00:00:01 fio -direct=1 -name=/dev/nbd1 -iodepth_batch_complete=1 -ioengine=libaio -bs=8k -rw=randwrite -verify_fatal=1 -verify=md5 -verify_interval=512 -verify_dump=1 -do_verify=1 -overwrite=1 -filename=/dev/nbd1 -rate=400 -size=200G', 'denali   138670 138669  0 07:15 ?        00:00:00 bash -c sudo -i ps -ef | grep fio ', 'denali   138672 138670  0 07:15 ?        00:00:00 grep fio', 'stdin: is not a tty', '']
+2017-06-19 15:15:27,356 INFO client.py [line:174] IO is running
+2017-06-19 15:15:27,546 INFO node.py [line:176] /var/lib/jenkins/workspace/AutoRun/config/changeCommon.sh
+2017-06-19 15:15:27,546 INFO node.py [line:178] /var/lib/jenkins/workspace/AutoRun/config/updateCephConfig.sh
+2017-06-19 15:15:28,688 INFO osd.py [line:40] execute command is sudo -i kill -9  & sleep 3
+2017-06-19 15:15:31,914 INFO osd.py [line:89] node is  server113
+2017-06-19 15:15:31,914 INFO osd.py [line:90] execute command is sudo -i start ceph-osd id=0 & sleep 30
+2017-06-19 15:16:02,101 ERROR osd.py [line:96] Error when start osdosd.0
+2017-06-19 15:16:02,101 ERROR osd.py [line:97] sudo -i start ceph-osd id=0 & sleep 30
+2017-06-19 15:16:02,101 ERROR osd.py [line:98] tdin: is not a tty
+start: Job is already running: ceph-osd (ceph/0)
+
+2017-06-19 15:16:02,101 INFO osd.py [line:40] execute command is sudo -i kill -9  & sleep 3
+2017-06-19 15:16:05,399 INFO osd.py [line:89] node is  server113
+2017-06-19 15:16:05,400 INFO osd.py [line:90] execute command is sudo -i start ceph-osd id=1 & sleep 30
+2017-06-19 15:16:35,612 ERROR osd.py [line:96] Error when start osdosd.1
+2017-06-19 15:16:35,613 ERROR osd.py [line:97] sudo -i start ceph-osd id=1 & sleep 30
+2017-06-19 15:16:35,613 ERROR osd.py [line:98] eph-osd (ceph/1) start/running, process 20314
+stdin: is not a tty
+
+2017-06-19 15:16:35,613 INFO osd.py [line:40] execute command is sudo -i kill -9  & sleep 3
+2017-06-19 15:16:38,822 INFO osd.py [line:89] node is  server113
+2017-06-19 15:16:38,822 INFO osd.py [line:90] execute command is sudo -i start ceph-osd id=2 & sleep 30
+2017-06-19 15:17:09,014 ERROR osd.py [line:96] Error when start osdosd.2
+2017-06-19 15:17:09,015 ERROR osd.py [line:97] sudo -i start ceph-osd id=2 & sleep 30
+2017-06-19 15:17:09,015 ERROR osd.py [line:98] eph-osd (ceph/2) start/running, process 31356
+stdin: is not a tty
+
+2017-06-19 15:17:09,015 INFO osd.py [line:40] execute command is sudo -i kill -9  & sleep 3
+2017-06-19 15:17:12,228 INFO osd.py [line:89] node is  server113
+2017-06-19 15:17:12,228 INFO osd.py [line:90] execute command is sudo -i start ceph-osd id=3 & sleep 30
+2017-06-19 15:17:42,414 ERROR osd.py [line:96] Error when start osdosd.3
+2017-06-19 15:17:42,414 ERROR osd.py [line:97] sudo -i start ceph-osd id=3 & sleep 30
+2017-06-19 15:17:42,414 ERROR osd.py [line:98] eph-osd (ceph/3) start/running, process 42187
+stdin: is not a tty
+
+2017-06-19 15:17:42,414 INFO osd.py [line:40] execute command is sudo -i kill -9  & sleep 3
+2017-06-19 15:17:45,627 INFO osd.py [line:89] node is  server113
+2017-06-19 15:17:45,627 INFO osd.py [line:90] execute command is sudo -i start ceph-osd id=4 & sleep 30
+2017-06-19 15:18:15,820 ERROR osd.py [line:96] Error when start osdosd.4
+2017-06-19 15:18:15,820 ERROR osd.py [line:97] sudo -i start ceph-osd id=4 & sleep 30
+2017-06-19 15:18:15,820 ERROR osd.py [line:98] eph-osd (ceph/4) start/running, process 52535
+stdin: is not a tty
+
+2017-06-19 15:19:15,836 INFO TC190_191_remove_create_osd_on_single_node.py [line:51] 
+Step2: remove osd and create them 10 times
+2017-06-19 15:19:16,019 INFO node.py [line:200] otal 0
+2017-06-19 15:19:16,019 INFO node.py [line:200] lrwxrwxrwx 1 root root 15 Jun 19 10:22 ceph-0-block -> ../../nvme2n1p4
+2017-06-19 15:19:16,019 INFO node.py [line:203] 0
+2017-06-19 15:19:16,019 INFO node.py [line:204] lrwxrwxrwx 1 root root 15 Jun 19 10:22 ceph-0-block -> ../../nvme2n1p4
+2017-06-19 15:19:16,020 INFO node.py [line:212] nvme2n1
+2017-06-19 15:19:16,020 INFO node.py [line:200] lrwxrwxrwx 1 root root 15 Jun 19 10:22 ceph-0-db -> ../../nvme2n1p3
+2017-06-19 15:19:16,020 INFO node.py [line:203] 0
+2017-06-19 15:19:16,020 INFO node.py [line:204] lrwxrwxrwx 1 root root 15 Jun 19 10:22 ceph-0-db -> ../../nvme2n1p3
+2017-06-19 15:19:16,020 INFO node.py [line:212] nvme2n1
+2017-06-19 15:19:16,020 INFO node.py [line:200] lrwxrwxrwx 1 root root 15 Jun 19 10:22 ceph-0-wal -> ../../nvme2n1p2
+2017-06-19 15:19:16,020 INFO node.py [line:203] 0
+2017-06-19 15:19:16,020 INFO node.py [line:204] lrwxrwxrwx 1 root root 15 Jun 19 10:22 ceph-0-wal -> ../../nvme2n1p2
+2017-06-19 15:19:16,021 INFO node.py [line:212] nvme2n1
+2017-06-19 15:19:16,021 INFO node.py [line:200] lrwxrwxrwx 1 root root 15 Jun 16 17:39 ceph-1-block -> ../../nvme1n1p4
+2017-06-19 15:19:16,021 INFO node.py [line:203] 1
+2017-06-19 15:19:16,021 INFO node.py [line:204] lrwxrwxrwx 1 root root 15 Jun 16 17:39 ceph-1-block -> ../../nvme1n1p4
+2017-06-19 15:19:16,021 INFO node.py [line:212] nvme1n1
+2017-06-19 15:19:16,021 INFO node.py [line:200] lrwxrwxrwx 1 root root 15 Jun 16 17:39 ceph-1-db -> ../../nvme1n1p3
+2017-06-19 15:19:16,021 INFO node.py [line:203] 1
+2017-06-19 15:19:16,021 INFO node.py [line:204] lrwxrwxrwx 1 root root 15 Jun 16 17:39 ceph-1-db -> ../../nvme1n1p3
+2017-06-19 15:19:16,021 INFO node.py [line:212] nvme1n1
+2017-06-19 15:19:16,022 INFO node.py [line:200] lrwxrwxrwx 1 root root 15 Jun 16 17:39 ceph-1-wal -> ../../nvme1n1p2
+2017-06-19 15:19:16,022 INFO node.py [line:203] 1
+2017-06-19 15:19:16,022 INFO node.py [line:204] lrwxrwxrwx 1 root root 15 Jun 16 17:39 ceph-1-wal -> ../../nvme1n1p2
+2017-06-19 15:19:16,022 INFO node.py [line:212] nvme1n1
+2017-06-19 15:19:16,022 INFO node.py [line:200] lrwxrwxrwx 1 root root 15 Jun 16 17:39 ceph-2-block -> ../../nvme4n1p4
+2017-06-19 15:19:16,022 INFO node.py [line:203] 2
+2017-06-19 15:19:16,022 INFO node.py [line:204] lrwxrwxrwx 1 root root 15 Jun 16 17:39 ceph-2-block -> ../../nvme4n1p4
+2017-06-19 15:19:16,022 INFO node.py [line:212] nvme4n1
+2017-06-19 15:19:16,022 INFO node.py [line:200] lrwxrwxrwx 1 root root 15 Jun 16 17:39 ceph-2-db -> ../../nvme4n1p3
+2017-06-19 15:19:16,022 INFO node.py [line:203] 2
+2017-06-19 15:19:16,023 INFO node.py [line:204] lrwxrwxrwx 1 root root 15 Jun 16 17:39 ceph-2-db -> ../../nvme4n1p3
+2017-06-19 15:19:16,023 INFO node.py [line:212] nvme4n1
+2017-06-19 15:19:16,023 INFO node.py [line:200] lrwxrwxrwx 1 root root 15 Jun 16 17:39 ceph-2-wal -> ../../nvme4n1p2
+2017-06-19 15:19:16,023 INFO node.py [line:203] 2
+2017-06-19 15:19:16,023 INFO node.py [line:204] lrwxrwxrwx 1 root root 15 Jun 16 17:39 ceph-2-wal -> ../../nvme4n1p2
+2017-06-19 15:19:16,023 INFO node.py [line:212] nvme4n1
+2017-06-19 15:19:16,023 INFO node.py [line:200] lrwxrwxrwx 1 root root 15 Jun 16 17:39 ceph-3-block -> ../../nvme0n1p4
+2017-06-19 15:19:16,023 INFO node.py [line:203] 3
+2017-06-19 15:19:16,023 INFO node.py [line:204] lrwxrwxrwx 1 root root 15 Jun 16 17:39 ceph-3-block -> ../../nvme0n1p4
+2017-06-19 15:19:16,023 INFO node.py [line:212] nvme0n1
+2017-06-19 15:19:16,024 INFO node.py [line:200] lrwxrwxrwx 1 root root 15 Jun 16 17:39 ceph-3-db -> ../../nvme0n1p3
+2017-06-19 15:19:16,024 INFO node.py [line:203] 3
+2017-06-19 15:19:16,024 INFO node.py [line:204] lrwxrwxrwx 1 root root 15 Jun 16 17:39 ceph-3-db -> ../../nvme0n1p3
+2017-06-19 15:19:16,024 INFO node.py [line:212] nvme0n1
+2017-06-19 15:19:16,024 INFO node.py [line:200] lrwxrwxrwx 1 root root 15 Jun 16 17:39 ceph-3-wal -> ../../nvme0n1p2
+2017-06-19 15:19:16,024 INFO node.py [line:203] 3
+2017-06-19 15:19:16,024 INFO node.py [line:204] lrwxrwxrwx 1 root root 15 Jun 16 17:39 ceph-3-wal -> ../../nvme0n1p2
+2017-06-19 15:19:16,024 INFO node.py [line:212] nvme0n1
+2017-06-19 15:19:16,024 INFO node.py [line:200] lrwxrwxrwx 1 root root 15 Jun 16 17:39 ceph-4-block -> ../../nvme3n1p4
+2017-06-19 15:19:16,024 INFO node.py [line:203] 4
+2017-06-19 15:19:16,025 INFO node.py [line:204] lrwxrwxrwx 1 root root 15 Jun 16 17:39 ceph-4-block -> ../../nvme3n1p4
+2017-06-19 15:19:16,025 INFO node.py [line:212] nvme3n1
+2017-06-19 15:19:16,025 INFO node.py [line:200] lrwxrwxrwx 1 root root 15 Jun 16 17:39 ceph-4-db -> ../../nvme3n1p3
+2017-06-19 15:19:16,025 INFO node.py [line:203] 4
+2017-06-19 15:19:16,025 INFO node.py [line:204] lrwxrwxrwx 1 root root 15 Jun 16 17:39 ceph-4-db -> ../../nvme3n1p3
+2017-06-19 15:19:16,025 INFO node.py [line:212] nvme3n1
+2017-06-19 15:19:16,025 INFO node.py [line:200] lrwxrwxrwx 1 root root 15 Jun 16 17:39 ceph-4-wal -> ../../nvme3n1p2
+2017-06-19 15:19:16,025 INFO node.py [line:203] 4
+2017-06-19 15:19:16,025 INFO node.py [line:204] lrwxrwxrwx 1 root root 15 Jun 16 17:39 ceph-4-wal -> ../../nvme3n1p2
+2017-06-19 15:19:16,025 INFO node.py [line:212] nvme3n1
+2017-06-19 15:19:16,026 INFO node.py [line:200] lrwxrwxrwx 1 root root 15 Jun 19 10:22 head-reverse-part -> ../../nvme2n1p1
+2017-06-19 15:19:16,026 INFO node.py [line:200] 
+2017-06-19 15:19:16,452 INFO node.py [line:220] osd.0  ---> disk 
+2017-06-19 15:19:16,452 INFO node.py [line:220] osd.1  ---> disk 
+2017-06-19 15:19:16,452 INFO node.py [line:220] osd.2  ---> disk 
+2017-06-19 15:19:16,452 INFO node.py [line:220] osd.3  ---> disk 
+2017-06-19 15:19:16,452 INFO node.py [line:220] osd.4  ---> disk 
+2017-06-19 15:19:16,453 INFO TC190_191_remove_create_osd_on_single_node.py [line:55] start to delete osd on node server113 
+2017-06-19 15:19:16,665 INFO osd.py [line:156] execute command is sudo -i /usr/local/bin/scripts/create_cluster_scripts/bluestore/delete_osds_local.sh -n -d /dev/
+2017-06-19 15:19:16,939 ERROR osd.py [line:160] Error when delete osd.0
+2017-06-19 15:19:16,940 ERROR osd.py [line:161] sudo -i /usr/local/bin/scripts/create_cluster_scripts/bluestore/delete_osds_local.sh -n -d /dev/
+2017-06-19 15:19:16,940 ERROR osd.py [line:162] ARNING: '/dev/' is not block device
+'/dev/' is not block device, 
+stdin: is not a tty
+/sbin/ldconfig.real: Changing access rights of /etc/ld.so.cache~ to 0644 failed: No such file or directory
+

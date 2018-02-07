@@ -1,0 +1,13 @@
+2017-05-25 17:45:50,167 INFO monitors.py [line:126]    "quorum_leader_name": "denali01",
+
+2017-05-25 17:45:50,167 INFO monitors.py [line:129]    "quorum_leader_name": "denali01",
+2017-05-25 17:45:50,167 INFO base.py [line:35] 
+Now start IO on  clientrbdImg0
+2017-05-25 17:45:52,562 INFO client.py [line:126] pid info is 4187
+2017-05-25 17:45:52,562 INFO client.py [line:126] pid info is 4189
+2017-05-25 17:45:52,562 INFO client.py [line:126] pid info is 16493
+2017-05-25 17:45:52,562 INFO client.py [line:126] pid info is 16494
+2017-05-25 17:45:52,562 INFO client.py [line:126] pid info is 18913
+2017-05-25 17:45:52,578 INFO client.py [line:126] pid info is 18917
+2017-05-25 17:45:52,578 INFO base.py [line:35] 
+Now start IO on  clientrbdImg1

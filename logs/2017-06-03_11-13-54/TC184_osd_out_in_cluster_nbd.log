@@ -1,0 +1,795 @@
+2017-06-03 11:14:07,489 INFO TC184_osd_out_in_cluster_nbd.py [line:25] 
+This test case will do the following steps:
+1. start IO on 10 images with randwrite and verify
+2. login the first node 
+3. out all osds in sequence
+4. stop all osds in sequence
+5. start all osds in sequence
+6. add in all osds in sequence
+7. check the cluster status
+8. repeat step 2-7 on the other node
+
+2017-06-03 11:14:08,135 INFO monitors.py [line:126]    "quorum_leader_name": "ubuntu-A",
+stdin: is not a tty
+
+2017-06-03 11:14:08,136 INFO monitors.py [line:129]    "quorum_leader_name": "ubuntu-A",
+2017-06-03 11:14:08,136 INFO TC184_osd_out_in_cluster_nbd.py [line:30] start to check cluster status before case running
+2017-06-03 11:14:10,139 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-03 11:14:10,521 INFO cluster.py [line:213]    cluster e93f3143-8693-4060-a247-132bae28385e
+     health HEALTH_OK
+     monmap e3: 3 mons at {ubuntu-A=192.168.40.170:6789/0,ubuntu-B=192.168.40.171:6789/0,ubuntu-C=192.168.40.172:6789/0}
+            election epoch 8, quorum 0,1,2 ubuntu-A,ubuntu-B,ubuntu-C
+     osdmap e111: 20 osds: 20 up, 20 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v1101: 1536 pgs, 2 pools, 6698 MB data, 1921 objects
+            185 GB used, 56439 GB / 56625 GB avail
+                1536 active+clean
+  client io 676 B/s rd, 22655 B/s wr, 3 op/s rd, 2 op/s wr
+2017-06-03 03:14:12.244696 7f4106476700 -1 asok(0x7f4100000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.34169.139917149606272.asok': (13) Permission denied
+
+2017-06-03 11:14:10,522 INFO cluster.py [line:238] PG number is 1536
+2017-06-03 11:14:10,522 INFO cluster.py [line:239] usefull PG number is 1536
+2017-06-03 11:14:10,522 INFO TC184_osd_out_in_cluster_nbd.py [line:33] health status is OK
+2017-06-03 11:14:10,522 INFO TC184_osd_out_in_cluster_nbd.py [line:38] 
+Step 1: start IO from clients
+2017-06-03 11:14:11,010 INFO client.py [line:172] 
+stdin: is not a tty
+
+2017-06-03 11:14:11,010 INFO client.py [line:174] IO is running
+2017-06-03 11:15:11,071 INFO TC184_osd_out_in_cluster_nbd.py [line:49] 
+Step 2: Out the osd and check IO
+2017-06-03 11:15:11,071 INFO TC184_osd_out_in_cluster_nbd.py [line:53] 
+Now operate ubuntu-A
+2017-06-03 11:15:11,071 INFO TC184_osd_out_in_cluster_nbd.py [line:54] 7
+2017-06-03 11:15:11,071 INFO TC184_osd_out_in_cluster_nbd.py [line:55] 
+Now operate osd.0
+2017-06-03 11:15:11,071 INFO TC184_osd_out_in_cluster_nbd.py [line:56] out osd.0
+2017-06-03 11:15:11,071 INFO osd.py [line:62] execute command is sudo -i ceph osd out osd.0 & sleep 3
+2017-06-03 11:15:14,258 INFO osd.py [line:67] osd.0 is already out cluster
+2017-06-03 11:15:14,258 INFO TC184_osd_out_in_cluster_nbd.py [line:58] check if IO error
+2017-06-03 11:15:14,494 INFO TC184_osd_out_in_cluster_nbd.py [line:62] Set the osd.0 pid for kill
+2017-06-03 11:15:14,740 INFO node.py [line:150] osd.0  ---> processId 
+2017-06-03 11:15:14,740 INFO node.py [line:150] osd.1  ---> processId 
+2017-06-03 11:15:14,740 INFO node.py [line:150] osd.2  ---> processId 
+2017-06-03 11:15:14,740 INFO node.py [line:150] osd.3  ---> processId 
+2017-06-03 11:15:14,741 INFO node.py [line:150] osd.4  ---> processId 
+2017-06-03 11:15:14,741 INFO node.py [line:150] osd.5  ---> processId 
+2017-06-03 11:15:14,741 INFO node.py [line:150] osd.6  ---> processId 
+2017-06-03 11:15:14,741 INFO osd.py [line:77] execute command is sudo -i ceph osd in osd.0 & sleep 3
+2017-06-03 11:15:17,960 INFO osd.py [line:80] osd.0 is already in cluster
+2017-06-03 11:15:48,510 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-03 11:15:48,893 INFO cluster.py [line:213]    cluster e93f3143-8693-4060-a247-132bae28385e
+     health HEALTH_OK
+     monmap e3: 3 mons at {ubuntu-A=192.168.40.170:6789/0,ubuntu-B=192.168.40.171:6789/0,ubuntu-C=192.168.40.172:6789/0}
+            election epoch 8, quorum 0,1,2 ubuntu-A,ubuntu-B,ubuntu-C
+     osdmap e117: 20 osds: 20 up, 20 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v1122: 1536 pgs, 2 pools, 6698 MB data, 1925 objects
+            185 GB used, 56439 GB / 56625 GB avail
+                1536 active+clean
+2017-06-03 03:15:50.613628 7fa6de7df700 -1 asok(0x7fa6d8000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.35097.140354565181824.asok': (13) Permission denied
+
+2017-06-03 11:15:48,894 INFO cluster.py [line:238] PG number is 1536
+2017-06-03 11:15:48,894 INFO cluster.py [line:239] usefull PG number is 1536
+2017-06-03 11:15:48,894 INFO TC184_osd_out_in_cluster_nbd.py [line:72] stop osd.0 in cluster successfully
+2017-06-03 11:15:49,409 INFO client.py [line:172] 
+stdin: is not a tty
+
+2017-06-03 11:15:49,409 INFO client.py [line:174] IO is running
+2017-06-03 11:15:49,409 INFO TC184_osd_out_in_cluster_nbd.py [line:53] 
+Now operate ubuntu-A
+2017-06-03 11:15:49,409 INFO TC184_osd_out_in_cluster_nbd.py [line:54] 7
+2017-06-03 11:15:49,409 INFO TC184_osd_out_in_cluster_nbd.py [line:55] 
+Now operate osd.1
+2017-06-03 11:15:49,410 INFO TC184_osd_out_in_cluster_nbd.py [line:56] out osd.1
+2017-06-03 11:15:49,410 INFO osd.py [line:62] execute command is sudo -i ceph osd out osd.1 & sleep 3
+2017-06-03 11:15:52,595 INFO osd.py [line:67] osd.1 is already out cluster
+2017-06-03 11:15:52,595 INFO TC184_osd_out_in_cluster_nbd.py [line:58] check if IO error
+2017-06-03 11:15:52,897 INFO TC184_osd_out_in_cluster_nbd.py [line:62] Set the osd.1 pid for kill
+2017-06-03 11:15:53,176 INFO node.py [line:150] osd.0  ---> processId 
+2017-06-03 11:15:53,176 INFO node.py [line:150] osd.1  ---> processId 
+2017-06-03 11:15:53,176 INFO node.py [line:150] osd.2  ---> processId 
+2017-06-03 11:15:53,176 INFO node.py [line:150] osd.3  ---> processId 
+2017-06-03 11:15:53,176 INFO node.py [line:150] osd.4  ---> processId 
+2017-06-03 11:15:53,176 INFO node.py [line:150] osd.5  ---> processId 
+2017-06-03 11:15:53,176 INFO node.py [line:150] osd.6  ---> processId 
+2017-06-03 11:15:53,177 INFO osd.py [line:77] execute command is sudo -i ceph osd in osd.1 & sleep 3
+2017-06-03 11:15:56,382 INFO osd.py [line:80] osd.1 is already in cluster
+2017-06-03 11:16:26,615 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-03 11:16:26,979 INFO cluster.py [line:213]    cluster e93f3143-8693-4060-a247-132bae28385e
+     health HEALTH_OK
+     monmap e3: 3 mons at {ubuntu-A=192.168.40.170:6789/0,ubuntu-B=192.168.40.171:6789/0,ubuntu-C=192.168.40.172:6789/0}
+            election epoch 8, quorum 0,1,2 ubuntu-A,ubuntu-B,ubuntu-C
+     osdmap e123: 20 osds: 20 up, 20 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v1137: 1536 pgs, 2 pools, 6698 MB data, 1925 objects
+            185 GB used, 56439 GB / 56625 GB avail
+                1536 active+clean
+2017-06-03 03:16:28.704836 7fa09aa5f700 -1 asok(0x7fa094000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.35535.140327654527360.asok': (13) Permission denied
+
+2017-06-03 11:16:26,979 INFO cluster.py [line:238] PG number is 1536
+2017-06-03 11:16:26,979 INFO cluster.py [line:239] usefull PG number is 1536
+2017-06-03 11:16:26,980 INFO TC184_osd_out_in_cluster_nbd.py [line:72] stop osd.1 in cluster successfully
+2017-06-03 11:16:27,562 INFO client.py [line:172] 
+stdin: is not a tty
+
+2017-06-03 11:16:27,562 INFO client.py [line:174] IO is running
+2017-06-03 11:16:27,562 INFO TC184_osd_out_in_cluster_nbd.py [line:53] 
+Now operate ubuntu-A
+2017-06-03 11:16:27,562 INFO TC184_osd_out_in_cluster_nbd.py [line:54] 7
+2017-06-03 11:16:27,563 INFO TC184_osd_out_in_cluster_nbd.py [line:55] 
+Now operate osd.2
+2017-06-03 11:16:27,563 INFO TC184_osd_out_in_cluster_nbd.py [line:56] out osd.2
+2017-06-03 11:16:27,563 INFO osd.py [line:62] execute command is sudo -i ceph osd out osd.2 & sleep 3
+2017-06-03 11:16:30,748 INFO osd.py [line:67] osd.2 is already out cluster
+2017-06-03 11:16:30,748 INFO TC184_osd_out_in_cluster_nbd.py [line:58] check if IO error
+2017-06-03 11:16:30,984 INFO TC184_osd_out_in_cluster_nbd.py [line:62] Set the osd.2 pid for kill
+2017-06-03 11:16:31,232 INFO node.py [line:150] osd.0  ---> processId 
+2017-06-03 11:16:31,232 INFO node.py [line:150] osd.1  ---> processId 
+2017-06-03 11:16:31,232 INFO node.py [line:150] osd.2  ---> processId 
+2017-06-03 11:16:31,232 INFO node.py [line:150] osd.3  ---> processId 
+2017-06-03 11:16:31,232 INFO node.py [line:150] osd.4  ---> processId 
+2017-06-03 11:16:31,233 INFO node.py [line:150] osd.5  ---> processId 
+2017-06-03 11:16:31,233 INFO node.py [line:150] osd.6  ---> processId 
+2017-06-03 11:16:31,233 INFO osd.py [line:77] execute command is sudo -i ceph osd in osd.2 & sleep 3
+2017-06-03 11:16:34,418 INFO osd.py [line:80] osd.2 is already in cluster
+2017-06-03 11:17:04,642 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-03 11:17:05,145 INFO cluster.py [line:213]    cluster e93f3143-8693-4060-a247-132bae28385e
+     health HEALTH_OK
+     monmap e3: 3 mons at {ubuntu-A=192.168.40.170:6789/0,ubuntu-B=192.168.40.171:6789/0,ubuntu-C=192.168.40.172:6789/0}
+            election epoch 8, quorum 0,1,2 ubuntu-A,ubuntu-B,ubuntu-C
+     osdmap e129: 20 osds: 20 up, 20 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v1150: 1536 pgs, 2 pools, 6698 MB data, 1925 objects
+            185 GB used, 56439 GB / 56625 GB avail
+                1536 active+clean
+2017-06-03 03:17:06.750434 7f5ef346c700 -1 asok(0x7f5eec000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.35982.140045663080832.asok': (13) Permission denied
+
+2017-06-03 11:17:05,145 INFO cluster.py [line:238] PG number is 1536
+2017-06-03 11:17:05,145 INFO cluster.py [line:239] usefull PG number is 1536
+2017-06-03 11:17:05,145 INFO TC184_osd_out_in_cluster_nbd.py [line:72] stop osd.2 in cluster successfully
+2017-06-03 11:17:05,694 INFO client.py [line:172] 
+stdin: is not a tty
+
+2017-06-03 11:17:05,694 INFO client.py [line:174] IO is running
+2017-06-03 11:17:05,695 INFO TC184_osd_out_in_cluster_nbd.py [line:53] 
+Now operate ubuntu-A
+2017-06-03 11:17:05,695 INFO TC184_osd_out_in_cluster_nbd.py [line:54] 7
+2017-06-03 11:17:05,695 INFO TC184_osd_out_in_cluster_nbd.py [line:55] 
+Now operate osd.3
+2017-06-03 11:17:05,695 INFO TC184_osd_out_in_cluster_nbd.py [line:56] out osd.3
+2017-06-03 11:17:05,695 INFO osd.py [line:62] execute command is sudo -i ceph osd out osd.3 & sleep 3
+2017-06-03 11:17:08,880 INFO osd.py [line:67] osd.3 is already out cluster
+2017-06-03 11:17:08,880 INFO TC184_osd_out_in_cluster_nbd.py [line:58] check if IO error
+2017-06-03 11:17:09,149 INFO TC184_osd_out_in_cluster_nbd.py [line:62] Set the osd.3 pid for kill
+2017-06-03 11:17:09,396 INFO node.py [line:150] osd.0  ---> processId 
+2017-06-03 11:17:09,396 INFO node.py [line:150] osd.1  ---> processId 
+2017-06-03 11:17:09,396 INFO node.py [line:150] osd.2  ---> processId 
+2017-06-03 11:17:09,397 INFO node.py [line:150] osd.3  ---> processId 
+2017-06-03 11:17:09,397 INFO node.py [line:150] osd.4  ---> processId 
+2017-06-03 11:17:09,397 INFO node.py [line:150] osd.5  ---> processId 
+2017-06-03 11:17:09,397 INFO node.py [line:150] osd.6  ---> processId 
+2017-06-03 11:17:09,397 INFO osd.py [line:77] execute command is sudo -i ceph osd in osd.3 & sleep 3
+2017-06-03 11:17:12,613 INFO osd.py [line:80] osd.3 is already in cluster
+2017-06-03 11:17:42,881 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-03 11:17:43,268 INFO cluster.py [line:213]    cluster e93f3143-8693-4060-a247-132bae28385e
+     health HEALTH_OK
+     monmap e3: 3 mons at {ubuntu-A=192.168.40.170:6789/0,ubuntu-B=192.168.40.171:6789/0,ubuntu-C=192.168.40.172:6789/0}
+            election epoch 8, quorum 0,1,2 ubuntu-A,ubuntu-B,ubuntu-C
+     osdmap e135: 20 osds: 20 up, 20 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v1166: 1536 pgs, 2 pools, 6698 MB data, 1925 objects
+            185 GB used, 56439 GB / 56625 GB avail
+                1536 active+clean
+2017-06-03 03:17:44.988758 7f6c48404700 -1 asok(0x7f6c40000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.36402.140102906941824.asok': (13) Permission denied
+
+2017-06-03 11:17:43,269 INFO cluster.py [line:238] PG number is 1536
+2017-06-03 11:17:43,269 INFO cluster.py [line:239] usefull PG number is 1536
+2017-06-03 11:17:43,269 INFO TC184_osd_out_in_cluster_nbd.py [line:72] stop osd.3 in cluster successfully
+2017-06-03 11:17:43,815 INFO client.py [line:172] 
+stdin: is not a tty
+
+2017-06-03 11:17:43,815 INFO client.py [line:174] IO is running
+2017-06-03 11:17:43,815 INFO TC184_osd_out_in_cluster_nbd.py [line:53] 
+Now operate ubuntu-A
+2017-06-03 11:17:43,815 INFO TC184_osd_out_in_cluster_nbd.py [line:54] 7
+2017-06-03 11:17:43,815 INFO TC184_osd_out_in_cluster_nbd.py [line:55] 
+Now operate osd.4
+2017-06-03 11:17:43,815 INFO TC184_osd_out_in_cluster_nbd.py [line:56] out osd.4
+2017-06-03 11:17:43,815 INFO osd.py [line:62] execute command is sudo -i ceph osd out osd.4 & sleep 3
+2017-06-03 11:17:47,001 INFO osd.py [line:67] osd.4 is already out cluster
+2017-06-03 11:17:47,001 INFO TC184_osd_out_in_cluster_nbd.py [line:58] check if IO error
+2017-06-03 11:17:47,219 INFO TC184_osd_out_in_cluster_nbd.py [line:62] Set the osd.4 pid for kill
+2017-06-03 11:17:47,448 INFO node.py [line:150] osd.0  ---> processId 
+2017-06-03 11:17:47,448 INFO node.py [line:150] osd.1  ---> processId 
+2017-06-03 11:17:47,448 INFO node.py [line:150] osd.2  ---> processId 
+2017-06-03 11:17:47,448 INFO node.py [line:150] osd.3  ---> processId 
+2017-06-03 11:17:47,448 INFO node.py [line:150] osd.4  ---> processId 
+2017-06-03 11:17:47,448 INFO node.py [line:150] osd.5  ---> processId 
+2017-06-03 11:17:47,448 INFO node.py [line:150] osd.6  ---> processId 
+2017-06-03 11:17:47,449 INFO osd.py [line:77] execute command is sudo -i ceph osd in osd.4 & sleep 3
+2017-06-03 11:17:50,634 INFO osd.py [line:80] osd.4 is already in cluster
+2017-06-03 11:18:20,900 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-03 11:18:21,250 INFO cluster.py [line:213]    cluster e93f3143-8693-4060-a247-132bae28385e
+     health HEALTH_OK
+     monmap e3: 3 mons at {ubuntu-A=192.168.40.170:6789/0,ubuntu-B=192.168.40.171:6789/0,ubuntu-C=192.168.40.172:6789/0}
+            election epoch 8, quorum 0,1,2 ubuntu-A,ubuntu-B,ubuntu-C
+     osdmap e141: 20 osds: 20 up, 20 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v1181: 1536 pgs, 2 pools, 6698 MB data, 1925 objects
+            185 GB used, 56439 GB / 56625 GB avail
+                1536 active+clean
+2017-06-03 03:18:22.971062 7fe876bf7700 -1 asok(0x7fe870000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.36820.140636288192896.asok': (13) Permission denied
+
+2017-06-03 11:18:21,250 INFO cluster.py [line:238] PG number is 1536
+2017-06-03 11:18:21,250 INFO cluster.py [line:239] usefull PG number is 1536
+2017-06-03 11:18:21,250 INFO TC184_osd_out_in_cluster_nbd.py [line:72] stop osd.4 in cluster successfully
+2017-06-03 11:18:21,701 INFO client.py [line:172] 
+stdin: is not a tty
+
+2017-06-03 11:18:21,702 INFO client.py [line:174] IO is running
+2017-06-03 11:18:21,702 INFO TC184_osd_out_in_cluster_nbd.py [line:53] 
+Now operate ubuntu-A
+2017-06-03 11:18:21,702 INFO TC184_osd_out_in_cluster_nbd.py [line:54] 7
+2017-06-03 11:18:21,702 INFO TC184_osd_out_in_cluster_nbd.py [line:55] 
+Now operate osd.5
+2017-06-03 11:18:21,702 INFO TC184_osd_out_in_cluster_nbd.py [line:56] out osd.5
+2017-06-03 11:18:21,702 INFO osd.py [line:62] execute command is sudo -i ceph osd out osd.5 & sleep 3
+2017-06-03 11:18:24,887 INFO osd.py [line:67] osd.5 is already out cluster
+2017-06-03 11:18:24,887 INFO TC184_osd_out_in_cluster_nbd.py [line:58] check if IO error
+2017-06-03 11:18:25,090 INFO TC184_osd_out_in_cluster_nbd.py [line:62] Set the osd.5 pid for kill
+2017-06-03 11:18:25,336 INFO node.py [line:150] osd.0  ---> processId 
+2017-06-03 11:18:25,337 INFO node.py [line:150] osd.1  ---> processId 
+2017-06-03 11:18:25,337 INFO node.py [line:150] osd.2  ---> processId 
+2017-06-03 11:18:25,337 INFO node.py [line:150] osd.3  ---> processId 
+2017-06-03 11:18:25,337 INFO node.py [line:150] osd.4  ---> processId 
+2017-06-03 11:18:25,337 INFO node.py [line:150] osd.5  ---> processId 
+2017-06-03 11:18:25,337 INFO node.py [line:150] osd.6  ---> processId 
+2017-06-03 11:18:25,337 INFO osd.py [line:77] execute command is sudo -i ceph osd in osd.5 & sleep 3
+2017-06-03 11:18:28,523 INFO osd.py [line:80] osd.5 is already in cluster
+2017-06-03 11:18:58,786 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-03 11:18:59,170 INFO cluster.py [line:213]    cluster e93f3143-8693-4060-a247-132bae28385e
+     health HEALTH_OK
+     monmap e3: 3 mons at {ubuntu-A=192.168.40.170:6789/0,ubuntu-B=192.168.40.171:6789/0,ubuntu-C=192.168.40.172:6789/0}
+            election epoch 8, quorum 0,1,2 ubuntu-A,ubuntu-B,ubuntu-C
+     osdmap e147: 20 osds: 20 up, 20 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v1199: 1536 pgs, 2 pools, 6698 MB data, 1925 objects
+            185 GB used, 56439 GB / 56625 GB avail
+                1536 active+clean
+2017-06-03 03:19:00.891611 7fe8d20a1700 -1 asok(0x7fe8cc000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.37242.140637831696768.asok': (13) Permission denied
+
+2017-06-03 11:18:59,170 INFO cluster.py [line:238] PG number is 1536
+2017-06-03 11:18:59,170 INFO cluster.py [line:239] usefull PG number is 1536
+2017-06-03 11:18:59,170 INFO TC184_osd_out_in_cluster_nbd.py [line:72] stop osd.5 in cluster successfully
+2017-06-03 11:18:59,653 INFO client.py [line:172] 
+stdin: is not a tty
+
+2017-06-03 11:18:59,653 INFO client.py [line:174] IO is running
+2017-06-03 11:18:59,653 INFO TC184_osd_out_in_cluster_nbd.py [line:53] 
+Now operate ubuntu-A
+2017-06-03 11:18:59,653 INFO TC184_osd_out_in_cluster_nbd.py [line:54] 7
+2017-06-03 11:18:59,653 INFO TC184_osd_out_in_cluster_nbd.py [line:55] 
+Now operate osd.6
+2017-06-03 11:18:59,654 INFO TC184_osd_out_in_cluster_nbd.py [line:56] out osd.6
+2017-06-03 11:18:59,654 INFO osd.py [line:62] execute command is sudo -i ceph osd out osd.6 & sleep 3
+2017-06-03 11:19:02,807 INFO osd.py [line:67] osd.6 is already out cluster
+2017-06-03 11:19:02,807 INFO TC184_osd_out_in_cluster_nbd.py [line:58] check if IO error
+2017-06-03 11:19:03,044 INFO TC184_osd_out_in_cluster_nbd.py [line:62] Set the osd.6 pid for kill
+2017-06-03 11:19:03,282 INFO node.py [line:150] osd.0  ---> processId 
+2017-06-03 11:19:03,282 INFO node.py [line:150] osd.1  ---> processId 
+2017-06-03 11:19:03,282 INFO node.py [line:150] osd.2  ---> processId 
+2017-06-03 11:19:03,283 INFO node.py [line:150] osd.3  ---> processId 
+2017-06-03 11:19:03,283 INFO node.py [line:150] osd.4  ---> processId 
+2017-06-03 11:19:03,283 INFO node.py [line:150] osd.5  ---> processId 
+2017-06-03 11:19:03,283 INFO node.py [line:150] osd.6  ---> processId 
+2017-06-03 11:19:03,283 INFO osd.py [line:77] execute command is sudo -i ceph osd in osd.6 & sleep 3
+2017-06-03 11:19:06,468 INFO osd.py [line:80] osd.6 is already in cluster
+2017-06-03 11:19:36,734 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-03 11:19:37,121 INFO cluster.py [line:213]    cluster e93f3143-8693-4060-a247-132bae28385e
+     health HEALTH_OK
+     monmap e3: 3 mons at {ubuntu-A=192.168.40.170:6789/0,ubuntu-B=192.168.40.171:6789/0,ubuntu-C=192.168.40.172:6789/0}
+            election epoch 8, quorum 0,1,2 ubuntu-A,ubuntu-B,ubuntu-C
+     osdmap e153: 20 osds: 20 up, 20 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v1214: 1536 pgs, 2 pools, 6698 MB data, 1925 objects
+            185 GB used, 56439 GB / 56625 GB avail
+                1536 active+clean
+2017-06-03 03:19:38.840843 7f8320d43700 -1 asok(0x7f831c000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.37666.140201087209856.asok': (13) Permission denied
+
+2017-06-03 11:19:37,121 INFO cluster.py [line:238] PG number is 1536
+2017-06-03 11:19:37,121 INFO cluster.py [line:239] usefull PG number is 1536
+2017-06-03 11:19:37,122 INFO TC184_osd_out_in_cluster_nbd.py [line:72] stop osd.6 in cluster successfully
+2017-06-03 11:19:37,703 INFO client.py [line:172] 
+stdin: is not a tty
+
+2017-06-03 11:19:37,703 INFO client.py [line:174] IO is running
+2017-06-03 11:19:37,703 INFO TC184_osd_out_in_cluster_nbd.py [line:53] 
+Now operate ubuntu-B
+2017-06-03 11:19:37,703 INFO TC184_osd_out_in_cluster_nbd.py [line:54] 6
+2017-06-03 11:19:37,703 INFO TC184_osd_out_in_cluster_nbd.py [line:55] 
+Now operate osd.7
+2017-06-03 11:19:37,703 INFO TC184_osd_out_in_cluster_nbd.py [line:56] out osd.7
+2017-06-03 11:19:37,703 INFO osd.py [line:62] execute command is sudo -i ceph osd out osd.7 & sleep 3
+2017-06-03 11:19:40,934 INFO osd.py [line:67] osd.7 is already out cluster
+2017-06-03 11:19:40,934 INFO TC184_osd_out_in_cluster_nbd.py [line:58] check if IO error
+2017-06-03 11:19:41,202 INFO TC184_osd_out_in_cluster_nbd.py [line:62] Set the osd.7 pid for kill
+2017-06-03 11:19:41,486 INFO node.py [line:150] osd.7  ---> processId 
+2017-06-03 11:19:41,486 INFO node.py [line:150] osd.8  ---> processId 
+2017-06-03 11:19:41,486 INFO node.py [line:150] osd.9  ---> processId 
+2017-06-03 11:19:41,486 INFO node.py [line:150] osd.10  ---> processId 
+2017-06-03 11:19:41,486 INFO node.py [line:150] osd.11  ---> processId 
+2017-06-03 11:19:41,486 INFO node.py [line:150] osd.12  ---> processId 
+2017-06-03 11:19:41,487 INFO osd.py [line:77] execute command is sudo -i ceph osd in osd.7 & sleep 3
+2017-06-03 11:19:44,708 INFO osd.py [line:80] osd.7 is already in cluster
+2017-06-03 11:20:14,942 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-03 11:20:15,359 INFO cluster.py [line:213]    cluster e93f3143-8693-4060-a247-132bae28385e
+     health HEALTH_OK
+     monmap e3: 3 mons at {ubuntu-A=192.168.40.170:6789/0,ubuntu-B=192.168.40.171:6789/0,ubuntu-C=192.168.40.172:6789/0}
+            election epoch 8, quorum 0,1,2 ubuntu-A,ubuntu-B,ubuntu-C
+     osdmap e159: 20 osds: 20 up, 20 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v1228: 1536 pgs, 2 pools, 6698 MB data, 1925 objects
+            185 GB used, 56439 GB / 56625 GB avail
+                1536 active+clean
+2017-06-03 03:20:17.093498 7f4ec6af1700 -1 asok(0x7f4ec0000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.36115.139976205406592.asok': (13) Permission denied
+
+2017-06-03 11:20:15,360 INFO cluster.py [line:238] PG number is 1536
+2017-06-03 11:20:15,360 INFO cluster.py [line:239] usefull PG number is 1536
+2017-06-03 11:20:15,360 INFO TC184_osd_out_in_cluster_nbd.py [line:72] stop osd.7 in cluster successfully
+2017-06-03 11:20:15,908 INFO client.py [line:172] 
+stdin: is not a tty
+
+2017-06-03 11:20:15,908 INFO client.py [line:174] IO is running
+2017-06-03 11:20:15,909 INFO TC184_osd_out_in_cluster_nbd.py [line:53] 
+Now operate ubuntu-B
+2017-06-03 11:20:15,909 INFO TC184_osd_out_in_cluster_nbd.py [line:54] 6
+2017-06-03 11:20:15,909 INFO TC184_osd_out_in_cluster_nbd.py [line:55] 
+Now operate osd.8
+2017-06-03 11:20:15,909 INFO TC184_osd_out_in_cluster_nbd.py [line:56] out osd.8
+2017-06-03 11:20:15,909 INFO osd.py [line:62] execute command is sudo -i ceph osd out osd.8 & sleep 3
+2017-06-03 11:20:19,163 INFO osd.py [line:67] osd.8 is already out cluster
+2017-06-03 11:20:19,163 INFO TC184_osd_out_in_cluster_nbd.py [line:58] check if IO error
+2017-06-03 11:20:19,365 INFO TC184_osd_out_in_cluster_nbd.py [line:62] Set the osd.8 pid for kill
+2017-06-03 11:20:19,646 INFO node.py [line:150] osd.7  ---> processId 
+2017-06-03 11:20:19,646 INFO node.py [line:150] osd.8  ---> processId 
+2017-06-03 11:20:19,646 INFO node.py [line:150] osd.9  ---> processId 
+2017-06-03 11:20:19,646 INFO node.py [line:150] osd.10  ---> processId 
+2017-06-03 11:20:19,646 INFO node.py [line:150] osd.11  ---> processId 
+2017-06-03 11:20:19,646 INFO node.py [line:150] osd.12  ---> processId 
+2017-06-03 11:20:19,646 INFO osd.py [line:77] execute command is sudo -i ceph osd in osd.8 & sleep 3
+2017-06-03 11:20:22,869 INFO osd.py [line:80] osd.8 is already in cluster
+2017-06-03 11:20:53,178 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-03 11:20:53,713 INFO cluster.py [line:213]    cluster e93f3143-8693-4060-a247-132bae28385e
+     health HEALTH_OK
+     monmap e3: 3 mons at {ubuntu-A=192.168.40.170:6789/0,ubuntu-B=192.168.40.171:6789/0,ubuntu-C=192.168.40.172:6789/0}
+            election epoch 8, quorum 0,1,2 ubuntu-A,ubuntu-B,ubuntu-C
+     osdmap e165: 20 osds: 20 up, 20 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v1244: 1536 pgs, 2 pools, 6698 MB data, 1925 objects
+            185 GB used, 56439 GB / 56625 GB avail
+                1536 active+clean
+2017-06-03 03:20:55.331888 7fb649391700 -1 asok(0x7fb644000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.36558.140420801630592.asok': (13) Permission denied
+
+2017-06-03 11:20:53,713 INFO cluster.py [line:238] PG number is 1536
+2017-06-03 11:20:53,714 INFO cluster.py [line:239] usefull PG number is 1536
+2017-06-03 11:20:53,714 INFO TC184_osd_out_in_cluster_nbd.py [line:72] stop osd.8 in cluster successfully
+2017-06-03 11:20:54,197 INFO client.py [line:172] 
+stdin: is not a tty
+
+2017-06-03 11:20:54,197 INFO client.py [line:174] IO is running
+2017-06-03 11:20:54,198 INFO TC184_osd_out_in_cluster_nbd.py [line:53] 
+Now operate ubuntu-B
+2017-06-03 11:20:54,198 INFO TC184_osd_out_in_cluster_nbd.py [line:54] 6
+2017-06-03 11:20:54,198 INFO TC184_osd_out_in_cluster_nbd.py [line:55] 
+Now operate osd.9
+2017-06-03 11:20:54,198 INFO TC184_osd_out_in_cluster_nbd.py [line:56] out osd.9
+2017-06-03 11:20:54,198 INFO osd.py [line:62] execute command is sudo -i ceph osd out osd.9 & sleep 3
+2017-06-03 11:20:57,420 INFO osd.py [line:67] osd.9 is already out cluster
+2017-06-03 11:20:57,421 INFO TC184_osd_out_in_cluster_nbd.py [line:58] check if IO error
+2017-06-03 11:20:57,656 INFO TC184_osd_out_in_cluster_nbd.py [line:62] Set the osd.9 pid for kill
+2017-06-03 11:20:57,932 INFO node.py [line:150] osd.7  ---> processId 
+2017-06-03 11:20:57,971 INFO node.py [line:150] osd.8  ---> processId 
+2017-06-03 11:20:57,971 INFO node.py [line:150] osd.9  ---> processId 
+2017-06-03 11:20:57,972 INFO node.py [line:150] osd.10  ---> processId 
+2017-06-03 11:20:57,972 INFO node.py [line:150] osd.11  ---> processId 
+2017-06-03 11:20:57,972 INFO node.py [line:150] osd.12  ---> processId 
+2017-06-03 11:20:57,972 INFO osd.py [line:77] execute command is sudo -i ceph osd in osd.9 & sleep 3
+2017-06-03 11:21:01,195 INFO osd.py [line:80] osd.9 is already in cluster
+2017-06-03 11:21:31,432 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-03 11:21:31,857 INFO cluster.py [line:213]    cluster e93f3143-8693-4060-a247-132bae28385e
+     health HEALTH_OK
+     monmap e3: 3 mons at {ubuntu-A=192.168.40.170:6789/0,ubuntu-B=192.168.40.171:6789/0,ubuntu-C=192.168.40.172:6789/0}
+            election epoch 8, quorum 0,1,2 ubuntu-A,ubuntu-B,ubuntu-C
+     osdmap e171: 20 osds: 20 up, 20 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v1259: 1536 pgs, 2 pools, 6698 MB data, 1925 objects
+            185 GB used, 56439 GB / 56625 GB avail
+                1536 active+clean
+2017-06-03 03:21:33.587836 7f7bd7079700 -1 asok(0x7f7bd0000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.36979.140169747370368.asok': (13) Permission denied
+
+2017-06-03 11:21:31,857 INFO cluster.py [line:238] PG number is 1536
+2017-06-03 11:21:31,857 INFO cluster.py [line:239] usefull PG number is 1536
+2017-06-03 11:21:31,857 INFO TC184_osd_out_in_cluster_nbd.py [line:72] stop osd.9 in cluster successfully
+2017-06-03 11:21:32,370 INFO client.py [line:172] 
+stdin: is not a tty
+
+2017-06-03 11:21:32,370 INFO client.py [line:174] IO is running
+2017-06-03 11:21:32,370 INFO TC184_osd_out_in_cluster_nbd.py [line:53] 
+Now operate ubuntu-B
+2017-06-03 11:21:32,370 INFO TC184_osd_out_in_cluster_nbd.py [line:54] 6
+2017-06-03 11:21:32,370 INFO TC184_osd_out_in_cluster_nbd.py [line:55] 
+Now operate osd.10
+2017-06-03 11:21:32,371 INFO TC184_osd_out_in_cluster_nbd.py [line:56] out osd.10
+2017-06-03 11:21:32,371 INFO osd.py [line:62] execute command is sudo -i ceph osd out osd.10 & sleep 3
+2017-06-03 11:21:35,593 INFO osd.py [line:67] osd.10 is already out cluster
+2017-06-03 11:21:35,593 INFO TC184_osd_out_in_cluster_nbd.py [line:58] check if IO error
+2017-06-03 11:21:35,829 INFO TC184_osd_out_in_cluster_nbd.py [line:62] Set the osd.10 pid for kill
+2017-06-03 11:21:36,110 INFO node.py [line:150] osd.7  ---> processId 
+2017-06-03 11:21:36,110 INFO node.py [line:150] osd.8  ---> processId 
+2017-06-03 11:21:36,111 INFO node.py [line:150] osd.9  ---> processId 
+2017-06-03 11:21:36,111 INFO node.py [line:150] osd.10  ---> processId 
+2017-06-03 11:21:36,111 INFO node.py [line:150] osd.11  ---> processId 
+2017-06-03 11:21:36,111 INFO node.py [line:150] osd.12  ---> processId 
+2017-06-03 11:21:36,111 INFO osd.py [line:77] execute command is sudo -i ceph osd in osd.10 & sleep 3
+2017-06-03 11:21:39,334 INFO osd.py [line:80] osd.10 is already in cluster
+2017-06-03 11:22:09,573 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-03 11:22:09,999 INFO cluster.py [line:213]    cluster e93f3143-8693-4060-a247-132bae28385e
+     health HEALTH_OK
+     monmap e3: 3 mons at {ubuntu-A=192.168.40.170:6789/0,ubuntu-B=192.168.40.171:6789/0,ubuntu-C=192.168.40.172:6789/0}
+            election epoch 8, quorum 0,1,2 ubuntu-A,ubuntu-B,ubuntu-C
+     osdmap e177: 20 osds: 20 up, 20 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v1272: 1536 pgs, 2 pools, 6698 MB data, 1925 objects
+            185 GB used, 56439 GB / 56625 GB avail
+                1536 active+clean
+2017-06-03 03:22:11.728512 7f0d961f1700 -1 asok(0x7f0d90000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.37409.139696227225984.asok': (13) Permission denied
+
+2017-06-03 11:22:10,000 INFO cluster.py [line:238] PG number is 1536
+2017-06-03 11:22:10,000 INFO cluster.py [line:239] usefull PG number is 1536
+2017-06-03 11:22:10,000 INFO TC184_osd_out_in_cluster_nbd.py [line:72] stop osd.10 in cluster successfully
+2017-06-03 11:22:10,521 INFO client.py [line:172] 
+stdin: is not a tty
+
+2017-06-03 11:22:10,522 INFO client.py [line:174] IO is running
+2017-06-03 11:22:10,522 INFO TC184_osd_out_in_cluster_nbd.py [line:53] 
+Now operate ubuntu-B
+2017-06-03 11:22:10,522 INFO TC184_osd_out_in_cluster_nbd.py [line:54] 6
+2017-06-03 11:22:10,522 INFO TC184_osd_out_in_cluster_nbd.py [line:55] 
+Now operate osd.11
+2017-06-03 11:22:10,522 INFO TC184_osd_out_in_cluster_nbd.py [line:56] out osd.11
+2017-06-03 11:22:10,522 INFO osd.py [line:62] execute command is sudo -i ceph osd out osd.11 & sleep 3
+2017-06-03 11:22:13,776 INFO osd.py [line:67] osd.11 is already out cluster
+2017-06-03 11:22:13,777 INFO TC184_osd_out_in_cluster_nbd.py [line:58] check if IO error
+2017-06-03 11:22:14,010 INFO TC184_osd_out_in_cluster_nbd.py [line:62] Set the osd.11 pid for kill
+2017-06-03 11:22:14,293 INFO node.py [line:150] osd.7  ---> processId 
+2017-06-03 11:22:14,294 INFO node.py [line:150] osd.8  ---> processId 
+2017-06-03 11:22:14,294 INFO node.py [line:150] osd.9  ---> processId 
+2017-06-03 11:22:14,294 INFO node.py [line:150] osd.10  ---> processId 
+2017-06-03 11:22:14,294 INFO node.py [line:150] osd.11  ---> processId 
+2017-06-03 11:22:14,294 INFO node.py [line:150] osd.12  ---> processId 
+2017-06-03 11:22:14,294 INFO osd.py [line:77] execute command is sudo -i ceph osd in osd.11 & sleep 3
+2017-06-03 11:22:17,517 INFO osd.py [line:80] osd.11 is already in cluster
+2017-06-03 11:22:47,752 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-03 11:22:48,181 INFO cluster.py [line:213]    cluster e93f3143-8693-4060-a247-132bae28385e
+     health HEALTH_OK
+     monmap e3: 3 mons at {ubuntu-A=192.168.40.170:6789/0,ubuntu-B=192.168.40.171:6789/0,ubuntu-C=192.168.40.172:6789/0}
+            election epoch 8, quorum 0,1,2 ubuntu-A,ubuntu-B,ubuntu-C
+     osdmap e183: 20 osds: 20 up, 20 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v1287: 1536 pgs, 2 pools, 6698 MB data, 1925 objects
+            185 GB used, 56439 GB / 56625 GB avail
+                1536 active+clean
+2017-06-03 03:22:49.906341 7f1b88b8d700 -1 asok(0x7f1b84000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.37848.139756155441536.asok': (13) Permission denied
+
+2017-06-03 11:22:48,181 INFO cluster.py [line:238] PG number is 1536
+2017-06-03 11:22:48,181 INFO cluster.py [line:239] usefull PG number is 1536
+2017-06-03 11:22:48,181 INFO TC184_osd_out_in_cluster_nbd.py [line:72] stop osd.11 in cluster successfully
+2017-06-03 11:22:48,730 INFO client.py [line:172] 
+stdin: is not a tty
+
+2017-06-03 11:22:48,730 INFO client.py [line:174] IO is running
+2017-06-03 11:22:48,730 INFO TC184_osd_out_in_cluster_nbd.py [line:53] 
+Now operate ubuntu-B
+2017-06-03 11:22:48,731 INFO TC184_osd_out_in_cluster_nbd.py [line:54] 6
+2017-06-03 11:22:48,731 INFO TC184_osd_out_in_cluster_nbd.py [line:55] 
+Now operate osd.12
+2017-06-03 11:22:48,731 INFO TC184_osd_out_in_cluster_nbd.py [line:56] out osd.12
+2017-06-03 11:22:48,731 INFO osd.py [line:62] execute command is sudo -i ceph osd out osd.12 & sleep 3
+2017-06-03 11:22:51,953 INFO osd.py [line:67] osd.12 is already out cluster
+2017-06-03 11:22:51,953 INFO TC184_osd_out_in_cluster_nbd.py [line:58] check if IO error
+2017-06-03 11:22:52,188 INFO TC184_osd_out_in_cluster_nbd.py [line:62] Set the osd.12 pid for kill
+2017-06-03 11:22:52,472 INFO node.py [line:150] osd.7  ---> processId 
+2017-06-03 11:22:52,472 INFO node.py [line:150] osd.8  ---> processId 
+2017-06-03 11:22:52,473 INFO node.py [line:150] osd.9  ---> processId 
+2017-06-03 11:22:52,473 INFO node.py [line:150] osd.10  ---> processId 
+2017-06-03 11:22:52,473 INFO node.py [line:150] osd.11  ---> processId 
+2017-06-03 11:22:52,473 INFO node.py [line:150] osd.12  ---> processId 
+2017-06-03 11:22:52,473 INFO osd.py [line:77] execute command is sudo -i ceph osd in osd.12 & sleep 3
+2017-06-03 11:22:55,695 INFO osd.py [line:80] osd.12 is already in cluster
+2017-06-03 11:23:25,995 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-03 11:23:26,366 INFO cluster.py [line:213]    cluster e93f3143-8693-4060-a247-132bae28385e
+     health HEALTH_OK
+     monmap e3: 3 mons at {ubuntu-A=192.168.40.170:6789/0,ubuntu-B=192.168.40.171:6789/0,ubuntu-C=192.168.40.172:6789/0}
+            election epoch 8, quorum 0,1,2 ubuntu-A,ubuntu-B,ubuntu-C
+     osdmap e189: 20 osds: 20 up, 20 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v1303: 1536 pgs, 2 pools, 6698 MB data, 1925 objects
+            185 GB used, 56439 GB / 56625 GB avail
+                1536 active+clean
+2017-06-03 03:23:28.111517 7fa0267c0700 -1 asok(0x7fa020000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.38268.140325708370304.asok': (13) Permission denied
+
+2017-06-03 11:23:26,366 INFO cluster.py [line:238] PG number is 1536
+2017-06-03 11:23:26,367 INFO cluster.py [line:239] usefull PG number is 1536
+2017-06-03 11:23:26,367 INFO TC184_osd_out_in_cluster_nbd.py [line:72] stop osd.12 in cluster successfully
+2017-06-03 11:23:26,884 INFO client.py [line:172] 
+stdin: is not a tty
+
+2017-06-03 11:23:26,884 INFO client.py [line:174] IO is running
+2017-06-03 11:23:26,884 INFO TC184_osd_out_in_cluster_nbd.py [line:53] 
+Now operate ubuntu-C
+2017-06-03 11:23:26,884 INFO TC184_osd_out_in_cluster_nbd.py [line:54] 7
+2017-06-03 11:23:26,884 INFO TC184_osd_out_in_cluster_nbd.py [line:55] 
+Now operate osd.13
+2017-06-03 11:23:26,884 INFO TC184_osd_out_in_cluster_nbd.py [line:56] out osd.13
+2017-06-03 11:23:26,884 INFO osd.py [line:62] execute command is sudo -i ceph osd out osd.13 & sleep 3
+2017-06-03 11:23:30,114 INFO osd.py [line:67] osd.13 is already out cluster
+2017-06-03 11:23:30,115 INFO TC184_osd_out_in_cluster_nbd.py [line:58] check if IO error
+2017-06-03 11:23:30,351 INFO TC184_osd_out_in_cluster_nbd.py [line:62] Set the osd.13 pid for kill
+2017-06-03 11:23:30,636 INFO node.py [line:150] osd.13  ---> processId 
+2017-06-03 11:23:30,636 INFO node.py [line:150] osd.14  ---> processId 
+2017-06-03 11:23:30,636 INFO node.py [line:150] osd.15  ---> processId 
+2017-06-03 11:23:30,636 INFO node.py [line:150] osd.16  ---> processId 
+2017-06-03 11:23:30,636 INFO node.py [line:150] osd.17  ---> processId 
+2017-06-03 11:23:30,636 INFO node.py [line:150] osd.18  ---> processId 
+2017-06-03 11:23:30,636 INFO node.py [line:150] osd.19  ---> processId 
+2017-06-03 11:23:30,636 INFO osd.py [line:77] execute command is sudo -i ceph osd in osd.13 & sleep 3
+2017-06-03 11:23:33,859 INFO osd.py [line:80] osd.13 is already in cluster
+2017-06-03 11:24:04,125 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-03 11:24:04,549 INFO cluster.py [line:213]    cluster e93f3143-8693-4060-a247-132bae28385e
+     health HEALTH_OK
+     monmap e3: 3 mons at {ubuntu-A=192.168.40.170:6789/0,ubuntu-B=192.168.40.171:6789/0,ubuntu-C=192.168.40.172:6789/0}
+            election epoch 8, quorum 0,1,2 ubuntu-A,ubuntu-B,ubuntu-C
+     osdmap e195: 20 osds: 20 up, 20 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v1320: 1536 pgs, 2 pools, 6698 MB data, 1925 objects
+            185 GB used, 56439 GB / 56625 GB avail
+                1536 active+clean
+2017-06-03 03:24:06.282624 7f48bae2c700 -1 asok(0x7f48b4000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.38569.139950234276224.asok': (13) Permission denied
+
+2017-06-03 11:24:04,549 INFO cluster.py [line:238] PG number is 1536
+2017-06-03 11:24:04,549 INFO cluster.py [line:239] usefull PG number is 1536
+2017-06-03 11:24:04,549 INFO TC184_osd_out_in_cluster_nbd.py [line:72] stop osd.13 in cluster successfully
+2017-06-03 11:24:05,097 INFO client.py [line:172] 
+stdin: is not a tty
+
+2017-06-03 11:24:05,097 INFO client.py [line:174] IO is running
+2017-06-03 11:24:05,097 INFO TC184_osd_out_in_cluster_nbd.py [line:53] 
+Now operate ubuntu-C
+2017-06-03 11:24:05,098 INFO TC184_osd_out_in_cluster_nbd.py [line:54] 7
+2017-06-03 11:24:05,098 INFO TC184_osd_out_in_cluster_nbd.py [line:55] 
+Now operate osd.14
+2017-06-03 11:24:05,098 INFO TC184_osd_out_in_cluster_nbd.py [line:56] out osd.14
+2017-06-03 11:24:05,098 INFO osd.py [line:62] execute command is sudo -i ceph osd out osd.14 & sleep 3
+2017-06-03 11:24:08,287 INFO osd.py [line:67] osd.14 is already out cluster
+2017-06-03 11:24:08,287 INFO TC184_osd_out_in_cluster_nbd.py [line:58] check if IO error
+2017-06-03 11:24:08,490 INFO TC184_osd_out_in_cluster_nbd.py [line:62] Set the osd.14 pid for kill
+2017-06-03 11:24:08,769 INFO node.py [line:150] osd.13  ---> processId 
+2017-06-03 11:24:08,769 INFO node.py [line:150] osd.14  ---> processId 
+2017-06-03 11:24:08,770 INFO node.py [line:150] osd.15  ---> processId 
+2017-06-03 11:24:08,770 INFO node.py [line:150] osd.16  ---> processId 
+2017-06-03 11:24:08,770 INFO node.py [line:150] osd.17  ---> processId 
+2017-06-03 11:24:08,770 INFO node.py [line:150] osd.18  ---> processId 
+2017-06-03 11:24:08,770 INFO node.py [line:150] osd.19  ---> processId 
+2017-06-03 11:24:08,770 INFO osd.py [line:77] execute command is sudo -i ceph osd in osd.14 & sleep 3
+2017-06-03 11:24:11,992 INFO osd.py [line:80] osd.14 is already in cluster
+2017-06-03 11:24:42,234 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-03 11:24:42,771 INFO cluster.py [line:213]    cluster e93f3143-8693-4060-a247-132bae28385e
+     health HEALTH_OK
+     monmap e3: 3 mons at {ubuntu-A=192.168.40.170:6789/0,ubuntu-B=192.168.40.171:6789/0,ubuntu-C=192.168.40.172:6789/0}
+            election epoch 8, quorum 0,1,2 ubuntu-A,ubuntu-B,ubuntu-C
+     osdmap e201: 20 osds: 20 up, 20 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v1335: 1536 pgs, 2 pools, 6698 MB data, 1925 objects
+            185 GB used, 56439 GB / 56625 GB avail
+                1536 active+clean
+2017-06-03 03:24:44.392310 7f39473ee700 -1 asok(0x7f3940000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.38991.139883863609728.asok': (13) Permission denied
+
+2017-06-03 11:24:42,771 INFO cluster.py [line:238] PG number is 1536
+2017-06-03 11:24:42,771 INFO cluster.py [line:239] usefull PG number is 1536
+2017-06-03 11:24:42,771 INFO TC184_osd_out_in_cluster_nbd.py [line:72] stop osd.14 in cluster successfully
+2017-06-03 11:24:43,284 INFO client.py [line:172] 
+stdin: is not a tty
+
+2017-06-03 11:24:43,284 INFO client.py [line:174] IO is running
+2017-06-03 11:24:43,285 INFO TC184_osd_out_in_cluster_nbd.py [line:53] 
+Now operate ubuntu-C
+2017-06-03 11:24:43,285 INFO TC184_osd_out_in_cluster_nbd.py [line:54] 7
+2017-06-03 11:24:43,285 INFO TC184_osd_out_in_cluster_nbd.py [line:55] 
+Now operate osd.15
+2017-06-03 11:24:43,285 INFO TC184_osd_out_in_cluster_nbd.py [line:56] out osd.15
+2017-06-03 11:24:43,285 INFO osd.py [line:62] execute command is sudo -i ceph osd out osd.15 & sleep 3
+2017-06-03 11:24:46,540 INFO osd.py [line:67] osd.15 is already out cluster
+2017-06-03 11:24:46,540 INFO TC184_osd_out_in_cluster_nbd.py [line:58] check if IO error
+2017-06-03 11:24:46,775 INFO TC184_osd_out_in_cluster_nbd.py [line:62] Set the osd.15 pid for kill
+2017-06-03 11:24:47,055 INFO node.py [line:150] osd.13  ---> processId 
+2017-06-03 11:24:47,055 INFO node.py [line:150] osd.14  ---> processId 
+2017-06-03 11:24:47,056 INFO node.py [line:150] osd.15  ---> processId 
+2017-06-03 11:24:47,056 INFO node.py [line:150] osd.16  ---> processId 
+2017-06-03 11:24:47,056 INFO node.py [line:150] osd.17  ---> processId 
+2017-06-03 11:24:47,056 INFO node.py [line:150] osd.18  ---> processId 
+2017-06-03 11:24:47,056 INFO node.py [line:150] osd.19  ---> processId 
+2017-06-03 11:24:47,056 INFO osd.py [line:77] execute command is sudo -i ceph osd in osd.15 & sleep 3
+2017-06-03 11:24:50,246 INFO osd.py [line:80] osd.15 is already in cluster
+2017-06-03 11:25:20,479 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-03 11:25:20,895 INFO cluster.py [line:213]    cluster e93f3143-8693-4060-a247-132bae28385e
+     health HEALTH_OK
+     monmap e3: 3 mons at {ubuntu-A=192.168.40.170:6789/0,ubuntu-B=192.168.40.171:6789/0,ubuntu-C=192.168.40.172:6789/0}
+            election epoch 8, quorum 0,1,2 ubuntu-A,ubuntu-B,ubuntu-C
+     osdmap e207: 20 osds: 20 up, 20 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v1349: 1536 pgs, 2 pools, 6698 MB data, 1925 objects
+            185 GB used, 56439 GB / 56625 GB avail
+                1536 active+clean
+2017-06-03 03:25:22.634226 7f1e76db6700 -1 asok(0x7f1e70000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.39427.139768704799104.asok': (13) Permission denied
+
+2017-06-03 11:25:20,896 INFO cluster.py [line:238] PG number is 1536
+2017-06-03 11:25:20,896 INFO cluster.py [line:239] usefull PG number is 1536
+2017-06-03 11:25:20,896 INFO TC184_osd_out_in_cluster_nbd.py [line:72] stop osd.15 in cluster successfully
+2017-06-03 11:25:21,446 INFO client.py [line:172] 
+stdin: is not a tty
+
+2017-06-03 11:25:21,446 INFO client.py [line:174] IO is running
+2017-06-03 11:25:21,446 INFO TC184_osd_out_in_cluster_nbd.py [line:53] 
+Now operate ubuntu-C
+2017-06-03 11:25:21,446 INFO TC184_osd_out_in_cluster_nbd.py [line:54] 7
+2017-06-03 11:25:21,446 INFO TC184_osd_out_in_cluster_nbd.py [line:55] 
+Now operate osd.16
+2017-06-03 11:25:21,446 INFO TC184_osd_out_in_cluster_nbd.py [line:56] out osd.16
+2017-06-03 11:25:21,446 INFO osd.py [line:62] execute command is sudo -i ceph osd out osd.16 & sleep 3
+2017-06-03 11:25:24,668 INFO osd.py [line:67] osd.16 is already out cluster
+2017-06-03 11:25:24,669 INFO TC184_osd_out_in_cluster_nbd.py [line:58] check if IO error
+2017-06-03 11:25:24,903 INFO TC184_osd_out_in_cluster_nbd.py [line:62] Set the osd.16 pid for kill
+2017-06-03 11:25:25,185 INFO node.py [line:150] osd.13  ---> processId 
+2017-06-03 11:25:25,185 INFO node.py [line:150] osd.14  ---> processId 
+2017-06-03 11:25:25,185 INFO node.py [line:150] osd.15  ---> processId 
+2017-06-03 11:25:25,185 INFO node.py [line:150] osd.16  ---> processId 
+2017-06-03 11:25:25,185 INFO node.py [line:150] osd.17  ---> processId 
+2017-06-03 11:25:25,185 INFO node.py [line:150] osd.18  ---> processId 
+2017-06-03 11:25:25,185 INFO node.py [line:150] osd.19  ---> processId 
+2017-06-03 11:25:25,186 INFO osd.py [line:77] execute command is sudo -i ceph osd in osd.16 & sleep 3
+2017-06-03 11:25:28,407 INFO osd.py [line:80] osd.16 is already in cluster
+2017-06-03 11:25:58,660 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-03 11:25:59,081 INFO cluster.py [line:213]    cluster e93f3143-8693-4060-a247-132bae28385e
+     health HEALTH_OK
+     monmap e3: 3 mons at {ubuntu-A=192.168.40.170:6789/0,ubuntu-B=192.168.40.171:6789/0,ubuntu-C=192.168.40.172:6789/0}
+            election epoch 8, quorum 0,1,2 ubuntu-A,ubuntu-B,ubuntu-C
+     osdmap e213: 20 osds: 20 up, 20 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v1363: 1536 pgs, 2 pools, 6698 MB data, 1925 objects
+            185 GB used, 56439 GB / 56625 GB avail
+                1536 active+clean
+2017-06-03 03:26:00.815751 7fd8cbfe9700 -1 asok(0x7fd8c4000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.39836.140568978002304.asok': (13) Permission denied
+
+2017-06-03 11:25:59,081 INFO cluster.py [line:238] PG number is 1536
+2017-06-03 11:25:59,081 INFO cluster.py [line:239] usefull PG number is 1536
+2017-06-03 11:25:59,081 INFO TC184_osd_out_in_cluster_nbd.py [line:72] stop osd.16 in cluster successfully
+2017-06-03 11:25:59,656 INFO client.py [line:172] 
+stdin: is not a tty
+
+2017-06-03 11:25:59,656 INFO client.py [line:174] IO is running
+2017-06-03 11:25:59,657 INFO TC184_osd_out_in_cluster_nbd.py [line:53] 
+Now operate ubuntu-C
+2017-06-03 11:25:59,657 INFO TC184_osd_out_in_cluster_nbd.py [line:54] 7
+2017-06-03 11:25:59,657 INFO TC184_osd_out_in_cluster_nbd.py [line:55] 
+Now operate osd.17
+2017-06-03 11:25:59,657 INFO TC184_osd_out_in_cluster_nbd.py [line:56] out osd.17
+2017-06-03 11:25:59,657 INFO osd.py [line:62] execute command is sudo -i ceph osd out osd.17 & sleep 3
+2017-06-03 11:26:02,880 INFO osd.py [line:67] osd.17 is already out cluster
+2017-06-03 11:26:02,880 INFO TC184_osd_out_in_cluster_nbd.py [line:58] check if IO error
+2017-06-03 11:26:03,115 INFO TC184_osd_out_in_cluster_nbd.py [line:62] Set the osd.17 pid for kill
+2017-06-03 11:26:03,393 INFO node.py [line:150] osd.13  ---> processId 
+2017-06-03 11:26:03,393 INFO node.py [line:150] osd.14  ---> processId 
+2017-06-03 11:26:03,393 INFO node.py [line:150] osd.15  ---> processId 
+2017-06-03 11:26:03,394 INFO node.py [line:150] osd.16  ---> processId 
+2017-06-03 11:26:03,394 INFO node.py [line:150] osd.17  ---> processId 
+2017-06-03 11:26:03,394 INFO node.py [line:150] osd.18  ---> processId 
+2017-06-03 11:26:03,394 INFO node.py [line:150] osd.19  ---> processId 
+2017-06-03 11:26:03,394 INFO osd.py [line:77] execute command is sudo -i ceph osd in osd.17 & sleep 3
+2017-06-03 11:26:06,604 INFO osd.py [line:80] osd.17 is already in cluster
+2017-06-03 11:26:36,871 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-03 11:26:37,295 INFO cluster.py [line:213]    cluster e93f3143-8693-4060-a247-132bae28385e
+     health HEALTH_OK
+     monmap e3: 3 mons at {ubuntu-A=192.168.40.170:6789/0,ubuntu-B=192.168.40.171:6789/0,ubuntu-C=192.168.40.172:6789/0}
+            election epoch 8, quorum 0,1,2 ubuntu-A,ubuntu-B,ubuntu-C
+     osdmap e219: 20 osds: 20 up, 20 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v1379: 1536 pgs, 2 pools, 6698 MB data, 1925 objects
+            185 GB used, 56439 GB / 56625 GB avail
+                1536 active+clean
+2017-06-03 03:26:39.031981 7f658757e700 -1 asok(0x7f6580000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.40277.140073915912576.asok': (13) Permission denied
+
+2017-06-03 11:26:37,296 INFO cluster.py [line:238] PG number is 1536
+2017-06-03 11:26:37,296 INFO cluster.py [line:239] usefull PG number is 1536
+2017-06-03 11:26:37,296 INFO TC184_osd_out_in_cluster_nbd.py [line:72] stop osd.17 in cluster successfully
+2017-06-03 11:26:37,784 INFO client.py [line:172] 
+stdin: is not a tty
+
+2017-06-03 11:26:37,784 INFO client.py [line:174] IO is running
+2017-06-03 11:26:37,785 INFO TC184_osd_out_in_cluster_nbd.py [line:53] 
+Now operate ubuntu-C
+2017-06-03 11:26:37,785 INFO TC184_osd_out_in_cluster_nbd.py [line:54] 7
+2017-06-03 11:26:37,785 INFO TC184_osd_out_in_cluster_nbd.py [line:55] 
+Now operate osd.18
+2017-06-03 11:26:37,785 INFO TC184_osd_out_in_cluster_nbd.py [line:56] out osd.18
+2017-06-03 11:26:37,785 INFO osd.py [line:62] execute command is sudo -i ceph osd out osd.18 & sleep 3
+2017-06-03 11:26:41,007 INFO osd.py [line:67] osd.18 is already out cluster
+2017-06-03 11:26:41,007 INFO TC184_osd_out_in_cluster_nbd.py [line:58] check if IO error
+2017-06-03 11:26:41,210 INFO TC184_osd_out_in_cluster_nbd.py [line:62] Set the osd.18 pid for kill
+2017-06-03 11:26:41,495 INFO node.py [line:150] osd.13  ---> processId 
+2017-06-03 11:26:41,495 INFO node.py [line:150] osd.14  ---> processId 
+2017-06-03 11:26:41,495 INFO node.py [line:150] osd.15  ---> processId 
+2017-06-03 11:26:41,495 INFO node.py [line:150] osd.16  ---> processId 
+2017-06-03 11:26:41,495 INFO node.py [line:150] osd.17  ---> processId 
+2017-06-03 11:26:41,495 INFO node.py [line:150] osd.18  ---> processId 
+2017-06-03 11:26:41,496 INFO node.py [line:150] osd.19  ---> processId 
+2017-06-03 11:26:41,496 INFO osd.py [line:77] execute command is sudo -i ceph osd in osd.18 & sleep 3
+2017-06-03 11:26:44,718 INFO osd.py [line:80] osd.18 is already in cluster
+2017-06-03 11:27:15,017 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-03 11:27:15,442 INFO cluster.py [line:213]    cluster e93f3143-8693-4060-a247-132bae28385e
+     health HEALTH_OK
+     monmap e3: 3 mons at {ubuntu-A=192.168.40.170:6789/0,ubuntu-B=192.168.40.171:6789/0,ubuntu-C=192.168.40.172:6789/0}
+            election epoch 8, quorum 0,1,2 ubuntu-A,ubuntu-B,ubuntu-C
+     osdmap e225: 20 osds: 20 up, 20 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v1393: 1536 pgs, 2 pools, 6698 MB data, 1925 objects
+            185 GB used, 56439 GB / 56625 GB avail
+                1536 active+clean
+2017-06-03 03:27:17.176639 7fb44e3b6700 -1 asok(0x7fb448000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.40707.140412278804864.asok': (13) Permission denied
+
+2017-06-03 11:27:15,442 INFO cluster.py [line:238] PG number is 1536
+2017-06-03 11:27:15,442 INFO cluster.py [line:239] usefull PG number is 1536
+2017-06-03 11:27:15,442 INFO TC184_osd_out_in_cluster_nbd.py [line:72] stop osd.18 in cluster successfully
+2017-06-03 11:27:15,961 INFO client.py [line:172] 
+stdin: is not a tty
+
+2017-06-03 11:27:15,961 INFO client.py [line:174] IO is running
+2017-06-03 11:27:15,961 INFO TC184_osd_out_in_cluster_nbd.py [line:53] 
+Now operate ubuntu-C
+2017-06-03 11:27:15,961 INFO TC184_osd_out_in_cluster_nbd.py [line:54] 7
+2017-06-03 11:27:15,961 INFO TC184_osd_out_in_cluster_nbd.py [line:55] 
+Now operate osd.19
+2017-06-03 11:27:15,961 INFO TC184_osd_out_in_cluster_nbd.py [line:56] out osd.19
+2017-06-03 11:27:15,962 INFO osd.py [line:62] execute command is sudo -i ceph osd out osd.19 & sleep 3
+2017-06-03 11:27:19,184 INFO osd.py [line:67] osd.19 is already out cluster
+2017-06-03 11:27:19,184 INFO TC184_osd_out_in_cluster_nbd.py [line:58] check if IO error
+2017-06-03 11:27:19,487 INFO TC184_osd_out_in_cluster_nbd.py [line:62] Set the osd.19 pid for kill
+2017-06-03 11:27:19,771 INFO node.py [line:150] osd.13  ---> processId 
+2017-06-03 11:27:19,772 INFO node.py [line:150] osd.14  ---> processId 
+2017-06-03 11:27:19,772 INFO node.py [line:150] osd.15  ---> processId 
+2017-06-03 11:27:19,772 INFO node.py [line:150] osd.16  ---> processId 
+2017-06-03 11:27:19,772 INFO node.py [line:150] osd.17  ---> processId 
+2017-06-03 11:27:19,772 INFO node.py [line:150] osd.18  ---> processId 
+2017-06-03 11:27:19,772 INFO node.py [line:150] osd.19  ---> processId 
+2017-06-03 11:27:19,772 INFO osd.py [line:77] execute command is sudo -i ceph osd in osd.19 & sleep 3
+2017-06-03 11:27:22,995 INFO osd.py [line:80] osd.19 is already in cluster
+2017-06-03 11:27:53,262 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-03 11:27:53,682 INFO cluster.py [line:213]    cluster e93f3143-8693-4060-a247-132bae28385e
+     health HEALTH_OK
+     monmap e3: 3 mons at {ubuntu-A=192.168.40.170:6789/0,ubuntu-B=192.168.40.171:6789/0,ubuntu-C=192.168.40.172:6789/0}
+            election epoch 8, quorum 0,1,2 ubuntu-A,ubuntu-B,ubuntu-C
+     osdmap e231: 20 osds: 20 up, 20 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v1410: 1536 pgs, 2 pools, 6698 MB data, 1925 objects
+            185 GB used, 56439 GB / 56625 GB avail
+                1536 active+clean
+2017-06-03 03:27:55.416728 7fb75bfd0700 -1 asok(0x7fb754000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.41118.140425365033344.asok': (13) Permission denied
+
+2017-06-03 11:27:53,683 INFO cluster.py [line:238] PG number is 1536
+2017-06-03 11:27:53,683 INFO cluster.py [line:239] usefull PG number is 1536
+2017-06-03 11:27:53,683 INFO TC184_osd_out_in_cluster_nbd.py [line:72] stop osd.19 in cluster successfully
+2017-06-03 11:27:54,261 INFO client.py [line:172] 
+stdin: is not a tty
+
+2017-06-03 11:27:54,261 INFO client.py [line:174] IO is running
+2017-06-03 11:27:54,261 INFO TC184_osd_out_in_cluster_nbd.py [line:90] TC184_osd_out_in_cluster_nbd runs complete

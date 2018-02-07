@@ -1,0 +1,17 @@
+2017-05-24 14:11:38,351 INFO monitors.py [line:123]    "quorum_leader_name": "denali01",
+
+2017-05-24 14:11:38,351 INFO monitors.py [line:126]    "quorum_leader_name": "denali01",
+2017-05-24 14:11:38,351 INFO initConfig.py [line:18] Init osd process
+2017-05-24 14:11:40,940 INFO node.py [line:77] pool reliablityTestPool was founded
+2017-05-24 14:11:41,782 INFO node.py [line:82] pgnumber is 512 in  reliablityTestPool 
+2017-05-24 14:11:44,315 INFO node.py [line:96] image clientrbdImg0 create successfully
+2017-05-24 14:11:44,957 INFO node.py [line:96] image clientrbdImg1 create successfully
+2017-05-24 14:11:45,907 INFO node.py [line:96] image clientrbdImg2 create successfully
+2017-05-24 14:11:46,703 INFO node.py [line:96] image clientrbdImg3 create successfully
+2017-05-24 14:11:47,499 INFO node.py [line:96] image clientrbdImg4 create successfully
+2017-05-24 14:11:48,154 INFO node.py [line:96] image clientrbdImg5 create successfully
+2017-05-24 14:11:48,842 INFO node.py [line:96] image clientrbdImg6 create successfully
+2017-05-24 14:11:49,480 INFO node.py [line:96] image clientrbdImg7 create successfully
+2017-05-24 14:11:50,151 INFO node.py [line:96] image clientrbdImg8 create successfully
+2017-05-24 14:11:51,010 INFO node.py [line:96] image clientrbdImg9 create successfully
+2017-05-24 14:11:51,010 INFO initConfig.py [line:46] Init config complete

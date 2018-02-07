@@ -1,0 +1,31 @@
+<testenvinfo env_type="BM" >
+	<builds>
+		<vboxbuildpath>/samba/fileshare/my_workspace/int_nightly_builds</vboxbuildpath>
+		<vagrantfile >Vagrantfile_nightly</vagrantfile >
+		<sdopd >IstTest1234</sdopd >
+	</builds>
+	<hardwares>
+		<clients>
+			<client id="1">
+				<communication ip_address="192.168.199.185" password="admin" username="denali" hostname='denali-box2'/>
+			</client>
+		</clients>
+		<nodes>
+			<node id="1">
+				<communication ip_address="192.168.199.38" password="admin" username="denali" hostname='denali-01'/>
+			</node>
+			<node id="2">
+				<communication ip_address="192.168.199.196" password="admin" username="denali" hostname='denali-02'/>
+			</node>
+			<node id="3">
+				<communication ip_address="192.168.199.94" password="admin" username="denali" hostname='denali-03'/>
+			</node>
+		</nodes>
+		<monitors>
+			<monitor id="1">
+				<communication ip_address="192.168.199.38" password="admin" username="denali" hostname='denali-01'/>
+			</monitor>
+		</monitors>
+	</hardwares>
+
+</testenvinfo>

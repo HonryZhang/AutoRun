@@ -1,0 +1,5 @@
+2017-05-26 17:59:04,289 INFO monitors.py [line:126]    "quorum_leader_name": "osdnode2",
+
+2017-05-26 17:59:04,289 INFO monitors.py [line:129]    "quorum_leader_name": "osdnode2",
+2017-05-26 17:59:04,881 INFO client.py [line:149] ['enali   27388 27387  0 09:59 ?        00:00:00 bash -c sudo -i ps -ef | grep fio', 'denali   27390 27388  0 09:59 ?        00:00:00 grep fio', 'stdin: is not a tty', '']
+2017-05-26 17:59:04,881 INFO client.py [line:151] IO is running

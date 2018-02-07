@@ -1,0 +1,147 @@
+1497866217231	geckodriver	INFO	Listening on 127.0.0.1:60596
+1497866219279	mozprofile::profile	INFO	Using profile path C:\Users\admin\AppData\Local\Temp\rust_mozprofile.xt11nOCHv8eq
+1497866219296	geckodriver::marionette	INFO	Starting browser C:\Program Files\Mozilla Firefox\firefox.exe
+1497866219305	geckodriver::marionette	INFO	Connecting to Marionette on localhost:60605
+1497866220710	Marionette	INFO	Listening on port 60605
+console.error: 
+  Message: Error: findCssSelector received element not inside document
+  Stack:
+    CssLogic.findCssSelector@resource://gre/modules/commonjs/toolkit/loader.js -> resource://devtools/shared/inspector/css-logic.js:896:11
+exports.NodeActor<.getUniqueSelector<@resource://gre/modules/commonjs/toolkit/loader.js -> resource://devtools/server/actors/inspector.js:644:12
+actorProto/</handler@resource://gre/modules/commonjs/toolkit/loader.js -> resource://devtools/server/protocol.js:1013:19
+DSC_onPacket@resource://gre/modules/commonjs/toolkit/loader.js -> resource://devtools/server/main.js:1643:15
+LocalDebuggerTransport.prototype.send/<@chrome://marionette/content/server.js -> resource://devtools/shared/transport/transport.js:569:11
+exports.makeInfallible/<@resource://gre/modules/commonjs/toolkit/loader.js -> resource://devtools/shared/ThreadSafeDevToolsUtils.js:101:14
+exports.makeInfallible/<@resource://gre/modules/commonjs/toolkit/loader.js -> resource://devtools/shared/ThreadSafeDevToolsUtils.js:101:14
+
+CssLogic.findCssSelector@resource://gre/modules/commonjs/toolkit/loader.js -> resource://devtools/shared/inspector/css-logic.js:896:11
+exports.NodeActor<.getUniqueSelector<@resource://gre/modules/commonjs/toolkit/loader.js -> resource://devtools/server/actors/inspector.js:644:12
+actorProto/</handler@resource://gre/modules/commonjs/tooconsole.error: 
+  Protocol error (noSuchActor): No such actor for ID: server1.conn0.animationsActor23
+mmonjs/toolkit/loader.js -> resource://devtools/server/main.js:1643:15
+LocalDebuggerTransport.prototype.send/<@chrome://marionette/content/server.js -> resource://devtools/shared/transport/transport.js:569:11
+exports.makeInfallible/<@resource://gre/modules/commonjs/toolkit/loader.js -> resource://devtools/shared/ThreadSafeDevToolsUtils.js:101:14
+exports.makeInfallible/<@resource://gre/modules/commonjs/toolkit/loader.js -> resource://devtools/shared/ThreadSafeDevToolsUtils.js:101:14
+console.warn: Asynchronous operation was aborted as selection changed.
+console.error: 
+  Protocol error (unknownError): Error: findCssSelector received element not inside document
+console.error: 
+  Message: Error: Source map at http://192.168.28.113:3579/app/bootstrap.min.css.map not found or invalid
+  Stack:
+    StyleSheetActor<._fetchSourceMap/</map<@resource://gre/modules/commonjs/toolkit/loader.js -> resource://devtools/server/actors/stylesheets.js:759:27
+Handler.prototype.process@resource://gre/modules/Promise.jsm -> resource://gre/modules/Promise-backend.js:933:23
+this.PromiseWalker.walkerLoop@resource://gre/modules/Promise.jsm -> resource://gre/modules/Promise-backend.js:812:7
+this.PromiseWalker.scheduleWalkerLoop/<@resource://gre/modules/Promise.jsm -> resource://gre/modules/Promise-backend.js:746:11
+
+StyleSheetActor<._fetchSourceMap/</map<@resource://gre/modules/commonjs/toolkit/loader.js -> resource://devtools/server/actors/stylesheets.js:759:27
+Handler.prototype.process@resource://gre/modules/Promise.jsm -> resource://gre/modules/Promise-backend.js:933:23
+this.PromiseWalker.walkerLoop@resource://gre/modules/Promise.jsm -> resource://gre/modules/Promise-backend.js:812:7
+this.PromiseWalker.scheduleWalkerLoop/<@resource://gre/modules/Promise.jsm -> resource://gre/modules/Promise-backend.js:746:11
+console.error: 
+  Protocol error (unknownError): Error: Source map at http://192.168.28.113:3579/app/bootstrap.min.css.map not found or invalid
+ctor.js:644:12
+actorProto/</handler@resource://gre/modules/commonjs/toolkit/loader.js -> resource://devtools/server/protocol.js:1013:19
+DSC_onPacket@resource://gre/modules/commonjs/toolkit/loader.js -> resource://devtools/server/main.js:1643:15
+LocalDebuggerTransport.prototype.send/<@chrome://marionette/content/server.js -> resource://devtools/shared/transport/transport.js:569:11
+exports.makeInfallible/<@resource://gre/modules/commonjs/toolkit/loader.js -> resource://devtools/shared/ThreadSafeDevToolsUtils.js:101:14
+exports.makeInfallible/<@resource://gre/modules/commonjs/toolkit/loader.js -> resource://devtools/shared/ThreadSafeDevToolsUtils.js:101:14
+console.error: 
+  Protocol error (unknownError): Error: findCssSelector received element not inside document
+console.error: 
+  Message: Error: findCssSelector received element not inside document
+  Stack:
+    CssLogic.findCssSelector@resource://gre/modules/commonjs/toolkit/loader.js -> resource://devtools/shared/inspector/css-logic.js:896:11
+exports.NodeActor<.getUniqueSelector<@resource://gre/modules/commonjs/toolkit/loader.js -> resource://devtools/server/actors/inspector.js:644:12
+actorProto/</handler@resource://gre/modules/commonjs/toolkit/loader.js -> resource://devtools/server/protocol.js:1013:19
+DSC_onPacket@resource://gre/modules/commonjs/toolkit/loader.js -> resource://devtools/server/main.js:1643:15
+LocalDebuggerTransport.prototype.send/<@chrome://marionette/content/server.js -> resource://devtools/shared/transport/transport.js:569:11
+exports.makeInfallible/<@resource://gre/modules/commonjs/toolkit/loader.js -> resource://devtools/shared/ThreadSafeDevToolsUtils.js:101:14
+exports.makeInfallible/<@resource://gre/modules/commonjs/toolkit/loader.js -> resource://devtools/shared/ThreadSafeDevToolsUtils.js:101:14
+
+CssLogic.findCssSelector@resource://gre/modules/commonjs/toolkit/loader.js -> resource://devtools/shared/inspector/css-logic.js:896:11
+exports.NodeActor<.getUniqueSelector<@resource://gre/modules/commonjs/toolkit/loader.js -> resource://devtools/server/actors/inspector.js:644:12
+actorProto/</handler@resource://gre/modules/commonjs/toolkit/loader.js -> resource://devtools/server/protocol.js:1013:19
+DSC_onPacket@resource://gre/modules/commonjs/toolkit/loader.js -> resource://devtools/server/main.js:1643:15
+LocalDebuggerTransport.prototype.send/<@chrome://marionette/content/server.js -> resource://devtools/shared/transport/transport.js:569:11
+exports.makeInfallible/<@resource://gre/modules/commonjs/toolkit/loader.js -> resource://devtools/shared/ThreadSafeDevToolsUtils.js:101:14
+exports.makeInfallible/<@resource://gre/modules/commonjs/toolkit/loader.js -> resource://devtools/shared/ThreadSafeDevToolsUtils.js:101:14
+console.error: 
+  Protocol error (unknownError): Error: findCssSelector received element not inside document
+console.error: 
+  Message: Error: Source map at http://192.168.28.113:3579/app/bootstrap.min.css.map not found or invalid
+  Stack:
+    StyleSheetActor<._fetchSourceMap/</map<@resource://gre/modules/commonjs/toolkit/loader.js -> resource://devtools/server/actors/stylesheets.js:759:27
+Handler.prototype.process@resource://gre/modules/Promise.jsm -> resource://gre/modules/Promise-backend.js:933:23
+this.PromiseWalker.walkerLoop@resource://gre/modules/Promise.jsm -> resource://gre/modules/Promise-backend.js:812:7
+this.PromiseWalker.scheduleWalkerLoop/<@resource://gre/modules/Promise.jsm -> resource://gre/modules/Promise-backend.js:746:11
+
+StyleSheetActor<._fetchSourceMap/</map<@resource://gre/modules/commonjs/toolkit/loader.js -> resource://devtools/server/actors/stylesheets.js:759:27
+Handler.prototype.process@resource://gre/modules/Promise.jsm -> resource://gre/modules/Promise-backend.js:933:23
+this.PromiseWalker.walkerLoop@resource://gre/modules/Promise.jsm -> resource://gre/modules/Promise-backend.js:812:7
+this.PromiseWalker.scheduleWalkerLoop/<@resource://gre/modules/Promise.jsm -> resource://gre/modules/Promise-backend.js:746:11
+console.error: 
+  Protocol error (unknownError): Error: Source map at http://192.168.28.113:3579/app/bootstrap.min.css.map not found or invalid
+console.error: 
+  Message: Error: findCssSelector received element not inside document
+  Stack:
+    CssLogic.findCssSelector@resource://gre/modules/commonjs/toolkit/loader.js -> resource://devtools/shared/inspector/css-logic.js:896:11
+exports.NodeActor<.getUniqueSelector<@resource://gre/modules/commonjs/toolkit/loader.js -> resource://devtools/server/actors/inspector.js:644:12
+actorProto/</handler@resource://gre/modules/commonjs/toolkit/loader.js -> resource://devtools/server/protocol.js:1013:19
+DSC_onPacket@resource://gre/modules/commonjs/toolkit/loader.js -> resource://devtools/server/main.js:1643:15
+LocalDebuggerTransport.prototype.send/<@chrome://marionette/content/server.js -> resource://devtools/shared/transport/transport.js:569:11
+exports.makeInfallible/<@resource://gre/modules/commonjs/toolkit/loader.js -> resource://devtools/shared/ThreadSafeDevToolsUtils.js:101:14
+exports.makeInfallible/<@resource://gre/modules/commonjs/toolkit/loader.js -> resource://devtools/shared/ThreadSafeDevToolsUtils.js:101:14
+
+CssLogic.findCssSelector@resource://gre/modules/commonjs/toolkit/loader.js -> resource://devtools/shared/inspector/css-logic.js:896:11
+exports.NodeActor<.getUniqueSelector<@resource://gre/modules/commonjs/toolkit/loader.js -> resource://devtools/server/actors/inspector.js:644:12
+actorProto/</handler@resource://gre/modules/commonjs/toolkit/loader.js -> resource://devtools/server/protocol.js:1013:19
+DSC_onPacket@resource://gre/modules/commonjs/toolkit/loader.js -> resource://devtools/server/main.js:1643:15
+LocalDebuggerTransport.prototype.send/<@chrome://marionette/content/server.js -> resource://devtools/shared/transport/transport.js:569:11
+exports.makeInfallible/<@resource://gre/modules/commonjs/toolkit/loader.js -> resource://devtools/shared/ThreadSafeDevToolsUtils.js:101:14
+exports.makeInfallible/<@resource://gre/modules/commonjs/toolkit/loader.js -> resource://devtools/shared/ThreadSafeDevToolsUtils.js:101:14
+console.error: 
+  Protocol error (unknownError): Error: findCssSelector received element not inside document
+console.error: 
+  Message: Error: findCssSelector received element not inside document
+  Stack:
+    CssLogic.findCssSelector@resource://gre/modules/commonjs/toolkit/loader.js -> resource://devtools/shared/inspector/css-logic.js:896:11
+exports.NodeActor<.getUniqueSelector<@resource://gre/modules/commonjs/toolkit/loader.js -> resource://devtools/server/actors/inspector.js:644:12
+actorProto/</handler@resource://gre/modules/commonjs/toolkit/loader.js -> resource://devtools/server/protocol.js:1013:19
+DSC_onPacket@resource://gre/modules/commonjs/toolkit/loader.js -> resource://devtools/server/main.js:1643:15
+LocalDebuggerTransport.prototype.send/<@chrome://marionette/content/server.js -> resource://devtools/shared/transport/transport.js:569:11
+exports.makeInfallible/<@resource://gre/modules/commonjs/toolkit/loader.js -> resource://devtools/shared/ThreadSafeDevToolsUtils.js:101:14
+exports.makeInfallible/<@resource://gre/modules/commonjs/toolkit/loader.js -> resource://devtools/shared/ThreadSafeDevToolsUtils.js:101:14
+
+CssLogic.findCssSelector@resource://gre/modules/commonjs/toolkit/loader.js -> resource://devtools/shared/inspector/css-logic.js:896:11
+exports.NodeActor<.getUniqueSelector<@resource://gre/modules/commonjs/toolkit/loader.js -> resource://devtools/server/actors/inspector.js:644:12
+actorProto/</handler@resource://gre/modules/commonjs/toolkit/loader.js -> resource://devtools/server/protocol.js:1013:19
+DSC_onPacket@resource://gre/modules/commonjs/toolkit/loader.js -> resource://devtools/server/main.js:1643:15
+LocalDebuggerTransport.prototype.send/<@chrome://marionette/content/server.js -> resource://devtools/shared/transport/transport.js:569:11
+exports.makeInfallible/<@resource://gre/modules/commonjs/toolkit/loader.js -> resource://devtools/shared/ThreadSafeDevToolsUtils.js:101:14
+exports.makeInfallible/<@resource://gre/modules/commonjs/toolkit/loader.js -> resource://devtools/shared/ThreadSafeDevToolsUtils.js:101:14
+console.error: 
+  Protocol error (unknownError): Error: findCssSelector received element not inside document
+console.error: 
+  Message: Error: findCssSelector received element not inside document
+ console.error: 
+  Protocol error (noSuchActor): No such actor for ID: server1.conn0.animationsActor23
+vtools/shared/inspector/css-logic.js:896:11
+exports.NodeActor<.getUniqueSelector<@resource://gre/modules/commonjs/toolkit/loader.js -> resource://devtools/server/actors/inspector.js:644:12
+actorProto/</handler@resource://gre/modules/commonjs/toolkit/loader.js -> resource://devtools/server/protocol.js:1013:19
+DSC_onPacket@resource://gre/modules/commonjs/toolkit/loader.js -> resource://devtools/server/main.js:1643:15
+LocalDebuggerTransport.prototype.send/<@chrome://marionette/content/server.js -> resource://devtools/shared/transport/transport.js:569:11
+exports.makeInfallible/<@resource://gre/modules/commonjs/toolkit/loader.js -> resource://devtools/shared/ThreadSafeDevToolsUtils.js:101:14
+exports.makeInfallible/<@resource://gre/modules/commonjs/toolkit/loader.js -> resource://devtools/shared/ThreadSafeDevToolsUtils.js:101:14
+
+CssLogic.findCssSelector@resource://gre/modules/commonjs/toolkit/loader.js -> resource://devtools/shared/inspector/css-logic.js:896:11
+exports.NodeActor<.getUniqueSelector<@resource://gre/modules/commonjs/toolkit/loader.js -> resource://devtools/server/actors/inspector.js:644:12
+actorProto/</handler@resource://gre/modules/commonjs/toolkit/loader.js -> resource://devtools/server/protocol.js:1013:19
+DSC_onPacket@resource://gre/modules/commonjs/toolkit/loader.js -> resource://devtools/server/main.js:1643:15
+LocalDebuggerTransport.prototype.send/<@chrome://marionette/content/server.js -> resource://devtools/shared/transport/transport.js:569:11
+exports.makeInfallible/<@resource://gre/modules/commonjs/toolkit/loader.js -> resource://devtools/shared/ThreadSafeDevToolsUtils.js:101:14
+exports.makeInfallible/<@resource://gre/modules/commonjs/toolkit/loader.js -> resource://devtools/shared/ThreadSafeDevToolsUtils.js:101:14
+console.error: 
+  Protocol error (unknownError): Error: findCssSelector received element not inside document
+JavaScript error: resource://gre/modules/commonjs/toolkit/loader.js -> resource://devtools/client/inspector/markup/markup.js, line 1869: TypeError: this.node.tagName is null
+console.error: 
+  Protocol error (noSuchActor): No such actor for ID: server1.conn0.animationsActor23

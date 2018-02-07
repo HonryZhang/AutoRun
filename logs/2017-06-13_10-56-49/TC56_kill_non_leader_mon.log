@@ -1,0 +1,24 @@
+2017-06-13 10:56:49,503 INFO TC56_kill_non_leader_mon.py [line:25] 
+This test case will do the following steps:
+1. start IO on 10 images with randwrite and verify
+2. login the non-leader monitor, and kill the mon process
+3. check cluster status, Io status and cluster quorum status
+4. start the killed monitor
+5. check cluster status, does the leader monitor will be back????
+
+2017-06-13 10:56:50,547 INFO monitors.py [line:126]    "quorum_leader_name": "taheo125",
+stdin: is not a tty
+
+2017-06-13 10:56:50,547 INFO monitors.py [line:129]    "quorum_leader_name": "taheo125",
+2017-06-13 10:56:52,550 INFO TC56_kill_non_leader_mon.py [line:30] 
+Step1: Check IO from clients
+2017-06-13 10:56:52,774 ERROR client.py [line:205] IO verify failed
+2017-06-13 10:56:52,775 ERROR client.py [line:206] sudo -i ls -ll /root | grep hdr_fail
+2017-06-13 10:56:52,775 ERROR client.py [line:207] rw-r--r--  1 root root  8192 Jun 13 02:31 client100rbdImg3.0.0.370135506944.hdr_fail
+stdin: is not a tty
+
+2017-06-13 10:56:52,775 ERROR client.py [line:208] IO error, stop IO now
+2017-06-13 10:56:52,775 INFO client.py [line:156] Stop io again
+2017-06-13 10:56:52,989 INFO client.py [line:159] sudo -i killall fio -s 9 
+2017-06-13 10:56:52,989 INFO client.py [line:160] tdin: is not a tty
+

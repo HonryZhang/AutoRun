@@ -1,0 +1,35 @@
+2017-06-07 18:47:27,172 INFO TC47_48_49_50_51_remove_osds_on_single_node.py [line:24] 
+This test case will do the following steps:
+1. start IO on 10 images with randwrite and verify
+2. login the first node 
+3. remove the osd one by one on the first node
+4. check the status
+5. create osd on the node
+
+2017-06-07 18:47:28,092 INFO monitors.py [line:126]    "quorum_leader_name": "CW113",
+stdin: is not a tty
+
+2017-06-07 18:47:28,092 INFO monitors.py [line:129]    "quorum_leader_name": "CW113",
+2017-06-07 18:47:30,095 INFO node.py [line:97] init osd on node ubuntu-A
+2017-06-07 18:47:30,600 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-07 18:47:31,010 INFO cluster.py [line:213]    cluster 9afd408f-471c-4742-8db0-071924668d84
+     health HEALTH_OK
+     monmap e3: 3 mons at {CW113=192.168.1.113:6789/0,CW114=192.168.1.114:6789/0,CW115=192.168.1.115:6789/0}
+            election epoch 6, quorum 0,1,2 CW113,CW114,CW115
+     osdmap e88: 13 osds: 13 up, 13 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v5564: 3072 pgs, 11 pools, 26743 MB data, 6724 objects
+            164 GB used, 8925 GB / 9089 GB avail
+                3072 active+clean
+  client io 90239 B/s rd, 13244 kB/s wr, 114 op/s rd, 3313 op/s wr
+
+2017-06-07 18:47:31,011 INFO cluster.py [line:238] PG number is 3072
+2017-06-07 18:47:31,011 INFO cluster.py [line:239] usefull PG number is 3072
+2017-06-07 18:47:31,011 INFO cluster.py [line:302] osd on node ubuntu-A were init successfully
+2017-06-07 18:47:31,011 INFO node.py [line:97] init osd on node ubuntu-B
+2017-06-07 18:47:31,530 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-07 18:47:31,768 INFO cluster.py [line:213] raceback (most recent call last):
+  File "/usr/local/bin/ceph", line 118, in <module>
+    import rados
+ImportError: librados.so.2: cannot open shared object file: No such file or directory
+

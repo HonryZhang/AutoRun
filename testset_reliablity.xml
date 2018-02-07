@@ -1,0 +1,212 @@
+<testsets doc_type="TC" version="2">
+	<general_case_parameters>
+		<param name="parallel" value="0"/>
+		<param name="stopOnError" value="1"/>
+	</general_case_parameters>
+	<testcases> 
+		<test name="deConfig" id='3'>
+			<location>testcases/ceph/relibility/deConfig</location>
+			<parameters>
+				<param name="pool" value="pool1" />
+			</parameters>   
+		</test>-->
+		<test name="initConfig" id='0'>
+			<location>testcases/ceph/relibility/initConfig</location>
+			<parameters>
+				<param name="pool" value="pool1" />
+			</parameters>   
+		</test>
+	<!--	<test name="TC185_shutdown_osd_on_single_node_nbd" id='6'>
+			<location>testcases/ceph/relibility/TC185_shutdown_osd_on_single_node_nbd</location>
+			<parameters>
+				<param name="pool" value="pool1" />
+			</parameters>   
+		</test>
+		<test name="TC186_shutdown_leader_mon_nbd" id='6'>
+			<location>testcases/ceph/relibility/TC186_shutdown_leader_mon_nbd</location>
+			<parameters>
+				<param name="pool" value="pool1" />
+			</parameters>   
+		</test>
+		<test name="TC187_kill_three_osds_on_single_node_nbd" id='6'>
+			<location>testcases/ceph/relibility/TC187_kill_three_osds_on_single_node_nbd</location>
+			<parameters>
+				<param name="pool" value="pool1" />
+			</parameters>   
+		</test>
+		<test name="TC188_kill_mon_nbd" id='6'>
+			<location>testcases/ceph/relibility/TC188_kill_mon_nbd</location>
+			<parameters>
+				<param name="pool" value="pool1" />
+			</parameters>   
+		</test>
+		<test name="TC189_kill_all_process_nbd" id='6'>
+			<location>testcases/ceph/relibility/TC189_kill_all_process_nbd</location>
+			<parameters>
+				<param name="pool" value="pool1" />
+			</parameters>   
+		</test>-->
+	<!--	<test name="TC190_191_remove_create_osd_on_single_node" id='6'>
+			<location>testcases/ceph/relibility/TC190_191_remove_create_osd_on_single_node</location>
+			<parameters>
+				<param name="pool" value="pool1" />
+			</parameters>   
+		</test>
+		<test name="TC192_pause_cluster_nbd" id='6'>
+			<location>testcases/ceph/relibility/TC192_pause_cluster_nbd</location>
+			<parameters>
+				<param name="pool" value="pool1" />
+			</parameters>   
+		</test>-->
+	<!--	<test name="rbdFio" id='1'>
+			<location>testcases/ceph/relibility/rbdFio</location>
+			<parameters>
+				<param name="pool" value="pool1" />
+			</parameters>   
+		</test>
+	-->
+		<test name="TC38_osd_out_in_cluster" id='1'>
+			<location>testcases/ceph/relibility/TC38_osd_out_in_cluster</location>
+			<parameters>
+				<param name="pool" value="pool1" />
+			</parameters>   
+		</test>
+	<!--
+		<test name="TC538_osd_out_in_cluster_alternately" id='3'>
+			<location>testcases/ceph/relibility/TC538_osd_out_in_cluster_alternately</location>
+			<parameters>
+				<param name="pool" value="pool1" />
+			</parameters>   
+		</test>-->
+	<!--	<test name="TC39_shutdown_osd_on_single_node" id='4'>
+			<location>testcases/ceph/relibility/TC39_shutdown_osd_on_single_node</location>
+			<parameters>
+				<param name="pool" value="pool1" />
+			</parameters>   
+		</test>
+		<test name="TC40_kill_osd_on_single_node" id='5'>
+			<location>testcases/ceph/relibility/TC40_kill_osd_on_single_node</location>
+			<parameters>
+				<param name="pool" value="pool1" />
+			</parameters>   
+		</test>
+		
+		<test name="TC41_shutdown_two_osds_on_single_node" id='6'>
+			<location>testcases/ceph/relibility/TC41_shutdown_two_osds_on_single_node</location>
+			<parameters>
+				<param name="pool" value="pool1" />
+			</parameters>   
+		</test>
+		-->
+	<!--	<test name="TC42_kill_two_osds_on_single_node" id='6'>
+			<location>testcases/ceph/relibility/TC42_kill_two_osds_on_single_node</location>
+			<parameters>
+				<param name="pool" value="pool1" />
+			</parameters>   
+		</test>
+		<test name="TC43_shutdown_three_osds_on_single_node" id='6'>
+			<location>testcases/ceph/relibility/TC43_shutdown_three_osds_on_single_node</location>
+			<parameters>
+				<param name="pool" value="pool1" />
+			</parameters>   
+		</test>
+		<test name="TC44_kill_three_osds_on_single_node" id='6'>
+			<location>testcases/ceph/relibility/TC44_kill_three_osds_on_single_node</location>
+			<parameters>
+				<param name="pool" value="pool1" />
+			</parameters>   
+		</test>
+		<test name="TC45_shutdown_osd_on_two_node" id='6'>
+			<location>testcases/ceph/relibility/TC45_shutdown_osd_on_two_node</location>
+			<parameters>
+				<param name="pool" value="pool1" />
+			</parameters>   
+		</test>
+		<test name="TC46_kill_osd_on_two_node" id='6'>
+			<location>testcases/ceph/relibility/TC46_kill_osd_on_two_node</location>
+			<parameters>
+				<param name="pool" value="pool1" />
+			</parameters>   
+		</test>
+		<test name="TC58_shutdown_osd_on_three_node" id='6'>
+			<location>testcases/ceph/relibility/TC58_shutdown_osd_on_three_node</location>
+			<parameters>
+				<param name="pool" value="pool1" />
+			</parameters>   
+		</test>
+		<test name="TC59_kill_osd_on_three_node" id='6'>
+			<location>testcases/ceph/relibility/TC59_kill_osd_on_three_node</location>
+			<parameters>
+				<param name="pool" value="pool1" />
+			</parameters>   
+		</test>
+		<test name="TC47_48_49_50_51_remove_osds_on_single_node" id='6'>
+			<location>testcases/ceph/relibility/TC47_48_49_50_51_remove_osds_on_single_node</location>
+			<parameters>
+				<param name="pool" value="pool1" />
+			</parameters>   
+		</test>
+		<test name="TC52_remove_osd_on_two_node" id='6'>
+			<location>testcases/ceph/relibility/TC52_remove_osd_on_two_node</location>
+			<parameters>
+				<param name="pool" value="pool1" />
+			</parameters>   
+		</test>
+		
+		<test name="TC53_shutdown_mon_on_single_node" id='6'>
+			<location>testcases/ceph/relibility/TC53_shutdown_mon_on_single_node</location>
+			<parameters>
+				<param name="pool" value="pool1" />
+			</parameters>   
+		</test>
+		<test name="TC54_kill_mon_on_single_node" id='6'>
+			<location>testcases/ceph/relibility/TC54_kill_mon_on_single_node</location>
+			<parameters>
+				<param name="pool" value="pool1" />
+			</parameters>   
+		</test>-->
+	<!--	<test name="TC55_kill_leader_mon" id='6'>
+			<location>testcases/ceph/relibility/TC55_kill_leader_mon</location>
+			<parameters>
+				<param name="pool" value="pool1" />
+			</parameters>   
+		</test>
+		<test name="TC56_kill_non_leader_mon" id='6'>
+			<location>testcases/ceph/relibility/TC56_kill_non_leader_mon</location>
+			<parameters>
+				<param name="pool" value="pool1" />
+			</parameters>   
+		</test>
+		<test name="TC57_kill_lead_mon_on_multiMon" id='6'>
+			<location>testcases/ceph/relibility/TC57_kill_lead_mon_on_multiMon</location>
+			<parameters>
+				<param name="pool" value="pool1" />
+			</parameters>   
+		</test>-->
+	<!--	<test name="TC60_pause_cluster" id='6'>
+			<location>testcases/ceph/relibility/TC60_pause_cluster</location>
+			<parameters>
+				<param name="pool" value="pool1" />
+			</parameters>   
+		</test>
+		
+		<test name="TC156_force_delete_osd_on_single_node" id='6'>
+			<location>testcases/ceph/relibility/TC156_force_delete_osd_on_single_node</location>
+			<parameters>
+				<param name="pool" value="pool1" />
+			</parameters>   
+		</test>
+		<test name="TC157_kill_all_process" id='6'>
+			<location>testcases/ceph/relibility/TC157_kill_all_process</location>
+			<parameters>
+				<param name="pool" value="pool1" />
+			</parameters>   
+		</test>
+		<test name="case1" id='1'>
+			<location>testcases/case1</location>
+			<parameters>
+				<param name="pool" value="pool1" />
+			</parameters>   
+		</test>-->
+	</testcases>
+</testsets>

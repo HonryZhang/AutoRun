@@ -1,0 +1,5 @@
+2017-05-25 17:47:16,500 INFO monitors.py [line:126]    "quorum_leader_name": "denali01",
+
+2017-05-25 17:47:16,500 INFO monitors.py [line:129]    "quorum_leader_name": "denali01",
+2017-05-25 17:47:16,500 INFO base.py [line:35] 
+Now start IO on  clientrbdImg0

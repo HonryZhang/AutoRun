@@ -1,0 +1,2401 @@
+2017-06-09 16:48:51,632 INFO TC52_remove_osd_on_two_node.py [line:24] 
+This test case will do the following steps:
+1. start IO on 10 images with randwrite and verify
+2. login the first node 
+3. remove one osd from the first node
+4. login the second node
+5. remove one osd from the second node
+
+2017-06-09 16:48:52,664 INFO monitors.py [line:126]    "quorum_leader_name": "CW113",
+stdin: is not a tty
+
+2017-06-09 16:48:52,664 INFO monitors.py [line:129]    "quorum_leader_name": "CW113",
+2017-06-09 16:48:52,665 INFO TC52_remove_osd_on_two_node.py [line:29] start to check cluster status before case running
+2017-06-09 16:48:54,668 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-09 16:48:55,154 INFO cluster.py [line:213]    cluster 9afd408f-471c-4742-8db0-071924668d84
+     health HEALTH_WARN
+            94 pgs backfill_wait
+            4 pgs backfilling
+            98 pgs stuck unclean
+            recovery 118835/876146 objects misplaced (13.563%)
+     monmap e3: 3 mons at {CW113=192.168.1.113:6789/0,CW114=192.168.1.114:6789/0,CW115=192.168.1.115:6789/0}
+            election epoch 6, quorum 0,1,2 CW113,CW114,CW115
+     osdmap e9232: 12 osds: 12 up, 12 in; 97 remapped pgs
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v105181: 3072 pgs, 11 pools, 1590 GB data, 398 kobjects
+            2897 GB used, 5493 GB / 8390 GB avail
+            118835/876146 objects misplaced (13.563%)
+                2974 active+clean
+                  94 active+remapped+backfill_wait
+                   4 active+remapped+backfilling
+recovery io 450 MB/s, 121 objects/s
+stdin: is not a tty
+
+2017-06-09 16:48:55,154 INFO cluster.py [line:238] PG number is 3072
+2017-06-09 16:48:55,155 INFO cluster.py [line:239] usefull PG number is 2974
+2017-06-09 16:49:55,198 INFO cluster.py [line:247] cost 61 seconds, left 5939 seconds when check the ceph status
+2017-06-09 16:49:55,198 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-09 16:49:55,606 INFO cluster.py [line:213]    cluster 9afd408f-471c-4742-8db0-071924668d84
+     health HEALTH_WARN
+            89 pgs backfill_wait
+            3 pgs backfilling
+            92 pgs stuck unclean
+            recovery 110912/872227 objects misplaced (12.716%)
+     monmap e3: 3 mons at {CW113=192.168.1.113:6789/0,CW114=192.168.1.114:6789/0,CW115=192.168.1.115:6789/0}
+            election epoch 6, quorum 0,1,2 CW113,CW114,CW115
+     osdmap e9237: 12 osds: 12 up, 12 in; 92 remapped pgs
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v105235: 3072 pgs, 11 pools, 1590 GB data, 398 kobjects
+            2897 GB used, 5493 GB / 8390 GB avail
+            110912/872227 objects misplaced (12.716%)
+                2980 active+clean
+                  89 active+remapped+backfill_wait
+                   3 active+remapped+backfilling
+recovery io 804 MB/s, 217 objects/s
+stdin: is not a tty
+
+2017-06-09 16:49:55,607 INFO cluster.py [line:238] PG number is 3072
+2017-06-09 16:49:55,607 INFO cluster.py [line:239] usefull PG number is 2980
+2017-06-09 16:50:55,647 INFO cluster.py [line:247] cost 60 seconds, left 5879 seconds when check the ceph status
+2017-06-09 16:50:55,647 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-09 16:50:56,093 INFO cluster.py [line:213]    cluster 9afd408f-471c-4742-8db0-071924668d84
+     health HEALTH_WARN
+            82 pgs backfill_wait
+            4 pgs backfilling
+            86 pgs stuck unclean
+            recovery 102413/868243 objects misplaced (11.795%)
+     monmap e3: 3 mons at {CW113=192.168.1.113:6789/0,CW114=192.168.1.114:6789/0,CW115=192.168.1.115:6789/0}
+            election epoch 6, quorum 0,1,2 CW113,CW114,CW115
+     osdmap e9246: 12 osds: 12 up, 12 in; 86 remapped pgs
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v105289: 3072 pgs, 11 pools, 1590 GB data, 398 kobjects
+            2898 GB used, 5492 GB / 8390 GB avail
+            102413/868243 objects misplaced (11.795%)
+                2986 active+clean
+                  82 active+remapped+backfill_wait
+                   4 active+remapped+backfilling
+recovery io 760 MB/s, 204 objects/s
+stdin: is not a tty
+
+2017-06-09 16:50:56,093 INFO cluster.py [line:238] PG number is 3072
+2017-06-09 16:50:56,093 INFO cluster.py [line:239] usefull PG number is 2986
+2017-06-09 16:51:56,137 INFO cluster.py [line:247] cost 61 seconds, left 5818 seconds when check the ceph status
+2017-06-09 16:51:56,138 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-09 16:51:56,559 INFO cluster.py [line:213]    cluster 9afd408f-471c-4742-8db0-071924668d84
+     health HEALTH_WARN
+            72 pgs backfill_wait
+            6 pgs backfilling
+            78 pgs stuck unclean
+            recovery 89395/861148 objects misplaced (10.381%)
+     monmap e3: 3 mons at {CW113=192.168.1.113:6789/0,CW114=192.168.1.114:6789/0,CW115=192.168.1.115:6789/0}
+            election epoch 6, quorum 0,1,2 CW113,CW114,CW115
+     osdmap e9262: 12 osds: 12 up, 12 in; 78 remapped pgs
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v105348: 3072 pgs, 11 pools, 1590 GB data, 398 kobjects
+            2895 GB used, 5495 GB / 8390 GB avail
+            89395/861148 objects misplaced (10.381%)
+                2994 active+clean
+                  72 active+remapped+backfill_wait
+                   6 active+remapped+backfilling
+recovery io 815 MB/s, 218 objects/s
+stdin: is not a tty
+
+2017-06-09 16:51:56,581 INFO cluster.py [line:238] PG number is 3072
+2017-06-09 16:51:56,581 INFO cluster.py [line:239] usefull PG number is 2994
+2017-06-09 16:52:56,633 INFO cluster.py [line:247] cost 60 seconds, left 5758 seconds when check the ceph status
+2017-06-09 16:52:56,633 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-09 16:52:57,062 INFO cluster.py [line:213]    cluster 9afd408f-471c-4742-8db0-071924668d84
+     health HEALTH_WARN
+            64 pgs backfill_wait
+            4 pgs backfilling
+            68 pgs stuck unclean
+            recovery 75277/853925 objects misplaced (8.815%)
+     monmap e3: 3 mons at {CW113=192.168.1.113:6789/0,CW114=192.168.1.114:6789/0,CW115=192.168.1.115:6789/0}
+            election epoch 6, quorum 0,1,2 CW113,CW114,CW115
+     osdmap e9277: 12 osds: 12 up, 12 in; 68 remapped pgs
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v105406: 3072 pgs, 11 pools, 1590 GB data, 398 kobjects
+            2893 GB used, 5496 GB / 8390 GB avail
+            75277/853925 objects misplaced (8.815%)
+                3004 active+clean
+                  64 active+remapped+backfill_wait
+                   4 active+remapped+backfilling
+recovery io 992 MB/s, 270 objects/s
+stdin: is not a tty
+
+2017-06-09 16:52:57,063 INFO cluster.py [line:238] PG number is 3072
+2017-06-09 16:52:57,063 INFO cluster.py [line:239] usefull PG number is 3004
+2017-06-09 16:53:57,101 INFO cluster.py [line:247] cost 61 seconds, left 5697 seconds when check the ceph status
+2017-06-09 16:53:57,101 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-09 16:53:57,505 INFO cluster.py [line:213]    cluster 9afd408f-471c-4742-8db0-071924668d84
+     health HEALTH_WARN
+            59 pgs backfill_wait
+            4 pgs backfilling
+            63 pgs stuck unclean
+            recovery 67824/850029 objects misplaced (7.979%)
+     monmap e3: 3 mons at {CW113=192.168.1.113:6789/0,CW114=192.168.1.114:6789/0,CW115=192.168.1.115:6789/0}
+            election epoch 6, quorum 0,1,2 CW113,CW114,CW115
+     osdmap e9287: 12 osds: 12 up, 12 in; 63 remapped pgs
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v105463: 3072 pgs, 11 pools, 1590 GB data, 398 kobjects
+            2892 GB used, 5497 GB / 8390 GB avail
+            67824/850029 objects misplaced (7.979%)
+                3009 active+clean
+                  59 active+remapped+backfill_wait
+                   4 active+remapped+backfilling
+recovery io 438 MB/s, 117 objects/s
+stdin: is not a tty
+
+2017-06-09 16:53:57,505 INFO cluster.py [line:238] PG number is 3072
+2017-06-09 16:53:57,505 INFO cluster.py [line:239] usefull PG number is 3009
+2017-06-09 16:54:57,527 INFO cluster.py [line:247] cost 60 seconds, left 5637 seconds when check the ceph status
+2017-06-09 16:54:57,527 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-09 16:54:57,919 INFO cluster.py [line:213]    cluster 9afd408f-471c-4742-8db0-071924668d84
+     health HEALTH_WARN
+            47 pgs backfill_wait
+            6 pgs backfilling
+            1 pgs peering
+            53 pgs stuck unclean
+            recovery 54458/843572 objects misplaced (6.456%)
+     monmap e3: 3 mons at {CW113=192.168.1.113:6789/0,CW114=192.168.1.114:6789/0,CW115=192.168.1.115:6789/0}
+            election epoch 6, quorum 0,1,2 CW113,CW114,CW115
+     osdmap e9306: 12 osds: 12 up, 12 in; 51 remapped pgs
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v105527: 3072 pgs, 11 pools, 1590 GB data, 398 kobjects
+            2896 GB used, 5494 GB / 8390 GB avail
+            54458/843572 objects misplaced (6.456%)
+                3018 active+clean
+                  47 active+remapped+backfill_wait
+                   6 active+remapped+backfilling
+                   1 peering
+recovery io 716 MB/s, 189 objects/s
+stdin: is not a tty
+
+2017-06-09 16:54:57,920 INFO cluster.py [line:238] PG number is 3072
+2017-06-09 16:54:57,920 INFO cluster.py [line:239] usefull PG number is 3018
+2017-06-09 16:55:57,946 INFO cluster.py [line:247] cost 60 seconds, left 5577 seconds when check the ceph status
+2017-06-09 16:55:57,946 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-09 16:55:58,330 INFO cluster.py [line:213]    cluster 9afd408f-471c-4742-8db0-071924668d84
+     health HEALTH_WARN
+            39 pgs backfill_wait
+            4 pgs backfilling
+            43 pgs stuck unclean
+            recovery 45087/838602 objects misplaced (5.376%)
+     monmap e3: 3 mons at {CW113=192.168.1.113:6789/0,CW114=192.168.1.114:6789/0,CW115=192.168.1.115:6789/0}
+            election epoch 6, quorum 0,1,2 CW113,CW114,CW115
+     osdmap e9322: 12 osds: 12 up, 12 in; 43 remapped pgs
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v105588: 3072 pgs, 11 pools, 1590 GB data, 398 kobjects
+            2894 GB used, 5495 GB / 8390 GB avail
+            45087/838602 objects misplaced (5.376%)
+                3029 active+clean
+                  39 active+remapped+backfill_wait
+                   4 active+remapped+backfilling
+recovery io 205 MB/s, 55 objects/s
+  client io 19119 B/s rd, 28 op/s rd, 0 op/s wr
+stdin: is not a tty
+
+2017-06-09 16:55:58,330 INFO cluster.py [line:238] PG number is 3072
+2017-06-09 16:55:58,330 INFO cluster.py [line:239] usefull PG number is 3029
+2017-06-09 16:56:58,386 INFO cluster.py [line:247] cost 61 seconds, left 5516 seconds when check the ceph status
+2017-06-09 16:56:58,386 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-09 16:56:58,764 INFO cluster.py [line:213]    cluster 9afd408f-471c-4742-8db0-071924668d84
+     health HEALTH_WARN
+            32 pgs backfill_wait
+            4 pgs backfilling
+            36 pgs stuck unclean
+            recovery 38519/835377 objects misplaced (4.611%)
+     monmap e3: 3 mons at {CW113=192.168.1.113:6789/0,CW114=192.168.1.114:6789/0,CW115=192.168.1.115:6789/0}
+            election epoch 6, quorum 0,1,2 CW113,CW114,CW115
+     osdmap e9335: 12 osds: 12 up, 12 in; 36 remapped pgs
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v105646: 3072 pgs, 11 pools, 1590 GB data, 398 kobjects
+            2894 GB used, 5496 GB / 8390 GB avail
+            38519/835377 objects misplaced (4.611%)
+                3036 active+clean
+                  32 active+remapped+backfill_wait
+                   4 active+remapped+backfilling
+recovery io 405 MB/s, 108 objects/s
+stdin: is not a tty
+
+2017-06-09 16:56:58,765 INFO cluster.py [line:238] PG number is 3072
+2017-06-09 16:56:58,765 INFO cluster.py [line:239] usefull PG number is 3036
+2017-06-09 16:57:58,802 INFO cluster.py [line:247] cost 60 seconds, left 5456 seconds when check the ceph status
+2017-06-09 16:57:58,802 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-09 16:57:59,220 INFO cluster.py [line:213]    cluster 9afd408f-471c-4742-8db0-071924668d84
+     health HEALTH_WARN
+            27 pgs backfill_wait
+            3 pgs backfilling
+            1 pgs peering
+            30 pgs stuck unclean
+            recovery 32472/832068 objects misplaced (3.903%)
+     monmap e3: 3 mons at {CW113=192.168.1.113:6789/0,CW114=192.168.1.114:6789/0,CW115=192.168.1.115:6789/0}
+            election epoch 6, quorum 0,1,2 CW113,CW114,CW115
+     osdmap e9347: 12 osds: 12 up, 12 in; 30 remapped pgs
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v105704: 3072 pgs, 11 pools, 1590 GB data, 398 kobjects
+            2893 GB used, 5497 GB / 8390 GB avail
+            32472/832068 objects misplaced (3.903%)
+                3041 active+clean
+                  27 active+remapped+backfill_wait
+                   3 active+remapped+backfilling
+                   1 peering
+recovery io 330 MB/s, 88 objects/s
+stdin: is not a tty
+
+2017-06-09 16:57:59,220 INFO cluster.py [line:238] PG number is 3072
+2017-06-09 16:57:59,220 INFO cluster.py [line:239] usefull PG number is 3041
+2017-06-09 16:58:59,243 INFO cluster.py [line:247] cost 61 seconds, left 5395 seconds when check the ceph status
+2017-06-09 16:58:59,243 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-09 16:58:59,630 INFO cluster.py [line:213]    cluster 9afd408f-471c-4742-8db0-071924668d84
+     health HEALTH_WARN
+            21 pgs backfill_wait
+            2 pgs backfilling
+            23 pgs stuck unclean
+            recovery 27716/829537 objects misplaced (3.341%)
+     monmap e3: 3 mons at {CW113=192.168.1.113:6789/0,CW114=192.168.1.114:6789/0,CW115=192.168.1.115:6789/0}
+            election epoch 6, quorum 0,1,2 CW113,CW114,CW115
+     osdmap e9357: 12 osds: 12 up, 12 in; 23 remapped pgs
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v105759: 3072 pgs, 11 pools, 1590 GB data, 398 kobjects
+            2889 GB used, 5501 GB / 8390 GB avail
+            27716/829537 objects misplaced (3.341%)
+                3049 active+clean
+                  21 active+remapped+backfill_wait
+                   2 active+remapped+backfilling
+stdin: is not a tty
+
+2017-06-09 16:58:59,646 INFO cluster.py [line:238] PG number is 3072
+2017-06-09 16:58:59,647 INFO cluster.py [line:239] usefull PG number is 3049
+2017-06-09 16:59:59,688 INFO cluster.py [line:247] cost 60 seconds, left 5335 seconds when check the ceph status
+2017-06-09 16:59:59,688 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-09 17:00:00,039 INFO cluster.py [line:213]    cluster 9afd408f-471c-4742-8db0-071924668d84
+     health HEALTH_WARN
+            18 pgs backfill_wait
+            3 pgs backfilling
+            21 pgs stuck unclean
+            recovery 24178/827999 objects misplaced (2.920%)
+     monmap e3: 3 mons at {CW113=192.168.1.113:6789/0,CW114=192.168.1.114:6789/0,CW115=192.168.1.115:6789/0}
+            election epoch 6, quorum 0,1,2 CW113,CW114,CW115
+     osdmap e9361: 12 osds: 12 up, 12 in; 21 remapped pgs
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v105811: 3072 pgs, 11 pools, 1590 GB data, 398 kobjects
+            2891 GB used, 5499 GB / 8390 GB avail
+            24178/827999 objects misplaced (2.920%)
+                3051 active+clean
+                  18 active+remapped+backfill_wait
+                   3 active+remapped+backfilling
+recovery io 444 MB/s, 118 objects/s
+stdin: is not a tty
+
+2017-06-09 17:00:00,039 INFO cluster.py [line:238] PG number is 3072
+2017-06-09 17:00:00,039 INFO cluster.py [line:239] usefull PG number is 3051
+2017-06-09 17:01:00,098 INFO cluster.py [line:247] cost 61 seconds, left 5274 seconds when check the ceph status
+2017-06-09 17:01:00,098 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-09 17:01:00,478 INFO cluster.py [line:213]    cluster 9afd408f-471c-4742-8db0-071924668d84
+     health HEALTH_WARN
+            15 pgs backfill_wait
+            2 pgs backfilling
+            17 pgs stuck unclean
+            recovery 19746/825660 objects misplaced (2.392%)
+     monmap e3: 3 mons at {CW113=192.168.1.113:6789/0,CW114=192.168.1.114:6789/0,CW115=192.168.1.115:6789/0}
+            election epoch 6, quorum 0,1,2 CW113,CW114,CW115
+     osdmap e9367: 12 osds: 12 up, 12 in; 17 remapped pgs
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v105863: 3072 pgs, 11 pools, 1590 GB data, 398 kobjects
+            2890 GB used, 5500 GB / 8390 GB avail
+            19746/825660 objects misplaced (2.392%)
+                3055 active+clean
+                  15 active+remapped+backfill_wait
+                   2 active+remapped+backfilling
+recovery io 160 MB/s, 42 objects/s
+stdin: is not a tty
+
+2017-06-09 17:01:00,478 INFO cluster.py [line:238] PG number is 3072
+2017-06-09 17:01:00,478 INFO cluster.py [line:239] usefull PG number is 3055
+2017-06-09 17:02:00,525 INFO cluster.py [line:247] cost 60 seconds, left 5214 seconds when check the ceph status
+2017-06-09 17:02:00,525 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-09 17:02:00,927 INFO cluster.py [line:213]    cluster 9afd408f-471c-4742-8db0-071924668d84
+     health HEALTH_WARN
+            12 pgs backfill_wait
+            2 pgs backfilling
+            14 pgs stuck unclean
+            recovery 16505/824082 objects misplaced (2.003%)
+     monmap e3: 3 mons at {CW113=192.168.1.113:6789/0,CW114=192.168.1.114:6789/0,CW115=192.168.1.115:6789/0}
+            election epoch 6, quorum 0,1,2 CW113,CW114,CW115
+     osdmap e9373: 12 osds: 12 up, 12 in; 14 remapped pgs
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v105916: 3072 pgs, 11 pools, 1590 GB data, 398 kobjects
+            2890 GB used, 5500 GB / 8390 GB avail
+            16505/824082 objects misplaced (2.003%)
+                3058 active+clean
+                  12 active+remapped+backfill_wait
+                   2 active+remapped+backfilling
+recovery io 196 MB/s, 52 objects/s
+stdin: is not a tty
+
+2017-06-09 17:02:00,928 INFO cluster.py [line:238] PG number is 3072
+2017-06-09 17:02:00,928 INFO cluster.py [line:239] usefull PG number is 3058
+2017-06-09 17:03:00,988 INFO cluster.py [line:247] cost 60 seconds, left 5154 seconds when check the ceph status
+2017-06-09 17:03:00,988 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-09 17:03:01,424 INFO cluster.py [line:213]    cluster 9afd408f-471c-4742-8db0-071924668d84
+     health HEALTH_WARN
+            9 pgs backfill_wait
+            3 pgs backfilling
+            12 pgs stuck unclean
+            recovery 12806/822481 objects misplaced (1.557%)
+     monmap e3: 3 mons at {CW113=192.168.1.113:6789/0,CW114=192.168.1.114:6789/0,CW115=192.168.1.115:6789/0}
+            election epoch 6, quorum 0,1,2 CW113,CW114,CW115
+     osdmap e9377: 12 osds: 12 up, 12 in; 12 remapped pgs
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v105969: 3072 pgs, 11 pools, 1590 GB data, 398 kobjects
+            2891 GB used, 5498 GB / 8390 GB avail
+            12806/822481 objects misplaced (1.557%)
+                3060 active+clean
+                   9 active+remapped+backfill_wait
+                   3 active+remapped+backfilling
+recovery io 467 MB/s, 124 objects/s
+stdin: is not a tty
+
+2017-06-09 17:03:01,424 INFO cluster.py [line:238] PG number is 3072
+2017-06-09 17:03:01,425 INFO cluster.py [line:239] usefull PG number is 3060
+2017-06-09 17:04:01,482 INFO cluster.py [line:247] cost 61 seconds, left 5093 seconds when check the ceph status
+2017-06-09 17:04:01,483 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-09 17:04:01,871 INFO cluster.py [line:213]    cluster 9afd408f-471c-4742-8db0-071924668d84
+     health HEALTH_WARN
+            3 pgs backfill_wait
+            3 pgs backfilling
+            6 pgs stuck unclean
+            recovery 7877/820062 objects misplaced (0.961%)
+     monmap e3: 3 mons at {CW113=192.168.1.113:6789/0,CW114=192.168.1.114:6789/0,CW115=192.168.1.115:6789/0}
+            election epoch 6, quorum 0,1,2 CW113,CW114,CW115
+     osdmap e9386: 12 osds: 12 up, 12 in; 6 remapped pgs
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v106025: 3072 pgs, 11 pools, 1590 GB data, 398 kobjects
+            2892 GB used, 5498 GB / 8390 GB avail
+            7877/820062 objects misplaced (0.961%)
+                3066 active+clean
+                   3 active+remapped+backfilling
+                   3 active+remapped+backfill_wait
+recovery io 214 MB/s, 57 objects/s
+stdin: is not a tty
+
+2017-06-09 17:04:01,871 INFO cluster.py [line:238] PG number is 3072
+2017-06-09 17:04:01,872 INFO cluster.py [line:239] usefull PG number is 3066
+2017-06-09 17:05:01,918 INFO cluster.py [line:247] cost 60 seconds, left 5033 seconds when check the ceph status
+2017-06-09 17:05:01,919 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-09 17:05:02,303 INFO cluster.py [line:213]    cluster 9afd408f-471c-4742-8db0-071924668d84
+     health HEALTH_WARN
+            2 pgs backfill_wait
+            1 pgs backfilling
+            3 pgs stuck unclean
+            recovery 4308/817824 objects misplaced (0.527%)
+     monmap e3: 3 mons at {CW113=192.168.1.113:6789/0,CW114=192.168.1.114:6789/0,CW115=192.168.1.115:6789/0}
+            election epoch 6, quorum 0,1,2 CW113,CW114,CW115
+     osdmap e9392: 12 osds: 12 up, 12 in; 3 remapped pgs
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v106081: 3072 pgs, 11 pools, 1590 GB data, 398 kobjects
+            2889 GB used, 5501 GB / 8390 GB avail
+            4308/817824 objects misplaced (0.527%)
+                3069 active+clean
+                   2 active+remapped+backfill_wait
+                   1 active+remapped+backfilling
+stdin: is not a tty
+
+2017-06-09 17:05:02,303 INFO cluster.py [line:238] PG number is 3072
+2017-06-09 17:05:02,304 INFO cluster.py [line:239] usefull PG number is 3069
+2017-06-09 17:06:02,329 INFO cluster.py [line:247] cost 61 seconds, left 4972 seconds when check the ceph status
+2017-06-09 17:06:02,330 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-09 17:06:02,723 INFO cluster.py [line:213]    cluster 9afd408f-471c-4742-8db0-071924668d84
+     health HEALTH_WARN
+            1 pgs backfill_wait
+            1 pgs backfilling
+            2 pgs stuck unclean
+            recovery 2654/816975 objects misplaced (0.325%)
+     monmap e3: 3 mons at {CW113=192.168.1.113:6789/0,CW114=192.168.1.114:6789/0,CW115=192.168.1.115:6789/0}
+            election epoch 6, quorum 0,1,2 CW113,CW114,CW115
+     osdmap e9394: 12 osds: 12 up, 12 in; 2 remapped pgs
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v106130: 3072 pgs, 11 pools, 1590 GB data, 398 kobjects
+            2889 GB used, 5501 GB / 8390 GB avail
+            2654/816975 objects misplaced (0.325%)
+                3070 active+clean
+                   1 active+remapped+backfill_wait
+                   1 active+remapped+backfilling
+stdin: is not a tty
+
+2017-06-09 17:06:02,723 INFO cluster.py [line:238] PG number is 3072
+2017-06-09 17:06:02,723 INFO cluster.py [line:239] usefull PG number is 3070
+2017-06-09 17:07:02,757 INFO cluster.py [line:247] cost 60 seconds, left 4912 seconds when check the ceph status
+2017-06-09 17:07:02,758 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-09 17:07:03,156 INFO cluster.py [line:213]    cluster 9afd408f-471c-4742-8db0-071924668d84
+     health HEALTH_WARN
+            1 pgs backfilling
+            1 pgs stuck unclean
+            recovery 1118/816230 objects misplaced (0.137%)
+     monmap e3: 3 mons at {CW113=192.168.1.113:6789/0,CW114=192.168.1.114:6789/0,CW115=192.168.1.115:6789/0}
+            election epoch 6, quorum 0,1,2 CW113,CW114,CW115
+     osdmap e9396: 12 osds: 12 up, 12 in; 1 remapped pgs
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v106176: 3072 pgs, 11 pools, 1590 GB data, 398 kobjects
+            2889 GB used, 5500 GB / 8390 GB avail
+            1118/816230 objects misplaced (0.137%)
+                3071 active+clean
+                   1 active+remapped+backfilling
+stdin: is not a tty
+
+2017-06-09 17:07:03,157 INFO cluster.py [line:238] PG number is 3072
+2017-06-09 17:07:03,157 INFO cluster.py [line:239] usefull PG number is 3071
+2017-06-09 17:08:03,190 INFO cluster.py [line:247] cost 61 seconds, left 4851 seconds when check the ceph status
+2017-06-09 17:08:03,190 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-09 17:08:03,614 INFO cluster.py [line:213]    cluster 9afd408f-471c-4742-8db0-071924668d84
+     health HEALTH_WARN
+            218 pgs backfill_wait
+            7 pgs backfilling
+            17 pgs degraded
+            17 pgs recovery_wait
+            75 pgs stuck unclean
+            recovery 41/948169 objects degraded (0.004%)
+            recovery 262593/948169 objects misplaced (27.695%)
+     monmap e3: 3 mons at {CW113=192.168.1.113:6789/0,CW114=192.168.1.114:6789/0,CW115=192.168.1.115:6789/0}
+            election epoch 6, quorum 0,1,2 CW113,CW114,CW115
+     osdmap e9413: 12 osds: 12 up, 12 in; 224 remapped pgs
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v106235: 3072 pgs, 11 pools, 1590 GB data, 398 kobjects
+            2897 GB used, 5493 GB / 8390 GB avail
+            41/948169 objects degraded (0.004%)
+            262593/948169 objects misplaced (27.695%)
+                2830 active+clean
+                 218 active+remapped+backfill_wait
+                  17 active+recovery_wait+degraded
+                   7 active+remapped+backfilling
+recovery io 1179 MB/s, 318 objects/s
+  client io 79347 B/s rd, 100 op/s rd, 0 op/s wr
+stdin: is not a tty
+
+2017-06-09 17:08:03,661 INFO cluster.py [line:238] PG number is 3072
+2017-06-09 17:08:03,661 INFO cluster.py [line:239] usefull PG number is 2830
+2017-06-09 17:09:03,700 INFO cluster.py [line:247] cost 60 seconds, left 4791 seconds when check the ceph status
+2017-06-09 17:09:03,701 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-09 17:09:04,161 INFO cluster.py [line:213]    cluster 9afd408f-471c-4742-8db0-071924668d84
+     health HEALTH_WARN
+            211 pgs backfill_wait
+            4 pgs backfilling
+            6 pgs degraded
+            6 pgs recovery_wait
+            123 pgs stuck unclean
+            recovery 19/941065 objects degraded (0.002%)
+            recovery 249993/941065 objects misplaced (26.565%)
+     monmap e3: 3 mons at {CW113=192.168.1.113:6789/0,CW114=192.168.1.114:6789/0,CW115=192.168.1.115:6789/0}
+            election epoch 6, quorum 0,1,2 CW113,CW114,CW115
+     osdmap e9429: 12 osds: 12 up, 12 in; 214 remapped pgs
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v106296: 3072 pgs, 11 pools, 1590 GB data, 398 kobjects
+            2894 GB used, 5495 GB / 8390 GB avail
+            19/941065 objects degraded (0.002%)
+            249993/941065 objects misplaced (26.565%)
+                2851 active+clean
+                 211 active+remapped+backfill_wait
+                   6 active+recovery_wait+degraded
+                   4 active+remapped+backfilling
+recovery io 403 MB/s, 107 objects/s
+stdin: is not a tty
+
+2017-06-09 17:09:04,161 INFO cluster.py [line:238] PG number is 3072
+2017-06-09 17:09:04,161 INFO cluster.py [line:239] usefull PG number is 2851
+2017-06-09 17:10:04,217 INFO cluster.py [line:247] cost 61 seconds, left 4730 seconds when check the ceph status
+2017-06-09 17:10:04,218 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-09 17:10:04,598 INFO cluster.py [line:213]    cluster 9afd408f-471c-4742-8db0-071924668d84
+     health HEALTH_WARN
+            203 pgs backfill_wait
+            6 pgs backfilling
+            1 pgs degraded
+            1 pgs recovery_wait
+            120 pgs stuck unclean
+            recovery 2/937049 objects degraded (0.000%)
+            recovery 241327/937049 objects misplaced (25.754%)
+     monmap e3: 3 mons at {CW113=192.168.1.113:6789/0,CW114=192.168.1.114:6789/0,CW115=192.168.1.115:6789/0}
+            election epoch 6, quorum 0,1,2 CW113,CW114,CW115
+     osdmap e9439: 12 osds: 12 up, 12 in; 209 remapped pgs
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v106354: 3072 pgs, 11 pools, 1590 GB data, 398 kobjects
+            2894 GB used, 5496 GB / 8390 GB avail
+            2/937049 objects degraded (0.000%)
+            241327/937049 objects misplaced (25.754%)
+                2862 active+clean
+                 203 active+remapped+backfill_wait
+                   6 active+remapped+backfilling
+                   1 active+recovery_wait+degraded
+recovery io 400 MB/s, 106 objects/s
+  client io 69948 B/s rd, 85 op/s rd, 0 op/s wr
+stdin: is not a tty
+
+2017-06-09 17:10:04,599 INFO cluster.py [line:238] PG number is 3072
+2017-06-09 17:10:04,599 INFO cluster.py [line:239] usefull PG number is 2862
+2017-06-09 17:11:04,643 INFO cluster.py [line:247] cost 60 seconds, left 4670 seconds when check the ceph status
+2017-06-09 17:11:04,643 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-09 17:11:05,070 INFO cluster.py [line:213]    cluster 9afd408f-471c-4742-8db0-071924668d84
+     health HEALTH_WARN
+            194 pgs backfill_wait
+            5 pgs backfilling
+            130 pgs stuck unclean
+            recovery 227389/930028 objects misplaced (24.450%)
+     monmap e3: 3 mons at {CW113=192.168.1.113:6789/0,CW114=192.168.1.114:6789/0,CW115=192.168.1.115:6789/0}
+            election epoch 6, quorum 0,1,2 CW113,CW114,CW115
+     osdmap e9456: 12 osds: 12 up, 12 in; 199 remapped pgs
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v106416: 3072 pgs, 11 pools, 1590 GB data, 398 kobjects
+            2897 GB used, 5492 GB / 8390 GB avail
+            227389/930028 objects misplaced (24.450%)
+                2873 active+clean
+                 194 active+remapped+backfill_wait
+                   5 active+remapped+backfilling
+recovery io 1013 MB/s, 275 objects/s
+stdin: is not a tty
+
+2017-06-09 17:11:05,070 INFO cluster.py [line:238] PG number is 3072
+2017-06-09 17:11:05,071 INFO cluster.py [line:239] usefull PG number is 2873
+2017-06-09 17:12:05,074 INFO cluster.py [line:247] cost 61 seconds, left 4609 seconds when check the ceph status
+2017-06-09 17:12:05,074 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-09 17:12:05,451 INFO cluster.py [line:213]    cluster 9afd408f-471c-4742-8db0-071924668d84
+     health HEALTH_WARN
+            186 pgs backfill_wait
+            6 pgs backfilling
+            181 pgs stuck unclean
+            recovery 216731/924602 objects misplaced (23.440%)
+     monmap e3: 3 mons at {CW113=192.168.1.113:6789/0,CW114=192.168.1.114:6789/0,CW115=192.168.1.115:6789/0}
+            election epoch 6, quorum 0,1,2 CW113,CW114,CW115
+     osdmap e9469: 12 osds: 12 up, 12 in; 191 remapped pgs
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v106475: 3072 pgs, 11 pools, 1590 GB data, 398 kobjects
+            2893 GB used, 5497 GB / 8390 GB avail
+            216731/924602 objects misplaced (23.440%)
+                2880 active+clean
+                 186 active+remapped+backfill_wait
+                   6 active+remapped+backfilling
+recovery io 791 MB/s, 210 objects/s
+stdin: is not a tty
+
+2017-06-09 17:12:05,452 INFO cluster.py [line:238] PG number is 3072
+2017-06-09 17:12:05,452 INFO cluster.py [line:239] usefull PG number is 2880
+2017-06-09 17:13:05,479 INFO cluster.py [line:247] cost 60 seconds, left 4549 seconds when check the ceph status
+2017-06-09 17:13:05,479 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-09 17:13:05,883 INFO cluster.py [line:213]    cluster 9afd408f-471c-4742-8db0-071924668d84
+     health HEALTH_WARN
+            174 pgs backfill_wait
+            5 pgs backfilling
+            179 pgs stuck unclean
+            recovery 205238/918933 objects misplaced (22.334%)
+     monmap e3: 3 mons at {CW113=192.168.1.113:6789/0,CW114=192.168.1.114:6789/0,CW115=192.168.1.115:6789/0}
+            election epoch 6, quorum 0,1,2 CW113,CW114,CW115
+     osdmap e9488: 12 osds: 12 up, 12 in; 179 remapped pgs
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v106539: 3072 pgs, 11 pools, 1590 GB data, 398 kobjects
+            2898 GB used, 5492 GB / 8390 GB avail
+            205238/918933 objects misplaced (22.334%)
+                2893 active+clean
+                 174 active+remapped+backfill_wait
+                   5 active+remapped+backfilling
+recovery io 447 MB/s, 119 objects/s
+stdin: is not a tty
+
+2017-06-09 17:13:05,883 INFO cluster.py [line:238] PG number is 3072
+2017-06-09 17:13:05,883 INFO cluster.py [line:239] usefull PG number is 2893
+2017-06-09 17:14:05,893 INFO cluster.py [line:247] cost 60 seconds, left 4489 seconds when check the ceph status
+2017-06-09 17:14:05,893 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-09 17:14:06,347 INFO cluster.py [line:213]    cluster 9afd408f-471c-4742-8db0-071924668d84
+     health HEALTH_WARN
+            161 pgs backfill_wait
+            5 pgs backfilling
+            1 pgs peering
+            166 pgs stuck unclean
+            recovery 192755/912375 objects misplaced (21.127%)
+     monmap e3: 3 mons at {CW113=192.168.1.113:6789/0,CW114=192.168.1.114:6789/0,CW115=192.168.1.115:6789/0}
+            election epoch 6, quorum 0,1,2 CW113,CW114,CW115
+     osdmap e9506: 12 osds: 12 up, 12 in; 166 remapped pgs
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v106601: 3072 pgs, 11 pools, 1590 GB data, 398 kobjects
+            2894 GB used, 5496 GB / 8390 GB avail
+            192755/912375 objects misplaced (21.127%)
+                2905 active+clean
+                 161 active+remapped+backfill_wait
+                   5 active+remapped+backfilling
+                   1 peering
+recovery io 1176 MB/s, 312 objects/s
+stdin: is not a tty
+
+2017-06-09 17:14:06,347 INFO cluster.py [line:238] PG number is 3072
+2017-06-09 17:14:06,347 INFO cluster.py [line:239] usefull PG number is 2905
+2017-06-09 17:15:06,350 INFO cluster.py [line:247] cost 61 seconds, left 4428 seconds when check the ceph status
+2017-06-09 17:15:06,350 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-09 17:15:06,747 INFO cluster.py [line:213]    cluster 9afd408f-471c-4742-8db0-071924668d84
+     health HEALTH_WARN
+            153 pgs backfill_wait
+            4 pgs backfilling
+            157 pgs stuck unclean
+            recovery 181707/907645 objects misplaced (20.020%)
+     monmap e3: 3 mons at {CW113=192.168.1.113:6789/0,CW114=192.168.1.114:6789/0,CW115=192.168.1.115:6789/0}
+            election epoch 6, quorum 0,1,2 CW113,CW114,CW115
+     osdmap e9520: 12 osds: 12 up, 12 in; 156 remapped pgs
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v106661: 3072 pgs, 11 pools, 1590 GB data, 398 kobjects
+            2900 GB used, 5490 GB / 8390 GB avail
+            181707/907645 objects misplaced (20.020%)
+                2915 active+clean
+                 153 active+remapped+backfill_wait
+                   4 active+remapped+backfilling
+recovery io 51080 kB/s, 13 objects/s
+stdin: is not a tty
+
+2017-06-09 17:15:06,748 INFO cluster.py [line:238] PG number is 3072
+2017-06-09 17:15:06,748 INFO cluster.py [line:239] usefull PG number is 2915
+2017-06-09 17:16:06,806 INFO cluster.py [line:247] cost 60 seconds, left 4368 seconds when check the ceph status
+2017-06-09 17:16:06,806 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-09 17:16:07,189 INFO cluster.py [line:213]    cluster 9afd408f-471c-4742-8db0-071924668d84
+     health HEALTH_WARN
+            141 pgs backfill_wait
+            4 pgs backfilling
+            145 pgs stuck unclean
+            recovery 168359/901049 objects misplaced (18.685%)
+     monmap e3: 3 mons at {CW113=192.168.1.113:6789/0,CW114=192.168.1.114:6789/0,CW115=192.168.1.115:6789/0}
+            election epoch 6, quorum 0,1,2 CW113,CW114,CW115
+     osdmap e9538: 12 osds: 12 up, 12 in; 144 remapped pgs
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v106721: 3072 pgs, 11 pools, 1590 GB data, 398 kobjects
+            2897 GB used, 5493 GB / 8390 GB avail
+            168359/901049 objects misplaced (18.685%)
+                2927 active+clean
+                 141 active+remapped+backfill_wait
+                   4 active+remapped+backfilling
+recovery io 467 MB/s, 124 objects/s
+stdin: is not a tty
+
+2017-06-09 17:16:07,189 INFO cluster.py [line:238] PG number is 3072
+2017-06-09 17:16:07,189 INFO cluster.py [line:239] usefull PG number is 2927
+2017-06-09 17:17:07,232 INFO cluster.py [line:247] cost 61 seconds, left 4307 seconds when check the ceph status
+2017-06-09 17:17:07,233 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-09 17:17:07,611 INFO cluster.py [line:213]    cluster 9afd408f-471c-4742-8db0-071924668d84
+     health HEALTH_WARN
+            134 pgs backfill_wait
+            3 pgs backfilling
+            137 pgs stuck unclean
+            recovery 157257/894806 objects misplaced (17.574%)
+     monmap e3: 3 mons at {CW113=192.168.1.113:6789/0,CW114=192.168.1.114:6789/0,CW115=192.168.1.115:6789/0}
+            election epoch 6, quorum 0,1,2 CW113,CW114,CW115
+     osdmap e9552: 12 osds: 12 up, 12 in; 136 remapped pgs
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v106783: 3072 pgs, 11 pools, 1590 GB data, 398 kobjects
+            2893 GB used, 5497 GB / 8390 GB avail
+            157257/894806 objects misplaced (17.574%)
+                2935 active+clean
+                 134 active+remapped+backfill_wait
+                   3 active+remapped+backfilling
+  client io 31351 B/s rd, 45 op/s rd, 0 op/s wr
+stdin: is not a tty
+
+2017-06-09 17:17:07,611 INFO cluster.py [line:238] PG number is 3072
+2017-06-09 17:17:07,611 INFO cluster.py [line:239] usefull PG number is 2935
+2017-06-09 17:18:07,657 INFO cluster.py [line:247] cost 60 seconds, left 4247 seconds when check the ceph status
+2017-06-09 17:18:07,657 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-09 17:18:08,072 INFO cluster.py [line:213]    cluster 9afd408f-471c-4742-8db0-071924668d84
+     health HEALTH_WARN
+            128 pgs backfill_wait
+            4 pgs backfilling
+            1 pgs peering
+            132 pgs stuck unclean
+            recovery 150949/891748 objects misplaced (16.927%)
+     monmap e3: 3 mons at {CW113=192.168.1.113:6789/0,CW114=192.168.1.114:6789/0,CW115=192.168.1.115:6789/0}
+            election epoch 6, quorum 0,1,2 CW113,CW114,CW115
+     osdmap e9560: 12 osds: 12 up, 12 in; 131 remapped pgs
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v106841: 3072 pgs, 11 pools, 1590 GB data, 398 kobjects
+            2894 GB used, 5496 GB / 8390 GB avail
+            150949/891748 objects misplaced (16.927%)
+                2939 active+clean
+                 128 active+remapped+backfill_wait
+                   4 active+remapped+backfilling
+                   1 peering
+  client io 10684 B/s rd, 15 op/s rd, 0 op/s wr
+stdin: is not a tty
+
+2017-06-09 17:18:08,073 INFO cluster.py [line:238] PG number is 3072
+2017-06-09 17:18:08,073 INFO cluster.py [line:239] usefull PG number is 2939
+2017-06-09 17:19:08,102 INFO cluster.py [line:247] cost 61 seconds, left 4186 seconds when check the ceph status
+2017-06-09 17:19:08,102 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-09 17:19:08,494 INFO cluster.py [line:213]    cluster 9afd408f-471c-4742-8db0-071924668d84
+     health HEALTH_WARN
+            123 pgs backfill_wait
+            5 pgs backfilling
+            128 pgs stuck unclean
+            recovery 144284/888714 objects misplaced (16.235%)
+     monmap e3: 3 mons at {CW113=192.168.1.113:6789/0,CW114=192.168.1.114:6789/0,CW115=192.168.1.115:6789/0}
+            election epoch 6, quorum 0,1,2 CW113,CW114,CW115
+     osdmap e9566: 12 osds: 12 up, 12 in; 128 remapped pgs
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v106899: 3072 pgs, 11 pools, 1590 GB data, 398 kobjects
+            2895 GB used, 5494 GB / 8390 GB avail
+            144284/888714 objects misplaced (16.235%)
+                2944 active+clean
+                 123 active+remapped+backfill_wait
+                   5 active+remapped+backfilling
+recovery io 526 MB/s, 140 objects/s
+  client io 47246 B/s rd, 46 op/s rd, 0 op/s wr
+stdin: is not a tty
+
+2017-06-09 17:19:08,494 INFO cluster.py [line:238] PG number is 3072
+2017-06-09 17:19:08,495 INFO cluster.py [line:239] usefull PG number is 2944
+2017-06-09 17:20:08,532 INFO cluster.py [line:247] cost 60 seconds, left 4126 seconds when check the ceph status
+2017-06-09 17:20:08,532 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-09 17:20:08,940 INFO cluster.py [line:213]    cluster 9afd408f-471c-4742-8db0-071924668d84
+     health HEALTH_WARN
+            112 pgs backfill_wait
+            6 pgs backfilling
+            1 pgs peering
+            118 pgs stuck unclean
+            recovery 136258/883944 objects misplaced (15.415%)
+     monmap e3: 3 mons at {CW113=192.168.1.113:6789/0,CW114=192.168.1.114:6789/0,CW115=192.168.1.115:6789/0}
+            election epoch 6, quorum 0,1,2 CW113,CW114,CW115
+     osdmap e9586: 12 osds: 12 up, 12 in; 116 remapped pgs
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v106961: 3072 pgs, 11 pools, 1590 GB data, 398 kobjects
+            2891 GB used, 5499 GB / 8390 GB avail
+            136258/883944 objects misplaced (15.415%)
+                2953 active+clean
+                 112 active+remapped+backfill_wait
+                   6 active+remapped+backfilling
+                   1 peering
+recovery io 183 MB/s, 49 objects/s
+  client io 46078 B/s rd, 56 op/s rd, 0 op/s wr
+stdin: is not a tty
+
+2017-06-09 17:20:08,940 INFO cluster.py [line:238] PG number is 3072
+2017-06-09 17:20:08,940 INFO cluster.py [line:239] usefull PG number is 2953
+2017-06-09 17:21:09,001 INFO cluster.py [line:247] cost 61 seconds, left 4065 seconds when check the ceph status
+2017-06-09 17:21:09,001 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-09 17:21:09,395 INFO cluster.py [line:213]    cluster 9afd408f-471c-4742-8db0-071924668d84
+     health HEALTH_WARN
+            108 pgs backfill_wait
+            4 pgs backfilling
+            114 pgs stuck unclean
+            recovery 130759/882305 objects misplaced (14.820%)
+     monmap e3: 3 mons at {CW113=192.168.1.113:6789/0,CW114=192.168.1.114:6789/0,CW115=192.168.1.115:6789/0}
+            election epoch 6, quorum 0,1,2 CW113,CW114,CW115
+     osdmap e9594: 12 osds: 12 up, 12 in; 110 remapped pgs
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v107018: 3072 pgs, 11 pools, 1590 GB data, 398 kobjects
+            2894 GB used, 5496 GB / 8390 GB avail
+            130759/882305 objects misplaced (14.820%)
+                2958 active+clean
+                 108 active+remapped+backfill_wait
+                   4 active+remapped+backfilling
+                   2 active+remapped
+recovery io 258 MB/s, 64 objects/s
+  client io 158 kB/s rd, 198 op/s rd, 0 op/s wr
+stdin: is not a tty
+
+2017-06-09 17:21:09,395 INFO cluster.py [line:238] PG number is 3072
+2017-06-09 17:21:09,395 INFO cluster.py [line:239] usefull PG number is 2958
+2017-06-09 17:22:09,404 INFO cluster.py [line:247] cost 60 seconds, left 4005 seconds when check the ceph status
+2017-06-09 17:22:09,404 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-09 17:22:09,789 INFO cluster.py [line:213]    cluster 9afd408f-471c-4742-8db0-071924668d84
+     health HEALTH_WARN
+            104 pgs backfill_wait
+            3 pgs backfilling
+            107 pgs stuck unclean
+            recovery 124923/878981 objects misplaced (14.212%)
+     monmap e3: 3 mons at {CW113=192.168.1.113:6789/0,CW114=192.168.1.114:6789/0,CW115=192.168.1.115:6789/0}
+            election epoch 6, quorum 0,1,2 CW113,CW114,CW115
+     osdmap e9602: 12 osds: 12 up, 12 in; 105 remapped pgs
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v107075: 3072 pgs, 11 pools, 1590 GB data, 398 kobjects
+            2895 GB used, 5495 GB / 8390 GB avail
+            124923/878981 objects misplaced (14.212%)
+                2965 active+clean
+                 104 active+remapped+backfill_wait
+                   3 active+remapped+backfilling
+recovery io 381 MB/s, 101 objects/s
+stdin: is not a tty
+
+2017-06-09 17:22:09,789 INFO cluster.py [line:238] PG number is 3072
+2017-06-09 17:22:09,789 INFO cluster.py [line:239] usefull PG number is 2965
+2017-06-09 17:23:09,849 INFO cluster.py [line:247] cost 60 seconds, left 3945 seconds when check the ceph status
+2017-06-09 17:23:09,850 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-09 17:23:10,387 INFO cluster.py [line:213]    cluster 9afd408f-471c-4742-8db0-071924668d84
+     health HEALTH_WARN
+            98 pgs backfill_wait
+            3 pgs backfilling
+            101 pgs stuck unclean
+            recovery 117660/874386 objects misplaced (13.456%)
+     monmap e3: 3 mons at {CW113=192.168.1.113:6789/0,CW114=192.168.1.114:6789/0,CW115=192.168.1.115:6789/0}
+            election epoch 6, quorum 0,1,2 CW113,CW114,CW115
+     osdmap e9609: 12 osds: 12 up, 12 in; 101 remapped pgs
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v107129: 3072 pgs, 11 pools, 1590 GB data, 398 kobjects
+            2894 GB used, 5496 GB / 8390 GB avail
+            117660/874386 objects misplaced (13.456%)
+                2971 active+clean
+                  98 active+remapped+backfill_wait
+                   3 active+remapped+backfilling
+recovery io 298 MB/s, 79 objects/s
+stdin: is not a tty
+
+2017-06-09 17:23:10,388 INFO cluster.py [line:238] PG number is 3072
+2017-06-09 17:23:10,388 INFO cluster.py [line:239] usefull PG number is 2971
+2017-06-09 17:24:10,401 INFO cluster.py [line:247] cost 61 seconds, left 3884 seconds when check the ceph status
+2017-06-09 17:24:10,401 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-09 17:24:10,784 INFO cluster.py [line:213]    cluster 9afd408f-471c-4742-8db0-071924668d84
+     health HEALTH_WARN
+            91 pgs backfill_wait
+            5 pgs backfilling
+            96 pgs stuck unclean
+            recovery 110254/871960 objects misplaced (12.644%)
+     monmap e3: 3 mons at {CW113=192.168.1.113:6789/0,CW114=192.168.1.114:6789/0,CW115=192.168.1.115:6789/0}
+            election epoch 6, quorum 0,1,2 CW113,CW114,CW115
+     osdmap e9621: 12 osds: 12 up, 12 in; 94 remapped pgs
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v107189: 3072 pgs, 11 pools, 1590 GB data, 398 kobjects
+            2897 GB used, 5493 GB / 8390 GB avail
+            110254/871960 objects misplaced (12.644%)
+                2976 active+clean
+                  91 active+remapped+backfill_wait
+                   5 active+remapped+backfilling
+recovery io 465 MB/s, 124 objects/s
+stdin: is not a tty
+
+2017-06-09 17:24:10,785 INFO cluster.py [line:238] PG number is 3072
+2017-06-09 17:24:10,785 INFO cluster.py [line:239] usefull PG number is 2976
+2017-06-09 17:25:10,831 INFO cluster.py [line:247] cost 60 seconds, left 3824 seconds when check the ceph status
+2017-06-09 17:25:10,831 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-09 17:25:11,290 INFO cluster.py [line:213]    cluster 9afd408f-471c-4742-8db0-071924668d84
+     health HEALTH_WARN
+            81 pgs backfill_wait
+            4 pgs backfilling
+            85 pgs stuck unclean
+            recovery 100652/866188 objects misplaced (11.620%)
+     monmap e3: 3 mons at {CW113=192.168.1.113:6789/0,CW114=192.168.1.114:6789/0,CW115=192.168.1.115:6789/0}
+            election epoch 6, quorum 0,1,2 CW113,CW114,CW115
+     osdmap e9636: 12 osds: 12 up, 12 in; 85 remapped pgs
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v107251: 3072 pgs, 11 pools, 1590 GB data, 398 kobjects
+            2893 GB used, 5496 GB / 8390 GB avail
+            100652/866188 objects misplaced (11.620%)
+                2987 active+clean
+                  81 active+remapped+backfill_wait
+                   4 active+remapped+backfilling
+recovery io 472 MB/s, 125 objects/s
+stdin: is not a tty
+
+2017-06-09 17:25:11,290 INFO cluster.py [line:238] PG number is 3072
+2017-06-09 17:25:11,290 INFO cluster.py [line:239] usefull PG number is 2987
+2017-06-09 17:26:11,344 INFO cluster.py [line:247] cost 61 seconds, left 3763 seconds when check the ceph status
+2017-06-09 17:26:11,345 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-09 17:26:11,742 INFO cluster.py [line:213]    cluster 9afd408f-471c-4742-8db0-071924668d84
+     health HEALTH_WARN
+            75 pgs backfill_wait
+            5 pgs backfilling
+            1 pgs peering
+            80 pgs stuck unclean
+            recovery 94379/863111 objects misplaced (10.935%)
+     monmap e3: 3 mons at {CW113=192.168.1.113:6789/0,CW114=192.168.1.114:6789/0,CW115=192.168.1.115:6789/0}
+            election epoch 6, quorum 0,1,2 CW113,CW114,CW115
+     osdmap e9644: 12 osds: 12 up, 12 in; 80 remapped pgs
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v107309: 3072 pgs, 11 pools, 1590 GB data, 398 kobjects
+            2894 GB used, 5496 GB / 8390 GB avail
+            94379/863111 objects misplaced (10.935%)
+                2991 active+clean
+                  75 active+remapped+backfill_wait
+                   5 active+remapped+backfilling
+                   1 peering
+recovery io 213 MB/s, 53 objects/s
+stdin: is not a tty
+
+2017-06-09 17:26:11,743 INFO cluster.py [line:238] PG number is 3072
+2017-06-09 17:26:11,743 INFO cluster.py [line:239] usefull PG number is 2991
+2017-06-09 17:27:11,792 INFO cluster.py [line:247] cost 60 seconds, left 3703 seconds when check the ceph status
+2017-06-09 17:27:11,792 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-09 17:27:12,226 INFO cluster.py [line:213]    cluster 9afd408f-471c-4742-8db0-071924668d84
+     health HEALTH_WARN
+            67 pgs backfill_wait
+            4 pgs backfilling
+            71 pgs stuck unclean
+            recovery 88301/860415 objects misplaced (10.263%)
+     monmap e3: 3 mons at {CW113=192.168.1.113:6789/0,CW114=192.168.1.114:6789/0,CW115=192.168.1.115:6789/0}
+            election epoch 6, quorum 0,1,2 CW113,CW114,CW115
+     osdmap e9657: 12 osds: 12 up, 12 in; 71 remapped pgs
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v107367: 3072 pgs, 11 pools, 1590 GB data, 398 kobjects
+            2893 GB used, 5496 GB / 8390 GB avail
+            88301/860415 objects misplaced (10.263%)
+                3001 active+clean
+                  67 active+remapped+backfill_wait
+                   4 active+remapped+backfilling
+recovery io 414 MB/s, 111 objects/s
+  client io 1192 kB/s rd, 1788 op/s rd, 0 op/s wr
+stdin: is not a tty
+
+2017-06-09 17:27:12,226 INFO cluster.py [line:238] PG number is 3072
+2017-06-09 17:27:12,226 INFO cluster.py [line:239] usefull PG number is 3001
+2017-06-09 17:28:12,237 INFO cluster.py [line:247] cost 61 seconds, left 3642 seconds when check the ceph status
+2017-06-09 17:28:12,237 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-09 17:28:12,622 INFO cluster.py [line:213]    cluster 9afd408f-471c-4742-8db0-071924668d84
+     health HEALTH_WARN
+            59 pgs backfill_wait
+            3 pgs backfilling
+            62 pgs stuck unclean
+            recovery 80658/856390 objects misplaced (9.418%)
+     monmap e3: 3 mons at {CW113=192.168.1.113:6789/0,CW114=192.168.1.114:6789/0,CW115=192.168.1.115:6789/0}
+            election epoch 6, quorum 0,1,2 CW113,CW114,CW115
+     osdmap e9672: 12 osds: 12 up, 12 in; 62 remapped pgs
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v107427: 3072 pgs, 11 pools, 1590 GB data, 398 kobjects
+            2892 GB used, 5498 GB / 8390 GB avail
+            80658/856390 objects misplaced (9.418%)
+                3010 active+clean
+                  59 active+remapped+backfill_wait
+                   3 active+remapped+backfilling
+recovery io 219 MB/s, 58 objects/s
+  client io 16437 B/s rd, 24 op/s rd, 0 op/s wr
+stdin: is not a tty
+
+2017-06-09 17:28:12,623 INFO cluster.py [line:238] PG number is 3072
+2017-06-09 17:28:12,623 INFO cluster.py [line:239] usefull PG number is 3010
+2017-06-09 17:29:12,671 INFO cluster.py [line:247] cost 60 seconds, left 3582 seconds when check the ceph status
+2017-06-09 17:29:12,671 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-09 17:29:13,105 INFO cluster.py [line:213]    cluster 9afd408f-471c-4742-8db0-071924668d84
+     health HEALTH_WARN
+            55 pgs backfill_wait
+            2 pgs backfilling
+            57 pgs stuck unclean
+            recovery 75089/853164 objects misplaced (8.801%)
+     monmap e3: 3 mons at {CW113=192.168.1.113:6789/0,CW114=192.168.1.114:6789/0,CW115=192.168.1.115:6789/0}
+            election epoch 6, quorum 0,1,2 CW113,CW114,CW115
+     osdmap e9681: 12 osds: 12 up, 12 in; 57 remapped pgs
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v107484: 3072 pgs, 11 pools, 1590 GB data, 398 kobjects
+            2890 GB used, 5500 GB / 8390 GB avail
+            75089/853164 objects misplaced (8.801%)
+                3015 active+clean
+                  55 active+remapped+backfill_wait
+                   2 active+remapped+backfilling
+recovery io 243 MB/s, 65 objects/s
+  client io 24730 B/s rd, 36 op/s rd, 0 op/s wr
+stdin: is not a tty
+
+2017-06-09 17:29:13,105 INFO cluster.py [line:238] PG number is 3072
+2017-06-09 17:29:13,105 INFO cluster.py [line:239] usefull PG number is 3015
+2017-06-09 17:30:13,132 INFO cluster.py [line:247] cost 61 seconds, left 3521 seconds when check the ceph status
+2017-06-09 17:30:13,133 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-09 17:30:13,549 INFO cluster.py [line:213]    cluster 9afd408f-471c-4742-8db0-071924668d84
+     health HEALTH_WARN
+            51 pgs backfill_wait
+            3 pgs backfilling
+            54 pgs stuck unclean
+            recovery 70887/851586 objects misplaced (8.324%)
+     monmap e3: 3 mons at {CW113=192.168.1.113:6789/0,CW114=192.168.1.114:6789/0,CW115=192.168.1.115:6789/0}
+            election epoch 6, quorum 0,1,2 CW113,CW114,CW115
+     osdmap e9687: 12 osds: 12 up, 12 in; 54 remapped pgs
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v107537: 3072 pgs, 11 pools, 1590 GB data, 398 kobjects
+            2893 GB used, 5497 GB / 8390 GB avail
+            70887/851586 objects misplaced (8.324%)
+                3018 active+clean
+                  51 active+remapped+backfill_wait
+                   3 active+remapped+backfilling
+recovery io 203 MB/s, 54 objects/s
+  client io 54500 B/s rd, 62 op/s rd, 0 op/s wr
+stdin: is not a tty
+
+2017-06-09 17:30:13,550 INFO cluster.py [line:238] PG number is 3072
+2017-06-09 17:30:13,550 INFO cluster.py [line:239] usefull PG number is 3018
+2017-06-09 17:31:13,610 INFO cluster.py [line:247] cost 60 seconds, left 3461 seconds when check the ceph status
+2017-06-09 17:31:13,610 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-09 17:31:14,007 INFO cluster.py [line:213]    cluster 9afd408f-471c-4742-8db0-071924668d84
+     health HEALTH_WARN
+            48 pgs backfill_wait
+            2 pgs backfilling
+            50 pgs stuck unclean
+            recovery 65737/848466 objects misplaced (7.748%)
+     monmap e3: 3 mons at {CW113=192.168.1.113:6789/0,CW114=192.168.1.114:6789/0,CW115=192.168.1.115:6789/0}
+            election epoch 6, quorum 0,1,2 CW113,CW114,CW115
+     osdmap e9695: 12 osds: 12 up, 12 in; 50 remapped pgs
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v107594: 3072 pgs, 11 pools, 1590 GB data, 398 kobjects
+            2889 GB used, 5500 GB / 8390 GB avail
+            65737/848466 objects misplaced (7.748%)
+                3022 active+clean
+                  48 active+remapped+backfill_wait
+                   2 active+remapped+backfilling
+recovery io 700 MB/s, 188 objects/s
+  client io 101 kB/s rd, 132 op/s rd, 0 op/s wr
+stdin: is not a tty
+
+2017-06-09 17:31:14,007 INFO cluster.py [line:238] PG number is 3072
+2017-06-09 17:31:14,008 INFO cluster.py [line:239] usefull PG number is 3022
+2017-06-09 17:32:14,062 INFO cluster.py [line:247] cost 61 seconds, left 3400 seconds when check the ceph status
+2017-06-09 17:32:14,062 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-09 17:32:14,455 INFO cluster.py [line:213]    cluster 9afd408f-471c-4742-8db0-071924668d84
+     health HEALTH_WARN
+            45 pgs backfill_wait
+            2 pgs backfilling
+            47 pgs stuck unclean
+            recovery 60310/846128 objects misplaced (7.128%)
+     monmap e3: 3 mons at {CW113=192.168.1.113:6789/0,CW114=192.168.1.114:6789/0,CW115=192.168.1.115:6789/0}
+            election epoch 6, quorum 0,1,2 CW113,CW114,CW115
+     osdmap e9701: 12 osds: 12 up, 12 in; 47 remapped pgs
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v107647: 3072 pgs, 11 pools, 1590 GB data, 398 kobjects
+            2892 GB used, 5498 GB / 8390 GB avail
+            60310/846128 objects misplaced (7.128%)
+                3025 active+clean
+                  45 active+remapped+backfill_wait
+                   2 active+remapped+backfilling
+recovery io 467 MB/s, 125 objects/s
+  client io 97809 B/s rd, 120 op/s rd, 0 op/s wr
+stdin: is not a tty
+
+2017-06-09 17:32:14,456 INFO cluster.py [line:238] PG number is 3072
+2017-06-09 17:32:14,456 INFO cluster.py [line:239] usefull PG number is 3025
+2017-06-09 17:33:14,476 INFO cluster.py [line:247] cost 60 seconds, left 3340 seconds when check the ceph status
+2017-06-09 17:33:14,477 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-09 17:33:14,881 INFO cluster.py [line:213]    cluster 9afd408f-471c-4742-8db0-071924668d84
+     health HEALTH_WARN
+            42 pgs backfill_wait
+            2 pgs backfilling
+            44 pgs stuck unclean
+            recovery 54110/843110 objects misplaced (6.418%)
+     monmap e3: 3 mons at {CW113=192.168.1.113:6789/0,CW114=192.168.1.114:6789/0,CW115=192.168.1.115:6789/0}
+            election epoch 6, quorum 0,1,2 CW113,CW114,CW115
+     osdmap e9707: 12 osds: 12 up, 12 in; 44 remapped pgs
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v107703: 3072 pgs, 11 pools, 1590 GB data, 398 kobjects
+            2892 GB used, 5498 GB / 8390 GB avail
+            54110/843110 objects misplaced (6.418%)
+                3028 active+clean
+                  42 active+remapped+backfill_wait
+                   2 active+remapped+backfilling
+recovery io 448 MB/s, 119 objects/s
+  client io 100 kB/s rd, 126 op/s rd, 0 op/s wr
+stdin: is not a tty
+
+2017-06-09 17:33:14,881 INFO cluster.py [line:238] PG number is 3072
+2017-06-09 17:33:14,881 INFO cluster.py [line:239] usefull PG number is 3028
+2017-06-09 17:34:14,941 INFO cluster.py [line:247] cost 60 seconds, left 3280 seconds when check the ceph status
+2017-06-09 17:34:14,942 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-09 17:34:15,407 INFO cluster.py [line:213]    cluster 9afd408f-471c-4742-8db0-071924668d84
+     health HEALTH_WARN
+            37 pgs backfill_wait
+            4 pgs backfilling
+            41 pgs stuck unclean
+            recovery 48498/840065 objects misplaced (5.773%)
+     monmap e3: 3 mons at {CW113=192.168.1.113:6789/0,CW114=192.168.1.114:6789/0,CW115=192.168.1.115:6789/0}
+            election epoch 6, quorum 0,1,2 CW113,CW114,CW115
+     osdmap e9715: 12 osds: 12 up, 12 in; 39 remapped pgs
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v107759: 3072 pgs, 11 pools, 1590 GB data, 398 kobjects
+            2893 GB used, 5497 GB / 8390 GB avail
+            48498/840065 objects misplaced (5.773%)
+                3031 active+clean
+                  37 active+remapped+backfill_wait
+                   4 active+remapped+backfilling
+recovery io 226 MB/s, 58 objects/s
+stdin: is not a tty
+
+2017-06-09 17:34:15,407 INFO cluster.py [line:238] PG number is 3072
+2017-06-09 17:34:15,407 INFO cluster.py [line:239] usefull PG number is 3031
+2017-06-09 17:35:15,447 INFO cluster.py [line:247] cost 61 seconds, left 3219 seconds when check the ceph status
+2017-06-09 17:35:15,447 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-09 17:35:15,838 INFO cluster.py [line:213]    cluster 9afd408f-471c-4742-8db0-071924668d84
+     health HEALTH_WARN
+            29 pgs backfill_wait
+            2 pgs backfilling
+            31 pgs stuck unclean
+            recovery 41013/836636 objects misplaced (4.902%)
+     monmap e3: 3 mons at {CW113=192.168.1.113:6789/0,CW114=192.168.1.114:6789/0,CW115=192.168.1.115:6789/0}
+            election epoch 6, quorum 0,1,2 CW113,CW114,CW115
+     osdmap e9731: 12 osds: 12 up, 12 in; 30 remapped pgs
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v107819: 3072 pgs, 11 pools, 1590 GB data, 398 kobjects
+            2893 GB used, 5497 GB / 8390 GB avail
+            41013/836636 objects misplaced (4.902%)
+                3041 active+clean
+                  29 active+remapped+backfill_wait
+                   2 active+remapped+backfilling
+stdin: is not a tty
+
+2017-06-09 17:35:15,838 INFO cluster.py [line:238] PG number is 3072
+2017-06-09 17:35:15,838 INFO cluster.py [line:239] usefull PG number is 3041
+2017-06-09 17:36:15,889 INFO cluster.py [line:247] cost 60 seconds, left 3159 seconds when check the ceph status
+2017-06-09 17:36:15,889 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-09 17:36:16,281 INFO cluster.py [line:213]    cluster 9afd408f-471c-4742-8db0-071924668d84
+     health HEALTH_WARN
+            23 pgs backfill_wait
+            3 pgs backfilling
+            26 pgs stuck unclean
+            recovery 34388/833474 objects misplaced (4.126%)
+     monmap e3: 3 mons at {CW113=192.168.1.113:6789/0,CW114=192.168.1.114:6789/0,CW115=192.168.1.115:6789/0}
+            election epoch 6, quorum 0,1,2 CW113,CW114,CW115
+     osdmap e9739: 12 osds: 12 up, 12 in; 26 remapped pgs
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v107877: 3072 pgs, 11 pools, 1590 GB data, 398 kobjects
+            2894 GB used, 5496 GB / 8390 GB avail
+            34388/833474 objects misplaced (4.126%)
+                3046 active+clean
+                  23 active+remapped+backfill_wait
+                   3 active+remapped+backfilling
+recovery io 214 MB/s, 57 objects/s
+stdin: is not a tty
+
+2017-06-09 17:36:16,281 INFO cluster.py [line:238] PG number is 3072
+2017-06-09 17:36:16,281 INFO cluster.py [line:239] usefull PG number is 3046
+2017-06-09 17:37:16,342 INFO cluster.py [line:247] cost 61 seconds, left 3098 seconds when check the ceph status
+2017-06-09 17:37:16,342 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-09 17:37:16,714 INFO cluster.py [line:213]    cluster 9afd408f-471c-4742-8db0-071924668d84
+     health HEALTH_WARN
+            20 pgs backfill_wait
+            1 pgs backfilling
+            21 pgs stuck unclean
+            recovery 27558/829498 objects misplaced (3.322%)
+     monmap e3: 3 mons at {CW113=192.168.1.113:6789/0,CW114=192.168.1.114:6789/0,CW115=192.168.1.115:6789/0}
+            election epoch 6, quorum 0,1,2 CW113,CW114,CW115
+     osdmap e9747: 12 osds: 12 up, 12 in; 21 remapped pgs
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v107935: 3072 pgs, 11 pools, 1590 GB data, 398 kobjects
+            2890 GB used, 5499 GB / 8390 GB avail
+            27558/829498 objects misplaced (3.322%)
+                3051 active+clean
+                  20 active+remapped+backfill_wait
+                   1 active+remapped+backfilling
+stdin: is not a tty
+
+2017-06-09 17:37:16,714 INFO cluster.py [line:238] PG number is 3072
+2017-06-09 17:37:16,714 INFO cluster.py [line:239] usefull PG number is 3051
+2017-06-09 17:38:16,772 INFO cluster.py [line:247] cost 60 seconds, left 3038 seconds when check the ceph status
+2017-06-09 17:38:16,772 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-09 17:38:17,284 INFO cluster.py [line:213]    cluster 9afd408f-471c-4742-8db0-071924668d84
+     health HEALTH_WARN
+            17 pgs backfill_wait
+            1 pgs backfilling
+            1 pgs peering
+            18 pgs stuck unclean
+            recovery 23665/827248 objects misplaced (2.861%)
+     monmap e3: 3 mons at {CW113=192.168.1.113:6789/0,CW114=192.168.1.114:6789/0,CW115=192.168.1.115:6789/0}
+            election epoch 6, quorum 0,1,2 CW113,CW114,CW115
+     osdmap e9753: 12 osds: 12 up, 12 in; 18 remapped pgs
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v107986: 3072 pgs, 11 pools, 1590 GB data, 398 kobjects
+            2891 GB used, 5499 GB / 8390 GB avail
+            23665/827248 objects misplaced (2.861%)
+                3053 active+clean
+                  17 active+remapped+backfill_wait
+                   1 active+remapped+backfilling
+                   1 peering
+stdin: is not a tty
+
+2017-06-09 17:38:17,285 INFO cluster.py [line:238] PG number is 3072
+2017-06-09 17:38:17,285 INFO cluster.py [line:239] usefull PG number is 3053
+2017-06-09 17:39:17,306 INFO cluster.py [line:247] cost 61 seconds, left 2977 seconds when check the ceph status
+2017-06-09 17:39:17,306 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-09 17:39:17,709 INFO cluster.py [line:213]    cluster 9afd408f-471c-4742-8db0-071924668d84
+     health HEALTH_WARN
+            15 pgs backfill_wait
+            1 pgs backfilling
+            16 pgs stuck unclean
+            recovery 20327/825664 objects misplaced (2.462%)
+     monmap e3: 3 mons at {CW113=192.168.1.113:6789/0,CW114=192.168.1.114:6789/0,CW115=192.168.1.115:6789/0}
+            election epoch 6, quorum 0,1,2 CW113,CW114,CW115
+     osdmap e9757: 12 osds: 12 up, 12 in; 16 remapped pgs
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v108039: 3072 pgs, 11 pools, 1590 GB data, 398 kobjects
+            2889 GB used, 5500 GB / 8390 GB avail
+            20327/825664 objects misplaced (2.462%)
+                3056 active+clean
+                  15 active+remapped+backfill_wait
+                   1 active+remapped+backfilling
+stdin: is not a tty
+
+2017-06-09 17:39:17,709 INFO cluster.py [line:238] PG number is 3072
+2017-06-09 17:39:17,709 INFO cluster.py [line:239] usefull PG number is 3056
+2017-06-09 17:40:17,770 INFO cluster.py [line:247] cost 60 seconds, left 2917 seconds when check the ceph status
+2017-06-09 17:40:17,770 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-09 17:40:18,191 INFO cluster.py [line:213]    cluster 9afd408f-471c-4742-8db0-071924668d84
+     health HEALTH_WARN
+            13 pgs backfill_wait
+            1 pgs peering
+            13 pgs stuck unclean
+            Difference in osd space utilization 40.2888% greater than 40%
+            recovery 15968/823386 objects misplaced (1.939%)
+     monmap e3: 3 mons at {CW113=192.168.1.113:6789/0,CW114=192.168.1.114:6789/0,CW115=192.168.1.115:6789/0}
+            election epoch 6, quorum 0,1,2 CW113,CW114,CW115
+     osdmap e9763: 12 osds: 12 up, 12 in; 11 remapped pgs
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v108093: 3072 pgs, 11 pools, 1590 GB data, 398 kobjects
+            2891 GB used, 5499 GB / 8390 GB avail
+            15968/823386 objects misplaced (1.939%)
+                3058 active+clean
+                  13 active+remapped+backfill_wait
+                   1 peering
+recovery io 469 MB/s, 125 objects/s
+stdin: is not a tty
+
+2017-06-09 17:40:18,191 INFO cluster.py [line:238] PG number is 3072
+2017-06-09 17:40:18,192 INFO cluster.py [line:239] usefull PG number is 3058
+2017-06-09 17:41:18,209 INFO cluster.py [line:247] cost 61 seconds, left 2856 seconds when check the ceph status
+2017-06-09 17:41:18,209 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-09 17:41:18,635 INFO cluster.py [line:213]    cluster 9afd408f-471c-4742-8db0-071924668d84
+     health HEALTH_WARN
+            7 pgs backfill_wait
+            1 pgs backfilling
+            8 pgs stuck unclean
+            Difference in osd space utilization 41.5633% greater than 40%
+            recovery 10663/820933 objects misplaced (1.299%)
+     monmap e3: 3 mons at {CW113=192.168.1.113:6789/0,CW114=192.168.1.114:6789/0,CW115=192.168.1.115:6789/0}
+            election epoch 6, quorum 0,1,2 CW113,CW114,CW115
+     osdmap e9769: 12 osds: 12 up, 12 in; 8 remapped pgs
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v108146: 3072 pgs, 11 pools, 1590 GB data, 398 kobjects
+            2889 GB used, 5500 GB / 8390 GB avail
+            10663/820933 objects misplaced (1.299%)
+                3064 active+clean
+                   7 active+remapped+backfill_wait
+                   1 active+remapped+backfilling
+recovery io 471 MB/s, 126 objects/s
+stdin: is not a tty
+
+2017-06-09 17:41:18,636 INFO cluster.py [line:238] PG number is 3072
+2017-06-09 17:41:18,636 INFO cluster.py [line:239] usefull PG number is 3064
+2017-06-09 17:42:18,687 INFO cluster.py [line:247] cost 60 seconds, left 2796 seconds when check the ceph status
+2017-06-09 17:42:18,687 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-09 17:42:19,377 INFO cluster.py [line:213]    cluster 9afd408f-471c-4742-8db0-071924668d84
+     health HEALTH_WARN
+            5 pgs backfill_wait
+            1 pgs backfilling
+            6 pgs stuck unclean
+            Difference in osd space utilization 42.3442% greater than 40%
+            recovery 7095/819320 objects misplaced (0.866%)
+     monmap e3: 3 mons at {CW113=192.168.1.113:6789/0,CW114=192.168.1.114:6789/0,CW115=192.168.1.115:6789/0}
+            election epoch 6, quorum 0,1,2 CW113,CW114,CW115
+     osdmap e9773: 12 osds: 12 up, 12 in; 6 remapped pgs
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v108198: 3072 pgs, 11 pools, 1590 GB data, 398 kobjects
+            2890 GB used, 5499 GB / 8390 GB avail
+            7095/819320 objects misplaced (0.866%)
+                3066 active+clean
+                   5 active+remapped+backfill_wait
+                   1 active+remapped+backfilling
+recovery io 523 MB/s, 139 objects/s
+stdin: is not a tty
+
+2017-06-09 17:42:19,377 INFO cluster.py [line:238] PG number is 3072
+2017-06-09 17:42:19,377 INFO cluster.py [line:239] usefull PG number is 3066
+2017-06-09 17:43:19,429 INFO cluster.py [line:247] cost 61 seconds, left 2735 seconds when check the ceph status
+2017-06-09 17:43:19,429 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-09 17:43:19,847 INFO cluster.py [line:213]    cluster 9afd408f-471c-4742-8db0-071924668d84
+     health HEALTH_WARN
+            1 pgs backfill_wait
+            1 pgs backfilling
+            2 pgs stuck unclean
+            Difference in osd space utilization 43.4688% greater than 40%
+            recovery 2832/816956 objects misplaced (0.347%)
+     monmap e3: 3 mons at {CW113=192.168.1.113:6789/0,CW114=192.168.1.114:6789/0,CW115=192.168.1.115:6789/0}
+            election epoch 6, quorum 0,1,2 CW113,CW114,CW115
+     osdmap e9781: 12 osds: 12 up, 12 in; 2 remapped pgs
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v108253: 3072 pgs, 11 pools, 1590 GB data, 398 kobjects
+            2889 GB used, 5501 GB / 8390 GB avail
+            2832/816956 objects misplaced (0.347%)
+                3070 active+clean
+                   1 active+remapped+backfill_wait
+                   1 active+remapped+backfilling
+recovery io 802 MB/s, 217 objects/s
+stdin: is not a tty
+
+2017-06-09 17:43:19,847 INFO cluster.py [line:238] PG number is 3072
+2017-06-09 17:43:19,848 INFO cluster.py [line:239] usefull PG number is 3070
+2017-06-09 17:44:19,908 INFO cluster.py [line:247] cost 60 seconds, left 2675 seconds when check the ceph status
+2017-06-09 17:44:19,908 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-09 17:44:20,306 INFO cluster.py [line:213]    cluster 9afd408f-471c-4742-8db0-071924668d84
+     health HEALTH_WARN
+            266 pgs backfill_wait
+            6 pgs backfilling
+            27 pgs degraded
+            27 pgs recovery_wait
+            150 pgs stuck unclean
+            recovery 72/975199 objects degraded (0.007%)
+            recovery 318059/975199 objects misplaced (32.615%)
+     monmap e3: 3 mons at {CW113=192.168.1.113:6789/0,CW114=192.168.1.114:6789/0,CW115=192.168.1.115:6789/0}
+            election epoch 6, quorum 0,1,2 CW113,CW114,CW115
+     osdmap e9797: 11 osds: 11 up, 11 in; 272 remapped pgs
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v108314: 3072 pgs, 11 pools, 1590 GB data, 398 kobjects
+            2884 GB used, 4807 GB / 7691 GB avail
+            72/975199 objects degraded (0.007%)
+            318059/975199 objects misplaced (32.615%)
+                2773 active+clean
+                 266 active+remapped+backfill_wait
+                  27 active+recovery_wait+degraded
+                   6 active+remapped+backfilling
+recovery io 1496 MB/s, 399 objects/s
+stdin: is not a tty
+
+2017-06-09 17:44:20,307 INFO cluster.py [line:238] PG number is 3072
+2017-06-09 17:44:20,307 INFO cluster.py [line:239] usefull PG number is 2773
+2017-06-09 17:45:20,367 INFO cluster.py [line:247] cost 61 seconds, left 2614 seconds when check the ceph status
+2017-06-09 17:45:20,367 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-09 17:45:20,780 INFO cluster.py [line:213]    cluster 9afd408f-471c-4742-8db0-071924668d84
+     health HEALTH_WARN
+            252 pgs backfill_wait
+            6 pgs backfilling
+            7 pgs degraded
+            1 pgs peering
+            7 pgs recovery_wait
+            193 pgs stuck unclean
+            recovery 22/968143 objects degraded (0.002%)
+            recovery 304291/968143 objects misplaced (31.430%)
+     monmap e3: 3 mons at {CW113=192.168.1.113:6789/0,CW114=192.168.1.114:6789/0,CW115=192.168.1.115:6789/0}
+            election epoch 6, quorum 0,1,2 CW113,CW114,CW115
+     osdmap e9818: 11 osds: 11 up, 11 in; 258 remapped pgs
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v108378: 3072 pgs, 11 pools, 1590 GB data, 398 kobjects
+            2883 GB used, 4807 GB / 7691 GB avail
+            22/968143 objects degraded (0.002%)
+            304291/968143 objects misplaced (31.430%)
+                2806 active+clean
+                 252 active+remapped+backfill_wait
+                   7 active+recovery_wait+degraded
+                   6 active+remapped+backfilling
+                   1 peering
+recovery io 522 MB/s, 141 objects/s
+  client io 39870 B/s rd, 38 op/s rd, 0 op/s wr
+stdin: is not a tty
+
+2017-06-09 17:45:20,781 INFO cluster.py [line:238] PG number is 3072
+2017-06-09 17:45:20,781 INFO cluster.py [line:239] usefull PG number is 2806
+2017-06-09 17:46:20,800 INFO cluster.py [line:247] cost 60 seconds, left 2554 seconds when check the ceph status
+2017-06-09 17:46:20,800 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-09 17:46:21,224 INFO cluster.py [line:213]    cluster 9afd408f-471c-4742-8db0-071924668d84
+     health HEALTH_WARN
+            247 pgs backfill_wait
+            4 pgs backfilling
+            4 pgs degraded
+            4 pgs recovery_wait
+            212 pgs stuck unclean
+            recovery 14/963409 objects degraded (0.001%)
+            recovery 293914/963409 objects misplaced (30.508%)
+     monmap e3: 3 mons at {CW113=192.168.1.113:6789/0,CW114=192.168.1.114:6789/0,CW115=192.168.1.115:6789/0}
+            election epoch 6, quorum 0,1,2 CW113,CW114,CW115
+     osdmap e9831: 11 osds: 11 up, 11 in; 250 remapped pgs
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v108437: 3072 pgs, 11 pools, 1590 GB data, 398 kobjects
+            2889 GB used, 4801 GB / 7691 GB avail
+            14/963409 objects degraded (0.001%)
+            293914/963409 objects misplaced (30.508%)
+                2817 active+clean
+                 247 active+remapped+backfill_wait
+                   4 active+recovery_wait+degraded
+                   4 active+remapped+backfilling
+recovery io 339 MB/s, 90 objects/s
+stdin: is not a tty
+
+2017-06-09 17:46:21,224 INFO cluster.py [line:238] PG number is 3072
+2017-06-09 17:46:21,224 INFO cluster.py [line:239] usefull PG number is 2817
+2017-06-09 17:47:21,234 INFO cluster.py [line:247] cost 61 seconds, left 2493 seconds when check the ceph status
+2017-06-09 17:47:21,234 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-09 17:47:21,652 INFO cluster.py [line:213]    cluster 9afd408f-471c-4742-8db0-071924668d84
+     health HEALTH_WARN
+            227 pgs backfill_wait
+            6 pgs backfilling
+            2 pgs peering
+            203 pgs stuck unclean
+            recovery 278376/956094 objects misplaced (29.116%)
+     monmap e3: 3 mons at {CW113=192.168.1.113:6789/0,CW114=192.168.1.114:6789/0,CW115=192.168.1.115:6789/0}
+            election epoch 6, quorum 0,1,2 CW113,CW114,CW115
+     osdmap e9857: 11 osds: 11 up, 11 in; 233 remapped pgs
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v108508: 3072 pgs, 11 pools, 1590 GB data, 398 kobjects
+            2889 GB used, 4802 GB / 7691 GB avail
+            278376/956094 objects misplaced (29.116%)
+                2836 active+clean
+                 227 active+remapped+backfill_wait
+                   6 active+remapped+backfilling
+                   2 peering
+                   1 active+remapped
+recovery io 698 MB/s, 186 objects/s
+stdin: is not a tty
+
+2017-06-09 17:47:21,652 INFO cluster.py [line:238] PG number is 3072
+2017-06-09 17:47:21,653 INFO cluster.py [line:239] usefull PG number is 2836
+2017-06-09 17:48:21,713 INFO cluster.py [line:247] cost 60 seconds, left 2433 seconds when check the ceph status
+2017-06-09 17:48:21,713 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-09 17:48:22,188 INFO cluster.py [line:213]    cluster 9afd408f-471c-4742-8db0-071924668d84
+     health HEALTH_WARN
+            218 pgs backfill_wait
+            3 pgs backfilling
+            205 pgs stuck unclean
+            recovery 264509/948347 objects misplaced (27.892%)
+     monmap e3: 3 mons at {CW113=192.168.1.113:6789/0,CW114=192.168.1.114:6789/0,CW115=192.168.1.115:6789/0}
+            election epoch 6, quorum 0,1,2 CW113,CW114,CW115
+     osdmap e9880: 11 osds: 11 up, 11 in; 220 remapped pgs
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v108572: 3072 pgs, 11 pools, 1590 GB data, 398 kobjects
+            2885 GB used, 4805 GB / 7691 GB avail
+            264509/948347 objects misplaced (27.892%)
+                2851 active+clean
+                 218 active+remapped+backfill_wait
+                   3 active+remapped+backfilling
+recovery io 221 MB/s, 59 objects/s
+stdin: is not a tty
+
+2017-06-09 17:48:22,189 INFO cluster.py [line:238] PG number is 3072
+2017-06-09 17:48:22,189 INFO cluster.py [line:239] usefull PG number is 2851
+2017-06-09 17:49:22,217 INFO cluster.py [line:247] cost 61 seconds, left 2372 seconds when check the ceph status
+2017-06-09 17:49:22,217 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-09 17:49:22,604 INFO cluster.py [line:213]    cluster 9afd408f-471c-4742-8db0-071924668d84
+     health HEALTH_WARN
+            213 pgs backfill_wait
+            2 pgs backfilling
+            215 pgs stuck unclean
+            recovery 258783/945155 objects misplaced (27.380%)
+     monmap e3: 3 mons at {CW113=192.168.1.113:6789/0,CW114=192.168.1.114:6789/0,CW115=192.168.1.115:6789/0}
+            election epoch 6, quorum 0,1,2 CW113,CW114,CW115
+     osdmap e9890: 11 osds: 11 up, 11 in; 215 remapped pgs
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v108630: 3072 pgs, 11 pools, 1590 GB data, 398 kobjects
+            2884 GB used, 4806 GB / 7691 GB avail
+            258783/945155 objects misplaced (27.380%)
+                2856 active+clean
+                 213 active+remapped+backfill_wait
+                   2 active+remapped+backfilling
+                   1 activating
+recovery io 365 MB/s, 97 objects/s
+stdin: is not a tty
+
+2017-06-09 17:49:22,605 INFO cluster.py [line:238] PG number is 3072
+2017-06-09 17:49:22,605 INFO cluster.py [line:239] usefull PG number is 2856
+2017-06-09 17:50:22,665 INFO cluster.py [line:247] cost 60 seconds, left 2312 seconds when check the ceph status
+2017-06-09 17:50:22,665 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-09 17:50:23,089 INFO cluster.py [line:213]    cluster 9afd408f-471c-4742-8db0-071924668d84
+     health HEALTH_WARN
+            200 pgs backfill_wait
+            4 pgs backfilling
+            1 pgs peering
+            204 pgs stuck unclean
+            recovery 245891/939437 objects misplaced (26.174%)
+     monmap e3: 3 mons at {CW113=192.168.1.113:6789/0,CW114=192.168.1.114:6789/0,CW115=192.168.1.115:6789/0}
+            election epoch 6, quorum 0,1,2 CW113,CW114,CW115
+     osdmap e9910: 11 osds: 11 up, 11 in; 204 remapped pgs
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v108692: 3072 pgs, 11 pools, 1590 GB data, 398 kobjects
+            2888 GB used, 4803 GB / 7691 GB avail
+            245891/939437 objects misplaced (26.174%)
+                2867 active+clean
+                 200 active+remapped+backfill_wait
+                   4 active+remapped+backfilling
+                   1 peering
+recovery io 2296 MB/s, 627 objects/s
+stdin: is not a tty
+
+2017-06-09 17:50:23,090 INFO cluster.py [line:238] PG number is 3072
+2017-06-09 17:50:23,090 INFO cluster.py [line:239] usefull PG number is 2867
+2017-06-09 17:51:23,133 INFO cluster.py [line:247] cost 61 seconds, left 2251 seconds when check the ceph status
+2017-06-09 17:51:23,134 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-09 17:51:23,519 INFO cluster.py [line:213]    cluster 9afd408f-471c-4742-8db0-071924668d84
+     health HEALTH_WARN
+            196 pgs backfill_wait
+            3 pgs backfilling
+            199 pgs stuck unclean
+            recovery 238404/935501 objects misplaced (25.484%)
+     monmap e3: 3 mons at {CW113=192.168.1.113:6789/0,CW114=192.168.1.114:6789/0,CW115=192.168.1.115:6789/0}
+            election epoch 6, quorum 0,1,2 CW113,CW114,CW115
+     osdmap e9919: 11 osds: 11 up, 11 in; 199 remapped pgs
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v108748: 3072 pgs, 11 pools, 1590 GB data, 398 kobjects
+            2885 GB used, 4806 GB / 7691 GB avail
+            238404/935501 objects misplaced (25.484%)
+                2873 active+clean
+                 196 active+remapped+backfill_wait
+                   3 active+remapped+backfilling
+recovery io 1074 MB/s, 293 objects/s
+stdin: is not a tty
+
+2017-06-09 17:51:23,519 INFO cluster.py [line:238] PG number is 3072
+2017-06-09 17:51:23,519 INFO cluster.py [line:239] usefull PG number is 2873
+2017-06-09 17:52:23,545 INFO cluster.py [line:247] cost 60 seconds, left 2191 seconds when check the ceph status
+2017-06-09 17:52:23,545 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-09 17:52:23,958 INFO cluster.py [line:213]    cluster 9afd408f-471c-4742-8db0-071924668d84
+     health HEALTH_WARN
+            186 pgs backfill_wait
+            2 pgs backfilling
+            189 pgs stuck unclean
+            recovery 228503/929963 objects misplaced (24.571%)
+     monmap e3: 3 mons at {CW113=192.168.1.113:6789/0,CW114=192.168.1.114:6789/0,CW115=192.168.1.115:6789/0}
+            election epoch 6, quorum 0,1,2 CW113,CW114,CW115
+     osdmap e9939: 11 osds: 11 up, 11 in; 188 remapped pgs
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v108811: 3072 pgs, 11 pools, 1590 GB data, 398 kobjects
+            2882 GB used, 4809 GB / 7691 GB avail
+            228503/929963 objects misplaced (24.571%)
+                2883 active+clean
+                 186 active+remapped+backfill_wait
+                   2 active+remapped+backfilling
+                   1 active+remapped
+stdin: is not a tty
+
+2017-06-09 17:52:23,958 INFO cluster.py [line:238] PG number is 3072
+2017-06-09 17:52:23,958 INFO cluster.py [line:239] usefull PG number is 2883
+2017-06-09 17:53:23,991 INFO cluster.py [line:247] cost 60 seconds, left 2131 seconds when check the ceph status
+2017-06-09 17:53:23,992 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-09 17:53:24,372 INFO cluster.py [line:213]    cluster 9afd408f-471c-4742-8db0-071924668d84
+     health HEALTH_WARN
+            176 pgs backfill_wait
+            3 pgs backfilling
+            179 pgs stuck unclean
+            recovery 222981/927296 objects misplaced (24.046%)
+     monmap e3: 3 mons at {CW113=192.168.1.113:6789/0,CW114=192.168.1.114:6789/0,CW115=192.168.1.115:6789/0}
+            election epoch 6, quorum 0,1,2 CW113,CW114,CW115
+     osdmap e9954: 11 osds: 11 up, 11 in; 179 remapped pgs
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v108872: 3072 pgs, 11 pools, 1590 GB data, 398 kobjects
+            2882 GB used, 4808 GB / 7691 GB avail
+            222981/927296 objects misplaced (24.046%)
+                2893 active+clean
+                 176 active+remapped+backfill_wait
+                   3 active+remapped+backfilling
+recovery io 212 MB/s, 56 objects/s
+stdin: is not a tty
+
+2017-06-09 17:53:24,373 INFO cluster.py [line:238] PG number is 3072
+2017-06-09 17:53:24,373 INFO cluster.py [line:239] usefull PG number is 2893
+2017-06-09 17:54:24,411 INFO cluster.py [line:247] cost 61 seconds, left 2070 seconds when check the ceph status
+2017-06-09 17:54:24,411 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-09 17:54:24,816 INFO cluster.py [line:213]    cluster 9afd408f-471c-4742-8db0-071924668d84
+     health HEALTH_WARN
+            174 pgs backfill_wait
+            2 pgs backfilling
+            176 pgs stuck unclean
+            recovery 218669/925008 objects misplaced (23.640%)
+     monmap e3: 3 mons at {CW113=192.168.1.113:6789/0,CW114=192.168.1.114:6789/0,CW115=192.168.1.115:6789/0}
+            election epoch 6, quorum 0,1,2 CW113,CW114,CW115
+     osdmap e9960: 11 osds: 11 up, 11 in; 176 remapped pgs
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v108927: 3072 pgs, 11 pools, 1590 GB data, 398 kobjects
+            2882 GB used, 4809 GB / 7691 GB avail
+            218669/925008 objects misplaced (23.640%)
+                2896 active+clean
+                 174 active+remapped+backfill_wait
+                   2 active+remapped+backfilling
+recovery io 210 MB/s, 56 objects/s
+stdin: is not a tty
+
+2017-06-09 17:54:24,816 INFO cluster.py [line:238] PG number is 3072
+2017-06-09 17:54:24,816 INFO cluster.py [line:239] usefull PG number is 2896
+2017-06-09 17:55:24,876 INFO cluster.py [line:247] cost 60 seconds, left 2010 seconds when check the ceph status
+2017-06-09 17:55:24,877 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-09 17:55:25,279 INFO cluster.py [line:213]    cluster 9afd408f-471c-4742-8db0-071924668d84
+     health HEALTH_WARN
+            171 pgs backfill_wait
+            2 pgs backfilling
+            173 pgs stuck unclean
+            recovery 215314/923420 objects misplaced (23.317%)
+     monmap e3: 3 mons at {CW113=192.168.1.113:6789/0,CW114=192.168.1.114:6789/0,CW115=192.168.1.115:6789/0}
+            election epoch 6, quorum 0,1,2 CW113,CW114,CW115
+     osdmap e9966: 11 osds: 11 up, 11 in; 173 remapped pgs
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v108983: 3072 pgs, 11 pools, 1590 GB data, 398 kobjects
+            2882 GB used, 4809 GB / 7691 GB avail
+            215314/923420 objects misplaced (23.317%)
+                2899 active+clean
+                 171 active+remapped+backfill_wait
+                   2 active+remapped+backfilling
+recovery io 460 MB/s, 122 objects/s
+stdin: is not a tty
+
+2017-06-09 17:55:25,280 INFO cluster.py [line:238] PG number is 3072
+2017-06-09 17:55:25,280 INFO cluster.py [line:239] usefull PG number is 2899
+2017-06-09 17:56:25,310 INFO cluster.py [line:247] cost 61 seconds, left 1949 seconds when check the ceph status
+2017-06-09 17:56:25,310 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-09 17:56:25,701 INFO cluster.py [line:213]    cluster 9afd408f-471c-4742-8db0-071924668d84
+     health HEALTH_WARN
+            169 pgs backfill_wait
+            2 pgs backfilling
+            171 pgs stuck unclean
+            recovery 212218/921852 objects misplaced (23.021%)
+     monmap e3: 3 mons at {CW113=192.168.1.113:6789/0,CW114=192.168.1.114:6789/0,CW115=192.168.1.115:6789/0}
+            election epoch 6, quorum 0,1,2 CW113,CW114,CW115
+     osdmap e9970: 11 osds: 11 up, 11 in; 171 remapped pgs
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v109039: 3072 pgs, 11 pools, 1590 GB data, 398 kobjects
+            2882 GB used, 4809 GB / 7691 GB avail
+            212218/921852 objects misplaced (23.021%)
+                2901 active+clean
+                 169 active+remapped+backfill_wait
+                   2 active+remapped+backfilling
+recovery io 221 MB/s, 59 objects/s
+stdin: is not a tty
+
+2017-06-09 17:56:25,701 INFO cluster.py [line:238] PG number is 3072
+2017-06-09 17:56:25,701 INFO cluster.py [line:239] usefull PG number is 2901
+2017-06-09 17:57:25,739 INFO cluster.py [line:247] cost 60 seconds, left 1889 seconds when check the ceph status
+2017-06-09 17:57:25,740 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-09 17:57:26,174 INFO cluster.py [line:213]    cluster 9afd408f-471c-4742-8db0-071924668d84
+     health HEALTH_WARN
+            165 pgs backfill_wait
+            3 pgs backfilling
+            168 pgs stuck unclean
+            recovery 208357/920217 objects misplaced (22.642%)
+     monmap e3: 3 mons at {CW113=192.168.1.113:6789/0,CW114=192.168.1.114:6789/0,CW115=192.168.1.115:6789/0}
+            election epoch 6, quorum 0,1,2 CW113,CW114,CW115
+     osdmap e9976: 11 osds: 11 up, 11 in; 168 remapped pgs
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v109097: 3072 pgs, 11 pools, 1590 GB data, 398 kobjects
+            2884 GB used, 4807 GB / 7691 GB avail
+            208357/920217 objects misplaced (22.642%)
+                2904 active+clean
+                 165 active+remapped+backfill_wait
+                   3 active+remapped+backfilling
+recovery io 409 MB/s, 109 objects/s
+stdin: is not a tty
+
+2017-06-09 17:57:26,174 INFO cluster.py [line:238] PG number is 3072
+2017-06-09 17:57:26,175 INFO cluster.py [line:239] usefull PG number is 2904
+2017-06-09 17:58:26,198 INFO cluster.py [line:247] cost 61 seconds, left 1828 seconds when check the ceph status
+2017-06-09 17:58:26,198 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-09 17:58:26,587 INFO cluster.py [line:213]    cluster 9afd408f-471c-4742-8db0-071924668d84
+     health HEALTH_WARN
+            160 pgs backfill_wait
+            3 pgs backfilling
+            163 pgs stuck unclean
+            recovery 202394/917147 objects misplaced (22.068%)
+     monmap e3: 3 mons at {CW113=192.168.1.113:6789/0,CW114=192.168.1.114:6789/0,CW115=192.168.1.115:6789/0}
+            election epoch 6, quorum 0,1,2 CW113,CW114,CW115
+     osdmap e9986: 11 osds: 11 up, 11 in; 163 remapped pgs
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v109157: 3072 pgs, 11 pools, 1590 GB data, 398 kobjects
+            2883 GB used, 4807 GB / 7691 GB avail
+            202394/917147 objects misplaced (22.068%)
+                2909 active+clean
+                 160 active+remapped+backfill_wait
+                   3 active+remapped+backfilling
+recovery io 222 MB/s, 59 objects/s
+stdin: is not a tty
+
+2017-06-09 17:58:26,588 INFO cluster.py [line:238] PG number is 3072
+2017-06-09 17:58:26,588 INFO cluster.py [line:239] usefull PG number is 2909
+2017-06-09 17:59:26,628 INFO cluster.py [line:247] cost 60 seconds, left 1768 seconds when check the ceph status
+2017-06-09 17:59:26,628 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-09 17:59:27,020 INFO cluster.py [line:213]    cluster 9afd408f-471c-4742-8db0-071924668d84
+     health HEALTH_WARN
+            155 pgs backfill_wait
+            2 pgs backfilling
+            157 pgs stuck unclean
+            recovery 197983/914648 objects misplaced (21.646%)
+     monmap e3: 3 mons at {CW113=192.168.1.113:6789/0,CW114=192.168.1.114:6789/0,CW115=192.168.1.115:6789/0}
+            election epoch 6, quorum 0,1,2 CW113,CW114,CW115
+     osdmap e9995: 11 osds: 11 up, 11 in; 157 remapped pgs
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v109211: 3072 pgs, 11 pools, 1590 GB data, 398 kobjects
+            2882 GB used, 4809 GB / 7691 GB avail
+            197983/914648 objects misplaced (21.646%)
+                2915 active+clean
+                 155 active+remapped+backfill_wait
+                   2 active+remapped+backfilling
+recovery io 210 MB/s, 56 objects/s
+stdin: is not a tty
+
+2017-06-09 17:59:27,021 INFO cluster.py [line:238] PG number is 3072
+2017-06-09 17:59:27,021 INFO cluster.py [line:239] usefull PG number is 2915
+2017-06-09 18:00:27,067 INFO cluster.py [line:247] cost 61 seconds, left 1707 seconds when check the ceph status
+2017-06-09 18:00:27,068 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-09 18:00:27,469 INFO cluster.py [line:213]    cluster 9afd408f-471c-4742-8db0-071924668d84
+     health HEALTH_WARN
+            150 pgs backfill_wait
+            3 pgs backfilling
+            153 pgs stuck unclean
+            recovery 194432/912996 objects misplaced (21.296%)
+     monmap e3: 3 mons at {CW113=192.168.1.113:6789/0,CW114=192.168.1.114:6789/0,CW115=192.168.1.115:6789/0}
+            election epoch 6, quorum 0,1,2 CW113,CW114,CW115
+     osdmap e10001: 11 osds: 11 up, 11 in; 153 remapped pgs
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v109262: 3072 pgs, 11 pools, 1590 GB data, 398 kobjects
+            2882 GB used, 4809 GB / 7691 GB avail
+            194432/912996 objects misplaced (21.296%)
+                2919 active+clean
+                 150 active+remapped+backfill_wait
+                   3 active+remapped+backfilling
+recovery io 646 MB/s, 173 objects/s
+stdin: is not a tty
+
+2017-06-09 18:00:27,470 INFO cluster.py [line:238] PG number is 3072
+2017-06-09 18:00:27,470 INFO cluster.py [line:239] usefull PG number is 2919
+2017-06-09 18:01:27,530 INFO cluster.py [line:247] cost 60 seconds, left 1647 seconds when check the ceph status
+2017-06-09 18:01:27,530 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-09 18:01:27,911 INFO cluster.py [line:213]    cluster 9afd408f-471c-4742-8db0-071924668d84
+     health HEALTH_WARN
+            146 pgs backfill_wait
+            3 pgs backfilling
+            149 pgs stuck unclean
+            recovery 189775/910626 objects misplaced (20.840%)
+     monmap e3: 3 mons at {CW113=192.168.1.113:6789/0,CW114=192.168.1.114:6789/0,CW115=192.168.1.115:6789/0}
+            election epoch 6, quorum 0,1,2 CW113,CW114,CW115
+     osdmap e10007: 11 osds: 11 up, 11 in; 149 remapped pgs
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v109319: 3072 pgs, 11 pools, 1590 GB data, 398 kobjects
+            2882 GB used, 4808 GB / 7691 GB avail
+            189775/910626 objects misplaced (20.840%)
+                2923 active+clean
+                 146 active+remapped+backfill_wait
+                   3 active+remapped+backfilling
+recovery io 422 MB/s, 112 objects/s
+  client io 58737 B/s rd, 86 op/s rd, 0 op/s wr
+stdin: is not a tty
+
+2017-06-09 18:01:27,911 INFO cluster.py [line:238] PG number is 3072
+2017-06-09 18:01:27,912 INFO cluster.py [line:239] usefull PG number is 2923
+2017-06-09 18:02:27,946 INFO cluster.py [line:247] cost 60 seconds, left 1587 seconds when check the ceph status
+2017-06-09 18:02:27,946 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-09 18:02:28,321 INFO cluster.py [line:213]    cluster 9afd408f-471c-4742-8db0-071924668d84
+     health HEALTH_WARN
+            143 pgs backfill_wait
+            3 pgs backfilling
+            146 pgs stuck unclean
+            recovery 184830/908343 objects misplaced (20.348%)
+     monmap e3: 3 mons at {CW113=192.168.1.113:6789/0,CW114=192.168.1.114:6789/0,CW115=192.168.1.115:6789/0}
+            election epoch 6, quorum 0,1,2 CW113,CW114,CW115
+     osdmap e10013: 11 osds: 11 up, 11 in; 146 remapped pgs
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v109376: 3072 pgs, 11 pools, 1590 GB data, 398 kobjects
+            2883 GB used, 4808 GB / 7691 GB avail
+            184830/908343 objects misplaced (20.348%)
+                2926 active+clean
+                 143 active+remapped+backfill_wait
+                   3 active+remapped+backfilling
+recovery io 1123 MB/s, 300 objects/s
+  client io 63391 B/s rd, 72 op/s rd, 0 op/s wr
+stdin: is not a tty
+
+2017-06-09 18:02:28,322 INFO cluster.py [line:238] PG number is 3072
+2017-06-09 18:02:28,322 INFO cluster.py [line:239] usefull PG number is 2926
+2017-06-09 18:03:28,382 INFO cluster.py [line:247] cost 61 seconds, left 1526 seconds when check the ceph status
+2017-06-09 18:03:28,382 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-09 18:03:28,774 INFO cluster.py [line:213]    cluster 9afd408f-471c-4742-8db0-071924668d84
+     health HEALTH_WARN
+            133 pgs backfill_wait
+            3 pgs backfilling
+            136 pgs stuck unclean
+            recovery 179545/905637 objects misplaced (19.825%)
+     monmap e3: 3 mons at {CW113=192.168.1.113:6789/0,CW114=192.168.1.114:6789/0,CW115=192.168.1.115:6789/0}
+            election epoch 6, quorum 0,1,2 CW113,CW114,CW115
+     osdmap e10029: 11 osds: 11 up, 11 in; 136 remapped pgs
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v109437: 3072 pgs, 11 pools, 1590 GB data, 398 kobjects
+            2883 GB used, 4808 GB / 7691 GB avail
+            179545/905637 objects misplaced (19.825%)
+                2936 active+clean
+                 133 active+remapped+backfill_wait
+                   3 active+remapped+backfilling
+recovery io 226 MB/s, 60 objects/s
+stdin: is not a tty
+
+2017-06-09 18:03:28,774 INFO cluster.py [line:238] PG number is 3072
+2017-06-09 18:03:28,774 INFO cluster.py [line:239] usefull PG number is 2936
+2017-06-09 18:04:28,824 INFO cluster.py [line:247] cost 60 seconds, left 1466 seconds when check the ceph status
+2017-06-09 18:04:28,824 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-09 18:04:29,252 INFO cluster.py [line:213]    cluster 9afd408f-471c-4742-8db0-071924668d84
+     health HEALTH_WARN
+            130 pgs backfill_wait
+            2 pgs backfilling
+            132 pgs stuck unclean
+            recovery 175106/903291 objects misplaced (19.385%)
+     monmap e3: 3 mons at {CW113=192.168.1.113:6789/0,CW114=192.168.1.114:6789/0,CW115=192.168.1.115:6789/0}
+            election epoch 6, quorum 0,1,2 CW113,CW114,CW115
+     osdmap e10037: 11 osds: 11 up, 11 in; 132 remapped pgs
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v109494: 3072 pgs, 11 pools, 1590 GB data, 398 kobjects
+            2882 GB used, 4808 GB / 7691 GB avail
+            175106/903291 objects misplaced (19.385%)
+                2940 active+clean
+                 130 active+remapped+backfill_wait
+                   2 active+remapped+backfilling
+recovery io 222 MB/s, 59 objects/s
+  client io 46845 B/s rd, 45 op/s rd, 0 op/s wr
+stdin: is not a tty
+
+2017-06-09 18:04:29,252 INFO cluster.py [line:238] PG number is 3072
+2017-06-09 18:04:29,252 INFO cluster.py [line:239] usefull PG number is 2940
+2017-06-09 18:05:29,300 INFO cluster.py [line:247] cost 61 seconds, left 1405 seconds when check the ceph status
+2017-06-09 18:05:29,300 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-09 18:05:29,683 INFO cluster.py [line:213]    cluster 9afd408f-471c-4742-8db0-071924668d84
+     health HEALTH_WARN
+            124 pgs backfill_wait
+            3 pgs backfilling
+            127 pgs stuck unclean
+            recovery 171724/901588 objects misplaced (19.047%)
+     monmap e3: 3 mons at {CW113=192.168.1.113:6789/0,CW114=192.168.1.114:6789/0,CW115=192.168.1.115:6789/0}
+            election epoch 6, quorum 0,1,2 CW113,CW114,CW115
+     osdmap e10045: 11 osds: 11 up, 11 in; 127 remapped pgs
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v109550: 3072 pgs, 11 pools, 1590 GB data, 398 kobjects
+            2882 GB used, 4808 GB / 7691 GB avail
+            171724/901588 objects misplaced (19.047%)
+                2945 active+clean
+                 124 active+remapped+backfill_wait
+                   3 active+remapped+backfilling
+  client io 48656 B/s rd, 47 op/s rd, 0 op/s wr
+stdin: is not a tty
+
+2017-06-09 18:05:29,684 INFO cluster.py [line:238] PG number is 3072
+2017-06-09 18:05:29,684 INFO cluster.py [line:239] usefull PG number is 2945
+2017-06-09 18:06:29,744 INFO cluster.py [line:247] cost 60 seconds, left 1345 seconds when check the ceph status
+2017-06-09 18:06:29,744 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-09 18:06:30,120 INFO cluster.py [line:213]    cluster 9afd408f-471c-4742-8db0-071924668d84
+     health HEALTH_WARN
+            120 pgs backfill_wait
+            3 pgs backfilling
+            123 pgs stuck unclean
+            recovery 165617/898511 objects misplaced (18.432%)
+     monmap e3: 3 mons at {CW113=192.168.1.113:6789/0,CW114=192.168.1.114:6789/0,CW115=192.168.1.115:6789/0}
+            election epoch 6, quorum 0,1,2 CW113,CW114,CW115
+     osdmap e10053: 11 osds: 11 up, 11 in; 123 remapped pgs
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v109607: 3072 pgs, 11 pools, 1590 GB data, 398 kobjects
+            2882 GB used, 4809 GB / 7691 GB avail
+            165617/898511 objects misplaced (18.432%)
+                2949 active+clean
+                 120 active+remapped+backfill_wait
+                   3 active+remapped+backfilling
+recovery io 220 MB/s, 59 objects/s
+stdin: is not a tty
+
+2017-06-09 18:06:30,120 INFO cluster.py [line:238] PG number is 3072
+2017-06-09 18:06:30,120 INFO cluster.py [line:239] usefull PG number is 2949
+2017-06-09 18:07:30,164 INFO cluster.py [line:247] cost 61 seconds, left 1284 seconds when check the ceph status
+2017-06-09 18:07:30,164 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-09 18:07:30,562 INFO cluster.py [line:213]    cluster 9afd408f-471c-4742-8db0-071924668d84
+     health HEALTH_WARN
+            115 pgs backfill_wait
+            3 pgs backfilling
+            118 pgs stuck unclean
+            recovery 160616/896114 objects misplaced (17.924%)
+     monmap e3: 3 mons at {CW113=192.168.1.113:6789/0,CW114=192.168.1.114:6789/0,CW115=192.168.1.115:6789/0}
+            election epoch 6, quorum 0,1,2 CW113,CW114,CW115
+     osdmap e10063: 11 osds: 11 up, 11 in; 118 remapped pgs
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v109665: 3072 pgs, 11 pools, 1590 GB data, 398 kobjects
+            2883 GB used, 4808 GB / 7691 GB avail
+            160616/896114 objects misplaced (17.924%)
+                2954 active+clean
+                 115 active+remapped+backfill_wait
+                   3 active+remapped+backfilling
+recovery io 202 MB/s, 54 objects/s
+stdin: is not a tty
+
+2017-06-09 18:07:30,563 INFO cluster.py [line:238] PG number is 3072
+2017-06-09 18:07:30,563 INFO cluster.py [line:239] usefull PG number is 2954
+2017-06-09 18:08:30,597 INFO cluster.py [line:247] cost 60 seconds, left 1224 seconds when check the ceph status
+2017-06-09 18:08:30,597 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-09 18:08:31,015 INFO cluster.py [line:213]    cluster 9afd408f-471c-4742-8db0-071924668d84
+     health HEALTH_WARN
+            113 pgs backfill_wait
+            2 pgs backfilling
+            115 pgs stuck unclean
+            recovery 155958/893767 objects misplaced (17.450%)
+     monmap e3: 3 mons at {CW113=192.168.1.113:6789/0,CW114=192.168.1.114:6789/0,CW115=192.168.1.115:6789/0}
+            election epoch 6, quorum 0,1,2 CW113,CW114,CW115
+     osdmap e10069: 11 osds: 11 up, 11 in; 115 remapped pgs
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v109719: 3072 pgs, 11 pools, 1590 GB data, 398 kobjects
+            2883 GB used, 4808 GB / 7691 GB avail
+            155958/893767 objects misplaced (17.450%)
+                2957 active+clean
+                 113 active+remapped+backfill_wait
+                   2 active+remapped+backfilling
+recovery io 242 MB/s, 65 objects/s
+stdin: is not a tty
+
+2017-06-09 18:08:31,015 INFO cluster.py [line:238] PG number is 3072
+2017-06-09 18:08:31,015 INFO cluster.py [line:239] usefull PG number is 2957
+2017-06-09 18:09:31,072 INFO cluster.py [line:247] cost 61 seconds, left 1163 seconds when check the ceph status
+2017-06-09 18:09:31,072 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-09 18:09:31,458 INFO cluster.py [line:213]    cluster 9afd408f-471c-4742-8db0-071924668d84
+     health HEALTH_WARN
+            110 pgs backfill_wait
+            2 pgs backfilling
+            112 pgs stuck unclean
+            recovery 152689/892186 objects misplaced (17.114%)
+     monmap e3: 3 mons at {CW113=192.168.1.113:6789/0,CW114=192.168.1.114:6789/0,CW115=192.168.1.115:6789/0}
+            election epoch 6, quorum 0,1,2 CW113,CW114,CW115
+     osdmap e10075: 11 osds: 11 up, 11 in; 112 remapped pgs
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v109776: 3072 pgs, 11 pools, 1590 GB data, 398 kobjects
+            2883 GB used, 4808 GB / 7691 GB avail
+            152689/892186 objects misplaced (17.114%)
+                2960 active+clean
+                 110 active+remapped+backfill_wait
+                   2 active+remapped+backfilling
+recovery io 220 MB/s, 58 objects/s
+  client io 41914 B/s rd, 61 op/s rd, 0 op/s wr
+stdin: is not a tty
+
+2017-06-09 18:09:31,458 INFO cluster.py [line:238] PG number is 3072
+2017-06-09 18:09:31,459 INFO cluster.py [line:239] usefull PG number is 2960
+2017-06-09 18:10:31,510 INFO cluster.py [line:247] cost 60 seconds, left 1103 seconds when check the ceph status
+2017-06-09 18:10:31,510 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-09 18:10:31,905 INFO cluster.py [line:213]    cluster 9afd408f-471c-4742-8db0-071924668d84
+     health HEALTH_WARN
+            105 pgs backfill_wait
+            3 pgs backfilling
+            108 pgs stuck unclean
+            recovery 147061/889878 objects misplaced (16.526%)
+     monmap e3: 3 mons at {CW113=192.168.1.113:6789/0,CW114=192.168.1.114:6789/0,CW115=192.168.1.115:6789/0}
+            election epoch 6, quorum 0,1,2 CW113,CW114,CW115
+     osdmap e10083: 11 osds: 11 up, 11 in; 108 remapped pgs
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v109833: 3072 pgs, 11 pools, 1590 GB data, 398 kobjects
+            2886 GB used, 4804 GB / 7691 GB avail
+            147061/889878 objects misplaced (16.526%)
+                2964 active+clean
+                 105 active+remapped+backfill_wait
+                   3 active+remapped+backfilling
+recovery io 372 MB/s, 101 objects/s
+  client io 38915 B/s rd, 57 op/s rd, 0 op/s wr
+stdin: is not a tty
+
+2017-06-09 18:10:31,905 INFO cluster.py [line:238] PG number is 3072
+2017-06-09 18:10:31,906 INFO cluster.py [line:239] usefull PG number is 2964
+2017-06-09 18:11:31,951 INFO cluster.py [line:247] cost 60 seconds, left 1043 seconds when check the ceph status
+2017-06-09 18:11:31,951 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-09 18:11:32,360 INFO cluster.py [line:213]    cluster 9afd408f-471c-4742-8db0-071924668d84
+     health HEALTH_WARN
+            100 pgs backfill_wait
+            4 pgs backfilling
+            104 pgs stuck unclean
+            recovery 140775/886806 objects misplaced (15.874%)
+     monmap e3: 3 mons at {CW113=192.168.1.113:6789/0,CW114=192.168.1.114:6789/0,CW115=192.168.1.115:6789/0}
+            election epoch 6, quorum 0,1,2 CW113,CW114,CW115
+     osdmap e10091: 11 osds: 11 up, 11 in; 104 remapped pgs
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v109890: 3072 pgs, 11 pools, 1590 GB data, 398 kobjects
+            2886 GB used, 4804 GB / 7691 GB avail
+            140775/886806 objects misplaced (15.874%)
+                2968 active+clean
+                 100 active+remapped+backfill_wait
+                   4 active+remapped+backfilling
+recovery io 669 MB/s, 178 objects/s
+  client io 49668 B/s rd, 72 op/s rd, 0 op/s wr
+stdin: is not a tty
+
+2017-06-09 18:11:32,360 INFO cluster.py [line:238] PG number is 3072
+2017-06-09 18:11:32,361 INFO cluster.py [line:239] usefull PG number is 2968
+2017-06-09 18:12:32,385 INFO cluster.py [line:247] cost 61 seconds, left 982 seconds when check the ceph status
+2017-06-09 18:12:32,385 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-09 18:12:32,761 INFO cluster.py [line:213]    cluster 9afd408f-471c-4742-8db0-071924668d84
+     health HEALTH_WARN
+            86 pgs backfill_wait
+            6 pgs backfilling
+            92 pgs stuck unclean
+            recovery 129642/881784 objects misplaced (14.702%)
+     monmap e3: 3 mons at {CW113=192.168.1.113:6789/0,CW114=192.168.1.114:6789/0,CW115=192.168.1.115:6789/0}
+            election epoch 6, quorum 0,1,2 CW113,CW114,CW115
+     osdmap e10109: 11 osds: 11 up, 11 in; 91 remapped pgs
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v109951: 3072 pgs, 11 pools, 1590 GB data, 398 kobjects
+            2892 GB used, 4799 GB / 7691 GB avail
+            129642/881784 objects misplaced (14.702%)
+                2979 active+clean
+                  86 active+remapped+backfill_wait
+                   6 active+remapped+backfilling
+                   1 activating
+recovery io 1111 MB/s, 303 objects/s
+  client io 26234 B/s rd, 38 op/s rd, 0 op/s wr
+stdin: is not a tty
+
+2017-06-09 18:12:32,761 INFO cluster.py [line:238] PG number is 3072
+2017-06-09 18:12:32,761 INFO cluster.py [line:239] usefull PG number is 2979
+2017-06-09 18:13:32,795 INFO cluster.py [line:247] cost 60 seconds, left 922 seconds when check the ceph status
+2017-06-09 18:13:32,795 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-09 18:13:33,164 INFO cluster.py [line:213]    cluster 9afd408f-471c-4742-8db0-071924668d84
+     health HEALTH_WARN
+            82 pgs backfill_wait
+            3 pgs backfilling
+            85 pgs stuck unclean
+            recovery 119266/875564 objects misplaced (13.622%)
+     monmap e3: 3 mons at {CW113=192.168.1.113:6789/0,CW114=192.168.1.114:6789/0,CW115=192.168.1.115:6789/0}
+            election epoch 6, quorum 0,1,2 CW113,CW114,CW115
+     osdmap e10121: 11 osds: 11 up, 11 in; 85 remapped pgs
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v110011: 3072 pgs, 11 pools, 1590 GB data, 398 kobjects
+            2884 GB used, 4807 GB / 7691 GB avail
+            119266/875564 objects misplaced (13.622%)
+                2987 active+clean
+                  82 active+remapped+backfill_wait
+                   3 active+remapped+backfilling
+recovery io 222 MB/s, 59 objects/s
+  client io 15789 B/s rd, 23 op/s rd, 0 op/s wr
+stdin: is not a tty
+
+2017-06-09 18:13:33,165 INFO cluster.py [line:238] PG number is 3072
+2017-06-09 18:13:33,165 INFO cluster.py [line:239] usefull PG number is 2987
+2017-06-09 18:14:33,211 INFO cluster.py [line:247] cost 61 seconds, left 861 seconds when check the ceph status
+2017-06-09 18:14:33,211 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-09 18:14:33,647 INFO cluster.py [line:213]    cluster 9afd408f-471c-4742-8db0-071924668d84
+     health HEALTH_WARN
+            74 pgs backfill_wait
+            3 pgs backfilling
+            77 pgs stuck unclean
+            recovery 111936/871697 objects misplaced (12.841%)
+     monmap e3: 3 mons at {CW113=192.168.1.113:6789/0,CW114=192.168.1.114:6789/0,CW115=192.168.1.115:6789/0}
+            election epoch 6, quorum 0,1,2 CW113,CW114,CW115
+     osdmap e10137: 11 osds: 11 up, 11 in; 77 remapped pgs
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v110073: 3072 pgs, 11 pools, 1590 GB data, 398 kobjects
+            2882 GB used, 4808 GB / 7691 GB avail
+            111936/871697 objects misplaced (12.841%)
+                2995 active+clean
+                  74 active+remapped+backfill_wait
+                   3 active+remapped+backfilling
+  client io 41060 B/s rd, 43 op/s rd, 0 op/s wr
+stdin: is not a tty
+
+2017-06-09 18:14:33,648 INFO cluster.py [line:238] PG number is 3072
+2017-06-09 18:14:33,648 INFO cluster.py [line:239] usefull PG number is 2995
+2017-06-09 18:15:33,679 INFO cluster.py [line:247] cost 60 seconds, left 801 seconds when check the ceph status
+2017-06-09 18:15:33,680 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-09 18:15:34,076 INFO cluster.py [line:213]    cluster 9afd408f-471c-4742-8db0-071924668d84
+     health HEALTH_WARN
+            71 pgs backfill_wait
+            3 pgs backfilling
+            74 pgs stuck unclean
+            recovery 105587/868504 objects misplaced (12.157%)
+     monmap e3: 3 mons at {CW113=192.168.1.113:6789/0,CW114=192.168.1.114:6789/0,CW115=192.168.1.115:6789/0}
+            election epoch 6, quorum 0,1,2 CW113,CW114,CW115
+     osdmap e10143: 11 osds: 11 up, 11 in; 74 remapped pgs
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v110128: 3072 pgs, 11 pools, 1590 GB data, 398 kobjects
+            2882 GB used, 4809 GB / 7691 GB avail
+            105587/868504 objects misplaced (12.157%)
+                2998 active+clean
+                  71 active+remapped+backfill_wait
+                   3 active+remapped+backfilling
+recovery io 1030 MB/s, 276 objects/s
+  client io 74459 B/s rd, 83 op/s rd, 0 op/s wr
+stdin: is not a tty
+
+2017-06-09 18:15:34,076 INFO cluster.py [line:238] PG number is 3072
+2017-06-09 18:15:34,076 INFO cluster.py [line:239] usefull PG number is 2998
+2017-06-09 18:16:34,130 INFO cluster.py [line:247] cost 61 seconds, left 740 seconds when check the ceph status
+2017-06-09 18:16:34,130 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-09 18:16:34,528 INFO cluster.py [line:213]    cluster 9afd408f-471c-4742-8db0-071924668d84
+     health HEALTH_WARN
+            67 pgs backfill_wait
+            3 pgs backfilling
+            70 pgs stuck unclean
+            recovery 100490/866161 objects misplaced (11.602%)
+     monmap e3: 3 mons at {CW113=192.168.1.113:6789/0,CW114=192.168.1.114:6789/0,CW115=192.168.1.115:6789/0}
+            election epoch 6, quorum 0,1,2 CW113,CW114,CW115
+     osdmap e10151: 11 osds: 11 up, 11 in; 70 remapped pgs
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v110186: 3072 pgs, 11 pools, 1590 GB data, 398 kobjects
+            2883 GB used, 4807 GB / 7691 GB avail
+            100490/866161 objects misplaced (11.602%)
+                3002 active+clean
+                  67 active+remapped+backfill_wait
+                   3 active+remapped+backfilling
+recovery io 444 MB/s, 118 objects/s
+  client io 40010 B/s rd, 39 op/s rd, 0 op/s wr
+stdin: is not a tty
+
+2017-06-09 18:16:34,529 INFO cluster.py [line:238] PG number is 3072
+2017-06-09 18:16:34,529 INFO cluster.py [line:239] usefull PG number is 3002
+2017-06-09 18:17:34,556 INFO cluster.py [line:247] cost 60 seconds, left 680 seconds when check the ceph status
+2017-06-09 18:17:34,557 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-09 18:17:34,931 INFO cluster.py [line:213]    cluster 9afd408f-471c-4742-8db0-071924668d84
+     health HEALTH_WARN
+            65 pgs backfill_wait
+            2 pgs backfilling
+            67 pgs stuck unclean
+            recovery 95772/863832 objects misplaced (11.087%)
+     monmap e3: 3 mons at {CW113=192.168.1.113:6789/0,CW114=192.168.1.114:6789/0,CW115=192.168.1.115:6789/0}
+            election epoch 6, quorum 0,1,2 CW113,CW114,CW115
+     osdmap e10157: 11 osds: 11 up, 11 in; 67 remapped pgs
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v110245: 3072 pgs, 11 pools, 1590 GB data, 398 kobjects
+            2884 GB used, 4807 GB / 7691 GB avail
+            95772/863832 objects misplaced (11.087%)
+                3005 active+clean
+                  65 active+remapped+backfill_wait
+                   2 active+remapped+backfilling
+recovery io 205 MB/s, 54 objects/s
+  client io 26775 B/s rd, 26 op/s rd, 0 op/s wr
+stdin: is not a tty
+
+2017-06-09 18:17:34,932 INFO cluster.py [line:238] PG number is 3072
+2017-06-09 18:17:34,932 INFO cluster.py [line:239] usefull PG number is 3005
+2017-06-09 18:18:34,978 INFO cluster.py [line:247] cost 60 seconds, left 620 seconds when check the ceph status
+2017-06-09 18:18:34,979 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-09 18:18:35,377 INFO cluster.py [line:213]    cluster 9afd408f-471c-4742-8db0-071924668d84
+     health HEALTH_WARN
+            57 pgs backfill_wait
+            3 pgs backfilling
+            60 pgs stuck unclean
+            recovery 88311/860678 objects misplaced (10.261%)
+     monmap e3: 3 mons at {CW113=192.168.1.113:6789/0,CW114=192.168.1.114:6789/0,CW115=192.168.1.115:6789/0}
+            election epoch 6, quorum 0,1,2 CW113,CW114,CW115
+     osdmap e10169: 11 osds: 11 up, 11 in; 60 remapped pgs
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v110303: 3072 pgs, 11 pools, 1590 GB data, 398 kobjects
+            2887 GB used, 4803 GB / 7691 GB avail
+            88311/860678 objects misplaced (10.261%)
+                3012 active+clean
+                  57 active+remapped+backfill_wait
+                   3 active+remapped+backfilling
+recovery io 206 MB/s, 56 objects/s
+  client io 33603 B/s rd, 32 op/s rd, 0 op/s wr
+stdin: is not a tty
+
+2017-06-09 18:18:35,377 INFO cluster.py [line:238] PG number is 3072
+2017-06-09 18:18:35,377 INFO cluster.py [line:239] usefull PG number is 3012
+2017-06-09 18:19:35,388 INFO cluster.py [line:247] cost 61 seconds, left 559 seconds when check the ceph status
+2017-06-09 18:19:35,388 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-09 18:19:35,805 INFO cluster.py [line:213]    cluster 9afd408f-471c-4742-8db0-071924668d84
+     health HEALTH_WARN
+            51 pgs backfill_wait
+            3 pgs backfilling
+            54 pgs stuck unclean
+            recovery 82214/857398 objects misplaced (9.589%)
+     monmap e3: 3 mons at {CW113=192.168.1.113:6789/0,CW114=192.168.1.114:6789/0,CW115=192.168.1.115:6789/0}
+            election epoch 6, quorum 0,1,2 CW113,CW114,CW115
+     osdmap e10178: 11 osds: 11 up, 11 in; 54 remapped pgs
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v110357: 3072 pgs, 11 pools, 1590 GB data, 398 kobjects
+            2886 GB used, 4805 GB / 7691 GB avail
+            82214/857398 objects misplaced (9.589%)
+                3018 active+clean
+                  51 active+remapped+backfill_wait
+                   3 active+remapped+backfilling
+recovery io 293 MB/s, 78 objects/s
+  client io 22126 B/s rd, 21 op/s rd, 0 op/s wr
+stdin: is not a tty
+
+2017-06-09 18:19:35,805 INFO cluster.py [line:238] PG number is 3072
+2017-06-09 18:19:35,806 INFO cluster.py [line:239] usefull PG number is 3018
+2017-06-09 18:20:35,862 INFO cluster.py [line:247] cost 60 seconds, left 499 seconds when check the ceph status
+2017-06-09 18:20:35,863 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-09 18:20:36,206 INFO cluster.py [line:213]    cluster 9afd408f-471c-4742-8db0-071924668d84
+     health HEALTH_WARN
+            47 pgs backfill_wait
+            3 pgs backfilling
+            50 pgs stuck unclean
+            Difference in osd space utilization 41.0935% greater than 40%
+            recovery 75671/854198 objects misplaced (8.859%)
+     monmap e3: 3 mons at {CW113=192.168.1.113:6789/0,CW114=192.168.1.114:6789/0,CW115=192.168.1.115:6789/0}
+            election epoch 6, quorum 0,1,2 CW113,CW114,CW115
+     osdmap e10185: 11 osds: 11 up, 11 in; 50 remapped pgs
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v110412: 3072 pgs, 11 pools, 1590 GB data, 398 kobjects
+            2887 GB used, 4804 GB / 7691 GB avail
+            75671/854198 objects misplaced (8.859%)
+                3022 active+clean
+                  47 active+remapped+backfill_wait
+                   3 active+remapped+backfilling
+recovery io 465 MB/s, 124 objects/s
+  client io 40793 B/s rd, 39 op/s rd, 0 op/s wr
+stdin: is not a tty
+
+2017-06-09 18:20:36,206 INFO cluster.py [line:238] PG number is 3072
+2017-06-09 18:20:36,206 INFO cluster.py [line:239] usefull PG number is 3022
+2017-06-09 18:21:36,236 INFO cluster.py [line:247] cost 61 seconds, left 438 seconds when check the ceph status
+2017-06-09 18:21:36,236 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-09 18:21:36,618 INFO cluster.py [line:213]    cluster 9afd408f-471c-4742-8db0-071924668d84
+     health HEALTH_WARN
+            38 pgs backfill_wait
+            3 pgs backfilling
+            41 pgs stuck unclean
+            Difference in osd space utilization 42.2812% greater than 40%
+            recovery 66074/850027 objects misplaced (7.773%)
+     monmap e3: 3 mons at {CW113=192.168.1.113:6789/0,CW114=192.168.1.114:6789/0,CW115=192.168.1.115:6789/0}
+            election epoch 6, quorum 0,1,2 CW113,CW114,CW115
+     osdmap e10199: 11 osds: 11 up, 11 in; 41 remapped pgs
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v110473: 3072 pgs, 11 pools, 1590 GB data, 398 kobjects
+            2891 GB used, 4800 GB / 7691 GB avail
+            66074/850027 objects misplaced (7.773%)
+                3031 active+clean
+                  38 active+remapped+backfill_wait
+                   3 active+remapped+backfilling
+recovery io 782 MB/s, 216 objects/s
+  client io 53637 B/s rd, 78 op/s rd, 0 op/s wr
+stdin: is not a tty
+
+2017-06-09 18:21:36,618 INFO cluster.py [line:238] PG number is 3072
+2017-06-09 18:21:36,618 INFO cluster.py [line:239] usefull PG number is 3031
+2017-06-09 18:22:36,676 INFO cluster.py [line:247] cost 60 seconds, left 378 seconds when check the ceph status
+2017-06-09 18:22:36,677 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-09 18:22:37,083 INFO cluster.py [line:213]    cluster 9afd408f-471c-4742-8db0-071924668d84
+     health HEALTH_WARN
+            31 pgs backfill_wait
+            3 pgs backfilling
+            34 pgs stuck unclean
+            Difference in osd space utilization 42.7659% greater than 40%
+            recovery 57721/845213 objects misplaced (6.829%)
+     monmap e3: 3 mons at {CW113=192.168.1.113:6789/0,CW114=192.168.1.114:6789/0,CW115=192.168.1.115:6789/0}
+            election epoch 6, quorum 0,1,2 CW113,CW114,CW115
+     osdmap e10211: 11 osds: 11 up, 11 in; 34 remapped pgs
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v110528: 3072 pgs, 11 pools, 1590 GB data, 398 kobjects
+            2886 GB used, 4804 GB / 7691 GB avail
+            57721/845213 objects misplaced (6.829%)
+                3038 active+clean
+                  31 active+remapped+backfill_wait
+                   3 active+remapped+backfilling
+recovery io 447 MB/s, 119 objects/s
+  client io 74160 B/s rd, 108 op/s rd, 0 op/s wr
+stdin: is not a tty
+
+2017-06-09 18:22:37,084 INFO cluster.py [line:238] PG number is 3072
+2017-06-09 18:22:37,084 INFO cluster.py [line:239] usefull PG number is 3038
+2017-06-09 18:23:37,103 INFO cluster.py [line:247] cost 61 seconds, left 317 seconds when check the ceph status
+2017-06-09 18:23:37,103 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-09 18:23:37,516 INFO cluster.py [line:213]    cluster 9afd408f-471c-4742-8db0-071924668d84
+     health HEALTH_WARN
+            28 pgs backfill_wait
+            1 pgs backfilling
+            29 pgs stuck unclean
+            Difference in osd space utilization 42.7633% greater than 40%
+            recovery 50120/840618 objects misplaced (5.962%)
+     monmap e3: 3 mons at {CW113=192.168.1.113:6789/0,CW114=192.168.1.114:6789/0,CW115=192.168.1.115:6789/0}
+            election epoch 6, quorum 0,1,2 CW113,CW114,CW115
+     osdmap e10221: 11 osds: 11 up, 11 in; 29 remapped pgs
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v110584: 3072 pgs, 11 pools, 1590 GB data, 398 kobjects
+            2886 GB used, 4804 GB / 7691 GB avail
+            50120/840618 objects misplaced (5.962%)
+                3043 active+clean
+                  28 active+remapped+backfill_wait
+                   1 active+remapped+backfilling
+recovery io 39386 kB/s, 10 objects/s
+  client io 47412 B/s rd, 69 op/s rd, 0 op/s wr
+stdin: is not a tty
+
+2017-06-09 18:23:37,516 INFO cluster.py [line:238] PG number is 3072
+2017-06-09 18:23:37,516 INFO cluster.py [line:239] usefull PG number is 3043
+2017-06-09 18:24:37,566 INFO cluster.py [line:247] cost 60 seconds, left 257 seconds when check the ceph status
+2017-06-09 18:24:37,566 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-09 18:24:37,978 INFO cluster.py [line:213]    cluster 9afd408f-471c-4742-8db0-071924668d84
+     health HEALTH_WARN
+            23 pgs backfill_wait
+            2 pgs backfilling
+            25 pgs stuck unclean
+            Difference in osd space utilization 44.3606% greater than 40%
+            recovery 45300/838196 objects misplaced (5.404%)
+     monmap e3: 3 mons at {CW113=192.168.1.113:6789/0,CW114=192.168.1.114:6789/0,CW115=192.168.1.115:6789/0}
+            election epoch 6, quorum 0,1,2 CW113,CW114,CW115
+     osdmap e10228: 11 osds: 11 up, 11 in; 25 remapped pgs
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v110641: 3072 pgs, 11 pools, 1590 GB data, 398 kobjects
+            2881 GB used, 4809 GB / 7691 GB avail
+            45300/838196 objects misplaced (5.404%)
+                3047 active+clean
+                  23 active+remapped+backfill_wait
+                   2 active+remapped+backfilling
+  client io 36907 B/s rd, 54 op/s rd, 0 op/s wr
+stdin: is not a tty
+
+2017-06-09 18:24:37,978 INFO cluster.py [line:238] PG number is 3072
+2017-06-09 18:24:37,979 INFO cluster.py [line:239] usefull PG number is 3047
+2017-06-09 18:25:38,039 INFO cluster.py [line:247] cost 61 seconds, left 196 seconds when check the ceph status
+2017-06-09 18:25:38,039 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-09 18:25:38,434 INFO cluster.py [line:213]    cluster 9afd408f-471c-4742-8db0-071924668d84
+     health HEALTH_WARN
+            20 pgs backfill_wait
+            2 pgs backfilling
+            22 pgs stuck unclean
+            Difference in osd space utilization 44.3976% greater than 40%
+            recovery 39919/835749 objects misplaced (4.776%)
+     monmap e3: 3 mons at {CW113=192.168.1.113:6789/0,CW114=192.168.1.114:6789/0,CW115=192.168.1.115:6789/0}
+            election epoch 6, quorum 0,1,2 CW113,CW114,CW115
+     osdmap e10234: 11 osds: 11 up, 11 in; 22 remapped pgs
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v110695: 3072 pgs, 11 pools, 1590 GB data, 398 kobjects
+            2883 GB used, 4808 GB / 7691 GB avail
+            39919/835749 objects misplaced (4.776%)
+                3050 active+clean
+                  20 active+remapped+backfill_wait
+                   2 active+remapped+backfilling
+stdin: is not a tty
+
+2017-06-09 18:25:38,434 INFO cluster.py [line:238] PG number is 3072
+2017-06-09 18:25:38,434 INFO cluster.py [line:239] usefull PG number is 3050
+2017-06-09 18:26:38,485 INFO cluster.py [line:247] cost 60 seconds, left 136 seconds when check the ceph status
+2017-06-09 18:26:38,485 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-09 18:26:38,834 INFO cluster.py [line:213]    cluster 9afd408f-471c-4742-8db0-071924668d84
+     health HEALTH_WARN
+            17 pgs backfill_wait
+            1 pgs backfilling
+            18 pgs stuck unclean
+            Difference in osd space utilization 45.1392% greater than 40%
+            recovery 33782/832726 objects misplaced (4.057%)
+     monmap e3: 3 mons at {CW113=192.168.1.113:6789/0,CW114=192.168.1.114:6789/0,CW115=192.168.1.115:6789/0}
+            election epoch 6, quorum 0,1,2 CW113,CW114,CW115
+     osdmap e10242: 11 osds: 11 up, 11 in; 18 remapped pgs
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v110748: 3072 pgs, 11 pools, 1590 GB data, 398 kobjects
+            2883 GB used, 4808 GB / 7691 GB avail
+            33782/832726 objects misplaced (4.057%)
+                3054 active+clean
+                  17 active+remapped+backfill_wait
+                   1 active+remapped+backfilling
+stdin: is not a tty
+
+2017-06-09 18:26:38,834 INFO cluster.py [line:238] PG number is 3072
+2017-06-09 18:26:38,834 INFO cluster.py [line:239] usefull PG number is 3054
+2017-06-09 18:27:38,846 INFO cluster.py [line:247] cost 60 seconds, left 76 seconds when check the ceph status
+2017-06-09 18:27:38,846 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-09 18:27:39,227 INFO cluster.py [line:213]    cluster 9afd408f-471c-4742-8db0-071924668d84
+     health HEALTH_WARN
+            16 pgs backfill_wait
+            1 pgs backfilling
+            17 pgs stuck unclean
+            Difference in osd space utilization 44.7427% greater than 40%
+            recovery 30943/831090 objects misplaced (3.723%)
+     monmap e3: 3 mons at {CW113=192.168.1.113:6789/0,CW114=192.168.1.114:6789/0,CW115=192.168.1.115:6789/0}
+            election epoch 6, quorum 0,1,2 CW113,CW114,CW115
+     osdmap e10244: 11 osds: 11 up, 11 in; 17 remapped pgs
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v110798: 3072 pgs, 11 pools, 1590 GB data, 398 kobjects
+            2882 GB used, 4809 GB / 7691 GB avail
+            30943/831090 objects misplaced (3.723%)
+                3055 active+clean
+                  16 active+remapped+backfill_wait
+                   1 active+remapped+backfilling
+  client io 16075 B/s rd, 23 op/s rd, 0 op/s wr
+stdin: is not a tty
+
+2017-06-09 18:27:39,227 INFO cluster.py [line:238] PG number is 3072
+2017-06-09 18:27:39,227 INFO cluster.py [line:239] usefull PG number is 3055
+2017-06-09 18:28:39,274 INFO cluster.py [line:247] cost 61 seconds, left 15 seconds when check the ceph status
+2017-06-09 18:28:39,274 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-09 18:28:39,654 INFO cluster.py [line:213]    cluster 9afd408f-471c-4742-8db0-071924668d84
+     health HEALTH_WARN
+            14 pgs backfill_wait
+            1 pgs backfilling
+            15 pgs stuck unclean
+            Difference in osd space utilization 44.7656% greater than 40%
+            recovery 29188/830263 objects misplaced (3.516%)
+     monmap e3: 3 mons at {CW113=192.168.1.113:6789/0,CW114=192.168.1.114:6789/0,CW115=192.168.1.115:6789/0}
+            election epoch 6, quorum 0,1,2 CW113,CW114,CW115
+     osdmap e10247: 11 osds: 11 up, 11 in; 15 remapped pgs
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v110851: 3072 pgs, 11 pools, 1590 GB data, 398 kobjects
+            2882 GB used, 4809 GB / 7691 GB avail
+            29188/830263 objects misplaced (3.516%)
+                3057 active+clean
+                  14 active+remapped+backfill_wait
+                   1 active+remapped+backfilling
+recovery io 214 MB/s, 57 objects/s
+  client io 24391 B/s rd, 35 op/s rd, 0 op/s wr
+stdin: is not a tty
+
+2017-06-09 18:28:39,654 INFO cluster.py [line:238] PG number is 3072
+2017-06-09 18:28:39,654 INFO cluster.py [line:239] usefull PG number is 3057
+2017-06-09 18:29:39,715 INFO cluster.py [line:247] cost 60 seconds, left -45 seconds when check the ceph status
+2017-06-09 18:29:39,715 ERROR TC52_remove_osd_on_two_node.py [line:34] health status is error

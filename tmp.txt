@@ -1,0 +1,6 @@
+oot      1901     1  1 May04 ?        00:17:06 /usr/local/bin/ceph-osd --cluster=ceph -i 6 -f --setuser root --setgroup root
+root      8955     1  1 May04 ?        00:12:39 /usr/local/bin/ceph-osd --cluster=ceph -i 7 -f --setuser root --setgroup root
+root      9289     1  1 May04 ?        00:16:57 /usr/local/bin/ceph-osd --cluster=ceph -i 8 -f --setuser root --setgroup root
+denali   19437 19436  0 02:32 pts/4    00:00:00 bash -c ps -ef | grep ceph-osd
+denali   19439 19437  0 02:32 pts/4    00:00:00 grep ceph-osd
+Y

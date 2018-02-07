@@ -1,0 +1,22 @@
+2017-06-01 14:23:01,694 INFO rbdFio.py [line:18] 
+start rbd IO to osd
+
+2017-06-01 14:23:02,694 INFO monitors.py [line:126]    "quorum_leader_name": "ubuntu-238",
+stdin: is not a tty
+
+2017-06-01 14:23:02,697 INFO monitors.py [line:129]    "quorum_leader_name": "ubuntu-238",
+2017-06-01 14:23:02,700 INFO base.py [line:37] 
+Now start IO on  linlirbdImg0
+2017-06-01 14:23:03,249 INFO client.py [line:138] nohup sudo -i fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=linli -pool=reliablityTestPool -rbdname=linlirbdImg0 -rw=randwrite -bs=8K -size=100G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=linlirbdImg0
+2017-06-01 14:23:03,753 INFO base.py [line:37] 
+Now start IO on  linlirbdImg1
+2017-06-01 14:23:04,377 INFO client.py [line:138] nohup sudo -i fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=linli -pool=reliablityTestPool -rbdname=linlirbdImg1 -rw=randwrite -bs=8K -size=200G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=linlirbdImg1
+2017-06-01 14:23:05,046 INFO base.py [line:37] 
+Now start IO on  linlirbdImg2
+2017-06-01 14:23:05,680 INFO client.py [line:138] nohup sudo -i fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=linli -pool=reliablityTestPool -rbdname=linlirbdImg2 -rw=randwrite -bs=8K -size=300G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=linlirbdImg2
+2017-06-01 14:23:06,369 INFO base.py [line:37] 
+Now start IO on  linlirbdImg3
+2017-06-01 14:23:06,910 INFO client.py [line:138] nohup sudo -i fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=linli -pool=reliablityTestPool -rbdname=linlirbdImg3 -rw=randwrite -bs=8K -size=400G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=linlirbdImg3
+2017-06-01 14:23:07,440 INFO base.py [line:37] 
+Now start IO on  linlirbdImg4
+2017-06-01 14:23:08,075 INFO client.py [line:138] nohup sudo -i fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=linli -pool=reliablityTestPool -rbdname=linlirbdImg4 -rw=randwrite -bs=8K -size=500G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=linlirbdImg4

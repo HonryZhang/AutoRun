@@ -1,0 +1,11 @@
+2017-06-29 16:20:52,418 INFO createSnapWithInvalidName.py [line:20] 
+UI test for invalid login
+
+2017-06-29 16:20:53,818 INFO monitors.py [line:126]    "quorum_leader_name": "denali1",
+stdin: is not a tty
+
+2017-06-29 16:20:53,819 INFO monitors.py [line:129]    "quorum_leader_name": "denali1",
+2017-06-29 16:21:03,737 INFO loginlogout.py [line:13] login
+2017-06-29 16:21:10,631 INFO loginlogout.py [line:24] now we have loggin
+2017-06-29 16:21:14,875 INFO poolManagement.py [line:50] Create pool
+2017-06-29 16:22:06,285 INFO poolManagement.py [line:135] create block device img 

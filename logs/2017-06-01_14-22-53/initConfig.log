@@ -1,0 +1,27 @@
+2017-06-01 14:22:54,434 INFO monitors.py [line:126]    "quorum_leader_name": "ubuntu-238",
+stdin: is not a tty
+
+2017-06-01 14:22:54,436 INFO monitors.py [line:129]    "quorum_leader_name": "ubuntu-238",
+2017-06-01 14:22:54,437 INFO initConfig.py [line:18] Init osd process
+2017-06-01 14:22:55,750 ERROR node.py [line:55] tdin: is not a tty
+pool 'reliablityTestPool' created
+
+2017-06-01 14:22:55,753 INFO node.py [line:63] pool reliablityTestPool created successfully
+2017-06-01 14:22:56,266 INFO node.py [line:79] pool reliablityTestPool was founded
+2017-06-01 14:22:56,750 INFO node.py [line:84] pgnumber is 512 in  reliablityTestPool 
+2017-06-01 14:22:59,334 INFO client.py [line:115] tdin: is not a tty
+
+2017-06-01 14:22:59,335 INFO client.py [line:120] image linlirbdImg0 create successfully
+2017-06-01 14:22:59,888 INFO client.py [line:115] tdin: is not a tty
+
+2017-06-01 14:22:59,891 INFO client.py [line:120] image linlirbdImg1 create successfully
+2017-06-01 14:23:00,450 INFO client.py [line:115] tdin: is not a tty
+
+2017-06-01 14:23:00,453 INFO client.py [line:120] image linlirbdImg2 create successfully
+2017-06-01 14:23:01,065 INFO client.py [line:115] tdin: is not a tty
+
+2017-06-01 14:23:01,069 INFO client.py [line:120] image linlirbdImg3 create successfully
+2017-06-01 14:23:01,660 INFO client.py [line:115] tdin: is not a tty
+
+2017-06-01 14:23:01,660 INFO client.py [line:120] image linlirbdImg4 create successfully
+2017-06-01 14:23:01,660 INFO initConfig.py [line:46] Init config complete

@@ -1,0 +1,37 @@
+2017-05-26 22:05:37,253 INFO monitors.py [line:126]    "quorum_leader_name": "ubuntu-A",
+stdin: is not a tty
+
+2017-05-26 22:05:37,256 INFO monitors.py [line:129]    "quorum_leader_name": "ubuntu-A",
+2017-05-26 22:05:42,275 INFO client.py [line:150] ['enali   134828 134819  0 22:05 ?        00:00:00 bash -c sudo -i ps -ef | grep fio', 'denali   134830 134828  0 22:05 ?        00:00:00 grep fio', 'stdin: is not a tty', '']
+2017-05-26 22:05:42,278 INFO client.py [line:155] IO stopped
+2017-05-26 22:05:42,278 INFO client.py [line:156] start IO again
+2017-05-26 22:05:42,279 INFO base.py [line:37] 
+Now start IO on  client100rbdImg0
+2017-05-26 22:05:47,670 INFO client.py [line:119] nohup sudo -i fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=linli -pool=reliablityTestPool -rbdname=client100rbdImg0 -rw=randwrite -bs=8K -size=10G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=client100rbdImg0
+2017-05-26 22:05:52,490 INFO base.py [line:37] 
+Now start IO on  client100rbdImg1
+2017-05-26 22:05:57,607 INFO client.py [line:119] nohup sudo -i fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=linli -pool=reliablityTestPool -rbdname=client100rbdImg1 -rw=randwrite -bs=8K -size=15G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=client100rbdImg1
+2017-05-26 22:06:02,085 INFO base.py [line:37] 
+Now start IO on  client100rbdImg2
+2017-05-26 22:06:08,105 INFO client.py [line:119] nohup sudo -i fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=linli -pool=reliablityTestPool -rbdname=client100rbdImg2 -rw=randwrite -bs=8K -size=20G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=client100rbdImg2
+2017-05-26 22:06:12,667 INFO base.py [line:37] 
+Now start IO on  client100rbdImg3
+2017-05-26 22:06:17,970 INFO client.py [line:119] nohup sudo -i fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=linli -pool=reliablityTestPool -rbdname=client100rbdImg3 -rw=randwrite -bs=8K -size=25G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=client100rbdImg3
+2017-05-26 22:06:22,605 INFO base.py [line:37] 
+Now start IO on  client100rbdImg4
+2017-05-26 22:06:29,039 INFO client.py [line:119] nohup sudo -i fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=linli -pool=reliablityTestPool -rbdname=client100rbdImg4 -rw=randwrite -bs=8K -size=30G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=client100rbdImg4
+2017-05-26 22:06:33,740 INFO base.py [line:37] 
+Now start IO on  client100rbdImg5
+2017-05-26 22:06:39,078 INFO client.py [line:119] nohup sudo -i fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=linli -pool=reliablityTestPool -rbdname=client100rbdImg5 -rw=randwrite -bs=8K -size=35G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=client100rbdImg5
+2017-05-26 22:06:44,809 INFO base.py [line:37] 
+Now start IO on  client100rbdImg6
+2017-05-26 22:06:50,062 INFO client.py [line:119] nohup sudo -i fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=linli -pool=reliablityTestPool -rbdname=client100rbdImg6 -rw=randwrite -bs=8K -size=40G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=client100rbdImg6
+2017-05-26 22:06:55,190 INFO base.py [line:37] 
+Now start IO on  client100rbdImg7
+2017-05-26 22:07:01,302 INFO client.py [line:119] nohup sudo -i fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=linli -pool=reliablityTestPool -rbdname=client100rbdImg7 -rw=randwrite -bs=8K -size=45G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=client100rbdImg7
+2017-05-26 22:07:07,463 INFO base.py [line:37] 
+Now start IO on  client100rbdImg8
+2017-05-26 22:07:12,890 INFO client.py [line:119] nohup sudo -i fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=linli -pool=reliablityTestPool -rbdname=client100rbdImg8 -rw=randwrite -bs=8K -size=50G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=client100rbdImg8
+2017-05-26 22:07:17,684 INFO base.py [line:37] 
+Now start IO on  client100rbdImg9
+2017-05-26 22:07:23,930 INFO client.py [line:119] nohup sudo -i fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=linli -pool=reliablityTestPool -rbdname=client100rbdImg9 -rw=randwrite -bs=8K -size=55G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=client100rbdImg9

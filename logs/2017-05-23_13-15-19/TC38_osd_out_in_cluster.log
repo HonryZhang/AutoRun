@@ -1,0 +1,16 @@
+2017-05-23 13:15:55,328 INFO TC38_osd_out_in_cluster.py [line:25] 
+This test case will do the following steps:
+1. start IO on 10 images with randwrite and verify
+2. login the first node 
+3. out all osds in sequence
+4. stop all osds in sequence
+5. start all osds in sequence
+6. add in all osds in sequence
+7. check the cluster status
+8. repeat step 2-7 on the other node
+
+2017-05-23 13:15:57,233 INFO monitors.py [line:123]    "quorum_leader_name": "denali01",
+
+2017-05-23 13:15:57,233 INFO monitors.py [line:126]    "quorum_leader_name": "denali01",
+2017-05-23 13:15:57,233 INFO TC38_osd_out_in_cluster.py [line:30] start to check cluster status before case running
+2017-05-23 13:15:57,325 INFO cluster.py [line:203] execute command is ceph -s

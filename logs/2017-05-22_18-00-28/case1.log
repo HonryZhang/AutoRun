@@ -1,0 +1,5 @@
+2017-05-22 18:00:30,007 INFO monitors.py [line:123]    "quorum_leader_name": "denali01",
+
+2017-05-22 18:00:30,007 INFO monitors.py [line:126]    "quorum_leader_name": "denali01",
+2017-05-22 18:00:30,007 INFO client.py [line:66] exe command is: sudo -i  mkfs -t ext2 /dev/nbd3
+2017-05-22 18:01:07,282 INFO client.py [line:95] fio command is: nohup sudo -i fio -direct=1 -iodepth_batch_complete=1 -ioengine=libaio -bs=8k -rw=randwrite -verify=md5 -verify_fatal=1 -verify_interval=512 -verify_dump=1 -do_verify=1 directory=/mnt/nbd3

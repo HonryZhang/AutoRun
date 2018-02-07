@@ -1,0 +1,598 @@
+2017-06-01 12:15:31,282 INFO TC538_osd_out_in_cluster_alternately.py [line:25] 
+This test case will do the following steps:
+1. start IO on 10 images with randwrite and verify
+2. login the first node 
+3. out all osds in sequence
+4. stop all osds in sequence
+5. start all osds in sequence
+6. add in all osds in sequence
+7. check the cluster status
+8. repeat step 2-7 on the other node
+
+2017-06-01 12:15:32,482 INFO monitors.py [line:126]    "quorum_leader_name": "ubuntu-238",
+stdin: is not a tty
+
+2017-06-01 12:15:32,486 INFO monitors.py [line:129]    "quorum_leader_name": "ubuntu-238",
+2017-06-01 12:15:32,486 INFO TC538_osd_out_in_cluster_alternately.py [line:30] start to check cluster status before case running
+2017-06-01 12:15:32,546 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-01 12:15:33,071 INFO cluster.py [line:213]    cluster 3dcaba34-d49b-4025-99c6-d9a43d4b0fda
+     health HEALTH_OK
+     monmap e1: 1 mons at {ubuntu-238=192.168.28.238:6789/0}
+            election epoch 3, quorum 0 ubuntu-238
+     osdmap e106: 10 osds: 10 up, 10 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v394: 256 pgs, 1 pools, 0 bytes data, 0 objects
+            88373 MB used, 6905 GB / 6991 GB avail
+                 256 active+clean
+2017-06-01 04:15:37.551946 7f89e3f47700 -1 asok(0x7f89dc000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.52264.140230078239104.asok': (13) Permission denied
+
+2017-06-01 12:15:33,071 INFO cluster.py [line:238] PG number is 256
+2017-06-01 12:15:33,081 INFO cluster.py [line:239] usefull PG number is 256
+2017-06-01 12:15:33,081 INFO TC538_osd_out_in_cluster_alternately.py [line:33] health status is OK
+2017-06-01 12:15:33,081 INFO TC538_osd_out_in_cluster_alternately.py [line:38] 
+Step1: Check IO from clients
+2017-06-01 12:15:34,290 INFO client.py [line:169] ['oot      2463     1  0 May31 ?        00:00:00 sudo -i fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=linli -pool=reliablityTestPool -rbdname=linlirbdImg0 -rw=randwrite -bs=8K -size=100G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=linlirbdImg0', 'root      2464  2463 39 May31 ?        09:21:29 fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=linli -pool=reliablityTestPool -rbdname=linlirbdImg0 -rw=randwrite -bs=8K -size=100G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=linlirbdImg0', 'root      2500     1  0 May31 ?        00:00:00 sudo -i fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=linli -pool=reliablityTestPool -rbdname=linlirbdImg1 -rw=randwrite -bs=8K -size=200G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=linlirbdImg1', 'root      2502  2500 39 May31 ?        09:21:29 fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=linli -pool=reliablityTestPool -rbdname=linlirbdImg1 -rw=randwrite -bs=8K -size=200G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=linlirbdImg1', 'root      2540     1  0 May31 ?        00:00:00 sudo -i fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=linli -pool=reliablityTestPool -rbdname=linlirbdImg2 -rw=randwrite -bs=8K -size=300G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=linlirbdImg2', 'root      2541  2540 39 May31 ?        09:21:33 fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=linli -pool=reliablityTestPool -rbdname=linlirbdImg2 -rw=randwrite -bs=8K -size=300G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=linlirbdImg2', 'root      2573     1  0 May31 ?        00:00:00 sudo -i fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=linli -pool=reliablityTestPool -rbdname=linlirbdImg3 -rw=randwrite -bs=8K -size=400G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=linlirbdImg3', 'root      2574  2573 39 May31 ?        09:21:33 fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=linli -pool=reliablityTestPool -rbdname=linlirbdImg3 -rw=randwrite -bs=8K -size=400G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=linlirbdImg3', 'root      2606     1  0 May31 ?        00:00:00 sudo -i fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=linli -pool=reliablityTestPool -rbdname=linlirbdImg4 -rw=randwrite -bs=8K -size=500G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=linlirbdImg4', 'root      2607  2606 39 May31 ?        09:21:52 fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=linli -pool=reliablityTestPool -rbdname=linlirbdImg4 -rw=randwrite -bs=8K -size=500G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=linlirbdImg4', 'denali    4534  4533  0 04:15 ?        00:00:00 bash -c sudo -i ps -ef | grep fio', 'denali    4536  4534  0 04:15 ?        00:00:00 grep fio', 'stdin: is not a tty', '']
+2017-06-01 12:15:34,311 INFO client.py [line:171] IO is running
+2017-06-01 12:16:34,315 INFO TC538_osd_out_in_cluster_alternately.py [line:46] 
+Step 2: Out the osd and check IO
+2017-06-01 12:16:34,315 INFO TC538_osd_out_in_cluster_alternately.py [line:51] 
+Now operate ubuntu-237
+2017-06-01 12:16:34,315 INFO TC538_osd_out_in_cluster_alternately.py [line:52] 5
+2017-06-01 12:16:34,315 INFO TC538_osd_out_in_cluster_alternately.py [line:53] 
+Now operate osd.5
+2017-06-01 12:16:34,325 INFO TC538_osd_out_in_cluster_alternately.py [line:54] out osd.5
+2017-06-01 12:16:34,325 INFO osd.py [line:62] execute command is sudo -i ceph osd out osd.5 & sleep 3
+2017-06-01 12:16:37,631 INFO osd.py [line:67] osd.5 is already out cluster
+2017-06-01 12:16:37,631 INFO TC538_osd_out_in_cluster_alternately.py [line:56] check if IO error
+2017-06-01 12:16:52,632 INFO osd.py [line:77] execute command is sudo -i ceph osd in osd.5 & sleep 3
+2017-06-01 12:16:56,052 INFO osd.py [line:80] osd.5 is already in cluster
+2017-06-01 12:17:11,058 INFO TC538_osd_out_in_cluster_alternately.py [line:51] 
+Now operate ubuntu-237
+2017-06-01 12:17:11,058 INFO TC538_osd_out_in_cluster_alternately.py [line:52] 5
+2017-06-01 12:17:11,058 INFO TC538_osd_out_in_cluster_alternately.py [line:53] 
+Now operate osd.5
+2017-06-01 12:17:11,058 INFO TC538_osd_out_in_cluster_alternately.py [line:54] out osd.5
+2017-06-01 12:17:11,068 INFO osd.py [line:62] execute command is sudo -i ceph osd out osd.5 & sleep 3
+2017-06-01 12:17:14,368 INFO osd.py [line:67] osd.5 is already out cluster
+2017-06-01 12:17:14,368 INFO TC538_osd_out_in_cluster_alternately.py [line:56] check if IO error
+2017-06-01 12:17:29,375 INFO osd.py [line:77] execute command is sudo -i ceph osd in osd.5 & sleep 3
+2017-06-01 12:17:32,654 INFO osd.py [line:80] osd.5 is already in cluster
+2017-06-01 12:17:47,657 INFO TC538_osd_out_in_cluster_alternately.py [line:51] 
+Now operate ubuntu-237
+2017-06-01 12:17:47,657 INFO TC538_osd_out_in_cluster_alternately.py [line:52] 5
+2017-06-01 12:17:47,657 INFO TC538_osd_out_in_cluster_alternately.py [line:53] 
+Now operate osd.5
+2017-06-01 12:17:47,657 INFO TC538_osd_out_in_cluster_alternately.py [line:54] out osd.5
+2017-06-01 12:17:47,667 INFO osd.py [line:62] execute command is sudo -i ceph osd out osd.5 & sleep 3
+2017-06-01 12:17:50,980 INFO osd.py [line:67] osd.5 is already out cluster
+2017-06-01 12:17:50,980 INFO TC538_osd_out_in_cluster_alternately.py [line:56] check if IO error
+2017-06-01 12:18:05,990 INFO osd.py [line:77] execute command is sudo -i ceph osd in osd.5 & sleep 3
+2017-06-01 12:18:09,244 INFO osd.py [line:80] osd.5 is already in cluster
+2017-06-01 12:18:24,247 INFO TC538_osd_out_in_cluster_alternately.py [line:51] 
+Now operate ubuntu-237
+2017-06-01 12:18:24,247 INFO TC538_osd_out_in_cluster_alternately.py [line:52] 5
+2017-06-01 12:18:24,247 INFO TC538_osd_out_in_cluster_alternately.py [line:53] 
+Now operate osd.5
+2017-06-01 12:18:24,247 INFO TC538_osd_out_in_cluster_alternately.py [line:54] out osd.5
+2017-06-01 12:18:24,257 INFO osd.py [line:62] execute command is sudo -i ceph osd out osd.5 & sleep 3
+2017-06-01 12:18:27,561 INFO osd.py [line:67] osd.5 is already out cluster
+2017-06-01 12:18:27,561 INFO TC538_osd_out_in_cluster_alternately.py [line:56] check if IO error
+2017-06-01 12:18:42,562 INFO osd.py [line:77] execute command is sudo -i ceph osd in osd.5 & sleep 3
+2017-06-01 12:18:45,792 INFO osd.py [line:80] osd.5 is already in cluster
+2017-06-01 12:19:00,801 INFO TC538_osd_out_in_cluster_alternately.py [line:51] 
+Now operate ubuntu-237
+2017-06-01 12:19:00,801 INFO TC538_osd_out_in_cluster_alternately.py [line:52] 5
+2017-06-01 12:19:00,801 INFO TC538_osd_out_in_cluster_alternately.py [line:53] 
+Now operate osd.5
+2017-06-01 12:19:00,801 INFO TC538_osd_out_in_cluster_alternately.py [line:54] out osd.5
+2017-06-01 12:19:00,811 INFO osd.py [line:62] execute command is sudo -i ceph osd out osd.5 & sleep 3
+2017-06-01 12:19:04,244 INFO osd.py [line:67] osd.5 is already out cluster
+2017-06-01 12:19:04,244 INFO TC538_osd_out_in_cluster_alternately.py [line:56] check if IO error
+2017-06-01 12:19:19,244 INFO osd.py [line:77] execute command is sudo -i ceph osd in osd.5 & sleep 3
+2017-06-01 12:19:22,536 INFO osd.py [line:80] osd.5 is already in cluster
+2017-06-01 12:19:37,542 INFO TC538_osd_out_in_cluster_alternately.py [line:63] Now check if there is any IO error
+2017-06-01 12:19:38,101 INFO TC538_osd_out_in_cluster_alternately.py [line:51] 
+Now operate ubuntu-237
+2017-06-01 12:19:38,101 INFO TC538_osd_out_in_cluster_alternately.py [line:52] 5
+2017-06-01 12:19:38,101 INFO TC538_osd_out_in_cluster_alternately.py [line:53] 
+Now operate osd.6
+2017-06-01 12:19:38,101 INFO TC538_osd_out_in_cluster_alternately.py [line:54] out osd.6
+2017-06-01 12:19:38,111 INFO osd.py [line:62] execute command is sudo -i ceph osd out osd.6 & sleep 3
+2017-06-01 12:19:41,361 INFO osd.py [line:67] osd.6 is already out cluster
+2017-06-01 12:19:41,361 INFO TC538_osd_out_in_cluster_alternately.py [line:56] check if IO error
+2017-06-01 12:19:56,361 INFO osd.py [line:77] execute command is sudo -i ceph osd in osd.6 & sleep 3
+2017-06-01 12:19:59,588 INFO osd.py [line:80] osd.6 is already in cluster
+2017-06-01 12:20:14,598 INFO TC538_osd_out_in_cluster_alternately.py [line:51] 
+Now operate ubuntu-237
+2017-06-01 12:20:14,598 INFO TC538_osd_out_in_cluster_alternately.py [line:52] 5
+2017-06-01 12:20:14,598 INFO TC538_osd_out_in_cluster_alternately.py [line:53] 
+Now operate osd.6
+2017-06-01 12:20:14,598 INFO TC538_osd_out_in_cluster_alternately.py [line:54] out osd.6
+2017-06-01 12:20:14,608 INFO osd.py [line:62] execute command is sudo -i ceph osd out osd.6 & sleep 3
+2017-06-01 12:20:17,859 INFO osd.py [line:67] osd.6 is already out cluster
+2017-06-01 12:20:17,859 INFO TC538_osd_out_in_cluster_alternately.py [line:56] check if IO error
+2017-06-01 12:20:32,862 INFO osd.py [line:77] execute command is sudo -i ceph osd in osd.6 & sleep 3
+2017-06-01 12:20:36,213 INFO osd.py [line:80] osd.6 is already in cluster
+2017-06-01 12:20:51,217 INFO TC538_osd_out_in_cluster_alternately.py [line:51] 
+Now operate ubuntu-237
+2017-06-01 12:20:51,217 INFO TC538_osd_out_in_cluster_alternately.py [line:52] 5
+2017-06-01 12:20:51,217 INFO TC538_osd_out_in_cluster_alternately.py [line:53] 
+Now operate osd.6
+2017-06-01 12:20:51,217 INFO TC538_osd_out_in_cluster_alternately.py [line:54] out osd.6
+2017-06-01 12:20:51,217 INFO osd.py [line:62] execute command is sudo -i ceph osd out osd.6 & sleep 3
+2017-06-01 12:20:54,467 INFO osd.py [line:67] osd.6 is already out cluster
+2017-06-01 12:20:54,467 INFO TC538_osd_out_in_cluster_alternately.py [line:56] check if IO error
+2017-06-01 12:21:09,470 INFO osd.py [line:77] execute command is sudo -i ceph osd in osd.6 & sleep 3
+2017-06-01 12:21:12,697 INFO osd.py [line:80] osd.6 is already in cluster
+2017-06-01 12:21:27,703 INFO TC538_osd_out_in_cluster_alternately.py [line:51] 
+Now operate ubuntu-237
+2017-06-01 12:21:27,703 INFO TC538_osd_out_in_cluster_alternately.py [line:52] 5
+2017-06-01 12:21:27,703 INFO TC538_osd_out_in_cluster_alternately.py [line:53] 
+Now operate osd.6
+2017-06-01 12:21:27,703 INFO TC538_osd_out_in_cluster_alternately.py [line:54] out osd.6
+2017-06-01 12:21:27,703 INFO osd.py [line:62] execute command is sudo -i ceph osd out osd.6 & sleep 3
+2017-06-01 12:21:30,951 INFO osd.py [line:67] osd.6 is already out cluster
+2017-06-01 12:21:30,951 INFO TC538_osd_out_in_cluster_alternately.py [line:56] check if IO error
+2017-06-01 12:21:45,956 INFO osd.py [line:77] execute command is sudo -i ceph osd in osd.6 & sleep 3
+2017-06-01 12:21:49,190 INFO osd.py [line:80] osd.6 is already in cluster
+2017-06-01 12:22:04,197 INFO TC538_osd_out_in_cluster_alternately.py [line:51] 
+Now operate ubuntu-237
+2017-06-01 12:22:04,197 INFO TC538_osd_out_in_cluster_alternately.py [line:52] 5
+2017-06-01 12:22:04,197 INFO TC538_osd_out_in_cluster_alternately.py [line:53] 
+Now operate osd.6
+2017-06-01 12:22:04,197 INFO TC538_osd_out_in_cluster_alternately.py [line:54] out osd.6
+2017-06-01 12:22:04,207 INFO osd.py [line:62] execute command is sudo -i ceph osd out osd.6 & sleep 3
+2017-06-01 12:22:07,443 INFO osd.py [line:67] osd.6 is already out cluster
+2017-06-01 12:22:07,443 INFO TC538_osd_out_in_cluster_alternately.py [line:56] check if IO error
+2017-06-01 12:22:22,451 INFO osd.py [line:77] execute command is sudo -i ceph osd in osd.6 & sleep 3
+2017-06-01 12:22:25,707 INFO osd.py [line:80] osd.6 is already in cluster
+2017-06-01 12:22:40,713 INFO TC538_osd_out_in_cluster_alternately.py [line:63] Now check if there is any IO error
+2017-06-01 12:22:41,217 INFO TC538_osd_out_in_cluster_alternately.py [line:51] 
+Now operate ubuntu-237
+2017-06-01 12:22:41,217 INFO TC538_osd_out_in_cluster_alternately.py [line:52] 5
+2017-06-01 12:22:41,220 INFO TC538_osd_out_in_cluster_alternately.py [line:53] 
+Now operate osd.7
+2017-06-01 12:22:41,220 INFO TC538_osd_out_in_cluster_alternately.py [line:54] out osd.7
+2017-06-01 12:22:41,221 INFO osd.py [line:62] execute command is sudo -i ceph osd out osd.7 & sleep 3
+2017-06-01 12:22:44,453 INFO osd.py [line:67] osd.7 is already out cluster
+2017-06-01 12:22:44,453 INFO TC538_osd_out_in_cluster_alternately.py [line:56] check if IO error
+2017-06-01 12:22:59,460 INFO osd.py [line:77] execute command is sudo -i ceph osd in osd.7 & sleep 3
+2017-06-01 12:23:02,676 INFO osd.py [line:80] osd.7 is already in cluster
+2017-06-01 12:23:17,681 INFO TC538_osd_out_in_cluster_alternately.py [line:51] 
+Now operate ubuntu-237
+2017-06-01 12:23:17,681 INFO TC538_osd_out_in_cluster_alternately.py [line:52] 5
+2017-06-01 12:23:17,681 INFO TC538_osd_out_in_cluster_alternately.py [line:53] 
+Now operate osd.7
+2017-06-01 12:23:17,681 INFO TC538_osd_out_in_cluster_alternately.py [line:54] out osd.7
+2017-06-01 12:23:17,681 INFO osd.py [line:62] execute command is sudo -i ceph osd out osd.7 & sleep 3
+2017-06-01 12:23:21,032 INFO osd.py [line:67] osd.7 is already out cluster
+2017-06-01 12:23:21,032 INFO TC538_osd_out_in_cluster_alternately.py [line:56] check if IO error
+2017-06-01 12:23:36,033 INFO osd.py [line:77] execute command is sudo -i ceph osd in osd.7 & sleep 3
+2017-06-01 12:23:39,240 INFO osd.py [line:80] osd.7 is already in cluster
+2017-06-01 12:23:54,243 INFO TC538_osd_out_in_cluster_alternately.py [line:51] 
+Now operate ubuntu-237
+2017-06-01 12:23:54,349 INFO TC538_osd_out_in_cluster_alternately.py [line:52] 5
+2017-06-01 12:23:54,351 INFO TC538_osd_out_in_cluster_alternately.py [line:53] 
+Now operate osd.7
+2017-06-01 12:23:54,354 INFO TC538_osd_out_in_cluster_alternately.py [line:54] out osd.7
+2017-06-01 12:23:54,357 INFO osd.py [line:62] execute command is sudo -i ceph osd out osd.7 & sleep 3
+2017-06-01 12:23:57,634 INFO osd.py [line:67] osd.7 is already out cluster
+2017-06-01 12:23:57,634 INFO TC538_osd_out_in_cluster_alternately.py [line:56] check if IO error
+2017-06-01 12:24:12,637 INFO osd.py [line:77] execute command is sudo -i ceph osd in osd.7 & sleep 3
+2017-06-01 12:24:15,862 INFO osd.py [line:80] osd.7 is already in cluster
+2017-06-01 12:24:30,865 INFO TC538_osd_out_in_cluster_alternately.py [line:51] 
+Now operate ubuntu-237
+2017-06-01 12:24:30,865 INFO TC538_osd_out_in_cluster_alternately.py [line:52] 5
+2017-06-01 12:24:30,865 INFO TC538_osd_out_in_cluster_alternately.py [line:53] 
+Now operate osd.7
+2017-06-01 12:24:30,865 INFO TC538_osd_out_in_cluster_alternately.py [line:54] out osd.7
+2017-06-01 12:24:30,875 INFO osd.py [line:62] execute command is sudo -i ceph osd out osd.7 & sleep 3
+2017-06-01 12:24:34,164 INFO osd.py [line:67] osd.7 is already out cluster
+2017-06-01 12:24:34,164 INFO TC538_osd_out_in_cluster_alternately.py [line:56] check if IO error
+2017-06-01 12:24:49,168 INFO osd.py [line:77] execute command is sudo -i ceph osd in osd.7 & sleep 3
+2017-06-01 12:24:52,525 INFO osd.py [line:80] osd.7 is already in cluster
+2017-06-01 12:25:07,532 INFO TC538_osd_out_in_cluster_alternately.py [line:51] 
+Now operate ubuntu-237
+2017-06-01 12:25:07,532 INFO TC538_osd_out_in_cluster_alternately.py [line:52] 5
+2017-06-01 12:25:07,532 INFO TC538_osd_out_in_cluster_alternately.py [line:53] 
+Now operate osd.7
+2017-06-01 12:25:07,532 INFO TC538_osd_out_in_cluster_alternately.py [line:54] out osd.7
+2017-06-01 12:25:07,532 INFO osd.py [line:62] execute command is sudo -i ceph osd out osd.7 & sleep 3
+2017-06-01 12:25:10,907 INFO osd.py [line:67] osd.7 is already out cluster
+2017-06-01 12:25:10,917 INFO TC538_osd_out_in_cluster_alternately.py [line:56] check if IO error
+2017-06-01 12:25:25,917 INFO osd.py [line:77] execute command is sudo -i ceph osd in osd.7 & sleep 3
+2017-06-01 12:25:29,171 INFO osd.py [line:80] osd.7 is already in cluster
+2017-06-01 12:25:44,178 INFO TC538_osd_out_in_cluster_alternately.py [line:63] Now check if there is any IO error
+2017-06-01 12:25:44,805 INFO TC538_osd_out_in_cluster_alternately.py [line:51] 
+Now operate ubuntu-237
+2017-06-01 12:25:44,805 INFO TC538_osd_out_in_cluster_alternately.py [line:52] 5
+2017-06-01 12:25:44,805 INFO TC538_osd_out_in_cluster_alternately.py [line:53] 
+Now operate osd.8
+2017-06-01 12:25:44,805 INFO TC538_osd_out_in_cluster_alternately.py [line:54] out osd.8
+2017-06-01 12:25:44,805 INFO osd.py [line:62] execute command is sudo -i ceph osd out osd.8 & sleep 3
+2017-06-01 12:25:48,095 INFO osd.py [line:67] osd.8 is already out cluster
+2017-06-01 12:25:48,095 INFO TC538_osd_out_in_cluster_alternately.py [line:56] check if IO error
+2017-06-01 12:26:03,105 INFO osd.py [line:77] execute command is sudo -i ceph osd in osd.8 & sleep 3
+2017-06-01 12:26:06,344 INFO osd.py [line:80] osd.8 is already in cluster
+2017-06-01 12:26:21,345 INFO TC538_osd_out_in_cluster_alternately.py [line:51] 
+Now operate ubuntu-237
+2017-06-01 12:26:21,345 INFO TC538_osd_out_in_cluster_alternately.py [line:52] 5
+2017-06-01 12:26:21,345 INFO TC538_osd_out_in_cluster_alternately.py [line:53] 
+Now operate osd.8
+2017-06-01 12:26:21,345 INFO TC538_osd_out_in_cluster_alternately.py [line:54] out osd.8
+2017-06-01 12:26:21,345 INFO osd.py [line:62] execute command is sudo -i ceph osd out osd.8 & sleep 3
+2017-06-01 12:26:24,750 INFO osd.py [line:67] osd.8 is already out cluster
+2017-06-01 12:26:24,750 INFO TC538_osd_out_in_cluster_alternately.py [line:56] check if IO error
+2017-06-01 12:26:39,763 INFO osd.py [line:77] execute command is sudo -i ceph osd in osd.8 & sleep 3
+2017-06-01 12:26:43,099 INFO osd.py [line:80] osd.8 is already in cluster
+2017-06-01 12:26:58,104 INFO TC538_osd_out_in_cluster_alternately.py [line:51] 
+Now operate ubuntu-237
+2017-06-01 12:26:58,104 INFO TC538_osd_out_in_cluster_alternately.py [line:52] 5
+2017-06-01 12:26:58,104 INFO TC538_osd_out_in_cluster_alternately.py [line:53] 
+Now operate osd.8
+2017-06-01 12:26:58,104 INFO TC538_osd_out_in_cluster_alternately.py [line:54] out osd.8
+2017-06-01 12:26:58,104 INFO osd.py [line:62] execute command is sudo -i ceph osd out osd.8 & sleep 3
+2017-06-01 12:27:01,378 INFO osd.py [line:67] osd.8 is already out cluster
+2017-06-01 12:27:01,378 INFO TC538_osd_out_in_cluster_alternately.py [line:56] check if IO error
+2017-06-01 12:27:16,384 INFO osd.py [line:77] execute command is sudo -i ceph osd in osd.8 & sleep 3
+2017-06-01 12:27:19,698 INFO osd.py [line:80] osd.8 is already in cluster
+2017-06-01 12:27:34,703 INFO TC538_osd_out_in_cluster_alternately.py [line:51] 
+Now operate ubuntu-237
+2017-06-01 12:27:34,703 INFO TC538_osd_out_in_cluster_alternately.py [line:52] 5
+2017-06-01 12:27:34,703 INFO TC538_osd_out_in_cluster_alternately.py [line:53] 
+Now operate osd.8
+2017-06-01 12:27:34,703 INFO TC538_osd_out_in_cluster_alternately.py [line:54] out osd.8
+2017-06-01 12:27:34,703 INFO osd.py [line:62] execute command is sudo -i ceph osd out osd.8 & sleep 3
+2017-06-01 12:27:37,963 INFO osd.py [line:67] osd.8 is already out cluster
+2017-06-01 12:27:37,963 INFO TC538_osd_out_in_cluster_alternately.py [line:56] check if IO error
+2017-06-01 12:27:52,967 INFO osd.py [line:77] execute command is sudo -i ceph osd in osd.8 & sleep 3
+2017-06-01 12:27:56,265 INFO osd.py [line:80] osd.8 is already in cluster
+2017-06-01 12:28:11,269 INFO TC538_osd_out_in_cluster_alternately.py [line:51] 
+Now operate ubuntu-237
+2017-06-01 12:28:11,269 INFO TC538_osd_out_in_cluster_alternately.py [line:52] 5
+2017-06-01 12:28:11,269 INFO TC538_osd_out_in_cluster_alternately.py [line:53] 
+Now operate osd.8
+2017-06-01 12:28:11,269 INFO TC538_osd_out_in_cluster_alternately.py [line:54] out osd.8
+2017-06-01 12:28:11,279 INFO osd.py [line:62] execute command is sudo -i ceph osd out osd.8 & sleep 3
+2017-06-01 12:28:14,696 INFO osd.py [line:67] osd.8 is already out cluster
+2017-06-01 12:28:14,696 INFO TC538_osd_out_in_cluster_alternately.py [line:56] check if IO error
+2017-06-01 12:28:29,704 INFO osd.py [line:77] execute command is sudo -i ceph osd in osd.8 & sleep 3
+2017-06-01 12:28:32,970 INFO osd.py [line:80] osd.8 is already in cluster
+2017-06-01 12:28:47,970 INFO TC538_osd_out_in_cluster_alternately.py [line:63] Now check if there is any IO error
+2017-06-01 12:28:48,539 INFO TC538_osd_out_in_cluster_alternately.py [line:51] 
+Now operate ubuntu-237
+2017-06-01 12:28:48,540 INFO TC538_osd_out_in_cluster_alternately.py [line:52] 5
+2017-06-01 12:28:48,542 INFO TC538_osd_out_in_cluster_alternately.py [line:53] 
+Now operate osd.9
+2017-06-01 12:28:48,543 INFO TC538_osd_out_in_cluster_alternately.py [line:54] out osd.9
+2017-06-01 12:28:48,546 INFO osd.py [line:62] execute command is sudo -i ceph osd out osd.9 & sleep 3
+2017-06-01 12:28:51,914 INFO osd.py [line:67] osd.9 is already out cluster
+2017-06-01 12:28:51,914 INFO TC538_osd_out_in_cluster_alternately.py [line:56] check if IO error
+2017-06-01 12:29:06,921 INFO osd.py [line:77] execute command is sudo -i ceph osd in osd.9 & sleep 3
+2017-06-01 12:29:10,325 INFO osd.py [line:80] osd.9 is already in cluster
+2017-06-01 12:29:25,335 INFO TC538_osd_out_in_cluster_alternately.py [line:51] 
+Now operate ubuntu-237
+2017-06-01 12:29:25,335 INFO TC538_osd_out_in_cluster_alternately.py [line:52] 5
+2017-06-01 12:29:25,335 INFO TC538_osd_out_in_cluster_alternately.py [line:53] 
+Now operate osd.9
+2017-06-01 12:29:25,335 INFO TC538_osd_out_in_cluster_alternately.py [line:54] out osd.9
+2017-06-01 12:29:25,335 INFO osd.py [line:62] execute command is sudo -i ceph osd out osd.9 & sleep 3
+2017-06-01 12:29:28,598 INFO osd.py [line:67] osd.9 is already out cluster
+2017-06-01 12:29:28,598 INFO TC538_osd_out_in_cluster_alternately.py [line:56] check if IO error
+2017-06-01 12:29:43,611 INFO osd.py [line:77] execute command is sudo -i ceph osd in osd.9 & sleep 3
+2017-06-01 12:29:46,974 INFO osd.py [line:80] osd.9 is already in cluster
+2017-06-01 12:30:01,980 INFO TC538_osd_out_in_cluster_alternately.py [line:51] 
+Now operate ubuntu-237
+2017-06-01 12:30:01,980 INFO TC538_osd_out_in_cluster_alternately.py [line:52] 5
+2017-06-01 12:30:01,980 INFO TC538_osd_out_in_cluster_alternately.py [line:53] 
+Now operate osd.9
+2017-06-01 12:30:01,980 INFO TC538_osd_out_in_cluster_alternately.py [line:54] out osd.9
+2017-06-01 12:30:01,980 INFO osd.py [line:62] execute command is sudo -i ceph osd out osd.9 & sleep 3
+2017-06-01 12:30:05,253 INFO osd.py [line:67] osd.9 is already out cluster
+2017-06-01 12:30:05,253 INFO TC538_osd_out_in_cluster_alternately.py [line:56] check if IO error
+2017-06-01 12:30:20,260 INFO osd.py [line:77] execute command is sudo -i ceph osd in osd.9 & sleep 3
+2017-06-01 12:30:23,555 INFO osd.py [line:80] osd.9 is already in cluster
+2017-06-01 12:30:38,559 INFO TC538_osd_out_in_cluster_alternately.py [line:51] 
+Now operate ubuntu-237
+2017-06-01 12:30:38,559 INFO TC538_osd_out_in_cluster_alternately.py [line:52] 5
+2017-06-01 12:30:38,559 INFO TC538_osd_out_in_cluster_alternately.py [line:53] 
+Now operate osd.9
+2017-06-01 12:30:38,569 INFO TC538_osd_out_in_cluster_alternately.py [line:54] out osd.9
+2017-06-01 12:30:38,569 INFO osd.py [line:62] execute command is sudo -i ceph osd out osd.9 & sleep 3
+2017-06-01 12:30:41,838 INFO osd.py [line:67] osd.9 is already out cluster
+2017-06-01 12:30:41,838 INFO TC538_osd_out_in_cluster_alternately.py [line:56] check if IO error
+2017-06-01 12:30:56,849 INFO osd.py [line:77] execute command is sudo -i ceph osd in osd.9 & sleep 3
+2017-06-01 12:31:00,062 INFO osd.py [line:80] osd.9 is already in cluster
+2017-06-01 12:31:15,065 INFO TC538_osd_out_in_cluster_alternately.py [line:51] 
+Now operate ubuntu-237
+2017-06-01 12:31:15,065 INFO TC538_osd_out_in_cluster_alternately.py [line:52] 5
+2017-06-01 12:31:15,065 INFO TC538_osd_out_in_cluster_alternately.py [line:53] 
+Now operate osd.9
+2017-06-01 12:31:15,065 INFO TC538_osd_out_in_cluster_alternately.py [line:54] out osd.9
+2017-06-01 12:31:15,065 INFO osd.py [line:62] execute command is sudo -i ceph osd out osd.9 & sleep 3
+2017-06-01 12:31:18,447 INFO osd.py [line:67] osd.9 is already out cluster
+2017-06-01 12:31:18,447 INFO TC538_osd_out_in_cluster_alternately.py [line:56] check if IO error
+2017-06-01 12:31:33,466 INFO osd.py [line:77] execute command is sudo -i ceph osd in osd.9 & sleep 3
+2017-06-01 12:31:36,736 INFO osd.py [line:80] osd.9 is already in cluster
+2017-06-01 12:31:51,736 INFO TC538_osd_out_in_cluster_alternately.py [line:63] Now check if there is any IO error
+2017-06-01 12:31:52,326 INFO TC538_osd_out_in_cluster_alternately.py [line:51] 
+Now operate ubuntu-238
+2017-06-01 12:31:52,326 INFO TC538_osd_out_in_cluster_alternately.py [line:52] 5
+2017-06-01 12:31:52,326 INFO TC538_osd_out_in_cluster_alternately.py [line:53] 
+Now operate osd.0
+2017-06-01 12:31:52,336 INFO TC538_osd_out_in_cluster_alternately.py [line:54] out osd.0
+2017-06-01 12:31:52,336 INFO osd.py [line:62] execute command is sudo -i ceph osd out osd.0 & sleep 3
+2017-06-01 12:31:55,763 INFO osd.py [line:67] osd.0 is already out cluster
+2017-06-01 12:31:55,763 INFO TC538_osd_out_in_cluster_alternately.py [line:56] check if IO error
+2017-06-01 12:32:10,772 INFO osd.py [line:77] execute command is sudo -i ceph osd in osd.0 & sleep 3
+2017-06-01 12:32:14,828 INFO osd.py [line:80] osd.0 is already in cluster
+2017-06-01 12:32:29,878 INFO TC538_osd_out_in_cluster_alternately.py [line:51] 
+Now operate ubuntu-238
+2017-06-01 12:32:29,898 INFO TC538_osd_out_in_cluster_alternately.py [line:52] 5
+2017-06-01 12:32:29,898 INFO TC538_osd_out_in_cluster_alternately.py [line:53] 
+Now operate osd.0
+2017-06-01 12:32:29,898 INFO TC538_osd_out_in_cluster_alternately.py [line:54] out osd.0
+2017-06-01 12:32:29,907 INFO osd.py [line:62] execute command is sudo -i ceph osd out osd.0 & sleep 3
+2017-06-01 12:32:33,519 INFO osd.py [line:67] osd.0 is already out cluster
+2017-06-01 12:32:33,571 INFO TC538_osd_out_in_cluster_alternately.py [line:56] check if IO error
+2017-06-01 12:32:48,576 INFO osd.py [line:77] execute command is sudo -i ceph osd in osd.0 & sleep 3
+2017-06-01 12:32:52,134 INFO osd.py [line:80] osd.0 is already in cluster
+2017-06-01 12:33:07,168 INFO TC538_osd_out_in_cluster_alternately.py [line:51] 
+Now operate ubuntu-238
+2017-06-01 12:33:07,168 INFO TC538_osd_out_in_cluster_alternately.py [line:52] 5
+2017-06-01 12:33:07,178 INFO TC538_osd_out_in_cluster_alternately.py [line:53] 
+Now operate osd.0
+2017-06-01 12:33:07,178 INFO TC538_osd_out_in_cluster_alternately.py [line:54] out osd.0
+2017-06-01 12:33:07,178 INFO osd.py [line:62] execute command is sudo -i ceph osd out osd.0 & sleep 3
+2017-06-01 12:33:10,453 INFO osd.py [line:67] osd.0 is already out cluster
+2017-06-01 12:33:10,453 INFO TC538_osd_out_in_cluster_alternately.py [line:56] check if IO error
+2017-06-01 12:33:25,457 INFO osd.py [line:77] execute command is sudo -i ceph osd in osd.0 & sleep 3
+2017-06-01 12:33:28,839 INFO osd.py [line:80] osd.0 is already in cluster
+2017-06-01 12:33:43,845 INFO TC538_osd_out_in_cluster_alternately.py [line:51] 
+Now operate ubuntu-238
+2017-06-01 12:33:43,845 INFO TC538_osd_out_in_cluster_alternately.py [line:52] 5
+2017-06-01 12:33:43,845 INFO TC538_osd_out_in_cluster_alternately.py [line:53] 
+Now operate osd.0
+2017-06-01 12:33:43,845 INFO TC538_osd_out_in_cluster_alternately.py [line:54] out osd.0
+2017-06-01 12:33:43,845 INFO osd.py [line:62] execute command is sudo -i ceph osd out osd.0 & sleep 3
+2017-06-01 12:33:47,125 INFO osd.py [line:67] osd.0 is already out cluster
+2017-06-01 12:33:47,125 INFO TC538_osd_out_in_cluster_alternately.py [line:56] check if IO error
+2017-06-01 12:34:02,125 INFO osd.py [line:77] execute command is sudo -i ceph osd in osd.0 & sleep 3
+2017-06-01 12:34:05,417 INFO osd.py [line:80] osd.0 is already in cluster
+2017-06-01 12:34:20,424 INFO TC538_osd_out_in_cluster_alternately.py [line:51] 
+Now operate ubuntu-238
+2017-06-01 12:34:20,424 INFO TC538_osd_out_in_cluster_alternately.py [line:52] 5
+2017-06-01 12:34:20,424 INFO TC538_osd_out_in_cluster_alternately.py [line:53] 
+Now operate osd.0
+2017-06-01 12:34:20,424 INFO TC538_osd_out_in_cluster_alternately.py [line:54] out osd.0
+2017-06-01 12:34:20,434 INFO osd.py [line:62] execute command is sudo -i ceph osd out osd.0 & sleep 3
+2017-06-01 12:34:23,752 INFO osd.py [line:67] osd.0 is already out cluster
+2017-06-01 12:34:23,752 INFO TC538_osd_out_in_cluster_alternately.py [line:56] check if IO error
+2017-06-01 12:34:38,763 INFO osd.py [line:77] execute command is sudo -i ceph osd in osd.0 & sleep 3
+2017-06-01 12:34:42,006 INFO osd.py [line:80] osd.0 is already in cluster
+2017-06-01 12:34:57,013 INFO TC538_osd_out_in_cluster_alternately.py [line:63] Now check if there is any IO error
+2017-06-01 12:34:57,516 INFO TC538_osd_out_in_cluster_alternately.py [line:51] 
+Now operate ubuntu-238
+2017-06-01 12:34:57,516 INFO TC538_osd_out_in_cluster_alternately.py [line:52] 5
+2017-06-01 12:34:57,516 INFO TC538_osd_out_in_cluster_alternately.py [line:53] 
+Now operate osd.1
+2017-06-01 12:34:57,516 INFO TC538_osd_out_in_cluster_alternately.py [line:54] out osd.1
+2017-06-01 12:34:57,516 INFO osd.py [line:62] execute command is sudo -i ceph osd out osd.1 & sleep 3
+2017-06-01 12:35:00,763 INFO osd.py [line:67] osd.1 is already out cluster
+2017-06-01 12:35:00,763 INFO TC538_osd_out_in_cluster_alternately.py [line:56] check if IO error
+2017-06-01 12:35:15,767 INFO osd.py [line:77] execute command is sudo -i ceph osd in osd.1 & sleep 3
+2017-06-01 12:35:18,992 INFO osd.py [line:80] osd.1 is already in cluster
+2017-06-01 12:35:33,993 INFO TC538_osd_out_in_cluster_alternately.py [line:51] 
+Now operate ubuntu-238
+2017-06-01 12:35:33,993 INFO TC538_osd_out_in_cluster_alternately.py [line:52] 5
+2017-06-01 12:35:33,993 INFO TC538_osd_out_in_cluster_alternately.py [line:53] 
+Now operate osd.1
+2017-06-01 12:35:34,003 INFO TC538_osd_out_in_cluster_alternately.py [line:54] out osd.1
+2017-06-01 12:35:34,003 INFO osd.py [line:62] execute command is sudo -i ceph osd out osd.1 & sleep 3
+2017-06-01 12:35:37,243 INFO osd.py [line:67] osd.1 is already out cluster
+2017-06-01 12:35:37,243 INFO TC538_osd_out_in_cluster_alternately.py [line:56] check if IO error
+2017-06-01 12:35:52,244 INFO osd.py [line:77] execute command is sudo -i ceph osd in osd.1 & sleep 3
+2017-06-01 12:35:55,497 INFO osd.py [line:80] osd.1 is already in cluster
+2017-06-01 12:36:10,503 INFO TC538_osd_out_in_cluster_alternately.py [line:51] 
+Now operate ubuntu-238
+2017-06-01 12:36:10,503 INFO TC538_osd_out_in_cluster_alternately.py [line:52] 5
+2017-06-01 12:36:10,503 INFO TC538_osd_out_in_cluster_alternately.py [line:53] 
+Now operate osd.1
+2017-06-01 12:36:10,503 INFO TC538_osd_out_in_cluster_alternately.py [line:54] out osd.1
+2017-06-01 12:36:10,503 INFO osd.py [line:62] execute command is sudo -i ceph osd out osd.1 & sleep 3
+2017-06-01 12:36:13,891 INFO osd.py [line:67] osd.1 is already out cluster
+2017-06-01 12:36:13,891 INFO TC538_osd_out_in_cluster_alternately.py [line:56] check if IO error
+2017-06-01 12:36:28,894 INFO osd.py [line:77] execute command is sudo -i ceph osd in osd.1 & sleep 3
+2017-06-01 12:36:32,119 INFO osd.py [line:80] osd.1 is already in cluster
+2017-06-01 12:36:47,128 INFO TC538_osd_out_in_cluster_alternately.py [line:51] 
+Now operate ubuntu-238
+2017-06-01 12:36:47,128 INFO TC538_osd_out_in_cluster_alternately.py [line:52] 5
+2017-06-01 12:36:47,128 INFO TC538_osd_out_in_cluster_alternately.py [line:53] 
+Now operate osd.1
+2017-06-01 12:36:47,128 INFO TC538_osd_out_in_cluster_alternately.py [line:54] out osd.1
+2017-06-01 12:36:47,138 INFO osd.py [line:62] execute command is sudo -i ceph osd out osd.1 & sleep 3
+2017-06-01 12:36:50,381 INFO osd.py [line:67] osd.1 is already out cluster
+2017-06-01 12:36:50,382 INFO TC538_osd_out_in_cluster_alternately.py [line:56] check if IO error
+2017-06-01 12:37:05,388 INFO osd.py [line:77] execute command is sudo -i ceph osd in osd.1 & sleep 3
+2017-06-01 12:37:08,619 INFO osd.py [line:80] osd.1 is already in cluster
+2017-06-01 12:37:23,625 INFO TC538_osd_out_in_cluster_alternately.py [line:51] 
+Now operate ubuntu-238
+2017-06-01 12:37:23,628 INFO TC538_osd_out_in_cluster_alternately.py [line:52] 5
+2017-06-01 12:37:23,628 INFO TC538_osd_out_in_cluster_alternately.py [line:53] 
+Now operate osd.1
+2017-06-01 12:37:23,628 INFO TC538_osd_out_in_cluster_alternately.py [line:54] out osd.1
+2017-06-01 12:37:23,628 INFO osd.py [line:62] execute command is sudo -i ceph osd out osd.1 & sleep 3
+2017-06-01 12:37:26,871 INFO osd.py [line:67] osd.1 is already out cluster
+2017-06-01 12:37:26,871 INFO TC538_osd_out_in_cluster_alternately.py [line:56] check if IO error
+2017-06-01 12:37:41,871 INFO osd.py [line:77] execute command is sudo -i ceph osd in osd.1 & sleep 3
+2017-06-01 12:37:45,214 INFO osd.py [line:80] osd.1 is already in cluster
+2017-06-01 12:38:00,219 INFO TC538_osd_out_in_cluster_alternately.py [line:63] Now check if there is any IO error
+2017-06-01 12:38:00,743 INFO TC538_osd_out_in_cluster_alternately.py [line:51] 
+Now operate ubuntu-238
+2017-06-01 12:38:00,743 INFO TC538_osd_out_in_cluster_alternately.py [line:52] 5
+2017-06-01 12:38:00,743 INFO TC538_osd_out_in_cluster_alternately.py [line:53] 
+Now operate osd.2
+2017-06-01 12:38:00,743 INFO TC538_osd_out_in_cluster_alternately.py [line:54] out osd.2
+2017-06-01 12:38:00,753 INFO osd.py [line:62] execute command is sudo -i ceph osd out osd.2 & sleep 3
+2017-06-01 12:38:03,993 INFO osd.py [line:67] osd.2 is already out cluster
+2017-06-01 12:38:03,993 INFO TC538_osd_out_in_cluster_alternately.py [line:56] check if IO error
+2017-06-01 12:38:19,000 INFO osd.py [line:77] execute command is sudo -i ceph osd in osd.2 & sleep 3
+2017-06-01 12:38:22,226 INFO osd.py [line:80] osd.2 is already in cluster
+2017-06-01 12:38:37,232 INFO TC538_osd_out_in_cluster_alternately.py [line:51] 
+Now operate ubuntu-238
+2017-06-01 12:38:37,232 INFO TC538_osd_out_in_cluster_alternately.py [line:52] 5
+2017-06-01 12:38:37,232 INFO TC538_osd_out_in_cluster_alternately.py [line:53] 
+Now operate osd.2
+2017-06-01 12:38:37,232 INFO TC538_osd_out_in_cluster_alternately.py [line:54] out osd.2
+2017-06-01 12:38:37,242 INFO osd.py [line:62] execute command is sudo -i ceph osd out osd.2 & sleep 3
+2017-06-01 12:38:40,493 INFO osd.py [line:67] osd.2 is already out cluster
+2017-06-01 12:38:40,496 INFO TC538_osd_out_in_cluster_alternately.py [line:56] check if IO error
+2017-06-01 12:38:55,505 INFO osd.py [line:77] execute command is sudo -i ceph osd in osd.2 & sleep 3
+2017-06-01 12:38:58,767 INFO osd.py [line:80] osd.2 is already in cluster
+2017-06-01 12:39:13,773 INFO TC538_osd_out_in_cluster_alternately.py [line:51] 
+Now operate ubuntu-238
+2017-06-01 12:39:13,773 INFO TC538_osd_out_in_cluster_alternately.py [line:52] 5
+2017-06-01 12:39:13,773 INFO TC538_osd_out_in_cluster_alternately.py [line:53] 
+Now operate osd.2
+2017-06-01 12:39:13,773 INFO TC538_osd_out_in_cluster_alternately.py [line:54] out osd.2
+2017-06-01 12:39:13,773 INFO osd.py [line:62] execute command is sudo -i ceph osd out osd.2 & sleep 3
+2017-06-01 12:39:17,025 INFO osd.py [line:67] osd.2 is already out cluster
+2017-06-01 12:39:17,025 INFO TC538_osd_out_in_cluster_alternately.py [line:56] check if IO error
+2017-06-01 12:39:32,035 INFO osd.py [line:77] execute command is sudo -i ceph osd in osd.2 & sleep 3
+2017-06-01 12:39:35,262 INFO osd.py [line:80] osd.2 is already in cluster
+2017-06-01 12:39:50,263 INFO TC538_osd_out_in_cluster_alternately.py [line:51] 
+Now operate ubuntu-238
+2017-06-01 12:39:50,263 INFO TC538_osd_out_in_cluster_alternately.py [line:52] 5
+2017-06-01 12:39:50,263 INFO TC538_osd_out_in_cluster_alternately.py [line:53] 
+Now operate osd.2
+2017-06-01 12:39:50,263 INFO TC538_osd_out_in_cluster_alternately.py [line:54] out osd.2
+2017-06-01 12:39:50,273 INFO osd.py [line:62] execute command is sudo -i ceph osd out osd.2 & sleep 3
+2017-06-01 12:39:53,516 INFO osd.py [line:67] osd.2 is already out cluster
+2017-06-01 12:39:53,516 INFO TC538_osd_out_in_cluster_alternately.py [line:56] check if IO error
+2017-06-01 12:40:08,520 INFO osd.py [line:77] execute command is sudo -i ceph osd in osd.2 & sleep 3
+2017-06-01 12:40:11,750 INFO osd.py [line:80] osd.2 is already in cluster
+2017-06-01 12:40:26,757 INFO TC538_osd_out_in_cluster_alternately.py [line:51] 
+Now operate ubuntu-238
+2017-06-01 12:40:26,757 INFO TC538_osd_out_in_cluster_alternately.py [line:52] 5
+2017-06-01 12:40:26,757 INFO TC538_osd_out_in_cluster_alternately.py [line:53] 
+Now operate osd.2
+2017-06-01 12:40:26,757 INFO TC538_osd_out_in_cluster_alternately.py [line:54] out osd.2
+2017-06-01 12:40:26,757 INFO osd.py [line:62] execute command is sudo -i ceph osd out osd.2 & sleep 3
+2017-06-01 12:40:30,019 INFO osd.py [line:67] osd.2 is already out cluster
+2017-06-01 12:40:30,019 INFO TC538_osd_out_in_cluster_alternately.py [line:56] check if IO error
+2017-06-01 12:40:45,029 INFO osd.py [line:77] execute command is sudo -i ceph osd in osd.2 & sleep 3
+2017-06-01 12:40:48,260 INFO osd.py [line:80] osd.2 is already in cluster
+2017-06-01 12:41:03,266 INFO TC538_osd_out_in_cluster_alternately.py [line:63] Now check if there is any IO error
+2017-06-01 12:41:03,760 INFO TC538_osd_out_in_cluster_alternately.py [line:51] 
+Now operate ubuntu-238
+2017-06-01 12:41:03,760 INFO TC538_osd_out_in_cluster_alternately.py [line:52] 5
+2017-06-01 12:41:03,760 INFO TC538_osd_out_in_cluster_alternately.py [line:53] 
+Now operate osd.3
+2017-06-01 12:41:03,760 INFO TC538_osd_out_in_cluster_alternately.py [line:54] out osd.3
+2017-06-01 12:41:03,760 INFO osd.py [line:62] execute command is sudo -i ceph osd out osd.3 & sleep 3
+2017-06-01 12:41:06,994 INFO osd.py [line:67] osd.3 is already out cluster
+2017-06-01 12:41:06,994 INFO TC538_osd_out_in_cluster_alternately.py [line:56] check if IO error
+2017-06-01 12:41:22,013 INFO osd.py [line:77] execute command is sudo -i ceph osd in osd.3 & sleep 3
+2017-06-01 12:41:25,226 INFO osd.py [line:80] osd.3 is already in cluster
+2017-06-01 12:41:40,226 INFO TC538_osd_out_in_cluster_alternately.py [line:51] 
+Now operate ubuntu-238
+2017-06-01 12:41:40,226 INFO TC538_osd_out_in_cluster_alternately.py [line:52] 5
+2017-06-01 12:41:40,226 INFO TC538_osd_out_in_cluster_alternately.py [line:53] 
+Now operate osd.3
+2017-06-01 12:41:40,226 INFO TC538_osd_out_in_cluster_alternately.py [line:54] out osd.3
+2017-06-01 12:41:40,236 INFO osd.py [line:62] execute command is sudo -i ceph osd out osd.3 & sleep 3
+2017-06-01 12:41:43,490 INFO osd.py [line:67] osd.3 is already out cluster
+2017-06-01 12:41:43,490 INFO TC538_osd_out_in_cluster_alternately.py [line:56] check if IO error
+2017-06-01 12:41:58,502 INFO osd.py [line:77] execute command is sudo -i ceph osd in osd.3 & sleep 3
+2017-06-01 12:42:01,755 INFO osd.py [line:80] osd.3 is already in cluster
+2017-06-01 12:42:16,759 INFO TC538_osd_out_in_cluster_alternately.py [line:51] 
+Now operate ubuntu-238
+2017-06-01 12:42:16,759 INFO TC538_osd_out_in_cluster_alternately.py [line:52] 5
+2017-06-01 12:42:16,759 INFO TC538_osd_out_in_cluster_alternately.py [line:53] 
+Now operate osd.3
+2017-06-01 12:42:16,759 INFO TC538_osd_out_in_cluster_alternately.py [line:54] out osd.3
+2017-06-01 12:42:16,759 INFO osd.py [line:62] execute command is sudo -i ceph osd out osd.3 & sleep 3
+2017-06-01 12:42:20,019 INFO osd.py [line:67] osd.3 is already out cluster
+2017-06-01 12:42:20,019 INFO TC538_osd_out_in_cluster_alternately.py [line:56] check if IO error
+2017-06-01 12:42:35,025 INFO osd.py [line:77] execute command is sudo -i ceph osd in osd.3 & sleep 3
+2017-06-01 12:42:38,270 INFO osd.py [line:80] osd.3 is already in cluster
+2017-06-01 12:42:53,276 INFO TC538_osd_out_in_cluster_alternately.py [line:51] 
+Now operate ubuntu-238
+2017-06-01 12:42:53,276 INFO TC538_osd_out_in_cluster_alternately.py [line:52] 5
+2017-06-01 12:42:53,276 INFO TC538_osd_out_in_cluster_alternately.py [line:53] 
+Now operate osd.3
+2017-06-01 12:42:53,276 INFO TC538_osd_out_in_cluster_alternately.py [line:54] out osd.3
+2017-06-01 12:42:53,276 INFO osd.py [line:62] execute command is sudo -i ceph osd out osd.3 & sleep 3
+2017-06-01 12:42:56,539 INFO osd.py [line:67] osd.3 is already out cluster
+2017-06-01 12:42:56,539 INFO TC538_osd_out_in_cluster_alternately.py [line:56] check if IO error
+2017-06-01 12:43:11,540 INFO osd.py [line:77] execute command is sudo -i ceph osd in osd.3 & sleep 3
+2017-06-01 12:43:14,756 INFO osd.py [line:80] osd.3 is already in cluster
+2017-06-01 12:43:29,757 INFO TC538_osd_out_in_cluster_alternately.py [line:51] 
+Now operate ubuntu-238
+2017-06-01 12:43:29,757 INFO TC538_osd_out_in_cluster_alternately.py [line:52] 5
+2017-06-01 12:43:29,757 INFO TC538_osd_out_in_cluster_alternately.py [line:53] 
+Now operate osd.3
+2017-06-01 12:43:29,757 INFO TC538_osd_out_in_cluster_alternately.py [line:54] out osd.3
+2017-06-01 12:43:29,767 INFO osd.py [line:62] execute command is sudo -i ceph osd out osd.3 & sleep 3
+2017-06-01 12:43:33,013 INFO osd.py [line:67] osd.3 is already out cluster
+2017-06-01 12:43:33,013 INFO TC538_osd_out_in_cluster_alternately.py [line:56] check if IO error
+2017-06-01 12:43:48,026 INFO osd.py [line:77] execute command is sudo -i ceph osd in osd.3 & sleep 3
+2017-06-01 12:43:51,263 INFO osd.py [line:80] osd.3 is already in cluster
+2017-06-01 12:44:06,266 INFO TC538_osd_out_in_cluster_alternately.py [line:63] Now check if there is any IO error
+2017-06-01 12:44:06,759 INFO TC538_osd_out_in_cluster_alternately.py [line:51] 
+Now operate ubuntu-238
+2017-06-01 12:44:06,759 INFO TC538_osd_out_in_cluster_alternately.py [line:52] 5
+2017-06-01 12:44:06,759 INFO TC538_osd_out_in_cluster_alternately.py [line:53] 
+Now operate osd.4
+2017-06-01 12:44:06,759 INFO TC538_osd_out_in_cluster_alternately.py [line:54] out osd.4
+2017-06-01 12:44:06,759 INFO osd.py [line:62] execute command is sudo -i ceph osd out osd.4 & sleep 3
+2017-06-01 12:44:09,990 INFO osd.py [line:67] osd.4 is already out cluster
+2017-06-01 12:44:10,000 INFO TC538_osd_out_in_cluster_alternately.py [line:56] check if IO error
+2017-06-01 12:44:25,006 INFO osd.py [line:77] execute command is sudo -i ceph osd in osd.4 & sleep 3
+2017-06-01 12:44:28,246 INFO osd.py [line:80] osd.4 is already in cluster
+2017-06-01 12:44:43,250 INFO TC538_osd_out_in_cluster_alternately.py [line:51] 
+Now operate ubuntu-238
+2017-06-01 12:44:43,250 INFO TC538_osd_out_in_cluster_alternately.py [line:52] 5
+2017-06-01 12:44:43,250 INFO TC538_osd_out_in_cluster_alternately.py [line:53] 
+Now operate osd.4
+2017-06-01 12:44:43,250 INFO TC538_osd_out_in_cluster_alternately.py [line:54] out osd.4
+2017-06-01 12:44:43,259 INFO osd.py [line:62] execute command is sudo -i ceph osd out osd.4 & sleep 3
+2017-06-01 12:44:46,569 INFO osd.py [line:67] osd.4 is already out cluster
+2017-06-01 12:44:46,569 INFO TC538_osd_out_in_cluster_alternately.py [line:56] check if IO error
+2017-06-01 12:45:01,582 INFO osd.py [line:77] execute command is sudo -i ceph osd in osd.4 & sleep 3
+2017-06-01 12:45:04,825 INFO osd.py [line:80] osd.4 is already in cluster
+2017-06-01 12:45:19,832 INFO TC538_osd_out_in_cluster_alternately.py [line:51] 
+Now operate ubuntu-238
+2017-06-01 12:45:19,832 INFO TC538_osd_out_in_cluster_alternately.py [line:52] 5
+2017-06-01 12:45:19,832 INFO TC538_osd_out_in_cluster_alternately.py [line:53] 
+Now operate osd.4
+2017-06-01 12:45:19,832 INFO TC538_osd_out_in_cluster_alternately.py [line:54] out osd.4
+2017-06-01 12:45:19,842 INFO osd.py [line:62] execute command is sudo -i ceph osd out osd.4 & sleep 3
+2017-06-01 12:45:23,092 INFO osd.py [line:67] osd.4 is already out cluster
+2017-06-01 12:45:23,092 INFO TC538_osd_out_in_cluster_alternately.py [line:56] check if IO error
+2017-06-01 12:45:38,095 INFO osd.py [line:77] execute command is sudo -i ceph osd in osd.4 & sleep 3
+2017-06-01 12:45:41,328 INFO osd.py [line:80] osd.4 is already in cluster
+2017-06-01 12:45:56,332 INFO TC538_osd_out_in_cluster_alternately.py [line:51] 
+Now operate ubuntu-238
+2017-06-01 12:45:56,332 INFO TC538_osd_out_in_cluster_alternately.py [line:52] 5
+2017-06-01 12:45:56,332 INFO TC538_osd_out_in_cluster_alternately.py [line:53] 
+Now operate osd.4
+2017-06-01 12:45:56,332 INFO TC538_osd_out_in_cluster_alternately.py [line:54] out osd.4
+2017-06-01 12:45:56,332 INFO osd.py [line:62] execute command is sudo -i ceph osd out osd.4 & sleep 3
+2017-06-01 12:45:59,569 INFO osd.py [line:67] osd.4 is already out cluster
+2017-06-01 12:45:59,569 INFO TC538_osd_out_in_cluster_alternately.py [line:56] check if IO error
+2017-06-01 12:46:14,569 INFO osd.py [line:77] execute command is sudo -i ceph osd in osd.4 & sleep 3
+2017-06-01 12:46:17,799 INFO osd.py [line:80] osd.4 is already in cluster
+2017-06-01 12:46:32,802 INFO TC538_osd_out_in_cluster_alternately.py [line:51] 
+Now operate ubuntu-238
+2017-06-01 12:46:32,802 INFO TC538_osd_out_in_cluster_alternately.py [line:52] 5
+2017-06-01 12:46:32,802 INFO TC538_osd_out_in_cluster_alternately.py [line:53] 
+Now operate osd.4
+2017-06-01 12:46:32,802 INFO TC538_osd_out_in_cluster_alternately.py [line:54] out osd.4
+2017-06-01 12:46:32,812 INFO osd.py [line:62] execute command is sudo -i ceph osd out osd.4 & sleep 3
+2017-06-01 12:46:36,180 INFO osd.py [line:67] osd.4 is already out cluster
+2017-06-01 12:46:36,180 INFO TC538_osd_out_in_cluster_alternately.py [line:56] check if IO error
+2017-06-01 12:46:51,184 INFO osd.py [line:77] execute command is sudo -i ceph osd in osd.4 & sleep 3
+2017-06-01 12:46:54,464 INFO osd.py [line:80] osd.4 is already in cluster
+2017-06-01 12:47:09,464 INFO TC538_osd_out_in_cluster_alternately.py [line:63] Now check if there is any IO error
+2017-06-01 12:47:10,552 INFO TC538_osd_out_in_cluster_alternately.py [line:70] TC538_osd_out_in_cluster_alternately runs complete

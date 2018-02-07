@@ -1,0 +1,30 @@
+2017-06-29 16:02:28,647 INFO createImgSameName.py [line:20] 
+create/delete pool, image, snap, clone
+
+2017-06-29 16:02:33,026 INFO monitors.py [line:126]    "quorum_leader_name": "denali1",
+stdin: is not a tty
+
+2017-06-29 16:02:33,029 INFO monitors.py [line:129]    "quorum_leader_name": "denali1",
+2017-06-29 16:02:43,802 INFO loginlogout.py [line:13] login
+2017-06-29 16:02:50,691 INFO loginlogout.py [line:24] now we have loggin
+2017-06-29 16:02:52,691 INFO poolManagement.py [line:50] Create pool
+2017-06-29 16:03:44,053 INFO createImgSameName.py [line:36] invalid pool
+2017-06-29 16:03:44,437 INFO createImgSameName.py [line:43] create image with same name
+2017-06-29 16:03:44,437 INFO poolManagement.py [line:135] create block device img 
+2017-06-29 16:04:44,782 INFO poolManagement.py [line:135] create block device img 
+2017-06-29 16:05:08,392 INFO poolManagement.py [line:178] 
+2017-06-29 16:05:08,394 INFO poolManagement.py [line:179] The info you input for image is illegal 
+2017-06-29 16:05:13,394 INFO poolManagement.py [line:237] Delete block device img 
+2017-06-29 16:05:29,167 INFO poolManagement.py [line:244] 1
+2017-06-29 16:05:29,211 INFO poolManagement.py [line:247] UITestImg
+2017-06-29 16:05:29,519 INFO poolManagement.py [line:255] 确定要删除这个镜像: UITestImg?
+
+此操作不可恢复
+2017-06-29 16:05:38,648 INFO poolManagement.py [line:102] delete pool
+2017-06-29 16:05:46,469 INFO poolManagement.py [line:111] 1
+2017-06-29 16:05:46,509 INFO poolManagement.py [line:113] UITestpool
+2017-06-29 16:05:46,703 INFO poolManagement.py [line:120] 确定删除这个存储池: UITestpool?
+
+此操作不可恢复
+2017-06-29 16:06:14,382 INFO loginlogout.py [line:32] logout
+2017-06-29 16:06:15,769 INFO createImgSameName.py [line:53] logout

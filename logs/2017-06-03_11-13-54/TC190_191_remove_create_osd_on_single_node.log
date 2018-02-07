@@ -1,0 +1,182 @@
+2017-06-03 15:39:04,938 INFO TC190_191_remove_create_osd_on_single_node.py [line:24] 
+This test case will do the following steps:
+1. start IO on 10 images with randwrite and verify
+2. login the first node 
+3. remove the osd one by one on the first node
+4. check the status
+5. create osd on the node
+
+2017-06-03 15:39:05,605 INFO monitors.py [line:126]    "quorum_leader_name": "ubuntu-A",
+stdin: is not a tty
+
+2017-06-03 15:39:05,605 INFO monitors.py [line:129]    "quorum_leader_name": "ubuntu-A",
+2017-06-03 15:39:07,611 INFO TC190_191_remove_create_osd_on_single_node.py [line:29] start to check cluster status before case running
+2017-06-03 15:39:09,615 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-03 15:39:09,972 INFO cluster.py [line:213]    cluster e93f3143-8693-4060-a247-132bae28385e
+     health HEALTH_OK
+     monmap e3: 3 mons at {ubuntu-A=192.168.40.170:6789/0,ubuntu-B=192.168.40.171:6789/0,ubuntu-C=192.168.40.172:6789/0}
+            election epoch 60, quorum 0,1,2 ubuntu-A,ubuntu-B,ubuntu-C
+     osdmap e2169: 20 osds: 20 up, 16 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v13570: 1536 pgs, 2 pools, 300 GB data, 80834 objects
+            733 GB used, 44566 GB / 45300 GB avail
+                1536 active+clean
+  client io 3449 kB/s wr, 0 op/s rd, 431 op/s wr
+2017-06-03 07:39:11.718152 7ffac8886700 -1 asok(0x7ffac4000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.44515.140715006890368.asok': (13) Permission denied
+
+2017-06-03 15:39:09,972 INFO cluster.py [line:238] PG number is 1536
+2017-06-03 15:39:09,972 INFO cluster.py [line:239] usefull PG number is 1536
+2017-06-03 15:39:09,972 INFO TC190_191_remove_create_osd_on_single_node.py [line:32] health status is OK
+2017-06-03 15:39:09,973 INFO TC190_191_remove_create_osd_on_single_node.py [line:37] 
+Step1: start IO from clients
+2017-06-03 15:39:10,491 INFO client.py [line:172] 
+stdin: is not a tty
+
+2017-06-03 15:39:10,491 INFO client.py [line:174] IO is running
+2017-06-03 15:39:10,657 INFO node.py [line:159] /var/lib/jenkins/workspace/AutoRun/config/changeCommon.sh
+2017-06-03 15:39:10,657 INFO node.py [line:161] /var/lib/jenkins/workspace/AutoRun/config/updateCephConfig.sh
+2017-06-03 15:39:11,558 INFO osd.py [line:40] execute command is sudo -i kill -9  & sleep 3
+2017-06-03 15:39:14,745 INFO osd.py [line:89] node is  ubuntu-A
+2017-06-03 15:39:14,745 INFO osd.py [line:90] execute command is sudo -i start ceph-osd id=0 & sleep 30
+2017-06-03 15:39:44,945 ERROR osd.py [line:96] Error when start osdosd.0
+2017-06-03 15:39:44,945 ERROR osd.py [line:97] sudo -i start ceph-osd id=0 & sleep 30
+2017-06-03 15:39:44,946 ERROR osd.py [line:98] eph-osd (ceph/0) start/running, process 44694
+stdin: is not a tty
+
+2017-06-03 15:39:44,946 INFO osd.py [line:40] execute command is sudo -i kill -9  & sleep 3
+2017-06-03 15:39:48,244 INFO osd.py [line:89] node is  ubuntu-A
+2017-06-03 15:39:48,245 INFO osd.py [line:90] execute command is sudo -i start ceph-osd id=1 & sleep 30
+2017-06-03 15:40:18,398 ERROR osd.py [line:96] Error when start osdosd.1
+2017-06-03 15:40:18,398 ERROR osd.py [line:97] sudo -i start ceph-osd id=1 & sleep 30
+2017-06-03 15:40:18,398 ERROR osd.py [line:98] eph-osd (ceph/1) start/running, process 45013
+stdin: is not a tty
+
+2017-06-03 15:40:18,398 INFO osd.py [line:40] execute command is sudo -i kill -9  & sleep 3
+2017-06-03 15:40:21,585 INFO osd.py [line:89] node is  ubuntu-A
+2017-06-03 15:40:21,585 INFO osd.py [line:90] execute command is sudo -i start ceph-osd id=2 & sleep 30
+2017-06-03 15:40:51,771 ERROR osd.py [line:96] Error when start osdosd.2
+2017-06-03 15:40:51,771 ERROR osd.py [line:97] sudo -i start ceph-osd id=2 & sleep 30
+2017-06-03 15:40:51,771 ERROR osd.py [line:98] eph-osd (ceph/2) start/running, process 45371
+stdin: is not a tty
+
+2017-06-03 15:41:51,789 INFO TC190_191_remove_create_osd_on_single_node.py [line:50] 
+Step2: remove osd and create them 10 times
+2017-06-03 15:41:51,976 INFO node.py [line:185] 0
+2017-06-03 15:41:51,976 INFO node.py [line:192] nvme6n1
+2017-06-03 15:41:51,976 INFO node.py [line:185] 0
+2017-06-03 15:41:51,977 INFO node.py [line:192] nvme6n1
+2017-06-03 15:41:51,977 INFO node.py [line:185] 0
+2017-06-03 15:41:51,977 INFO node.py [line:192] nvme6n1
+2017-06-03 15:41:51,977 INFO node.py [line:185] 1
+2017-06-03 15:41:51,977 INFO node.py [line:192] nvme2n1
+2017-06-03 15:41:51,977 INFO node.py [line:185] 1
+2017-06-03 15:41:51,977 INFO node.py [line:192] nvme2n1
+2017-06-03 15:41:51,977 INFO node.py [line:185] 1
+2017-06-03 15:41:51,978 INFO node.py [line:192] nvme2n1
+2017-06-03 15:41:51,978 INFO node.py [line:185] 2
+2017-06-03 15:41:51,978 INFO node.py [line:192] nvme5n1
+2017-06-03 15:41:51,978 INFO node.py [line:185] 2
+2017-06-03 15:41:51,978 INFO node.py [line:192] nvme5n1
+2017-06-03 15:41:51,978 INFO node.py [line:185] 2
+2017-06-03 15:41:51,978 INFO node.py [line:192] nvme5n1
+2017-06-03 15:41:51,978 INFO node.py [line:185] 3
+2017-06-03 15:41:51,978 INFO node.py [line:192] nvme1n1
+2017-06-03 15:41:51,979 INFO node.py [line:185] 3
+2017-06-03 15:41:51,979 INFO node.py [line:192] nvme1n1
+2017-06-03 15:41:51,979 INFO node.py [line:185] 3
+2017-06-03 15:41:51,979 INFO node.py [line:192] nvme1n1
+2017-06-03 15:41:51,979 INFO node.py [line:185] 4
+2017-06-03 15:41:51,979 INFO node.py [line:192] nvme4n1
+2017-06-03 15:41:51,979 INFO node.py [line:185] 4
+2017-06-03 15:41:51,979 INFO node.py [line:192] nvme4n1
+2017-06-03 15:41:51,980 INFO node.py [line:185] 4
+2017-06-03 15:41:51,980 INFO node.py [line:192] nvme4n1
+2017-06-03 15:41:51,980 INFO node.py [line:185] 5
+2017-06-03 15:41:51,980 INFO node.py [line:192] nvme7n1
+2017-06-03 15:41:51,980 INFO node.py [line:185] 5
+2017-06-03 15:41:51,980 INFO node.py [line:192] nvme7n1
+2017-06-03 15:41:51,980 INFO node.py [line:185] 5
+2017-06-03 15:41:51,980 INFO node.py [line:192] nvme7n1
+2017-06-03 15:41:51,980 INFO node.py [line:185] 6
+2017-06-03 15:41:51,981 INFO node.py [line:192] nvme3n1
+2017-06-03 15:41:51,981 INFO node.py [line:185] 6
+2017-06-03 15:41:51,981 INFO node.py [line:192] nvme3n1
+2017-06-03 15:41:51,981 INFO node.py [line:185] 6
+2017-06-03 15:41:51,981 INFO node.py [line:192] nvme3n1
+2017-06-03 15:41:51,981 INFO node.py [line:185] 
+2017-06-03 15:41:51,981 INFO node.py [line:192] nvme5n1
+2017-06-03 15:41:51,981 INFO node.py [line:200] osd.0  ---> disk nvme6n1
+2017-06-03 15:41:51,982 INFO node.py [line:200] osd.1  ---> disk nvme2n1
+2017-06-03 15:41:51,982 INFO node.py [line:200] osd.2  ---> disk nvme5n1
+2017-06-03 15:41:51,982 INFO TC190_191_remove_create_osd_on_single_node.py [line:54] start to delete osd on node ubuntu-A 
+2017-06-03 15:41:51,982 INFO osd.py [line:156] execute command is sudo -i /usr/local/bin/scripts/create_cluster_scripts/bluestore/delete_osds_local.sh -n -d /dev/nvme6n1
+2017-06-03 15:48:34,046 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-03 15:48:34,402 INFO cluster.py [line:213]    cluster e93f3143-8693-4060-a247-132bae28385e
+     health HEALTH_OK
+     monmap e3: 3 mons at {ubuntu-A=192.168.40.170:6789/0,ubuntu-B=192.168.40.171:6789/0,ubuntu-C=192.168.40.172:6789/0}
+            election epoch 60, quorum 0,1,2 ubuntu-A,ubuntu-B,ubuntu-C
+     osdmap e2369: 20 osds: 20 up, 15 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v14118: 1536 pgs, 2 pools, 300 GB data, 80834 objects
+            725 GB used, 41743 GB / 42468 GB avail
+                1536 active+clean
+2017-06-03 07:48:36.154846 7fa55b702700 -1 asok(0x7fa554000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.65465.140348055622016.asok': (13) Permission denied
+
+2017-06-03 15:48:34,403 INFO cluster.py [line:238] PG number is 1536
+2017-06-03 15:48:34,403 INFO cluster.py [line:239] usefull PG number is 1536
+2017-06-03 15:48:34,403 INFO TC190_191_remove_create_osd_on_single_node.py [line:59] sleep 600s to wait the pg transfer successfully
+2017-06-03 15:58:34,406 INFO TC190_191_remove_create_osd_on_single_node.py [line:62] osd.0 delete succesfully
+2017-06-03 15:58:34,407 INFO osd.py [line:156] execute command is sudo -i /usr/local/bin/scripts/create_cluster_scripts/bluestore/delete_osds_local.sh -n -d /dev/nvme2n1
+2017-06-03 16:08:18,560 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-03 16:08:18,946 INFO cluster.py [line:213]    cluster e93f3143-8693-4060-a247-132bae28385e
+     health HEALTH_OK
+     monmap e3: 3 mons at {ubuntu-A=192.168.40.170:6789/0,ubuntu-B=192.168.40.171:6789/0,ubuntu-C=192.168.40.172:6789/0}
+            election epoch 60, quorum 0,1,2 ubuntu-A,ubuntu-B,ubuntu-C
+     osdmap e2568: 20 osds: 20 up, 14 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v14956: 1536 pgs, 2 pools, 300 GB data, 80834 objects
+            716 GB used, 38921 GB / 39637 GB avail
+                1536 active+clean
+2017-06-03 08:08:20.698328 7f48db318700 -1 asok(0x7f48d4000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.26317.139950771147136.asok': (13) Permission denied
+
+2017-06-03 16:08:18,947 INFO cluster.py [line:238] PG number is 1536
+2017-06-03 16:08:18,947 INFO cluster.py [line:239] usefull PG number is 1536
+2017-06-03 16:08:18,947 INFO TC190_191_remove_create_osd_on_single_node.py [line:59] sleep 600s to wait the pg transfer successfully
+2017-06-03 16:18:18,980 INFO TC190_191_remove_create_osd_on_single_node.py [line:62] osd.1 delete succesfully
+2017-06-03 16:18:18,980 INFO osd.py [line:156] execute command is sudo -i /usr/local/bin/scripts/create_cluster_scripts/bluestore/delete_osds_local.sh -n -d /dev/nvme5n1
+2017-06-03 16:22:24,904 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-03 16:22:25,276 INFO cluster.py [line:213]    cluster e93f3143-8693-4060-a247-132bae28385e
+     health HEALTH_OK
+     monmap e3: 3 mons at {ubuntu-A=192.168.40.170:6789/0,ubuntu-B=192.168.40.171:6789/0,ubuntu-C=192.168.40.172:6789/0}
+            election epoch 60, quorum 0,1,2 ubuntu-A,ubuntu-B,ubuntu-C
+     osdmap e2689: 20 osds: 20 up, 13 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v15547: 1536 pgs, 2 pools, 300 GB data, 80834 objects
+            708 GB used, 36098 GB / 36806 GB avail
+                1536 active+clean
+2017-06-03 08:22:27.035149 7f9577217700 -1 asok(0x7f9570000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.43055.140279805907328.asok': (13) Permission denied
+
+2017-06-03 16:22:25,276 INFO cluster.py [line:238] PG number is 1536
+2017-06-03 16:22:25,276 INFO cluster.py [line:239] usefull PG number is 1536
+2017-06-03 16:22:25,276 INFO TC190_191_remove_create_osd_on_single_node.py [line:59] sleep 600s to wait the pg transfer successfully
+2017-06-03 16:32:25,338 INFO TC190_191_remove_create_osd_on_single_node.py [line:62] osd.2 delete succesfully
+2017-06-03 16:32:30,684 INFO TC190_191_remove_create_osd_on_single_node.py [line:75] all osds on node ubuntu-A delete succesfully
+2017-06-03 16:32:30,684 INFO TC190_191_remove_create_osd_on_single_node.py [line:77] start to create osd on node ubuntu-A 
+2017-06-03 16:32:30,684 INFO node.py [line:205] execute command is sudo -i /usr/local/bin/scripts/create_cluster_scripts/bluestore/changeCommon.sh nvme6n1
+2017-06-03 16:32:34,263 INFO node.py [line:212] execute command is sudo -i /usr/local/bin/scripts/create_cluster_scripts/bluestore/create_osds_local.sh -f 
+2017-06-03 16:32:34,263 INFO node.py [line:213] NFO: osd_num_in_each_disk=1
+WARNING: /dev/nvme6n1 has partitions
+ERROR: make gpt label in '/dev/nvme6n1' failed.Error: Partition(s) 2, 3, 4 on /dev/nvme6n1 have been written, but we have been unable to inform the kernel of the change, probably because it/they are in use.  As a result, the old partition(s) will remain in use.  You should reboot now before making further changes.
+Reslut:Create osd on ubuntu-A failed.
+Detail:make gpt label in '/dev/nvme6n1' failed.Error: Partition(s) 2, 3, 4 on /dev/nvme6n1 have been written, but we have been unable to inform the kernel of the change, probably because it/they are in use.  As a result, the old partition(s) will remain in use.  You should reboot now before making further changes.
+stdin: is not a tty
+
+2017-06-03 16:32:34,264 ERROR node.py [line:215] Error when create osd
+2017-06-03 16:32:34,264 ERROR node.py [line:216] sudo -i /usr/local/bin/scripts/create_cluster_scripts/bluestore/create_osds_local.sh -f 
+2017-06-03 16:32:34,264 ERROR node.py [line:217] NFO: osd_num_in_each_disk=1
+WARNING: /dev/nvme6n1 has partitions
+ERROR: make gpt label in '/dev/nvme6n1' failed.Error: Partition(s) 2, 3, 4 on /dev/nvme6n1 have been written, but we have been unable to inform the kernel of the change, probably because it/they are in use.  As a result, the old partition(s) will remain in use.  You should reboot now before making further changes.
+Reslut:Create osd on ubuntu-A failed.
+Detail:make gpt label in '/dev/nvme6n1' failed.Error: Partition(s) 2, 3, 4 on /dev/nvme6n1 have been written, but we have been unable to inform the kernel of the change, probably because it/they are in use.  As a result, the old partition(s) will remain in use.  You should reboot now before making further changes.
+stdin: is not a tty
+

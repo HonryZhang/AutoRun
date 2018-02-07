@@ -1,0 +1,79 @@
+2017-06-08 12:42:01,060 INFO TC47_48_49_50_51_remove_osds_on_single_node.py [line:24] 
+This test case will do the following steps:
+1. start IO on 10 images with randwrite and verify
+2. login the first node 
+3. remove the osd one by one on the first node
+4. check the status
+5. create osd on the node
+
+2017-06-08 12:42:02,081 INFO monitors.py [line:126]    "quorum_leader_name": "CW113",
+stdin: is not a tty
+
+2017-06-08 12:42:02,081 INFO monitors.py [line:129]    "quorum_leader_name": "CW113",
+2017-06-08 12:42:04,087 INFO node.py [line:97] init osd on node CW113
+2017-06-08 12:42:04,369 INFO node.py [line:112] osd.0  ---> processId 
+2017-06-08 12:42:04,369 INFO node.py [line:112] osd.1  ---> processId 
+2017-06-08 12:42:04,369 INFO node.py [line:112] osd.2  ---> processId 
+2017-06-08 12:42:04,370 INFO node.py [line:112] osd.3  ---> processId 
+2017-06-08 12:42:04,370 INFO node.py [line:112] osd.4  ---> processId 
+2017-06-08 12:42:04,370 INFO osd.py [line:28] node is  CW113
+2017-06-08 12:42:04,370 INFO osd.py [line:29] execute command is sudo -i stop ceph-osd id=0 & sleep 3
+2017-06-08 12:42:07,524 ERROR osd.py [line:34] Error when shutdown osdosd.0
+2017-06-08 12:42:07,524 ERROR osd.py [line:35] sudo -i stop ceph-osd id=0 & sleep 3
+2017-06-08 12:42:07,524 ERROR osd.py [line:36] tdin: is not a tty
+stop: Unknown instance: ceph/0
+
+2017-06-08 12:42:12,529 INFO osd.py [line:102] node is  CW113
+2017-06-08 12:42:12,530 INFO osd.py [line:103] execute command is sudo -i ceph-osd -i 0 & sleep 30
+2017-06-08 12:42:42,724 INFO osd.py [line:107] osd osd.0 is start successfully
+2017-06-08 12:42:42,724 INFO osd.py [line:28] node is  CW113
+2017-06-08 12:42:42,724 INFO osd.py [line:29] execute command is sudo -i stop ceph-osd id=1 & sleep 3
+2017-06-08 12:42:45,910 ERROR osd.py [line:34] Error when shutdown osdosd.1
+2017-06-08 12:42:45,910 ERROR osd.py [line:35] sudo -i stop ceph-osd id=1 & sleep 3
+2017-06-08 12:42:45,910 ERROR osd.py [line:36] tdin: is not a tty
+stop: Unknown instance: ceph/1
+
+2017-06-08 12:42:50,915 INFO osd.py [line:102] node is  CW113
+2017-06-08 12:42:50,916 INFO osd.py [line:103] execute command is sudo -i ceph-osd -i 1 & sleep 30
+2017-06-08 12:43:21,101 INFO osd.py [line:107] osd osd.1 is start successfully
+2017-06-08 12:43:21,101 INFO osd.py [line:28] node is  CW113
+2017-06-08 12:43:21,102 INFO osd.py [line:29] execute command is sudo -i stop ceph-osd id=2 & sleep 3
+2017-06-08 12:43:24,288 ERROR osd.py [line:34] Error when shutdown osdosd.2
+2017-06-08 12:43:24,288 ERROR osd.py [line:35] sudo -i stop ceph-osd id=2 & sleep 3
+2017-06-08 12:43:24,288 ERROR osd.py [line:36] tdin: is not a tty
+stop: Unknown instance: ceph/2
+
+2017-06-08 12:43:29,293 INFO osd.py [line:102] node is  CW113
+2017-06-08 12:43:29,294 INFO osd.py [line:103] execute command is sudo -i ceph-osd -i 2 & sleep 30
+2017-06-08 12:43:59,447 INFO osd.py [line:107] osd osd.2 is start successfully
+2017-06-08 12:43:59,447 INFO osd.py [line:28] node is  CW113
+2017-06-08 12:43:59,447 INFO osd.py [line:29] execute command is sudo -i stop ceph-osd id=3 & sleep 3
+2017-06-08 12:44:02,633 ERROR osd.py [line:34] Error when shutdown osdosd.3
+2017-06-08 12:44:02,633 ERROR osd.py [line:35] sudo -i stop ceph-osd id=3 & sleep 3
+2017-06-08 12:44:02,633 ERROR osd.py [line:36] tdin: is not a tty
+stop: Unknown instance: ceph/3
+
+2017-06-08 12:44:07,638 INFO osd.py [line:102] node is  CW113
+2017-06-08 12:44:07,639 INFO osd.py [line:103] execute command is sudo -i ceph-osd -i 3 & sleep 30
+2017-06-08 12:44:37,825 INFO osd.py [line:107] osd osd.3 is start successfully
+2017-06-08 12:44:37,825 INFO osd.py [line:28] node is  CW113
+2017-06-08 12:44:37,825 INFO osd.py [line:29] execute command is sudo -i stop ceph-osd id=4 & sleep 3
+2017-06-08 12:44:41,011 ERROR osd.py [line:34] Error when shutdown osdosd.4
+2017-06-08 12:44:41,011 ERROR osd.py [line:35] sudo -i stop ceph-osd id=4 & sleep 3
+2017-06-08 12:44:41,011 ERROR osd.py [line:36] tdin: is not a tty
+stop: Unknown instance: ceph/4
+
+2017-06-08 12:44:46,016 INFO osd.py [line:102] node is  CW113
+2017-06-08 12:44:46,017 INFO osd.py [line:103] execute command is sudo -i ceph-osd -i 4 & sleep 30
+2017-06-08 12:45:16,186 INFO osd.py [line:107] osd osd.4 is start successfully
+2017-06-08 12:45:16,428 INFO node.py [line:133] osd.0  ---> processId 7179
+2017-06-08 12:45:16,428 INFO node.py [line:133] osd.1  ---> processId 16470
+2017-06-08 12:45:16,428 INFO node.py [line:133] osd.2  ---> processId 27281
+2017-06-08 12:45:16,429 INFO node.py [line:133] osd.3  ---> processId 38312
+2017-06-08 12:45:16,429 INFO node.py [line:133] osd.4  ---> processId 48478
+2017-06-08 12:45:16,429 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-08 12:45:16,693 INFO cluster.py [line:213] raceback (most recent call last):
+  File "/usr/local/bin/ceph", line 118, in <module>
+    import rados
+ImportError: librados.so.2: cannot open shared object file: No such file or directory
+

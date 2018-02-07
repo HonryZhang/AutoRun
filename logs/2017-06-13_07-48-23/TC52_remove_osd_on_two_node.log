@@ -1,0 +1,210 @@
+2017-06-13 07:48:23,883 INFO TC52_remove_osd_on_two_node.py [line:24] 
+This test case will do the following steps:
+1. start IO on 10 images with randwrite and verify
+2. login the first node 
+3. remove one osd from the first node
+4. login the second node
+5. remove one osd from the second node
+
+2017-06-13 07:48:24,799 INFO monitors.py [line:126]    "quorum_leader_name": "taheo125",
+stdin: is not a tty
+
+2017-06-13 07:48:24,799 INFO monitors.py [line:129]    "quorum_leader_name": "taheo125",
+2017-06-13 07:48:24,799 INFO TC52_remove_osd_on_two_node.py [line:29] start to check cluster status before case running
+2017-06-13 07:48:26,803 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-13 07:48:27,117 INFO cluster.py [line:213]    cluster c1b31c6e-ebc7-4c97-98ec-d59964f99e42
+     health HEALTH_OK
+     monmap e3: 3 mons at {taheo125=192.168.40.125:6789/0,tahoe126=192.168.40.126:6789/0,tahoe127=192.168.40.127:6789/0}
+            election epoch 6, quorum 0,1,2 taheo125,tahoe126,tahoe127
+     osdmap e169: 18 osds: 18 up, 18 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v44485: 3216 pgs, 13 pools, 1427 GB data, 375 kobjects
+            419 GB used, 5770 GB / 6189 GB avail
+                3216 active+clean
+  client io 728 MB/s wr, 0 op/s rd, 93297 op/s wr
+stdin: is not a tty
+
+2017-06-13 07:48:27,117 INFO cluster.py [line:238] PG number is 3216
+2017-06-13 07:48:27,118 INFO cluster.py [line:239] usefull PG number is 3216
+2017-06-13 07:48:27,118 INFO TC52_remove_osd_on_two_node.py [line:32] health status is OK
+2017-06-13 07:48:27,118 INFO TC52_remove_osd_on_two_node.py [line:37] 
+Step1: Check IO from clients
+2017-06-13 07:48:27,571 INFO client.py [line:172] ['oot      33229      1  0 23:44 ?        00:00:00 sudo -i fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=client100 -pool=reliablityTestPool -rbdname=client100rbdImg0 -rw=randwrite -bs=8K -size=100G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=client100rbdImg0', 'root      33231  33229 99 23:44 ?        00:12:25 fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=client100 -pool=reliablityTestPool -rbdname=client100rbdImg0 -rw=randwrite -bs=8K -size=100G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=client100rbdImg0', 'root      33296      1  0 23:44 ?        00:00:00 sudo -i fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=client100 -pool=reliablityTestPool -rbdname=client100rbdImg1 -rw=randwrite -bs=8K -size=200G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=client100rbdImg1', 'root      33298  33296 99 23:44 ?        00:10:58 fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=client100 -pool=reliablityTestPool -rbdname=client100rbdImg1 -rw=randwrite -bs=8K -size=200G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=client100rbdImg1', 'root      33365      1  0 23:45 ?        00:00:00 sudo -i fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=client100 -pool=reliablityTestPool -rbdname=client100rbdImg2 -rw=randwrite -bs=8K -size=300G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=client100rbdImg2', 'root      33366  33365 99 23:45 ?        00:09:18 fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=client100 -pool=reliablityTestPool -rbdname=client100rbdImg2 -rw=randwrite -bs=8K -size=300G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=client100rbdImg2', 'root      33436      1  0 23:45 ?        00:00:00 sudo -i fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=client100 -pool=reliablityTestPool -rbdname=client100rbdImg3 -rw=randwrite -bs=8K -size=400G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=client100rbdImg3', 'root      33439  33436 99 23:45 ?        00:06:48 fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=client100 -pool=reliablityTestPool -rbdname=client100rbdImg3 -rw=randwrite -bs=8K -size=400G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=client100rbdImg3', 'root      33508      1  0 23:45 ?        00:00:00 sudo -i fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=client100 -pool=reliablityTestPool -rbdname=client100rbdImg4 -rw=randwrite -bs=8K -size=500G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=client100rbdImg4', 'root      33510  33508 90 23:45 ?        00:03:10 fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=client100 -pool=reliablityTestPool -rbdname=client100rbdImg4 -rw=randwrite -bs=8K -size=500G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=client100rbdImg4', 'denali    45194  45193  0 23:48 ?        00:00:00 bash -c sudo -i ps -ef | grep fio ', 'denali    45196  45194  0 23:48 ?        00:00:00 grep fio', 'stdin: is not a tty', '']
+2017-06-13 07:48:27,572 INFO client.py [line:174] IO is running
+2017-06-13 07:48:27,740 INFO node.py [line:159] /var/lib/jenkins/workspace/AutoRun/config/changeCommon.sh
+2017-06-13 07:48:27,740 INFO node.py [line:161] /var/lib/jenkins/workspace/AutoRun/config/updateCephConfig.sh
+2017-06-13 07:48:28,900 INFO node.py [line:159] /var/lib/jenkins/workspace/AutoRun/config/changeCommon.sh
+2017-06-13 07:48:28,900 INFO node.py [line:161] /var/lib/jenkins/workspace/AutoRun/config/updateCephConfig.sh
+2017-06-13 07:48:29,896 INFO TC52_remove_osd_on_two_node.py [line:47] 
+Step2: kill one osd from two node
+2017-06-13 07:48:29,896 INFO TC52_remove_osd_on_two_node.py [line:49] start to delete osd on node taheo125 
+2017-06-13 07:48:30,116 INFO node.py [line:183] otal 0
+2017-06-13 07:48:30,117 INFO node.py [line:183] lrwxrwxrwx 1 root root 15 Jun 13 07:33 ceph-0-block -> ../../nvme6n1p4
+2017-06-13 07:48:30,117 INFO node.py [line:186] 0
+2017-06-13 07:48:30,117 INFO node.py [line:187] lrwxrwxrwx 1 root root 15 Jun 13 07:33 ceph-0-block -> ../../nvme6n1p4
+2017-06-13 07:48:30,118 INFO node.py [line:195] nvme6n1
+2017-06-13 07:48:30,118 INFO node.py [line:183] lrwxrwxrwx 1 root root 15 Jun 13 07:33 ceph-0-db -> ../../nvme6n1p3
+2017-06-13 07:48:30,118 INFO node.py [line:186] 0
+2017-06-13 07:48:30,118 INFO node.py [line:187] lrwxrwxrwx 1 root root 15 Jun 13 07:33 ceph-0-db -> ../../nvme6n1p3
+2017-06-13 07:48:30,118 INFO node.py [line:195] nvme6n1
+2017-06-13 07:48:30,118 INFO node.py [line:183] lrwxrwxrwx 1 root root 15 Jun 13 07:33 ceph-0-wal -> ../../nvme6n1p2
+2017-06-13 07:48:30,118 INFO node.py [line:186] 0
+2017-06-13 07:48:30,118 INFO node.py [line:187] lrwxrwxrwx 1 root root 15 Jun 13 07:33 ceph-0-wal -> ../../nvme6n1p2
+2017-06-13 07:48:30,119 INFO node.py [line:195] nvme6n1
+2017-06-13 07:48:30,119 INFO node.py [line:183] lrwxrwxrwx 1 root root 16 Jun 13 07:34 ceph-1-block -> ../../nvme27n1p4
+2017-06-13 07:48:30,119 INFO node.py [line:186] 1
+2017-06-13 07:48:30,119 INFO node.py [line:187] lrwxrwxrwx 1 root root 16 Jun 13 07:34 ceph-1-block -> ../../nvme27n1p4
+2017-06-13 07:48:30,119 INFO node.py [line:195] nvme27n1
+2017-06-13 07:48:30,119 INFO node.py [line:183] lrwxrwxrwx 1 root root 16 Jun 13 07:34 ceph-1-db -> ../../nvme27n1p3
+2017-06-13 07:48:30,119 INFO node.py [line:186] 1
+2017-06-13 07:48:30,119 INFO node.py [line:187] lrwxrwxrwx 1 root root 16 Jun 13 07:34 ceph-1-db -> ../../nvme27n1p3
+2017-06-13 07:48:30,119 INFO node.py [line:195] nvme27n1
+2017-06-13 07:48:30,119 INFO node.py [line:183] lrwxrwxrwx 1 root root 16 Jun 13 07:34 ceph-1-wal -> ../../nvme27n1p2
+2017-06-13 07:48:30,120 INFO node.py [line:186] 1
+2017-06-13 07:48:30,120 INFO node.py [line:187] lrwxrwxrwx 1 root root 16 Jun 13 07:34 ceph-1-wal -> ../../nvme27n1p2
+2017-06-13 07:48:30,120 INFO node.py [line:195] nvme27n1
+2017-06-13 07:48:30,120 INFO node.py [line:183] lrwxrwxrwx 1 root root 16 Jun 12 18:17 ceph-5-block -> ../../nvme10n1p4
+2017-06-13 07:48:30,120 INFO node.py [line:186] 5
+2017-06-13 07:48:30,120 INFO node.py [line:187] lrwxrwxrwx 1 root root 16 Jun 12 18:17 ceph-5-block -> ../../nvme10n1p4
+2017-06-13 07:48:30,120 INFO node.py [line:195] nvme10n1
+2017-06-13 07:48:30,120 INFO node.py [line:183] lrwxrwxrwx 1 root root 16 Jun 12 18:17 ceph-5-db -> ../../nvme10n1p3
+2017-06-13 07:48:30,120 INFO node.py [line:186] 5
+2017-06-13 07:48:30,121 INFO node.py [line:187] lrwxrwxrwx 1 root root 16 Jun 12 18:17 ceph-5-db -> ../../nvme10n1p3
+2017-06-13 07:48:30,121 INFO node.py [line:195] nvme10n1
+2017-06-13 07:48:30,121 INFO node.py [line:183] lrwxrwxrwx 1 root root 16 Jun 12 18:17 ceph-5-wal -> ../../nvme10n1p2
+2017-06-13 07:48:30,121 INFO node.py [line:186] 5
+2017-06-13 07:48:30,121 INFO node.py [line:187] lrwxrwxrwx 1 root root 16 Jun 12 18:17 ceph-5-wal -> ../../nvme10n1p2
+2017-06-13 07:48:30,121 INFO node.py [line:195] nvme10n1
+2017-06-13 07:48:30,121 INFO node.py [line:183] lrwxrwxrwx 1 root root 16 Jun 12 18:17 ceph-6-block -> ../../nvme13n1p4
+2017-06-13 07:48:30,121 INFO node.py [line:186] 6
+2017-06-13 07:48:30,121 INFO node.py [line:187] lrwxrwxrwx 1 root root 16 Jun 12 18:17 ceph-6-block -> ../../nvme13n1p4
+2017-06-13 07:48:30,121 INFO node.py [line:195] nvme13n1
+2017-06-13 07:48:30,122 INFO node.py [line:183] lrwxrwxrwx 1 root root 16 Jun 12 18:17 ceph-6-db -> ../../nvme13n1p3
+2017-06-13 07:48:30,122 INFO node.py [line:186] 6
+2017-06-13 07:48:30,122 INFO node.py [line:187] lrwxrwxrwx 1 root root 16 Jun 12 18:17 ceph-6-db -> ../../nvme13n1p3
+2017-06-13 07:48:30,122 INFO node.py [line:195] nvme13n1
+2017-06-13 07:48:30,122 INFO node.py [line:183] lrwxrwxrwx 1 root root 16 Jun 12 18:17 ceph-6-wal -> ../../nvme13n1p2
+2017-06-13 07:48:30,122 INFO node.py [line:186] 6
+2017-06-13 07:48:30,122 INFO node.py [line:187] lrwxrwxrwx 1 root root 16 Jun 12 18:17 ceph-6-wal -> ../../nvme13n1p2
+2017-06-13 07:48:30,122 INFO node.py [line:195] nvme13n1
+2017-06-13 07:48:30,122 INFO node.py [line:183] lrwxrwxrwx 1 root root 16 Jun 13 07:46 head-reverse-part -> ../../nvme27n1p1
+2017-06-13 07:48:30,123 INFO node.py [line:183] 
+2017-06-13 07:48:30,123 INFO node.py [line:203] osd.5  ---> disk nvme10n1
+2017-06-13 07:48:30,123 INFO node.py [line:203] osd.6  ---> disk nvme13n1
+2017-06-13 07:48:30,123 INFO node.py [line:203] osd.0  ---> disk nvme6n1
+2017-06-13 07:48:30,123 INFO node.py [line:203] osd.1  ---> disk nvme27n1
+2017-06-13 07:48:30,123 INFO osd.py [line:40] execute command is sudo -i kill -9  & sleep 3
+2017-06-13 07:48:33,343 INFO osd.py [line:89] node is  taheo125
+2017-06-13 07:48:33,343 INFO osd.py [line:90] execute command is sudo -i start ceph-osd id=5 & sleep 30
+2017-06-13 07:49:03,555 ERROR osd.py [line:96] Error when start osdosd.5
+2017-06-13 07:49:03,555 ERROR osd.py [line:97] sudo -i start ceph-osd id=5 & sleep 30
+2017-06-13 07:49:03,555 ERROR osd.py [line:98] tdin: is not a tty
+start: Job is already running: ceph-osd (ceph/5)
+
+2017-06-13 07:49:03,555 INFO osd.py [line:156] execute command is sudo -i /usr/local/bin/scripts/create_cluster_scripts/bluestore/delete_osds_local.sh -n -d /dev/nvme10n1
+2017-06-13 09:15:58,809 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-13 09:15:59,182 INFO cluster.py [line:213]    cluster c1b31c6e-ebc7-4c97-98ec-d59964f99e42
+     health HEALTH_OK
+     monmap e3: 3 mons at {taheo125=192.168.40.125:6789/0,tahoe126=192.168.40.126:6789/0,tahoe127=192.168.40.127:6789/0}
+            election epoch 6, quorum 0,1,2 taheo125,tahoe126,tahoe127
+     osdmap e429: 18 osds: 18 up, 18 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v49875: 3216 pgs, 13 pools, 1498 GB data, 375 kobjects
+            2018 GB used, 4171 GB / 6189 GB avail
+                3216 active+clean
+  client io 70584 kB/s rd, 338 MB/s wr, 8823 op/s rd, 43340 op/s wr
+stdin: is not a tty
+
+2017-06-13 09:15:59,182 INFO cluster.py [line:238] PG number is 3216
+2017-06-13 09:15:59,182 INFO cluster.py [line:239] usefull PG number is 3216
+2017-06-13 09:15:59,182 INFO TC52_remove_osd_on_two_node.py [line:63] osd.5 create succesfully
+2017-06-13 09:15:59,182 INFO TC52_remove_osd_on_two_node.py [line:64] osd was delete successfully on node taheo125 
+2017-06-13 09:16:00,799 INFO TC52_remove_osd_on_two_node.py [line:67] start to delete osd on node taheo126 
+2017-06-13 09:16:00,986 INFO node.py [line:183] otal 0
+2017-06-13 09:16:00,987 INFO node.py [line:183] lrwxrwxrwx 1 root root 16 Jun 12 18:18 ceph-10-block -> ../../nvme28n1p4
+2017-06-13 09:16:00,987 INFO node.py [line:186] 10
+2017-06-13 09:16:00,987 INFO node.py [line:187] lrwxrwxrwx 1 root root 16 Jun 12 18:18 ceph-10-block -> ../../nvme28n1p4
+2017-06-13 09:16:00,987 INFO node.py [line:195] nvme28n1
+2017-06-13 09:16:00,987 INFO node.py [line:183] lrwxrwxrwx 1 root root 16 Jun 12 18:18 ceph-10-db -> ../../nvme28n1p3
+2017-06-13 09:16:00,987 INFO node.py [line:186] 10
+2017-06-13 09:16:00,988 INFO node.py [line:187] lrwxrwxrwx 1 root root 16 Jun 12 18:18 ceph-10-db -> ../../nvme28n1p3
+2017-06-13 09:16:00,988 INFO node.py [line:195] nvme28n1
+2017-06-13 09:16:00,988 INFO node.py [line:183] lrwxrwxrwx 1 root root 16 Jun 12 18:18 ceph-10-wal -> ../../nvme28n1p2
+2017-06-13 09:16:00,988 INFO node.py [line:186] 10
+2017-06-13 09:16:00,988 INFO node.py [line:187] lrwxrwxrwx 1 root root 16 Jun 12 18:18 ceph-10-wal -> ../../nvme28n1p2
+2017-06-13 09:16:00,988 INFO node.py [line:195] nvme28n1
+2017-06-13 09:16:00,988 INFO node.py [line:183] lrwxrwxrwx 1 root root 16 Jun 12 18:19 ceph-11-block -> ../../nvme19n1p4
+2017-06-13 09:16:00,988 INFO node.py [line:186] 11
+2017-06-13 09:16:00,988 INFO node.py [line:187] lrwxrwxrwx 1 root root 16 Jun 12 18:19 ceph-11-block -> ../../nvme19n1p4
+2017-06-13 09:16:00,988 INFO node.py [line:195] nvme19n1
+2017-06-13 09:16:00,989 INFO node.py [line:183] lrwxrwxrwx 1 root root 16 Jun 12 18:19 ceph-11-db -> ../../nvme19n1p3
+2017-06-13 09:16:00,989 INFO node.py [line:186] 11
+2017-06-13 09:16:00,989 INFO node.py [line:187] lrwxrwxrwx 1 root root 16 Jun 12 18:19 ceph-11-db -> ../../nvme19n1p3
+2017-06-13 09:16:00,989 INFO node.py [line:195] nvme19n1
+2017-06-13 09:16:00,989 INFO node.py [line:183] lrwxrwxrwx 1 root root 16 Jun 12 18:19 ceph-11-wal -> ../../nvme19n1p2
+2017-06-13 09:16:00,989 INFO node.py [line:186] 11
+2017-06-13 09:16:00,989 INFO node.py [line:187] lrwxrwxrwx 1 root root 16 Jun 12 18:19 ceph-11-wal -> ../../nvme19n1p2
+2017-06-13 09:16:00,989 INFO node.py [line:195] nvme19n1
+2017-06-13 09:16:00,989 INFO node.py [line:183] lrwxrwxrwx 1 root root 16 Jun 12 18:19 ceph-12-block -> ../../nvme21n1p4
+2017-06-13 09:16:00,990 INFO node.py [line:186] 12
+2017-06-13 09:16:00,990 INFO node.py [line:187] lrwxrwxrwx 1 root root 16 Jun 12 18:19 ceph-12-block -> ../../nvme21n1p4
+2017-06-13 09:16:00,990 INFO node.py [line:195] nvme21n1
+2017-06-13 09:16:00,990 INFO node.py [line:183] lrwxrwxrwx 1 root root 16 Jun 12 18:19 ceph-12-db -> ../../nvme21n1p3
+2017-06-13 09:16:00,990 INFO node.py [line:186] 12
+2017-06-13 09:16:00,990 INFO node.py [line:187] lrwxrwxrwx 1 root root 16 Jun 12 18:19 ceph-12-db -> ../../nvme21n1p3
+2017-06-13 09:16:00,990 INFO node.py [line:195] nvme21n1
+2017-06-13 09:16:00,990 INFO node.py [line:183] lrwxrwxrwx 1 root root 16 Jun 12 18:19 ceph-12-wal -> ../../nvme21n1p2
+2017-06-13 09:16:00,990 INFO node.py [line:186] 12
+2017-06-13 09:16:00,990 INFO node.py [line:187] lrwxrwxrwx 1 root root 16 Jun 12 18:19 ceph-12-wal -> ../../nvme21n1p2
+2017-06-13 09:16:00,991 INFO node.py [line:195] nvme21n1
+2017-06-13 09:16:00,991 INFO node.py [line:183] lrwxrwxrwx 1 root root 16 Jun 12 18:19 ceph-13-block -> ../../nvme12n1p4
+2017-06-13 09:16:00,991 INFO node.py [line:186] 13
+2017-06-13 09:16:00,991 INFO node.py [line:187] lrwxrwxrwx 1 root root 16 Jun 12 18:19 ceph-13-block -> ../../nvme12n1p4
+2017-06-13 09:16:00,991 INFO node.py [line:195] nvme12n1
+2017-06-13 09:16:00,991 INFO node.py [line:183] lrwxrwxrwx 1 root root 16 Jun 12 18:19 ceph-13-db -> ../../nvme12n1p3
+2017-06-13 09:16:00,991 INFO node.py [line:186] 13
+2017-06-13 09:16:00,991 INFO node.py [line:187] lrwxrwxrwx 1 root root 16 Jun 12 18:19 ceph-13-db -> ../../nvme12n1p3
+2017-06-13 09:16:00,991 INFO node.py [line:195] nvme12n1
+2017-06-13 09:16:00,992 INFO node.py [line:183] lrwxrwxrwx 1 root root 16 Jun 12 18:19 ceph-13-wal -> ../../nvme12n1p2
+2017-06-13 09:16:00,992 INFO node.py [line:186] 13
+2017-06-13 09:16:00,992 INFO node.py [line:187] lrwxrwxrwx 1 root root 16 Jun 12 18:19 ceph-13-wal -> ../../nvme12n1p2
+2017-06-13 09:16:00,992 INFO node.py [line:195] nvme12n1
+2017-06-13 09:16:00,992 INFO node.py [line:183] lrwxrwxrwx 1 root root 16 Jun 12 18:18 ceph-7-block -> ../../nvme15n1p4
+2017-06-13 09:16:00,992 INFO node.py [line:186] 7
+2017-06-13 09:16:00,992 INFO node.py [line:187] lrwxrwxrwx 1 root root 16 Jun 12 18:18 ceph-7-block -> ../../nvme15n1p4
+2017-06-13 09:16:00,992 INFO node.py [line:195] nvme15n1
+2017-06-13 09:16:00,992 INFO node.py [line:183] lrwxrwxrwx 1 root root 16 Jun 12 18:18 ceph-7-db -> ../../nvme15n1p3
+2017-06-13 09:16:00,993 INFO node.py [line:186] 7
+2017-06-13 09:16:00,993 INFO node.py [line:187] lrwxrwxrwx 1 root root 16 Jun 12 18:18 ceph-7-db -> ../../nvme15n1p3
+2017-06-13 09:16:00,993 INFO node.py [line:195] nvme15n1
+2017-06-13 09:16:00,993 INFO node.py [line:183] lrwxrwxrwx 1 root root 16 Jun 12 18:18 ceph-7-wal -> ../../nvme15n1p2
+2017-06-13 09:16:00,993 INFO node.py [line:186] 7
+2017-06-13 09:16:00,993 INFO node.py [line:187] lrwxrwxrwx 1 root root 16 Jun 12 18:18 ceph-7-wal -> ../../nvme15n1p2
+2017-06-13 09:16:00,993 INFO node.py [line:195] nvme15n1
+2017-06-13 09:16:00,993 INFO node.py [line:183] lrwxrwxrwx 1 root root 15 Jun 12 18:18 ceph-8-block -> ../../nvme5n1p4
+2017-06-13 09:16:00,993 INFO node.py [line:186] 8
+2017-06-13 09:16:00,994 INFO node.py [line:187] lrwxrwxrwx 1 root root 15 Jun 12 18:18 ceph-8-block -> ../../nvme5n1p4
+2017-06-13 09:16:00,994 INFO node.py [line:195] nvme5n1
+2017-06-13 09:16:00,994 INFO node.py [line:183] lrwxrwxrwx 1 root root 15 Jun 12 18:18 ceph-8-db -> ../../nvme5n1p3
+2017-06-13 09:16:00,994 INFO node.py [line:186] 8
+2017-06-13 09:16:00,994 INFO node.py [line:187] lrwxrwxrwx 1 root root 15 Jun 12 18:18 ceph-8-db -> ../../nvme5n1p3
+2017-06-13 09:16:00,994 INFO node.py [line:195] nvme5n1
+2017-06-13 09:16:00,994 INFO node.py [line:183] lrwxrwxrwx 1 root root 15 Jun 12 18:18 ceph-8-wal -> ../../nvme5n1p2
+2017-06-13 09:16:00,994 INFO node.py [line:186] 8
+2017-06-13 09:16:00,994 INFO node.py [line:187] lrwxrwxrwx 1 root root 15 Jun 12 18:18 ceph-8-wal -> ../../nvme5n1p2
+2017-06-13 09:16:00,994 INFO node.py [line:195] nvme5n1
+2017-06-13 09:16:00,995 INFO node.py [line:183] lrwxrwxrwx 1 root root 15 Jun 12 18:18 ceph-9-block -> ../../nvme8n1p4
+2017-06-13 09:16:00,995 INFO node.py [line:186] 9
+2017-06-13 09:16:00,995 INFO node.py [line:187] lrwxrwxrwx 1 root root 15 Jun 12 18:18 ceph-9-block -> ../../nvme8n1p4
+2017-06-13 09:16:00,995 INFO node.py [line:195] nvme8n1
+2017-06-13 09:16:00,995 INFO node.py [line:183] lrwxrwxrwx 1 root root 15 Jun 12 18:18 ceph-9-db -> ../../nvme8n1p3
+2017-06-13 09:16:00,995 INFO node.py [line:186] 9
+2017-06-13 09:16:00,995 INFO node.py [line:187] lrwxrwxrwx 1 root root 15 Jun 12 18:18 ceph-9-db -> ../../nvme8n1p3
+2017-06-13 09:16:00,995 INFO node.py [line:195] nvme8n1
+2017-06-13 09:16:00,995 INFO node.py [line:183] lrwxrwxrwx 1 root root 15 Jun 12 18:18 ceph-9-wal -> ../../nvme8n1p2
+2017-06-13 09:16:00,996 INFO node.py [line:186] 9
+2017-06-13 09:16:00,996 INFO node.py [line:187] lrwxrwxrwx 1 root root 15 Jun 12 18:18 ceph-9-wal -> ../../nvme8n1p2
+2017-06-13 09:16:00,996 INFO node.py [line:195] nvme8n1
+2017-06-13 09:16:00,996 INFO node.py [line:183] lrwxrwxrwx 1 root root 16 Jun 12 18:19 head-reverse-part -> ../../nvme12n1p1
+2017-06-13 09:16:00,996 INFO node.py [line:183] 
+2017-06-13 09:16:00,996 INFO TC52_remove_osd_on_two_node.py [line:70] []

@@ -1,0 +1,494 @@
+2017-05-18 20:50:49,474 INFO TC56_kill_non_leader_mon.py [line:25] 
+This test case will do the following steps:
+1. start IO on 10 images with randwrite and verify
+2. login the non-leader monitor, and kill the mon process
+3. check cluster status, Io status and cluster quorum status
+4. start the killed monitor
+5. check cluster status, does the leader monitor will be back????
+
+2017-05-18 20:51:05,448 INFO monitors.py [line:123]    "quorum_leader_name": "denali02",
+
+2017-05-18 20:51:05,448 INFO monitors.py [line:126]    "quorum_leader_name": "denali02",
+2017-05-18 20:51:05,526 INFO TC56_kill_non_leader_mon.py [line:30] 
+Step1: start IO from clients
+2017-05-18 20:51:05,526 INFO base.py [line:19] 
+Now start IO on  reliablityTestImage0
+2017-05-18 20:51:17,694 INFO client.py [line:56] pid info is 11464
+2017-05-18 20:51:17,694 INFO base.py [line:19] 
+Now start IO on  reliablityTestImage1
+2017-05-18 20:51:29,207 INFO client.py [line:56] pid info is 11494
+2017-05-18 20:51:29,207 INFO base.py [line:19] 
+Now start IO on  reliablityTestImage2
+2017-05-18 20:51:42,592 INFO client.py [line:56] pid info is 11524
+2017-05-18 20:51:42,592 INFO base.py [line:19] 
+Now start IO on  reliablityTestImage3
+2017-05-18 20:51:56,226 INFO client.py [line:56] pid info is 11554
+2017-05-18 20:51:56,226 INFO base.py [line:19] 
+Now start IO on  reliablityTestImage4
+2017-05-18 20:52:10,532 INFO client.py [line:56] pid info is 11584
+2017-05-18 20:52:10,532 INFO base.py [line:19] 
+Now start IO on  reliablityTestImage5
+2017-05-18 20:52:23,558 INFO client.py [line:56] pid info is 11614
+2017-05-18 20:52:23,558 INFO base.py [line:19] 
+Now start IO on  reliablityTestImage6
+2017-05-18 20:52:34,914 INFO client.py [line:56] pid info is 11643
+2017-05-18 20:52:34,914 INFO base.py [line:19] 
+Now start IO on  reliablityTestImage7
+2017-05-18 20:52:48,174 INFO client.py [line:56] pid info is 11673
+2017-05-18 20:52:48,174 INFO base.py [line:19] 
+Now start IO on  reliablityTestImage8
+2017-05-18 20:53:00,094 INFO client.py [line:56] pid info is 11703
+2017-05-18 20:53:00,094 INFO base.py [line:19] 
+Now start IO on  reliablityTestImage9
+2017-05-18 20:53:13,588 INFO client.py [line:56] pid info is 11733
+2017-05-18 20:54:13,601 INFO monitors.py [line:52] mon is  denali01
+2017-05-18 20:54:13,601 INFO monitors.py [line:53] execute command is sudo -i stop ceph-mon id=denali01 & sleep 5
+2017-05-18 20:54:24,161 ERROR monitors.py [line:58] Error when shutdown mon denali01
+2017-05-18 20:54:24,161 ERROR monitors.py [line:59] sudo -i stop ceph-mon id=denali01 & sleep 5
+2017-05-18 20:54:24,161 ERROR monitors.py [line:60] tdin: is not a tty
+stop: Unknown instance: ceph/denali01
+
+2017-05-18 20:54:24,161 INFO monitors.py [line:65] mon is  denali01
+2017-05-18 20:54:24,161 INFO monitors.py [line:66] execute command is sudo -i ceph-mon -i denali01 & sleep 30
+2017-05-18 20:54:59,713 ERROR monitors.py [line:72] Error when start mon denali01
+2017-05-18 20:54:59,713 ERROR monitors.py [line:73] sudo -i ceph-mon -i denali01 & sleep 30
+2017-05-18 20:54:59,713 ERROR monitors.py [line:74] tdin: is not a tty
+2017-05-18 20:54:43.371789 7fa26387a4c0 -1 asok(0x7fa25fd351c0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-mon.denali01.asok': (17) File exists
+IO error: lock /var/lib/ceph/mon/ceph-denali01/store.db/LOCK: Resource temporarily unavailable
+2017-05-18 20:54:43.416444 7fa26387a4c0 -1 error opening mon data directory at '/var/lib/ceph/mon/ceph-denali01': (22) Invalid argument
+
+2017-05-18 20:54:59,713 INFO TC56_kill_non_leader_mon.py [line:37] 
+Step2: kill non-leader mon 10 times
+2017-05-18 20:55:05,392 INFO monitors.py [line:42] ['oot       528     1  0 18:46 ?        00:01:08 ceph-mon -i denali01', 'denali   21072 21071  0 20:55 ?        00:00:00 bash -c ps -ef | grep ceph-mon', 'denali   21074 21072  0 20:55 ?        00:00:00 grep ceph-mon', '']
+2017-05-18 20:55:05,392 INFO monitors.py [line:48] mon pid is 528
+2017-05-18 20:55:05,392 INFO monitors.py [line:89] execute command is sudo -i kill -9 528 & sleep 3
+2017-05-18 20:55:49,463 INFO client.py [line:90] home/denali
+
+2017-05-18 20:56:03,190 INFO monitors.py [line:123]    "quorum_leader_name": "denali02",
+
+2017-05-18 20:56:03,190 INFO monitors.py [line:126]    "quorum_leader_name": "denali02",
+2017-05-18 20:56:03,190 INFO TC56_kill_non_leader_mon.py [line:45] now deal the non-leader mon  denali02
+2017-05-18 20:56:03,190 INFO monitors.py [line:65] mon is  denali01
+2017-05-18 20:56:03,190 INFO monitors.py [line:66] execute command is sudo -i ceph-mon -i denali01 & sleep 30
+2017-05-18 20:56:38,930 INFO monitors.py [line:70] mon denali01 is start successfully
+2017-05-18 20:56:38,930 INFO monitors.py [line:100] node is  denali01
+2017-05-18 20:56:38,930 INFO monitors.py [line:101] execute command is ps -ef | grep 'ceph-mon' 
+2017-05-18 20:56:45,700 INFO monitors.py [line:103] oot     21541     1  1 20:56 ?        00:00:00 ceph-mon -i denali01
+denali   21783 21782  0 20:56 ?        00:00:00 bash -c ps -ef | grep 'ceph-mon' 
+denali   21785 21783  0 20:56 ?        00:00:00 grep ceph-mon
+
+2017-05-18 20:56:45,700 INFO monitors.py [line:111] denali01 is alrady started
+2017-05-18 20:57:15,714 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-18 20:57:21,845 INFO cluster.py [line:205]    cluster c741cb7b-5f44-4083-8d34-c914389e894f
+     health HEALTH_OK
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 62, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e227: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v7929: 2048 pgs, 7 pools, 317 GB data, 83243 objects
+            46047 MB used, 293 GB / 338 GB avail
+                2048 active+clean
+  client io 1957 B/s rd, 1564 kB/s wr, 2 op/s rd, 391 op/s wr
+
+2017-05-18 20:57:21,845 INFO cluster.py [line:212]       pgmap v7929: 2048 pgs, 7 pools, 317 GB data, 83243 objects
+2017-05-18 20:57:21,845 INFO cluster.py [line:215]                 2048 active+clean
+2017-05-18 20:57:21,845 INFO cluster.py [line:217] PG number is 2048
+2017-05-18 20:57:21,861 INFO cluster.py [line:219] usefull PG number is 2048
+2017-05-18 20:57:21,861 INFO TC56_kill_non_leader_mon.py [line:62] stop mon service on denali01 in cluster successfully
+2017-05-18 20:57:27,477 INFO client.py [line:90] home/denali
+
+2017-05-18 20:57:39,052 INFO monitors.py [line:123]    "quorum_leader_name": "denali02",
+
+2017-05-18 20:57:39,052 INFO monitors.py [line:126]    "quorum_leader_name": "denali02",
+2017-05-18 20:57:39,052 INFO TC56_kill_non_leader_mon.py [line:77] now the leader mon is denali02
+2017-05-18 20:57:39,052 INFO TC56_kill_non_leader_mon.py [line:79] the leader mon is not impacted
+2017-05-18 20:57:44,839 INFO monitors.py [line:42] ['oot     21541     1  1 20:56 ?        00:00:01 ceph-mon -i denali01', 'denali   22226 22217  0 20:57 ?        00:00:00 bash -c ps -ef | grep ceph-mon', 'denali   22228 22226  0 20:57 ?        00:00:00 grep ceph-mon', '']
+2017-05-18 20:57:44,839 INFO monitors.py [line:48] mon pid is 21541
+2017-05-18 20:57:44,839 INFO monitors.py [line:89] execute command is sudo -i kill -9 21541 & sleep 3
+2017-05-18 20:58:28,816 INFO client.py [line:90] home/denali
+
+2017-05-18 20:58:43,043 INFO monitors.py [line:123]    "quorum_leader_name": "denali02",
+
+2017-05-18 20:58:43,043 INFO monitors.py [line:126]    "quorum_leader_name": "denali02",
+2017-05-18 20:58:43,043 INFO TC56_kill_non_leader_mon.py [line:45] now deal the non-leader mon  denali02
+2017-05-18 20:58:43,043 INFO monitors.py [line:65] mon is  denali01
+2017-05-18 20:58:43,043 INFO monitors.py [line:66] execute command is sudo -i ceph-mon -i denali01 & sleep 30
+2017-05-18 20:59:18,581 INFO monitors.py [line:70] mon denali01 is start successfully
+2017-05-18 20:59:18,581 INFO monitors.py [line:100] node is  denali01
+2017-05-18 20:59:18,581 INFO monitors.py [line:101] execute command is ps -ef | grep 'ceph-mon' 
+2017-05-18 20:59:24,680 INFO monitors.py [line:103] oot     22689     1  1 20:59 ?        00:00:00 ceph-mon -i denali01
+denali   22928 22901  0 20:59 ?        00:00:00 bash -c ps -ef | grep 'ceph-mon' 
+denali   22930 22928  0 20:59 ?        00:00:00 grep ceph-mon
+
+2017-05-18 20:59:24,680 INFO monitors.py [line:111] denali01 is alrady started
+2017-05-18 20:59:54,694 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-18 21:00:00,779 INFO cluster.py [line:205]    cluster c741cb7b-5f44-4083-8d34-c914389e894f
+     health HEALTH_OK
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 66, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e227: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v7993: 2048 pgs, 7 pools, 317 GB data, 83243 objects
+            46080 MB used, 293 GB / 338 GB avail
+                2048 active+clean
+  client io 18346 B/s rd, 3039 kB/s wr, 23 op/s rd, 759 op/s wr
+
+2017-05-18 21:00:00,779 INFO cluster.py [line:212]       pgmap v7993: 2048 pgs, 7 pools, 317 GB data, 83243 objects
+2017-05-18 21:00:00,779 INFO cluster.py [line:215]                 2048 active+clean
+2017-05-18 21:00:00,779 INFO cluster.py [line:217] PG number is 2048
+2017-05-18 21:00:00,793 INFO cluster.py [line:219] usefull PG number is 2048
+2017-05-18 21:00:00,793 INFO TC56_kill_non_leader_mon.py [line:62] stop mon service on denali01 in cluster successfully
+2017-05-18 21:00:06,301 INFO client.py [line:90] home/denali
+
+2017-05-18 21:00:19,608 INFO monitors.py [line:123]    "quorum_leader_name": "denali02",
+
+2017-05-18 21:00:19,608 INFO monitors.py [line:126]    "quorum_leader_name": "denali02",
+2017-05-18 21:00:19,608 INFO TC56_kill_non_leader_mon.py [line:77] now the leader mon is denali02
+2017-05-18 21:00:19,608 INFO TC56_kill_non_leader_mon.py [line:79] the leader mon is not impacted
+2017-05-18 21:00:25,255 INFO monitors.py [line:42] ['oot     22689     1  1 20:59 ?        00:00:00 ceph-mon -i denali01', 'denali   23378 23366  0 21:00 ?        00:00:00 bash -c ps -ef | grep ceph-mon', 'denali   23380 23378  0 21:00 ?        00:00:00 grep ceph-mon', '']
+2017-05-18 21:00:25,255 INFO monitors.py [line:48] mon pid is 22689
+2017-05-18 21:00:25,255 INFO monitors.py [line:89] execute command is sudo -i kill -9 22689 & sleep 3
+2017-05-18 21:01:09,480 INFO client.py [line:90] home/denali
+
+2017-05-18 21:01:24,019 INFO monitors.py [line:123]    "quorum_leader_name": "denali02",
+
+2017-05-18 21:01:24,019 INFO monitors.py [line:126]    "quorum_leader_name": "denali02",
+2017-05-18 21:01:24,019 INFO TC56_kill_non_leader_mon.py [line:45] now deal the non-leader mon  denali02
+2017-05-18 21:01:24,019 INFO monitors.py [line:65] mon is  denali01
+2017-05-18 21:01:24,019 INFO monitors.py [line:66] execute command is sudo -i ceph-mon -i denali01 & sleep 30
+2017-05-18 21:01:59,759 INFO monitors.py [line:70] mon denali01 is start successfully
+2017-05-18 21:01:59,759 INFO monitors.py [line:100] node is  denali01
+2017-05-18 21:01:59,759 INFO monitors.py [line:101] execute command is ps -ef | grep 'ceph-mon' 
+2017-05-18 21:02:05,641 INFO monitors.py [line:103] oot     23855     1  1 21:01 ?        00:00:00 ceph-mon -i denali01
+denali   24094 24085  0 21:02 ?        00:00:00 bash -c ps -ef | grep 'ceph-mon' 
+denali   24096 24094  0 21:02 ?        00:00:00 grep ceph-mon
+
+2017-05-18 21:02:05,641 INFO monitors.py [line:111] denali01 is alrady started
+2017-05-18 21:02:35,655 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-18 21:02:44,032 INFO cluster.py [line:205]    cluster c741cb7b-5f44-4083-8d34-c914389e894f
+     health HEALTH_OK
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 70, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e227: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v8062: 2048 pgs, 7 pools, 317 GB data, 83243 objects
+            46078 MB used, 293 GB / 338 GB avail
+                2048 active+clean
+  client io 8485 B/s rd, 2824 kB/s wr, 10 op/s rd, 706 op/s wr
+
+2017-05-18 21:02:44,032 INFO cluster.py [line:212]       pgmap v8062: 2048 pgs, 7 pools, 317 GB data, 83243 objects
+2017-05-18 21:02:44,032 INFO cluster.py [line:215]                 2048 active+clean
+2017-05-18 21:02:44,032 INFO cluster.py [line:217] PG number is 2048
+2017-05-18 21:02:44,032 INFO cluster.py [line:219] usefull PG number is 2048
+2017-05-18 21:02:44,032 INFO TC56_kill_non_leader_mon.py [line:62] stop mon service on denali01 in cluster successfully
+2017-05-18 21:02:49,601 INFO client.py [line:90] home/denali
+
+2017-05-18 21:03:02,221 INFO monitors.py [line:123]    "quorum_leader_name": "denali02",
+
+2017-05-18 21:03:02,221 INFO monitors.py [line:126]    "quorum_leader_name": "denali02",
+2017-05-18 21:03:02,221 INFO TC56_kill_non_leader_mon.py [line:77] now the leader mon is denali02
+2017-05-18 21:03:02,221 INFO TC56_kill_non_leader_mon.py [line:79] the leader mon is not impacted
+2017-05-18 21:03:09,664 INFO monitors.py [line:42] ['oot     23855     1  1 21:01 ?        00:00:01 ceph-mon -i denali01', 'denali   24561 24537  0 21:03 ?        00:00:00 bash -c ps -ef | grep ceph-mon', 'denali   24563 24561  0 21:03 ?        00:00:00 grep ceph-mon', '']
+2017-05-18 21:03:09,664 INFO monitors.py [line:48] mon pid is 23855
+2017-05-18 21:03:09,664 INFO monitors.py [line:89] execute command is sudo -i kill -9 23855 & sleep 3
+2017-05-18 21:03:53,904 INFO client.py [line:90] home/denali
+
+2017-05-18 21:04:09,691 INFO monitors.py [line:123]    "quorum_leader_name": "denali02",
+
+2017-05-18 21:04:09,691 INFO monitors.py [line:126]    "quorum_leader_name": "denali02",
+2017-05-18 21:04:09,691 INFO TC56_kill_non_leader_mon.py [line:45] now deal the non-leader mon  denali02
+2017-05-18 21:04:09,691 INFO monitors.py [line:65] mon is  denali01
+2017-05-18 21:04:09,691 INFO monitors.py [line:66] execute command is sudo -i ceph-mon -i denali01 & sleep 30
+2017-05-18 21:04:45,135 INFO monitors.py [line:70] mon denali01 is start successfully
+2017-05-18 21:04:45,135 INFO monitors.py [line:100] node is  denali01
+2017-05-18 21:04:45,135 INFO monitors.py [line:101] execute command is ps -ef | grep 'ceph-mon' 
+2017-05-18 21:04:50,970 INFO monitors.py [line:103] oot     25029     1  1 21:04 ?        00:00:00 ceph-mon -i denali01
+denali   25277 25271  0 21:05 ?        00:00:00 bash -c ps -ef | grep 'ceph-mon' 
+denali   25279 25277  0 21:05 ?        00:00:00 grep ceph-mon
+
+2017-05-18 21:04:50,970 INFO monitors.py [line:111] denali01 is alrady started
+2017-05-18 21:05:20,983 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-18 21:05:28,176 INFO cluster.py [line:205]    cluster c741cb7b-5f44-4083-8d34-c914389e894f
+     health HEALTH_OK
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 74, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e227: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v8138: 2048 pgs, 7 pools, 317 GB data, 83243 objects
+            46078 MB used, 293 GB / 338 GB avail
+                2048 active+clean
+  client io 7289 B/s rd, 3380 kB/s wr, 7 op/s rd, 845 op/s wr
+
+2017-05-18 21:05:28,176 INFO cluster.py [line:212]       pgmap v8138: 2048 pgs, 7 pools, 317 GB data, 83243 objects
+2017-05-18 21:05:28,176 INFO cluster.py [line:215]                 2048 active+clean
+2017-05-18 21:05:28,176 INFO cluster.py [line:217] PG number is 2048
+2017-05-18 21:05:28,176 INFO cluster.py [line:219] usefull PG number is 2048
+2017-05-18 21:05:28,176 INFO TC56_kill_non_leader_mon.py [line:62] stop mon service on denali01 in cluster successfully
+2017-05-18 21:05:33,885 INFO client.py [line:90] home/denali
+
+2017-05-18 21:05:46,990 INFO monitors.py [line:123]    "quorum_leader_name": "denali02",
+
+2017-05-18 21:05:46,990 INFO monitors.py [line:126]    "quorum_leader_name": "denali02",
+2017-05-18 21:05:46,990 INFO TC56_kill_non_leader_mon.py [line:77] now the leader mon is denali02
+2017-05-18 21:05:46,990 INFO TC56_kill_non_leader_mon.py [line:79] the leader mon is not impacted
+2017-05-18 21:05:52,871 INFO monitors.py [line:42] ['oot     25029     1  1 21:04 ?        00:00:01 ceph-mon -i denali01', 'denali   25721 25715  0 21:06 ?        00:00:00 bash -c ps -ef | grep ceph-mon', 'denali   25723 25721  0 21:06 ?        00:00:00 grep ceph-mon', '']
+2017-05-18 21:05:52,871 INFO monitors.py [line:48] mon pid is 25029
+2017-05-18 21:05:52,871 INFO monitors.py [line:89] execute command is sudo -i kill -9 25029 & sleep 3
+2017-05-18 21:06:37,267 INFO client.py [line:90] home/denali
+
+2017-05-18 21:06:52,213 INFO monitors.py [line:123]    "quorum_leader_name": "denali02",
+
+2017-05-18 21:06:52,213 INFO monitors.py [line:126]    "quorum_leader_name": "denali02",
+2017-05-18 21:06:52,213 INFO TC56_kill_non_leader_mon.py [line:45] now deal the non-leader mon  denali02
+2017-05-18 21:06:52,213 INFO monitors.py [line:65] mon is  denali01
+2017-05-18 21:06:52,213 INFO monitors.py [line:66] execute command is sudo -i ceph-mon -i denali01 & sleep 30
+2017-05-18 21:07:27,641 INFO monitors.py [line:70] mon denali01 is start successfully
+2017-05-18 21:07:27,641 INFO monitors.py [line:100] node is  denali01
+2017-05-18 21:07:27,641 INFO monitors.py [line:101] execute command is ps -ef | grep 'ceph-mon' 
+2017-05-18 21:07:33,256 INFO monitors.py [line:103] oot     26179     1  2 21:07 ?        00:00:00 ceph-mon -i denali01
+denali   26443 26429  0 21:07 ?        00:00:00 bash -c ps -ef | grep 'ceph-mon' 
+denali   26445 26443  0 21:07 ?        00:00:00 grep ceph-mon
+
+2017-05-18 21:07:33,256 INFO monitors.py [line:111] denali01 is alrady started
+2017-05-18 21:08:03,270 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-18 21:08:10,042 INFO cluster.py [line:205]    cluster c741cb7b-5f44-4083-8d34-c914389e894f
+     health HEALTH_OK
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 78, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e227: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v8214: 2048 pgs, 7 pools, 317 GB data, 83243 objects
+            46078 MB used, 293 GB / 338 GB avail
+                2048 active+clean
+  client io 7721 B/s rd, 2732 kB/s wr, 9 op/s rd, 683 op/s wr
+
+2017-05-18 21:08:10,042 INFO cluster.py [line:212]       pgmap v8214: 2048 pgs, 7 pools, 317 GB data, 83243 objects
+2017-05-18 21:08:10,042 INFO cluster.py [line:215]                 2048 active+clean
+2017-05-18 21:08:10,042 INFO cluster.py [line:217] PG number is 2048
+2017-05-18 21:08:10,042 INFO cluster.py [line:219] usefull PG number is 2048
+2017-05-18 21:08:10,042 INFO TC56_kill_non_leader_mon.py [line:62] stop mon service on denali01 in cluster successfully
+2017-05-18 21:08:15,673 INFO client.py [line:90] home/denali
+
+2017-05-18 21:08:27,358 INFO monitors.py [line:123]    "quorum_leader_name": "denali02",
+
+2017-05-18 21:08:27,358 INFO monitors.py [line:126]    "quorum_leader_name": "denali02",
+2017-05-18 21:08:27,358 INFO TC56_kill_non_leader_mon.py [line:77] now the leader mon is denali02
+2017-05-18 21:08:27,358 INFO TC56_kill_non_leader_mon.py [line:79] the leader mon is not impacted
+2017-05-18 21:08:33,690 INFO monitors.py [line:42] ['oot     26179     1  1 21:07 ?        00:00:01 ceph-mon -i denali01', 'denali   26890 26875  0 21:08 ?        00:00:00 bash -c ps -ef | grep ceph-mon', 'denali   26892 26890  0 21:08 ?        00:00:00 grep ceph-mon', '']
+2017-05-18 21:08:33,690 INFO monitors.py [line:48] mon pid is 26179
+2017-05-18 21:08:33,690 INFO monitors.py [line:89] execute command is sudo -i kill -9 26179 & sleep 3
+2017-05-18 21:09:17,933 INFO client.py [line:90] home/denali
+
+2017-05-18 21:09:31,348 INFO monitors.py [line:123]    "quorum_leader_name": "denali02",
+
+2017-05-18 21:09:31,348 INFO monitors.py [line:126]    "quorum_leader_name": "denali02",
+2017-05-18 21:09:31,348 INFO TC56_kill_non_leader_mon.py [line:45] now deal the non-leader mon  denali02
+2017-05-18 21:09:31,348 INFO monitors.py [line:65] mon is  denali01
+2017-05-18 21:09:31,348 INFO monitors.py [line:66] execute command is sudo -i ceph-mon -i denali01 & sleep 30
+2017-05-18 21:10:07,088 INFO monitors.py [line:70] mon denali01 is start successfully
+2017-05-18 21:10:07,088 INFO monitors.py [line:100] node is  denali01
+2017-05-18 21:10:07,088 INFO monitors.py [line:101] execute command is ps -ef | grep 'ceph-mon' 
+2017-05-18 21:10:12,813 INFO monitors.py [line:103] oot     27347     1  1 21:09 ?        00:00:00 ceph-mon -i denali01
+denali   27584 27562  0 21:10 ?        00:00:00 bash -c ps -ef | grep 'ceph-mon' 
+denali   27586 27584  0 21:10 ?        00:00:00 grep ceph-mon
+
+2017-05-18 21:10:12,813 INFO monitors.py [line:111] denali01 is alrady started
+2017-05-18 21:10:42,828 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-18 21:10:48,802 INFO cluster.py [line:205]    cluster c741cb7b-5f44-4083-8d34-c914389e894f
+     health HEALTH_OK
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 82, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e227: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v8274: 2048 pgs, 7 pools, 317 GB data, 83243 objects
+            46016 MB used, 293 GB / 338 GB avail
+                2048 active+clean
+  client io 2170 B/s rd, 2215 kB/s wr, 2 op/s rd, 553 op/s wr
+
+2017-05-18 21:10:48,802 INFO cluster.py [line:212]       pgmap v8274: 2048 pgs, 7 pools, 317 GB data, 83243 objects
+2017-05-18 21:10:48,802 INFO cluster.py [line:215]                 2048 active+clean
+2017-05-18 21:10:48,802 INFO cluster.py [line:217] PG number is 2048
+2017-05-18 21:10:48,802 INFO cluster.py [line:219] usefull PG number is 2048
+2017-05-18 21:10:48,802 INFO TC56_kill_non_leader_mon.py [line:62] stop mon service on denali01 in cluster successfully
+2017-05-18 21:10:55,947 INFO client.py [line:90] home/denali
+
+2017-05-18 21:11:07,335 INFO monitors.py [line:123]    "quorum_leader_name": "denali02",
+
+2017-05-18 21:11:07,335 INFO monitors.py [line:126]    "quorum_leader_name": "denali02",
+2017-05-18 21:11:07,335 INFO TC56_kill_non_leader_mon.py [line:77] now the leader mon is denali02
+2017-05-18 21:11:07,335 INFO TC56_kill_non_leader_mon.py [line:79] the leader mon is not impacted
+2017-05-18 21:11:13,232 INFO monitors.py [line:42] ['oot     27347     1  0 21:09 ?        00:00:00 ceph-mon -i denali01', 'denali   28029 28024  0 21:11 ?        00:00:00 bash -c ps -ef | grep ceph-mon', 'denali   28031 28029  0 21:11 ?        00:00:00 grep ceph-mon', '']
+2017-05-18 21:11:13,232 INFO monitors.py [line:48] mon pid is 27347
+2017-05-18 21:11:13,232 INFO monitors.py [line:89] execute command is sudo -i kill -9 27347 & sleep 3
+2017-05-18 21:11:57,473 INFO client.py [line:90] home/denali
+
+2017-05-18 21:12:12,730 INFO monitors.py [line:123]    "quorum_leader_name": "denali02",
+
+2017-05-18 21:12:12,730 INFO monitors.py [line:126]    "quorum_leader_name": "denali02",
+2017-05-18 21:12:12,730 INFO TC56_kill_non_leader_mon.py [line:45] now deal the non-leader mon  denali02
+2017-05-18 21:12:12,730 INFO monitors.py [line:65] mon is  denali01
+2017-05-18 21:12:12,730 INFO monitors.py [line:66] execute command is sudo -i ceph-mon -i denali01 & sleep 30
+2017-05-18 21:12:48,688 INFO monitors.py [line:70] mon denali01 is start successfully
+2017-05-18 21:12:48,688 INFO monitors.py [line:100] node is  denali01
+2017-05-18 21:12:48,688 INFO monitors.py [line:101] execute command is ps -ef | grep 'ceph-mon' 
+2017-05-18 21:12:56,551 INFO monitors.py [line:103] oot     28497     1  1 21:12 ?        00:00:00 ceph-mon -i denali01
+denali   28746 28740  0 21:13 ?        00:00:00 bash -c ps -ef | grep 'ceph-mon' 
+denali   28748 28746  0 21:13 ?        00:00:00 grep ceph-mon
+
+2017-05-18 21:12:56,551 INFO monitors.py [line:111] denali01 is alrady started
+2017-05-18 21:13:26,565 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-18 21:13:33,835 INFO cluster.py [line:205]    cluster c741cb7b-5f44-4083-8d34-c914389e894f
+     health HEALTH_OK
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 86, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e227: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v8330: 2048 pgs, 7 pools, 317 GB data, 83243 objects
+            46048 MB used, 293 GB / 338 GB avail
+                2048 active+clean
+  client io 6390 B/s rd, 1749 kB/s wr, 8 op/s rd, 437 op/s wr
+
+2017-05-18 21:13:33,835 INFO cluster.py [line:212]       pgmap v8330: 2048 pgs, 7 pools, 317 GB data, 83243 objects
+2017-05-18 21:13:33,835 INFO cluster.py [line:215]                 2048 active+clean
+2017-05-18 21:13:33,835 INFO cluster.py [line:217] PG number is 2048
+2017-05-18 21:13:33,835 INFO cluster.py [line:219] usefull PG number is 2048
+2017-05-18 21:13:33,835 INFO TC56_kill_non_leader_mon.py [line:62] stop mon service on denali01 in cluster successfully
+2017-05-18 21:13:39,325 INFO client.py [line:90] home/denali
+
+2017-05-18 21:13:51,790 INFO monitors.py [line:123]    "quorum_leader_name": "denali02",
+
+2017-05-18 21:13:51,790 INFO monitors.py [line:126]    "quorum_leader_name": "denali02",
+2017-05-18 21:13:51,790 INFO TC56_kill_non_leader_mon.py [line:77] now the leader mon is denali02
+2017-05-18 21:13:51,790 INFO TC56_kill_non_leader_mon.py [line:79] the leader mon is not impacted
+2017-05-18 21:13:57,687 INFO monitors.py [line:42] ['oot     28497     1  0 21:12 ?        00:00:00 ceph-mon -i denali01', 'denali   29207 29187  0 21:14 ?        00:00:00 bash -c ps -ef | grep ceph-mon', 'denali   29209 29207  0 21:14 ?        00:00:00 grep ceph-mon', '']
+2017-05-18 21:13:57,687 INFO monitors.py [line:48] mon pid is 28497
+2017-05-18 21:13:57,687 INFO monitors.py [line:89] execute command is sudo -i kill -9 28497 & sleep 3
+2017-05-18 21:14:43,052 INFO client.py [line:90] home/denali
+
+2017-05-18 21:14:56,266 INFO monitors.py [line:123]    "quorum_leader_name": "denali02",
+
+2017-05-18 21:14:56,266 INFO monitors.py [line:126]    "quorum_leader_name": "denali02",
+2017-05-18 21:14:56,266 INFO TC56_kill_non_leader_mon.py [line:45] now deal the non-leader mon  denali02
+2017-05-18 21:14:56,266 INFO monitors.py [line:65] mon is  denali01
+2017-05-18 21:14:56,266 INFO monitors.py [line:66] execute command is sudo -i ceph-mon -i denali01 & sleep 30
+2017-05-18 21:15:33,533 INFO monitors.py [line:70] mon denali01 is start successfully
+2017-05-18 21:15:33,533 INFO monitors.py [line:100] node is  denali01
+2017-05-18 21:15:33,533 INFO monitors.py [line:101] execute command is ps -ef | grep 'ceph-mon' 
+2017-05-18 21:15:39,430 INFO monitors.py [line:103] oot     29671     1  1 21:15 ?        00:00:00 ceph-mon -i denali01
+denali   29936 29915  0 21:15 ?        00:00:00 bash -c ps -ef | grep 'ceph-mon' 
+denali   29938 29936  0 21:15 ?        00:00:00 grep ceph-mon
+
+2017-05-18 21:15:39,430 INFO monitors.py [line:111] denali01 is alrady started
+2017-05-18 21:16:09,444 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-18 21:16:15,622 INFO cluster.py [line:205]    cluster c741cb7b-5f44-4083-8d34-c914389e894f
+     health HEALTH_OK
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 90, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e227: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v8394: 2048 pgs, 7 pools, 317 GB data, 83243 objects
+            46108 MB used, 293 GB / 338 GB avail
+                2048 active+clean
+  client io 17787 B/s rd, 5222 kB/s wr, 22 op/s rd, 1305 op/s wr
+
+2017-05-18 21:16:15,622 INFO cluster.py [line:212]       pgmap v8394: 2048 pgs, 7 pools, 317 GB data, 83243 objects
+2017-05-18 21:16:15,622 INFO cluster.py [line:215]                 2048 active+clean
+2017-05-18 21:16:15,622 INFO cluster.py [line:217] PG number is 2048
+2017-05-18 21:16:15,622 INFO cluster.py [line:219] usefull PG number is 2048
+2017-05-18 21:16:15,622 INFO TC56_kill_non_leader_mon.py [line:62] stop mon service on denali01 in cluster successfully
+2017-05-18 21:16:21,332 INFO client.py [line:90] home/denali
+
+2017-05-18 21:16:33,953 INFO monitors.py [line:123]    "quorum_leader_name": "denali02",
+
+2017-05-18 21:16:33,953 INFO monitors.py [line:126]    "quorum_leader_name": "denali02",
+2017-05-18 21:16:33,953 INFO TC56_kill_non_leader_mon.py [line:77] now the leader mon is denali02
+2017-05-18 21:16:33,953 INFO TC56_kill_non_leader_mon.py [line:79] the leader mon is not impacted
+2017-05-18 21:16:39,631 INFO monitors.py [line:42] ['oot     29671     1  1 21:15 ?        00:00:00 ceph-mon -i denali01', 'denali   30378 30373  0 21:16 ?        00:00:00 bash -c ps -ef | grep ceph-mon', 'denali   30380 30378  0 21:16 ?        00:00:00 grep ceph-mon', '']
+2017-05-18 21:16:39,631 INFO monitors.py [line:48] mon pid is 29671
+2017-05-18 21:16:39,631 INFO monitors.py [line:89] execute command is sudo -i kill -9 29671 & sleep 3
+2017-05-18 21:17:25,355 INFO client.py [line:90] home/denali
+
+2017-05-18 21:17:40,003 INFO monitors.py [line:123]    "quorum_leader_name": "denali02",
+
+2017-05-18 21:17:40,003 INFO monitors.py [line:126]    "quorum_leader_name": "denali02",
+2017-05-18 21:17:40,003 INFO TC56_kill_non_leader_mon.py [line:45] now deal the non-leader mon  denali02
+2017-05-18 21:17:40,003 INFO monitors.py [line:65] mon is  denali01
+2017-05-18 21:17:40,003 INFO monitors.py [line:66] execute command is sudo -i ceph-mon -i denali01 & sleep 30
+2017-05-18 21:18:15,648 INFO monitors.py [line:70] mon denali01 is start successfully
+2017-05-18 21:18:15,648 INFO monitors.py [line:100] node is  denali01
+2017-05-18 21:18:15,648 INFO monitors.py [line:101] execute command is ps -ef | grep 'ceph-mon' 
+2017-05-18 21:18:21,280 INFO monitors.py [line:103] oot     30837     1  3 21:17 ?        00:00:01 ceph-mon -i denali01
+denali   31087 31085  0 21:18 ?        00:00:00 bash -c ps -ef | grep 'ceph-mon' 
+denali   31089 31087  0 21:18 ?        00:00:00 grep ceph-mon
+
+2017-05-18 21:18:21,296 INFO monitors.py [line:111] denali01 is alrady started
+2017-05-18 21:18:51,311 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-18 21:18:57,737 INFO cluster.py [line:205]    cluster c741cb7b-5f44-4083-8d34-c914389e894f
+     health HEALTH_OK
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 94, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e227: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v8477: 2048 pgs, 7 pools, 317 GB data, 83243 objects
+            46115 MB used, 293 GB / 338 GB avail
+                2048 active+clean
+  client io 2313 B/s rd, 1184 kB/s wr, 3 op/s rd, 296 op/s wr
+
+2017-05-18 21:18:57,737 INFO cluster.py [line:212]       pgmap v8477: 2048 pgs, 7 pools, 317 GB data, 83243 objects
+2017-05-18 21:18:57,737 INFO cluster.py [line:215]                 2048 active+clean
+2017-05-18 21:18:57,737 INFO cluster.py [line:217] PG number is 2048
+2017-05-18 21:18:57,737 INFO cluster.py [line:219] usefull PG number is 2048
+2017-05-18 21:18:57,737 INFO TC56_kill_non_leader_mon.py [line:62] stop mon service on denali01 in cluster successfully
+2017-05-18 21:19:03,354 INFO client.py [line:90] home/denali
+
+2017-05-18 21:19:17,144 INFO monitors.py [line:123]    "quorum_leader_name": "denali02",
+
+2017-05-18 21:19:17,144 INFO monitors.py [line:126]    "quorum_leader_name": "denali02",
+2017-05-18 21:19:17,144 INFO TC56_kill_non_leader_mon.py [line:77] now the leader mon is denali02
+2017-05-18 21:19:17,144 INFO TC56_kill_non_leader_mon.py [line:79] the leader mon is not impacted
+2017-05-18 21:19:22,915 INFO monitors.py [line:42] ['oot     30837     1  1 21:17 ?        00:00:01 ceph-mon -i denali01', 'denali   31540 31528  0 21:19 ?        00:00:00 bash -c ps -ef | grep ceph-mon', 'denali   31542 31540  0 21:19 ?        00:00:00 grep ceph-mon', '']
+2017-05-18 21:19:22,915 INFO monitors.py [line:48] mon pid is 30837
+2017-05-18 21:19:22,915 INFO monitors.py [line:89] execute command is sudo -i kill -9 30837 & sleep 3
+2017-05-18 21:20:07,252 INFO client.py [line:90] home/denali
+
+2017-05-18 21:20:21,900 INFO monitors.py [line:123]    "quorum_leader_name": "denali02",
+
+2017-05-18 21:20:21,900 INFO monitors.py [line:126]    "quorum_leader_name": "denali02",
+2017-05-18 21:20:21,900 INFO TC56_kill_non_leader_mon.py [line:45] now deal the non-leader mon  denali02
+2017-05-18 21:20:21,900 INFO monitors.py [line:65] mon is  denali01
+2017-05-18 21:20:21,900 INFO monitors.py [line:66] execute command is sudo -i ceph-mon -i denali01 & sleep 30
+2017-05-18 21:20:57,515 INFO monitors.py [line:70] mon denali01 is start successfully
+2017-05-18 21:20:57,515 INFO monitors.py [line:100] node is  denali01
+2017-05-18 21:20:57,515 INFO monitors.py [line:101] execute command is ps -ef | grep 'ceph-mon' 
+2017-05-18 21:21:05,845 INFO monitors.py [line:103] oot     31997     1  1 21:20 ?        00:00:00 ceph-mon -i denali01
+denali   32264 32236  0 21:21 ?        00:00:00 bash -c ps -ef | grep 'ceph-mon' 
+denali   32266 32264  0 21:21 ?        00:00:00 grep ceph-mon
+
+2017-05-18 21:21:05,845 INFO monitors.py [line:111] denali01 is alrady started
+2017-05-18 21:21:35,859 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-18 21:21:42,177 INFO cluster.py [line:205]    cluster c741cb7b-5f44-4083-8d34-c914389e894f
+     health HEALTH_OK
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 98, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e227: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v8552: 2048 pgs, 7 pools, 317 GB data, 83243 objects
+            46127 MB used, 293 GB / 338 GB avail
+                2048 active+clean
+  client io 1695 B/s rd, 2070 kB/s wr, 2 op/s rd, 517 op/s wr
+
+2017-05-18 21:21:42,177 INFO cluster.py [line:212]       pgmap v8552: 2048 pgs, 7 pools, 317 GB data, 83243 objects
+2017-05-18 21:21:42,177 INFO cluster.py [line:215]                 2048 active+clean
+2017-05-18 21:21:42,177 INFO cluster.py [line:217] PG number is 2048
+2017-05-18 21:21:42,177 INFO cluster.py [line:219] usefull PG number is 2048
+2017-05-18 21:21:42,193 INFO TC56_kill_non_leader_mon.py [line:62] stop mon service on denali01 in cluster successfully
+2017-05-18 21:21:48,901 INFO client.py [line:90] home/denali
+
+2017-05-18 21:22:03,378 INFO monitors.py [line:123]    "quorum_leader_name": "denali02",
+
+2017-05-18 21:22:03,378 INFO monitors.py [line:126]    "quorum_leader_name": "denali02",
+2017-05-18 21:22:03,378 INFO TC56_kill_non_leader_mon.py [line:77] now the leader mon is denali02
+2017-05-18 21:22:03,378 INFO TC56_kill_non_leader_mon.py [line:79] the leader mon is not impacted
+2017-05-18 21:22:03,378 INFO TC56_kill_non_leader_mon.py [line:84] 
+Step3: stop IO from clients
+2017-05-18 21:22:09,009 INFO TC56_kill_non_leader_mon.py [line:86] case runs complete

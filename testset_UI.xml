@@ -1,0 +1,165 @@
+<testsets doc_type="TC" version="2">
+	<general_case_parameters>
+		<param name="parallel" value="0"/>
+		<param name="stopOnError" value="1"/>
+	</general_case_parameters>
+	<testcases> 
+
+	<!--	<test name="invalidLogin" id='1'>
+			<location>testcases/UI/login/invalidLogin</location>
+			<parameters>
+				<param name="pool" value="pool1" />
+			</parameters>   
+		</test>
+		<test name="userAccountChangeEmail" id='2'>
+			<location>testcases/UI/accountSettings/userAccountChangeEmail</location>
+			<parameters>
+				<param name="pool" value="pool1" />
+			</parameters>   
+		</test>
+		<test name="userAccountChangePasswd" id='3'>
+			<location>testcases/UI/accountSettings/userAccountChangePasswd</location>
+			<parameters>
+				<param name="pool" value="pool1" />
+			</parameters>   
+		</test>
+		<test name="userAccountChangePicture" id='4'>
+			<location>testcases/UI/accountSettings/userAccountChangePicture</location>
+			<parameters>
+				<param name="pool" value="pool1" />
+			</parameters>   
+		</test>
+		<test name="userAccountChangeUser" id='5'>
+			<location>testcases/UI/accountSettings/userAccountChangeUser</location>
+			<parameters>
+				<param name="pool" value="pool1" />
+			</parameters>   
+		</test>
+		<test name="userLdapChangePicture" id='6'>
+			<location>testcases/UI/accountSettings/userLdapChangePicture</location>
+			<parameters>
+				<param name="pool" value="pool1" />
+			</parameters>   
+		</test>
+		<test name="createCloneAfterFlatten" id='7'>
+			<location>testcases/UI/poolmanagement/createCloneAfterFlatten</location>
+			<parameters>
+				<param name="pool" value="pool1" />
+			</parameters>   
+		</test>
+		<test name="createClonewithClone" id='8'>
+			<location>testcases/UI/poolmanagement/createClonewithClone</location>
+			<parameters>
+				<param name="pool" value="pool1" />
+			</parameters>   
+		</test>
+		<test name="createDeletePoolImageSnapClone" id='9'>
+			<location>testcases/UI/poolmanagement/createDeletePoolImageSnapClone</location>
+			<parameters>
+				<param name="pool" value="pool1" />
+			</parameters>   
+		</test>
+		<test name="createImageExceedSize" id='10'>
+			<location>testcases/UI/poolmanagement/createImageExceedSize</location>
+			<parameters>
+				<param name="pool" value="pool1" />
+			</parameters>   
+		</test>-->
+		<test name="createImgInvalidNameSize" id='10'>
+			<location>testcases/UI/poolmanagement/createImgInvalidNameSize</location>
+			<parameters>
+				<param name="pool" value="pool1" />
+			</parameters>   
+		</test>
+		<test name="createImgSameName" id='11'>
+			<location>testcases/UI/poolmanagement/createImgSameName</location>
+			<parameters>
+				<param name="pool" value="pool1" />
+			</parameters>   
+		</test>
+		<test name="deletImgwithSnap" id='12'>
+			<location>testcases/UI/poolmanagement/deletImgwithSnap</location>
+			<parameters>
+				<param name="pool" value="pool1" />
+			</parameters>   
+		</test>
+		<test name="flattenCloneFromClone" id='13'>
+			<location>testcases/UI/poolmanagement/flattenCloneFromClone</location>
+			<parameters>
+				<param name="pool" value="pool1" />
+			</parameters>   
+		</test>
+		<test name="deleteSnapWithClone" id='14'>
+			<location>testcases/UI/poolmanagement/deleteSnapWithClone</location>
+			<parameters>
+				<param name="pool" value="pool1" />
+			</parameters>   
+		</test>
+		<test name="createSnapWithInvalidName" id='15'>
+			<location>testcases/UI/poolmanagement/createSnapWithInvalidName</location>
+			<parameters>
+				<param name="pool" value="pool1" />
+			</parameters>   
+		</test>
+		<test name="deletImgwithSnap" id='16'>
+			<location>testcases/UI/poolmanagement/deletImgwithSnap</location>
+			<parameters>
+				<param name="pool" value="pool1" />
+			</parameters>   
+		</test>
+		<test name="InvalidSnapScheduleSetting" id='17'>
+			<location>testcases/UI/poolmanagement/InvalidSnapScheduleSetting</location>
+			<parameters>
+				<param name="pool" value="pool1" />
+			</parameters>   
+		</test>
+		<test name="modifySnapSetting" id='18'>
+			<location>testcases/UI/poolmanagement/modifySnapSetting</location>
+			<parameters>
+				<param name="pool" value="pool1" />
+			</parameters>   
+		</test>
+		<test name="restoreSnap" id='18'>
+			<location>testcases/UI/poolmanagement/restoreSnap</location>
+			<parameters>
+				<param name="pool" value="pool1" />
+			</parameters>   
+		</test>
+		<test name="getOsdStatus" id='18'>
+			<location>testcases/UI/osdstatus/getOsdStatus</location>
+			<parameters>
+				<param name="pool" value="pool1" />
+			</parameters>   
+		</test>
+		<test name="addDelMon" id='19'>
+			<location>testcases/UI/clusterDeviceManagement/addDelMon</location>
+			<parameters>
+				<param name="pool" value="pool1" />
+			</parameters>   
+		</test>
+		<test name="filterEventLog" id='20'>
+			<location>testcases/UI/clusterDeviceManagement/filterEventLog</location>
+			<parameters>
+				<param name="pool" value="pool1" />
+			</parameters>   
+		</test>
+		<test name="addNode" id='21'>
+			<location>testcases/UI/clusterDeviceManagement/addNode</location>
+			<parameters>
+				<param name="pool" value="pool1" />
+			</parameters>
+		</test>
+		<test name="filterAuditLog" id='22'>
+			<location>testcases/UI/clusterDeviceManagement/filterAuditLog</location>
+			<parameters>
+				<param name="pool" value="pool1" />
+			</parameters>   
+		</test>
+	<!--	<test name="init" id='22'>
+			<location>testcases/UI/initialize/init</location>
+			<parameters>
+				<param name="pool" value="pool1" />
+			</parameters>   
+		</test>-->
+	</testcases>
+</testsets>

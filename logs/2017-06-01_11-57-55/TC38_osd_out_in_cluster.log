@@ -1,0 +1,619 @@
+2017-06-01 11:57:55,545 INFO TC38_osd_out_in_cluster.py [line:25] 
+This test case will do the following steps:
+1. start IO on 10 images with randwrite and verify
+2. login the first node 
+3. out all osds in sequence
+4. stop all osds in sequence
+5. start all osds in sequence
+6. add in all osds in sequence
+7. check the cluster status
+8. repeat step 2-7 on the other node
+
+2017-06-01 11:57:56,683 INFO monitors.py [line:126]    "quorum_leader_name": "ubuntu-238",
+stdin: is not a tty
+
+2017-06-01 11:57:56,686 INFO monitors.py [line:129]    "quorum_leader_name": "ubuntu-238",
+2017-06-01 11:57:56,690 INFO TC38_osd_out_in_cluster.py [line:30] start to check cluster status before case running
+2017-06-01 11:57:56,742 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-01 11:57:57,256 INFO cluster.py [line:213]    cluster 3dcaba34-d49b-4025-99c6-d9a43d4b0fda
+     health HEALTH_OK
+     monmap e1: 1 mons at {ubuntu-238=192.168.28.238:6789/0}
+            election epoch 3, quorum 0 ubuntu-238
+     osdmap e46: 10 osds: 10 up, 10 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v104: 256 pgs, 1 pools, 0 bytes data, 0 objects
+            88365 MB used, 6905 GB / 6991 GB avail
+                 256 active+clean
+2017-06-01 03:58:01.738262 7fd777b7a700 -1 asok(0x7fd770000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.42895.140563273748864.asok': (13) Permission denied
+
+2017-06-01 11:57:57,256 INFO cluster.py [line:238] PG number is 256
+2017-06-01 11:57:57,266 INFO cluster.py [line:239] usefull PG number is 256
+2017-06-01 11:57:57,266 INFO TC38_osd_out_in_cluster.py [line:33] health status is OK
+2017-06-01 11:57:57,266 INFO TC38_osd_out_in_cluster.py [line:38] 
+Step1: Check IO from clients
+2017-06-01 11:57:58,434 INFO client.py [line:169] ['oot      2463     1  0 May31 ?        00:00:00 sudo -i fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=linli -pool=reliablityTestPool -rbdname=linlirbdImg0 -rw=randwrite -bs=8K -size=100G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=linlirbdImg0', 'root      2464  2463 39 May31 ?        09:14:27 fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=linli -pool=reliablityTestPool -rbdname=linlirbdImg0 -rw=randwrite -bs=8K -size=100G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=linlirbdImg0', 'root      2500     1  0 May31 ?        00:00:00 sudo -i fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=linli -pool=reliablityTestPool -rbdname=linlirbdImg1 -rw=randwrite -bs=8K -size=200G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=linlirbdImg1', 'root      2502  2500 39 May31 ?        09:14:26 fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=linli -pool=reliablityTestPool -rbdname=linlirbdImg1 -rw=randwrite -bs=8K -size=200G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=linlirbdImg1', 'root      2540     1  0 May31 ?        00:00:00 sudo -i fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=linli -pool=reliablityTestPool -rbdname=linlirbdImg2 -rw=randwrite -bs=8K -size=300G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=linlirbdImg2', 'root      2541  2540 39 May31 ?        09:14:31 fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=linli -pool=reliablityTestPool -rbdname=linlirbdImg2 -rw=randwrite -bs=8K -size=300G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=linlirbdImg2', 'root      2573     1  0 May31 ?        00:00:00 sudo -i fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=linli -pool=reliablityTestPool -rbdname=linlirbdImg3 -rw=randwrite -bs=8K -size=400G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=linlirbdImg3', 'root      2574  2573 39 May31 ?        09:14:28 fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=linli -pool=reliablityTestPool -rbdname=linlirbdImg3 -rw=randwrite -bs=8K -size=400G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=linlirbdImg3', 'root      2606     1  0 May31 ?        00:00:00 sudo -i fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=linli -pool=reliablityTestPool -rbdname=linlirbdImg4 -rw=randwrite -bs=8K -size=500G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=linlirbdImg4', 'root      2607  2606 40 May31 ?        09:14:53 fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=linli -pool=reliablityTestPool -rbdname=linlirbdImg4 -rw=randwrite -bs=8K -size=500G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=linlirbdImg4', 'denali    4339  4338  0 03:58 ?        00:00:00 bash -c sudo -i ps -ef | grep fio', 'denali    4341  4339  0 03:58 ?        00:00:00 grep fio', 'stdin: is not a tty', '']
+2017-06-01 11:57:58,441 INFO client.py [line:171] IO is running
+2017-06-01 11:58:58,444 INFO TC38_osd_out_in_cluster.py [line:46] 
+Step 2: Out the osd and check IO
+2017-06-01 11:58:58,447 INFO TC38_osd_out_in_cluster.py [line:50] 
+Now operate ubuntu-237
+2017-06-01 11:58:58,450 INFO TC38_osd_out_in_cluster.py [line:51] 5
+2017-06-01 11:58:58,451 INFO TC38_osd_out_in_cluster.py [line:52] 
+Now operate osd.5
+2017-06-01 11:58:58,453 INFO TC38_osd_out_in_cluster.py [line:53] out osd.5
+2017-06-01 11:58:58,453 INFO osd.py [line:62] execute command is sudo -i ceph osd out osd.5 & sleep 3
+2017-06-01 11:59:01,697 INFO osd.py [line:67] osd.5 is already out cluster
+2017-06-01 11:59:01,697 INFO TC38_osd_out_in_cluster.py [line:55] check if IO error
+2017-06-01 11:59:02,197 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-01 11:59:02,641 INFO cluster.py [line:213]    cluster 3dcaba34-d49b-4025-99c6-d9a43d4b0fda
+     health HEALTH_ERR
+            5 pgs are stuck inactive for more than 300 seconds
+            5 pgs peering
+            5 pgs stuck inactive
+     monmap e1: 1 mons at {ubuntu-238=192.168.28.238:6789/0}
+            election epoch 3, quorum 0 ubuntu-238
+     osdmap e49: 10 osds: 10 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v108: 256 pgs, 1 pools, 0 bytes data, 0 objects
+            79529 MB used, 6214 GB / 6292 GB avail
+                 251 active+clean
+                   5 remapped+peering
+2017-06-01 03:59:07.130210 7f8334b48700 -1 asok(0x7f8330000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.43484.140201422754176.asok': (13) Permission denied
+
+2017-06-01 11:59:02,651 INFO cluster.py [line:215] Now status is HEALTH_ERR, sleep 60s and try again 
+2017-06-01 12:00:02,651 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-01 12:00:03,105 INFO cluster.py [line:213]    cluster 3dcaba34-d49b-4025-99c6-d9a43d4b0fda
+     health HEALTH_OK
+     monmap e1: 1 mons at {ubuntu-238=192.168.28.238:6789/0}
+            election epoch 3, quorum 0 ubuntu-238
+     osdmap e49: 10 osds: 10 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v123: 256 pgs, 1 pools, 0 bytes data, 0 objects
+            79529 MB used, 6214 GB / 6292 GB avail
+                 256 active+clean
+2017-06-01 04:00:07.601205 7f64f3358700 -1 asok(0x7f64ec000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.43996.140071432884608.asok': (13) Permission denied
+
+2017-06-01 12:00:03,108 INFO cluster.py [line:238] PG number is 256
+2017-06-01 12:00:03,108 INFO cluster.py [line:239] usefull PG number is 256
+2017-06-01 12:00:03,109 INFO TC38_osd_out_in_cluster.py [line:60] stop osd.5 in cluster successfully
+2017-06-01 12:00:03,111 INFO osd.py [line:77] execute command is sudo -i ceph osd in osd.5 & sleep 3
+2017-06-01 12:00:06,345 INFO osd.py [line:80] osd.5 is already in cluster
+2017-06-01 12:00:36,858 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-01 12:00:37,503 INFO cluster.py [line:213]    cluster 3dcaba34-d49b-4025-99c6-d9a43d4b0fda
+     health HEALTH_OK
+     monmap e1: 1 mons at {ubuntu-238=192.168.28.238:6789/0}
+            election epoch 3, quorum 0 ubuntu-238
+     osdmap e52: 10 osds: 10 up, 10 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v132: 256 pgs, 1 pools, 0 bytes data, 0 objects
+            88366 MB used, 6905 GB / 6991 GB avail
+                 256 active+clean
+2017-06-01 04:00:41.844306 7ffaa41b9700 -1 asok(0x7ffa9c000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.44352.140714335801728.asok': (13) Permission denied
+
+2017-06-01 12:00:37,503 INFO cluster.py [line:238] PG number is 256
+2017-06-01 12:00:37,513 INFO cluster.py [line:239] usefull PG number is 256
+2017-06-01 12:00:37,513 INFO TC38_osd_out_in_cluster.py [line:98] stop osd.5 in cluster successfully
+2017-06-01 12:00:37,513 INFO TC38_osd_out_in_cluster.py [line:50] 
+Now operate ubuntu-237
+2017-06-01 12:00:37,523 INFO TC38_osd_out_in_cluster.py [line:51] 5
+2017-06-01 12:00:37,523 INFO TC38_osd_out_in_cluster.py [line:52] 
+Now operate osd.6
+2017-06-01 12:00:37,523 INFO TC38_osd_out_in_cluster.py [line:53] out osd.6
+2017-06-01 12:00:37,523 INFO osd.py [line:62] execute command is sudo -i ceph osd out osd.6 & sleep 3
+2017-06-01 12:00:40,838 INFO osd.py [line:67] osd.6 is already out cluster
+2017-06-01 12:00:40,838 INFO TC38_osd_out_in_cluster.py [line:55] check if IO error
+2017-06-01 12:00:41,374 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-01 12:00:41,818 INFO cluster.py [line:213]    cluster 3dcaba34-d49b-4025-99c6-d9a43d4b0fda
+     health HEALTH_ERR
+            31 pgs are stuck inactive for more than 300 seconds
+            31 pgs peering
+            31 pgs stuck inactive
+     monmap e1: 1 mons at {ubuntu-238=192.168.28.238:6789/0}
+            election epoch 3, quorum 0 ubuntu-238
+     osdmap e55: 10 osds: 10 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v136: 256 pgs, 1 pools, 0 bytes data, 0 objects
+            79530 MB used, 6214 GB / 6292 GB avail
+                 225 active+clean
+                  31 remapped+peering
+2017-06-01 04:00:46.322993 7f1d63cb4700 -1 asok(0x7f1d5c000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.44461.139764074287488.asok': (13) Permission denied
+
+2017-06-01 12:00:41,829 INFO cluster.py [line:215] Now status is HEALTH_ERR, sleep 60s and try again 
+2017-06-01 12:01:41,832 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-01 12:01:42,230 INFO cluster.py [line:213]    cluster 3dcaba34-d49b-4025-99c6-d9a43d4b0fda
+     health HEALTH_OK
+     monmap e1: 1 mons at {ubuntu-238=192.168.28.238:6789/0}
+            election epoch 3, quorum 0 ubuntu-238
+     osdmap e55: 10 osds: 10 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v153: 256 pgs, 1 pools, 0 bytes data, 0 objects
+            79530 MB used, 6214 GB / 6292 GB avail
+                 256 active+clean
+2017-06-01 04:01:46.724077 7f39e2482700 -1 asok(0x7f39dc000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.44973.139886480855424.asok': (13) Permission denied
+
+2017-06-01 12:01:42,232 INFO cluster.py [line:238] PG number is 256
+2017-06-01 12:01:42,232 INFO cluster.py [line:239] usefull PG number is 256
+2017-06-01 12:01:42,232 INFO TC38_osd_out_in_cluster.py [line:60] stop osd.6 in cluster successfully
+2017-06-01 12:01:42,232 INFO osd.py [line:77] execute command is sudo -i ceph osd in osd.6 & sleep 3
+2017-06-01 12:01:45,440 INFO osd.py [line:80] osd.6 is already in cluster
+2017-06-01 12:02:15,947 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-01 12:02:16,378 INFO cluster.py [line:213]    cluster 3dcaba34-d49b-4025-99c6-d9a43d4b0fda
+     health HEALTH_OK
+     monmap e1: 1 mons at {ubuntu-238=192.168.28.238:6789/0}
+            election epoch 3, quorum 0 ubuntu-238
+     osdmap e58: 10 osds: 10 up, 10 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v162: 256 pgs, 1 pools, 0 bytes data, 0 objects
+            88367 MB used, 6905 GB / 6991 GB avail
+                 256 active+clean
+2017-06-01 04:02:20.867046 7fab8226b700 -1 asok(0x7fab7c000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.45322.140374496514432.asok': (13) Permission denied
+
+2017-06-01 12:02:16,378 INFO cluster.py [line:238] PG number is 256
+2017-06-01 12:02:16,378 INFO cluster.py [line:239] usefull PG number is 256
+2017-06-01 12:02:16,378 INFO TC38_osd_out_in_cluster.py [line:98] stop osd.6 in cluster successfully
+2017-06-01 12:02:16,378 INFO TC38_osd_out_in_cluster.py [line:50] 
+Now operate ubuntu-237
+2017-06-01 12:02:16,378 INFO TC38_osd_out_in_cluster.py [line:51] 5
+2017-06-01 12:02:16,378 INFO TC38_osd_out_in_cluster.py [line:52] 
+Now operate osd.7
+2017-06-01 12:02:16,378 INFO TC38_osd_out_in_cluster.py [line:53] out osd.7
+2017-06-01 12:02:16,378 INFO osd.py [line:62] execute command is sudo -i ceph osd out osd.7 & sleep 3
+2017-06-01 12:02:19,598 INFO osd.py [line:67] osd.7 is already out cluster
+2017-06-01 12:02:19,598 INFO TC38_osd_out_in_cluster.py [line:55] check if IO error
+2017-06-01 12:02:20,138 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-01 12:02:20,594 INFO cluster.py [line:213]    cluster 3dcaba34-d49b-4025-99c6-d9a43d4b0fda
+     health HEALTH_ERR
+            7 pgs are stuck inactive for more than 300 seconds
+            13 pgs peering
+            7 pgs stuck inactive
+     monmap e1: 1 mons at {ubuntu-238=192.168.28.238:6789/0}
+            election epoch 3, quorum 0 ubuntu-238
+     osdmap e61: 10 osds: 10 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v165: 256 pgs, 1 pools, 0 bytes data, 0 objects
+            79530 MB used, 6214 GB / 6292 GB avail
+                 243 active+clean
+                  13 peering
+2017-06-01 04:02:25.085895 7f1423e39700 -1 asok(0x7f141c000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.45403.139724345840000.asok': (13) Permission denied
+
+2017-06-01 12:02:20,594 INFO cluster.py [line:215] Now status is HEALTH_ERR, sleep 60s and try again 
+2017-06-01 12:03:20,602 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-01 12:03:21,085 INFO cluster.py [line:213]    cluster 3dcaba34-d49b-4025-99c6-d9a43d4b0fda
+     health HEALTH_OK
+     monmap e1: 1 mons at {ubuntu-238=192.168.28.238:6789/0}
+            election epoch 3, quorum 0 ubuntu-238
+     osdmap e61: 10 osds: 10 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v182: 256 pgs, 1 pools, 0 bytes data, 0 objects
+            79531 MB used, 6214 GB / 6292 GB avail
+                 256 active+clean
+2017-06-01 04:03:25.579426 7f574f0f2700 -1 asok(0x7f5748000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.45945.140012846846336.asok': (13) Permission denied
+
+2017-06-01 12:03:21,085 INFO cluster.py [line:238] PG number is 256
+2017-06-01 12:03:21,085 INFO cluster.py [line:239] usefull PG number is 256
+2017-06-01 12:03:21,085 INFO TC38_osd_out_in_cluster.py [line:60] stop osd.7 in cluster successfully
+2017-06-01 12:03:21,085 INFO osd.py [line:77] execute command is sudo -i ceph osd in osd.7 & sleep 3
+2017-06-01 12:03:24,329 INFO osd.py [line:80] osd.7 is already in cluster
+2017-06-01 12:03:54,839 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-01 12:03:55,270 INFO cluster.py [line:213]    cluster 3dcaba34-d49b-4025-99c6-d9a43d4b0fda
+     health HEALTH_OK
+     monmap e1: 1 mons at {ubuntu-238=192.168.28.238:6789/0}
+            election epoch 3, quorum 0 ubuntu-238
+     osdmap e64: 10 osds: 10 up, 10 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v191: 256 pgs, 1 pools, 0 bytes data, 0 objects
+            88368 MB used, 6905 GB / 6991 GB avail
+                 256 active+clean
+2017-06-01 04:03:59.763866 7fcc858fd700 -1 asok(0x7fcc80000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.46260.140516297544064.asok': (13) Permission denied
+
+2017-06-01 12:03:55,270 INFO cluster.py [line:238] PG number is 256
+2017-06-01 12:03:55,270 INFO cluster.py [line:239] usefull PG number is 256
+2017-06-01 12:03:55,270 INFO TC38_osd_out_in_cluster.py [line:98] stop osd.7 in cluster successfully
+2017-06-01 12:03:55,270 INFO TC38_osd_out_in_cluster.py [line:50] 
+Now operate ubuntu-237
+2017-06-01 12:03:55,270 INFO TC38_osd_out_in_cluster.py [line:51] 5
+2017-06-01 12:03:55,270 INFO TC38_osd_out_in_cluster.py [line:52] 
+Now operate osd.8
+2017-06-01 12:03:55,270 INFO TC38_osd_out_in_cluster.py [line:53] out osd.8
+2017-06-01 12:03:55,270 INFO osd.py [line:62] execute command is sudo -i ceph osd out osd.8 & sleep 3
+2017-06-01 12:03:58,490 INFO osd.py [line:67] osd.8 is already out cluster
+2017-06-01 12:03:58,490 INFO TC38_osd_out_in_cluster.py [line:55] check if IO error
+2017-06-01 12:03:58,960 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-01 12:03:59,417 INFO cluster.py [line:213]    cluster 3dcaba34-d49b-4025-99c6-d9a43d4b0fda
+     health HEALTH_WARN
+            6 pgs peering
+     monmap e1: 1 mons at {ubuntu-238=192.168.28.238:6789/0}
+            election epoch 3, quorum 0 ubuntu-238
+     osdmap e67: 10 osds: 10 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v195: 256 pgs, 1 pools, 0 bytes data, 0 objects
+            79531 MB used, 6214 GB / 6292 GB avail
+                 250 active+clean
+                   6 remapped+peering
+2017-06-01 04:04:03.900311 7fab52406700 -1 asok(0x7fab4c000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.46368.140373691208064.asok': (13) Permission denied
+
+2017-06-01 12:03:59,417 INFO cluster.py [line:238] PG number is 256
+2017-06-01 12:03:59,417 INFO cluster.py [line:239] usefull PG number is 250
+2017-06-01 12:04:59,417 INFO cluster.py [line:247] cost 61 seconds, left 5939 seconds when check the ceph status
+2017-06-01 12:04:59,417 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-01 12:04:59,882 INFO cluster.py [line:213]    cluster 3dcaba34-d49b-4025-99c6-d9a43d4b0fda
+     health HEALTH_OK
+     monmap e1: 1 mons at {ubuntu-238=192.168.28.238:6789/0}
+            election epoch 3, quorum 0 ubuntu-238
+     osdmap e67: 10 osds: 10 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v212: 256 pgs, 1 pools, 0 bytes data, 0 objects
+            79531 MB used, 6214 GB / 6292 GB avail
+                 256 active+clean
+2017-06-01 04:05:04.371591 7f6b8aeb8700 -1 asok(0x7f6b84000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.46888.140099752825216.asok': (13) Permission denied
+
+2017-06-01 12:04:59,882 INFO cluster.py [line:238] PG number is 256
+2017-06-01 12:04:59,882 INFO cluster.py [line:239] usefull PG number is 256
+2017-06-01 12:04:59,882 INFO TC38_osd_out_in_cluster.py [line:60] stop osd.8 in cluster successfully
+2017-06-01 12:04:59,882 INFO osd.py [line:77] execute command is sudo -i ceph osd in osd.8 & sleep 3
+2017-06-01 12:05:03,092 INFO osd.py [line:80] osd.8 is already in cluster
+2017-06-01 12:05:33,640 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-01 12:05:34,109 INFO cluster.py [line:213]    cluster 3dcaba34-d49b-4025-99c6-d9a43d4b0fda
+     health HEALTH_OK
+     monmap e1: 1 mons at {ubuntu-238=192.168.28.238:6789/0}
+            election epoch 3, quorum 0 ubuntu-238
+     osdmap e70: 10 osds: 10 up, 10 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v222: 256 pgs, 1 pools, 0 bytes data, 0 objects
+            88369 MB used, 6905 GB / 6991 GB avail
+                 256 active+clean
+2017-06-01 04:05:38.591888 7f0f59c62700 -1 asok(0x7f0f54000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.47235.139703810527616.asok': (13) Permission denied
+
+2017-06-01 12:05:34,109 INFO cluster.py [line:238] PG number is 256
+2017-06-01 12:05:34,109 INFO cluster.py [line:239] usefull PG number is 256
+2017-06-01 12:05:34,109 INFO TC38_osd_out_in_cluster.py [line:98] stop osd.8 in cluster successfully
+2017-06-01 12:05:34,109 INFO TC38_osd_out_in_cluster.py [line:50] 
+Now operate ubuntu-237
+2017-06-01 12:05:34,109 INFO TC38_osd_out_in_cluster.py [line:51] 5
+2017-06-01 12:05:34,109 INFO TC38_osd_out_in_cluster.py [line:52] 
+Now operate osd.9
+2017-06-01 12:05:34,109 INFO TC38_osd_out_in_cluster.py [line:53] out osd.9
+2017-06-01 12:05:34,119 INFO osd.py [line:62] execute command is sudo -i ceph osd out osd.9 & sleep 3
+2017-06-01 12:05:37,378 INFO osd.py [line:67] osd.9 is already out cluster
+2017-06-01 12:05:37,380 INFO TC38_osd_out_in_cluster.py [line:55] check if IO error
+2017-06-01 12:05:37,918 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-01 12:05:38,368 INFO cluster.py [line:213]    cluster 3dcaba34-d49b-4025-99c6-d9a43d4b0fda
+     health HEALTH_ERR
+            13 pgs are stuck inactive for more than 300 seconds
+            36 pgs peering
+            13 pgs stuck inactive
+     monmap e1: 1 mons at {ubuntu-238=192.168.28.238:6789/0}
+            election epoch 3, quorum 0 ubuntu-238
+     osdmap e73: 10 osds: 10 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v227: 256 pgs, 1 pools, 0 bytes data, 0 objects
+            79532 MB used, 6214 GB / 6292 GB avail
+                 220 active+clean
+                  28 peering
+                   8 remapped+peering
+2017-06-01 04:05:42.852460 7f0044d13700 -1 asok(0x7f0040000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.47344.139639050473856.asok': (13) Permission denied
+
+2017-06-01 12:05:38,371 INFO cluster.py [line:215] Now status is HEALTH_ERR, sleep 60s and try again 
+2017-06-01 12:06:38,378 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-01 12:06:38,994 INFO cluster.py [line:213]    cluster 3dcaba34-d49b-4025-99c6-d9a43d4b0fda
+     health HEALTH_OK
+     monmap e1: 1 mons at {ubuntu-238=192.168.28.238:6789/0}
+            election epoch 3, quorum 0 ubuntu-238
+     osdmap e73: 10 osds: 10 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v244: 256 pgs, 1 pools, 0 bytes data, 0 objects
+            79532 MB used, 6214 GB / 6292 GB avail
+                 256 active+clean
+2017-06-01 04:06:43.474575 7f86a63bf700 -1 asok(0x7f86a0000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.47856.140216186704256.asok': (13) Permission denied
+
+2017-06-01 12:06:38,994 INFO cluster.py [line:238] PG number is 256
+2017-06-01 12:06:39,005 INFO cluster.py [line:239] usefull PG number is 256
+2017-06-01 12:06:39,005 INFO TC38_osd_out_in_cluster.py [line:60] stop osd.9 in cluster successfully
+2017-06-01 12:06:39,005 INFO osd.py [line:77] execute command is sudo -i ceph osd in osd.9 & sleep 3
+2017-06-01 12:06:42,387 INFO osd.py [line:80] osd.9 is already in cluster
+2017-06-01 12:07:12,973 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-01 12:07:13,536 INFO cluster.py [line:213]    cluster 3dcaba34-d49b-4025-99c6-d9a43d4b0fda
+     health HEALTH_OK
+     monmap e1: 1 mons at {ubuntu-238=192.168.28.238:6789/0}
+            election epoch 3, quorum 0 ubuntu-238
+     osdmap e76: 10 osds: 10 up, 10 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v252: 256 pgs, 1 pools, 0 bytes data, 0 objects
+            88369 MB used, 6905 GB / 6991 GB avail
+                 256 active+clean
+2017-06-01 04:07:18.014462 7f5e6d238700 -1 asok(0x7f5e68000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.48206.140043448488320.asok': (13) Permission denied
+
+2017-06-01 12:07:13,546 INFO cluster.py [line:238] PG number is 256
+2017-06-01 12:07:13,546 INFO cluster.py [line:239] usefull PG number is 256
+2017-06-01 12:07:13,546 INFO TC38_osd_out_in_cluster.py [line:98] stop osd.9 in cluster successfully
+2017-06-01 12:07:13,546 INFO TC38_osd_out_in_cluster.py [line:50] 
+Now operate ubuntu-238
+2017-06-01 12:07:13,556 INFO TC38_osd_out_in_cluster.py [line:51] 5
+2017-06-01 12:07:13,556 INFO TC38_osd_out_in_cluster.py [line:52] 
+Now operate osd.0
+2017-06-01 12:07:13,556 INFO TC38_osd_out_in_cluster.py [line:53] out osd.0
+2017-06-01 12:07:13,556 INFO osd.py [line:62] execute command is sudo -i ceph osd out osd.0 & sleep 3
+2017-06-01 12:07:16,838 INFO osd.py [line:67] osd.0 is already out cluster
+2017-06-01 12:07:16,838 INFO TC38_osd_out_in_cluster.py [line:55] check if IO error
+2017-06-01 12:07:17,454 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-01 12:07:17,904 INFO cluster.py [line:213]    cluster 3dcaba34-d49b-4025-99c6-d9a43d4b0fda
+     health HEALTH_ERR
+            8 pgs are stuck inactive for more than 300 seconds
+            29 pgs peering
+            8 pgs stuck inactive
+     monmap e1: 1 mons at {ubuntu-238=192.168.28.238:6789/0}
+            election epoch 3, quorum 0 ubuntu-238
+     osdmap e79: 10 osds: 10 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v255: 256 pgs, 1 pools, 0 bytes data, 0 objects
+            79532 MB used, 6214 GB / 6292 GB avail
+                 227 active+clean
+                  29 peering
+2017-06-01 04:07:22.398518 7febac7cf700 -1 asok(0x7feba4000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.31206.140650045510016.asok': (13) Permission denied
+
+2017-06-01 12:07:17,914 INFO cluster.py [line:215] Now status is HEALTH_ERR, sleep 60s and try again 
+2017-06-01 12:08:17,921 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-01 12:08:18,611 INFO cluster.py [line:213]    cluster 3dcaba34-d49b-4025-99c6-d9a43d4b0fda
+     health HEALTH_OK
+     monmap e1: 1 mons at {ubuntu-238=192.168.28.238:6789/0}
+            election epoch 3, quorum 0 ubuntu-238
+     osdmap e79: 10 osds: 10 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v272: 256 pgs, 1 pools, 0 bytes data, 0 objects
+            79533 MB used, 6214 GB / 6292 GB avail
+                 256 active+clean
+2017-06-01 04:08:23.005526 7fa30c035700 -1 asok(0x7fa304000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.31719.140338123510144.asok': (13) Permission denied
+
+2017-06-01 12:08:18,621 INFO cluster.py [line:238] PG number is 256
+2017-06-01 12:08:18,624 INFO cluster.py [line:239] usefull PG number is 256
+2017-06-01 12:08:18,625 INFO TC38_osd_out_in_cluster.py [line:60] stop osd.0 in cluster successfully
+2017-06-01 12:08:18,627 INFO osd.py [line:77] execute command is sudo -i ceph osd in osd.0 & sleep 3
+2017-06-01 12:08:21,951 INFO osd.py [line:80] osd.0 is already in cluster
+2017-06-01 12:08:52,569 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-01 12:08:53,040 INFO cluster.py [line:213]    cluster 3dcaba34-d49b-4025-99c6-d9a43d4b0fda
+     health HEALTH_OK
+     monmap e1: 1 mons at {ubuntu-238=192.168.28.238:6789/0}
+            election epoch 3, quorum 0 ubuntu-238
+     osdmap e82: 10 osds: 10 up, 10 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v281: 256 pgs, 1 pools, 0 bytes data, 0 objects
+            88370 MB used, 6905 GB / 6991 GB avail
+                 256 active+clean
+2017-06-01 04:08:57.527633 7f5f4117b700 -1 asok(0x7f5f3c000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.32067.140047005258112.asok': (13) Permission denied
+
+2017-06-01 12:08:53,051 INFO cluster.py [line:238] PG number is 256
+2017-06-01 12:08:53,051 INFO cluster.py [line:239] usefull PG number is 256
+2017-06-01 12:08:53,051 INFO TC38_osd_out_in_cluster.py [line:98] stop osd.0 in cluster successfully
+2017-06-01 12:08:53,051 INFO TC38_osd_out_in_cluster.py [line:50] 
+Now operate ubuntu-238
+2017-06-01 12:08:53,061 INFO TC38_osd_out_in_cluster.py [line:51] 5
+2017-06-01 12:08:53,061 INFO TC38_osd_out_in_cluster.py [line:52] 
+Now operate osd.1
+2017-06-01 12:08:53,061 INFO TC38_osd_out_in_cluster.py [line:53] out osd.1
+2017-06-01 12:08:53,061 INFO osd.py [line:62] execute command is sudo -i ceph osd out osd.1 & sleep 3
+2017-06-01 12:08:56,336 INFO osd.py [line:67] osd.1 is already out cluster
+2017-06-01 12:08:56,336 INFO TC38_osd_out_in_cluster.py [line:55] check if IO error
+2017-06-01 12:08:56,908 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-01 12:08:57,377 INFO cluster.py [line:213]    cluster 3dcaba34-d49b-4025-99c6-d9a43d4b0fda
+     health HEALTH_ERR
+            10 pgs are stuck inactive for more than 300 seconds
+            18 pgs peering
+            10 pgs stuck inactive
+     monmap e1: 1 mons at {ubuntu-238=192.168.28.238:6789/0}
+            election epoch 3, quorum 0 ubuntu-238
+     osdmap e85: 10 osds: 10 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v284: 256 pgs, 1 pools, 0 bytes data, 0 objects
+            79533 MB used, 6214 GB / 6292 GB avail
+                 238 active+clean
+                  18 remapped+peering
+2017-06-01 04:09:01.873066 7f1f7d205700 -1 asok(0x7f1f78000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.32175.139773133984128.asok': (13) Permission denied
+
+2017-06-01 12:08:57,387 INFO cluster.py [line:215] Now status is HEALTH_ERR, sleep 60s and try again 
+2017-06-01 12:09:57,387 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-01 12:09:57,858 INFO cluster.py [line:213]    cluster 3dcaba34-d49b-4025-99c6-d9a43d4b0fda
+     health HEALTH_OK
+     monmap e1: 1 mons at {ubuntu-238=192.168.28.238:6789/0}
+            election epoch 3, quorum 0 ubuntu-238
+     osdmap e85: 10 osds: 10 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v299: 256 pgs, 1 pools, 0 bytes data, 0 objects
+            79533 MB used, 6214 GB / 6292 GB avail
+                 256 active+clean
+2017-06-01 04:10:02.355380 7f95f244a700 -1 asok(0x7f95ec000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.32687.140281886282112.asok': (13) Permission denied
+
+2017-06-01 12:09:57,858 INFO cluster.py [line:238] PG number is 256
+2017-06-01 12:09:57,868 INFO cluster.py [line:239] usefull PG number is 256
+2017-06-01 12:09:57,868 INFO TC38_osd_out_in_cluster.py [line:60] stop osd.1 in cluster successfully
+2017-06-01 12:09:57,868 INFO osd.py [line:77] execute command is sudo -i ceph osd in osd.1 & sleep 3
+2017-06-01 12:10:01,148 INFO osd.py [line:80] osd.1 is already in cluster
+2017-06-01 12:10:31,665 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-01 12:10:32,101 INFO cluster.py [line:213]    cluster 3dcaba34-d49b-4025-99c6-d9a43d4b0fda
+     health HEALTH_OK
+     monmap e1: 1 mons at {ubuntu-238=192.168.28.238:6789/0}
+            election epoch 3, quorum 0 ubuntu-238
+     osdmap e88: 10 osds: 10 up, 10 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v308: 256 pgs, 1 pools, 0 bytes data, 0 objects
+            88371 MB used, 6905 GB / 6991 GB avail
+                 256 active+clean
+2017-06-01 04:10:36.597007 7f385fd12700 -1 asok(0x7f3858000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.33036.139879971295616.asok': (13) Permission denied
+
+2017-06-01 12:10:32,111 INFO cluster.py [line:238] PG number is 256
+2017-06-01 12:10:32,111 INFO cluster.py [line:239] usefull PG number is 256
+2017-06-01 12:10:32,111 INFO TC38_osd_out_in_cluster.py [line:98] stop osd.1 in cluster successfully
+2017-06-01 12:10:32,111 INFO TC38_osd_out_in_cluster.py [line:50] 
+Now operate ubuntu-238
+2017-06-01 12:10:32,121 INFO TC38_osd_out_in_cluster.py [line:51] 5
+2017-06-01 12:10:32,121 INFO TC38_osd_out_in_cluster.py [line:52] 
+Now operate osd.2
+2017-06-01 12:10:32,121 INFO TC38_osd_out_in_cluster.py [line:53] out osd.2
+2017-06-01 12:10:32,121 INFO osd.py [line:62] execute command is sudo -i ceph osd out osd.2 & sleep 3
+2017-06-01 12:10:35,351 INFO osd.py [line:67] osd.2 is already out cluster
+2017-06-01 12:10:35,351 INFO TC38_osd_out_in_cluster.py [line:55] check if IO error
+2017-06-01 12:10:35,884 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-01 12:10:36,303 INFO cluster.py [line:213]    cluster 3dcaba34-d49b-4025-99c6-d9a43d4b0fda
+     health HEALTH_ERR
+            16 pgs are stuck inactive for more than 300 seconds
+            22 pgs peering
+            16 pgs stuck inactive
+     monmap e1: 1 mons at {ubuntu-238=192.168.28.238:6789/0}
+            election epoch 3, quorum 0 ubuntu-238
+     osdmap e91: 10 osds: 10 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v311: 256 pgs, 1 pools, 0 bytes data, 0 objects
+            79534 MB used, 6214 GB / 6292 GB avail
+                 234 active+clean
+                  22 peering
+2017-06-01 04:10:40.804434 7fe38f538700 -1 asok(0x7fe388000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.33104.140615216009600.asok': (13) Permission denied
+
+2017-06-01 12:10:36,313 INFO cluster.py [line:215] Now status is HEALTH_ERR, sleep 60s and try again 
+2017-06-01 12:11:36,319 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-01 12:11:36,904 INFO cluster.py [line:213]    cluster 3dcaba34-d49b-4025-99c6-d9a43d4b0fda
+     health HEALTH_OK
+     monmap e1: 1 mons at {ubuntu-238=192.168.28.238:6789/0}
+            election epoch 3, quorum 0 ubuntu-238
+     osdmap e91: 10 osds: 10 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v327: 256 pgs, 1 pools, 0 bytes data, 0 objects
+            79534 MB used, 6214 GB / 6292 GB avail
+                 256 active+clean
+2017-06-01 04:11:41.393527 7fade843e700 -1 asok(0x7fade0000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.33663.140384764170624.asok': (13) Permission denied
+
+2017-06-01 12:11:36,914 INFO cluster.py [line:238] PG number is 256
+2017-06-01 12:11:36,914 INFO cluster.py [line:239] usefull PG number is 256
+2017-06-01 12:11:36,914 INFO TC38_osd_out_in_cluster.py [line:60] stop osd.2 in cluster successfully
+2017-06-01 12:11:36,914 INFO osd.py [line:77] execute command is sudo -i ceph osd in osd.2 & sleep 3
+2017-06-01 12:11:40,180 INFO osd.py [line:80] osd.2 is already in cluster
+2017-06-01 12:12:10,720 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-01 12:12:11,167 INFO cluster.py [line:213]    cluster 3dcaba34-d49b-4025-99c6-d9a43d4b0fda
+     health HEALTH_OK
+     monmap e1: 1 mons at {ubuntu-238=192.168.28.238:6789/0}
+            election epoch 3, quorum 0 ubuntu-238
+     osdmap e94: 10 osds: 10 up, 10 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v337: 256 pgs, 1 pools, 0 bytes data, 0 objects
+            88372 MB used, 6905 GB / 6991 GB avail
+                 256 active+clean
+2017-06-01 04:12:15.673055 7f301987c700 -1 asok(0x7f3014000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.33972.139844470706560.asok': (13) Permission denied
+
+2017-06-01 12:12:11,177 INFO cluster.py [line:238] PG number is 256
+2017-06-01 12:12:11,177 INFO cluster.py [line:239] usefull PG number is 256
+2017-06-01 12:12:11,177 INFO TC38_osd_out_in_cluster.py [line:98] stop osd.2 in cluster successfully
+2017-06-01 12:12:11,177 INFO TC38_osd_out_in_cluster.py [line:50] 
+Now operate ubuntu-238
+2017-06-01 12:12:11,187 INFO TC38_osd_out_in_cluster.py [line:51] 5
+2017-06-01 12:12:11,187 INFO TC38_osd_out_in_cluster.py [line:52] 
+Now operate osd.3
+2017-06-01 12:12:11,187 INFO TC38_osd_out_in_cluster.py [line:53] out osd.3
+2017-06-01 12:12:11,187 INFO osd.py [line:62] execute command is sudo -i ceph osd out osd.3 & sleep 3
+2017-06-01 12:12:14,424 INFO osd.py [line:67] osd.3 is already out cluster
+2017-06-01 12:12:14,424 INFO TC38_osd_out_in_cluster.py [line:55] check if IO error
+2017-06-01 12:12:14,924 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-01 12:12:15,361 INFO cluster.py [line:213]    cluster 3dcaba34-d49b-4025-99c6-d9a43d4b0fda
+     health HEALTH_ERR
+            12 pgs are stuck inactive for more than 300 seconds
+            20 pgs peering
+            12 pgs stuck inactive
+     monmap e1: 1 mons at {ubuntu-238=192.168.28.238:6789/0}
+            election epoch 3, quorum 0 ubuntu-238
+     osdmap e97: 10 osds: 10 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v340: 256 pgs, 1 pools, 0 bytes data, 0 objects
+            79534 MB used, 6214 GB / 6292 GB avail
+                 236 active+clean
+                  20 peering
+2017-06-01 04:12:19.857909 7f5cf1942700 -1 asok(0x7f5cec000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.34081.140037073146240.asok': (13) Permission denied
+
+2017-06-01 12:12:15,371 INFO cluster.py [line:215] Now status is HEALTH_ERR, sleep 60s and try again 
+2017-06-01 12:13:15,371 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-01 12:13:16,032 INFO cluster.py [line:213]    cluster 3dcaba34-d49b-4025-99c6-d9a43d4b0fda
+     health HEALTH_OK
+     monmap e1: 1 mons at {ubuntu-238=192.168.28.238:6789/0}
+            election epoch 3, quorum 0 ubuntu-238
+     osdmap e97: 10 osds: 10 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v356: 256 pgs, 1 pools, 0 bytes data, 0 objects
+            79535 MB used, 6214 GB / 6292 GB avail
+                 256 active+clean
+2017-06-01 04:13:20.525285 7f71eb2e5700 -1 asok(0x7f71e4000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.34594.140127133241728.asok': (13) Permission denied
+
+2017-06-01 12:13:16,032 INFO cluster.py [line:238] PG number is 256
+2017-06-01 12:13:16,042 INFO cluster.py [line:239] usefull PG number is 256
+2017-06-01 12:13:16,042 INFO TC38_osd_out_in_cluster.py [line:60] stop osd.3 in cluster successfully
+2017-06-01 12:13:16,042 INFO osd.py [line:77] execute command is sudo -i ceph osd in osd.3 & sleep 3
+2017-06-01 12:13:19,375 INFO osd.py [line:80] osd.3 is already in cluster
+2017-06-01 12:13:50,071 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-01 12:13:50,509 INFO cluster.py [line:213]    cluster 3dcaba34-d49b-4025-99c6-d9a43d4b0fda
+     health HEALTH_OK
+     monmap e1: 1 mons at {ubuntu-238=192.168.28.238:6789/0}
+            election epoch 3, quorum 0 ubuntu-238
+     osdmap e100: 10 osds: 10 up, 10 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v365: 256 pgs, 1 pools, 0 bytes data, 0 objects
+            88372 MB used, 6905 GB / 6991 GB avail
+                 256 active+clean
+2017-06-01 04:13:55.016970 7f4f2c8d1700 -1 asok(0x7f4f28000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.34941.139977950237056.asok': (13) Permission denied
+
+2017-06-01 12:13:50,509 INFO cluster.py [line:238] PG number is 256
+2017-06-01 12:13:50,519 INFO cluster.py [line:239] usefull PG number is 256
+2017-06-01 12:13:50,519 INFO TC38_osd_out_in_cluster.py [line:98] stop osd.3 in cluster successfully
+2017-06-01 12:13:50,519 INFO TC38_osd_out_in_cluster.py [line:50] 
+Now operate ubuntu-238
+2017-06-01 12:13:50,529 INFO TC38_osd_out_in_cluster.py [line:51] 5
+2017-06-01 12:13:50,529 INFO TC38_osd_out_in_cluster.py [line:52] 
+Now operate osd.4
+2017-06-01 12:13:50,529 INFO TC38_osd_out_in_cluster.py [line:53] out osd.4
+2017-06-01 12:13:50,529 INFO osd.py [line:62] execute command is sudo -i ceph osd out osd.4 & sleep 3
+2017-06-01 12:13:53,857 INFO osd.py [line:67] osd.4 is already out cluster
+2017-06-01 12:13:53,857 INFO TC38_osd_out_in_cluster.py [line:55] check if IO error
+2017-06-01 12:13:54,579 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-01 12:13:55,174 INFO cluster.py [line:213]    cluster 3dcaba34-d49b-4025-99c6-d9a43d4b0fda
+     health HEALTH_ERR
+            3 pgs are stuck inactive for more than 300 seconds
+            3 pgs peering
+            3 pgs stuck inactive
+     monmap e1: 1 mons at {ubuntu-238=192.168.28.238:6789/0}
+            election epoch 3, quorum 0 ubuntu-238
+     osdmap e103: 10 osds: 10 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v369: 256 pgs, 1 pools, 0 bytes data, 0 objects
+            79535 MB used, 6214 GB / 6292 GB avail
+                 253 active+clean
+                   3 remapped+peering
+2017-06-01 04:13:59.678337 7f3af9665700 -1 asok(0x7f3af4000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.35049.139891178475904.asok': (13) Permission denied
+
+2017-06-01 12:13:55,184 INFO cluster.py [line:215] Now status is HEALTH_ERR, sleep 60s and try again 
+2017-06-01 12:14:55,191 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-01 12:14:55,826 INFO cluster.py [line:213]    cluster 3dcaba34-d49b-4025-99c6-d9a43d4b0fda
+     health HEALTH_OK
+     monmap e1: 1 mons at {ubuntu-238=192.168.28.238:6789/0}
+            election epoch 3, quorum 0 ubuntu-238
+     osdmap e103: 10 osds: 10 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v385: 256 pgs, 1 pools, 0 bytes data, 0 objects
+            79535 MB used, 6214 GB / 6292 GB avail
+                 256 active+clean
+2017-06-01 04:15:00.319350 7fdab19b6700 -1 asok(0x7fdaac000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.35566.140577165283712.asok': (13) Permission denied
+
+2017-06-01 12:14:55,828 INFO cluster.py [line:238] PG number is 256
+2017-06-01 12:14:55,838 INFO cluster.py [line:239] usefull PG number is 256
+2017-06-01 12:14:55,838 INFO TC38_osd_out_in_cluster.py [line:60] stop osd.4 in cluster successfully
+2017-06-01 12:14:55,838 INFO osd.py [line:77] execute command is sudo -i ceph osd in osd.4 & sleep 3
+2017-06-01 12:14:59,266 INFO osd.py [line:80] osd.4 is already in cluster
+2017-06-01 12:15:29,950 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-01 12:15:30,555 INFO cluster.py [line:213]    cluster 3dcaba34-d49b-4025-99c6-d9a43d4b0fda
+     health HEALTH_OK
+     monmap e1: 1 mons at {ubuntu-238=192.168.28.238:6789/0}
+            election epoch 3, quorum 0 ubuntu-238
+     osdmap e106: 10 osds: 10 up, 10 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v394: 256 pgs, 1 pools, 0 bytes data, 0 objects
+            88373 MB used, 6905 GB / 6991 GB avail
+                 256 active+clean
+2017-06-01 04:15:35.036502 7f055410f700 -1 asok(0x7f054c000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.35924.139660726636928.asok': (13) Permission denied
+
+2017-06-01 12:15:30,565 INFO cluster.py [line:238] PG number is 256
+2017-06-01 12:15:30,565 INFO cluster.py [line:239] usefull PG number is 256
+2017-06-01 12:15:30,565 INFO TC38_osd_out_in_cluster.py [line:98] stop osd.4 in cluster successfully
+2017-06-01 12:15:31,252 INFO TC38_osd_out_in_cluster.py [line:116] TC38_osd_out_in_cluster runs complete

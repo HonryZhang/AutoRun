@@ -1,0 +1,1414 @@
+2017-06-02 09:37:26,440 INFO TC39_shutdown_osd_on_single_node.py [line:24] 
+This test case will do the following steps:
+1. start IO on 10 images with randwrite and verify
+2. login the first node 
+3. stop all osds in sequence
+4. start all osds in sequence
+5. check the cluster status
+6. repeat step 2-5 on the other node
+
+2017-06-02 09:37:26,440 INFO TC39_shutdown_osd_on_single_node.py [line:25] the timeout is 6000
+2017-06-02 09:37:27,993 INFO monitors.py [line:126]    "quorum_leader_name": "ubuntu-238",
+stdin: is not a tty
+
+2017-06-02 09:37:27,993 INFO monitors.py [line:129]    "quorum_leader_name": "ubuntu-238",
+2017-06-02 09:37:27,993 INFO node.py [line:97] init osd on node ubuntu-237
+2017-06-02 09:37:28,405 INFO node.py [line:112] osd.5  ---> processId 38790
+2017-06-02 09:37:28,405 INFO node.py [line:112] osd.6  ---> processId 39218
+2017-06-02 09:37:28,405 INFO node.py [line:112] osd.7  ---> processId 39685
+2017-06-02 09:37:28,405 INFO node.py [line:112] osd.8  ---> processId 40116
+2017-06-02 09:37:28,415 INFO node.py [line:112] osd.9  ---> processId 40585
+2017-06-02 09:37:28,415 INFO osd.py [line:28] node is  ubuntu-237
+2017-06-02 09:37:28,415 INFO osd.py [line:29] execute command is sudo -i stop ceph-osd id=5 & sleep 3
+2017-06-02 09:37:34,236 INFO osd.py [line:32] osd osd.5 is shutdown successfully
+2017-06-02 09:37:39,236 INFO osd.py [line:102] node is  ubuntu-237
+2017-06-02 09:37:39,237 INFO osd.py [line:103] execute command is sudo -i ceph-osd -i 5 & sleep 30
+2017-06-02 09:38:09,615 INFO osd.py [line:107] osd osd.5 is start successfully
+2017-06-02 09:38:09,618 INFO osd.py [line:28] node is  ubuntu-237
+2017-06-02 09:38:09,619 INFO osd.py [line:29] execute command is sudo -i stop ceph-osd id=6 & sleep 3
+2017-06-02 09:38:15,825 INFO osd.py [line:32] osd osd.6 is shutdown successfully
+2017-06-02 09:38:20,829 INFO osd.py [line:102] node is  ubuntu-237
+2017-06-02 09:38:20,829 INFO osd.py [line:103] execute command is sudo -i ceph-osd -i 6 & sleep 30
+2017-06-02 09:38:51,266 INFO osd.py [line:107] osd osd.6 is start successfully
+2017-06-02 09:38:51,267 INFO osd.py [line:28] node is  ubuntu-237
+2017-06-02 09:38:51,269 INFO osd.py [line:29] execute command is sudo -i stop ceph-osd id=7 & sleep 3
+2017-06-02 09:38:56,664 INFO osd.py [line:32] osd osd.7 is shutdown successfully
+2017-06-02 09:39:01,665 INFO osd.py [line:102] node is  ubuntu-237
+2017-06-02 09:39:01,665 INFO osd.py [line:103] execute command is sudo -i ceph-osd -i 7 & sleep 30
+2017-06-02 09:39:32,170 INFO osd.py [line:107] osd osd.7 is start successfully
+2017-06-02 09:39:32,170 INFO osd.py [line:28] node is  ubuntu-237
+2017-06-02 09:39:32,170 INFO osd.py [line:29] execute command is sudo -i stop ceph-osd id=8 & sleep 3
+2017-06-02 09:39:37,808 INFO osd.py [line:32] osd osd.8 is shutdown successfully
+2017-06-02 09:39:42,808 INFO osd.py [line:102] node is  ubuntu-237
+2017-06-02 09:39:42,808 INFO osd.py [line:103] execute command is sudo -i ceph-osd -i 8 & sleep 30
+2017-06-02 09:40:13,125 INFO osd.py [line:107] osd osd.8 is start successfully
+2017-06-02 09:40:13,125 INFO osd.py [line:28] node is  ubuntu-237
+2017-06-02 09:40:13,125 INFO osd.py [line:29] execute command is sudo -i stop ceph-osd id=9 & sleep 3
+2017-06-02 09:40:18,657 INFO osd.py [line:32] osd osd.9 is shutdown successfully
+2017-06-02 09:40:23,660 INFO osd.py [line:102] node is  ubuntu-237
+2017-06-02 09:40:23,660 INFO osd.py [line:103] execute command is sudo -i ceph-osd -i 9 & sleep 30
+2017-06-02 09:40:54,078 INFO osd.py [line:107] osd osd.9 is start successfully
+2017-06-02 09:40:54,507 INFO node.py [line:133] osd.5  ---> processId 20348
+2017-06-02 09:40:54,509 INFO node.py [line:133] osd.6  ---> processId 20794
+2017-06-02 09:40:54,510 INFO node.py [line:133] osd.7  ---> processId 21256
+2017-06-02 09:40:54,513 INFO node.py [line:133] osd.8  ---> processId 21702
+2017-06-02 09:40:54,513 INFO node.py [line:133] osd.9  ---> processId 22166
+2017-06-02 09:40:54,513 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-02 09:40:55,446 INFO cluster.py [line:213]    cluster 3dcaba34-d49b-4025-99c6-d9a43d4b0fda
+     health HEALTH_WARN
+            503 pgs degraded
+            4 pgs recovering
+            499 pgs recovery_wait
+            recovery 9024/768032 objects degraded (1.175%)
+     monmap e1: 1 mons at {ubuntu-238=192.168.28.238:6789/0}
+            election epoch 3, quorum 0 ubuntu-238
+     osdmap e3317: 10 osds: 10 up, 10 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v53647: 512 pgs, 1 pools, 1492 GB data, 375 kobjects
+            999 GB used, 5992 GB / 6991 GB avail
+            9024/768032 objects degraded (1.175%)
+                 499 active+recovery_wait+degraded
+                   9 active+clean
+                   4 active+recovering+degraded
+recovery io 33231 kB/s, 14 objects/s
+  client io 1475 kB/s wr, 0 op/s rd, 184 op/s wr
+2017-06-02 01:40:59.806378 7f5aed8ce700 -1 asok(0x7f5ae8000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.22529.140028416102784.asok': (13) Permission denied
+
+2017-06-02 09:40:55,446 INFO cluster.py [line:238] PG number is 512
+2017-06-02 09:40:55,446 INFO cluster.py [line:239] usefull PG number is 9
+2017-06-02 09:41:55,447 INFO cluster.py [line:247] cost 61 seconds, left 5939 seconds when check the ceph status
+2017-06-02 09:41:55,447 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-02 09:41:56,398 INFO cluster.py [line:213]    cluster 3dcaba34-d49b-4025-99c6-d9a43d4b0fda
+     health HEALTH_WARN
+            483 pgs degraded
+            5 pgs recovering
+            478 pgs recovery_wait
+            recovery 8555/768032 objects degraded (1.114%)
+     monmap e1: 1 mons at {ubuntu-238=192.168.28.238:6789/0}
+            election epoch 3, quorum 0 ubuntu-238
+     osdmap e3317: 10 osds: 10 up, 10 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v53700: 512 pgs, 1 pools, 1492 GB data, 375 kobjects
+            999 GB used, 5992 GB / 6991 GB avail
+            8555/768032 objects degraded (1.114%)
+                 478 active+recovery_wait+degraded
+                  29 active+clean
+                   5 active+recovering+degraded
+recovery io 29924 kB/s, 16 objects/s
+  client io 1385 kB/s wr, 0 op/s rd, 173 op/s wr
+2017-06-02 01:42:00.718224 7fa6cda3e700 -1 asok(0x7fa6c8000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.23055.140354296746368.asok': (13) Permission denied
+
+2017-06-02 09:41:56,401 INFO cluster.py [line:238] PG number is 512
+2017-06-02 09:41:56,401 INFO cluster.py [line:239] usefull PG number is 29
+2017-06-02 09:42:56,401 INFO cluster.py [line:247] cost 61 seconds, left 5878 seconds when check the ceph status
+2017-06-02 09:42:56,404 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-02 09:42:57,362 INFO cluster.py [line:213]    cluster 3dcaba34-d49b-4025-99c6-d9a43d4b0fda
+     health HEALTH_WARN
+            466 pgs degraded
+            4 pgs recovering
+            462 pgs recovery_wait
+            92 pgs stuck unclean
+            recovery 8091/768032 objects degraded (1.053%)
+     monmap e1: 1 mons at {ubuntu-238=192.168.28.238:6789/0}
+            election epoch 3, quorum 0 ubuntu-238
+     osdmap e3317: 10 osds: 10 up, 10 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v53754: 512 pgs, 1 pools, 1492 GB data, 375 kobjects
+            999 GB used, 5991 GB / 6991 GB avail
+            8091/768032 objects degraded (1.053%)
+                 462 active+recovery_wait+degraded
+                  46 active+clean
+                   4 active+recovering+degraded
+recovery io 13583 kB/s, 11 objects/s
+  client io 938 kB/s wr, 0 op/s rd, 117 op/s wr
+2017-06-02 01:43:01.732463 7fcef71b6700 -1 asok(0x7fcef0000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.23569.140526766526848.asok': (13) Permission denied
+
+2017-06-02 09:42:57,371 INFO cluster.py [line:238] PG number is 512
+2017-06-02 09:42:57,371 INFO cluster.py [line:239] usefull PG number is 46
+2017-06-02 09:43:57,375 INFO cluster.py [line:247] cost 61 seconds, left 5817 seconds when check the ceph status
+2017-06-02 09:43:57,375 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-02 09:43:58,355 INFO cluster.py [line:213]    cluster 3dcaba34-d49b-4025-99c6-d9a43d4b0fda
+     health HEALTH_WARN
+            449 pgs degraded
+            5 pgs recovering
+            444 pgs recovery_wait
+            253 pgs stuck unclean
+            recovery 7640/768032 objects degraded (0.995%)
+     monmap e1: 1 mons at {ubuntu-238=192.168.28.238:6789/0}
+            election epoch 3, quorum 0 ubuntu-238
+     osdmap e3317: 10 osds: 10 up, 10 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v53807: 512 pgs, 1 pools, 1492 GB data, 375 kobjects
+            999 GB used, 5991 GB / 6991 GB avail
+            7640/768032 objects degraded (0.995%)
+                 444 active+recovery_wait+degraded
+                  63 active+clean
+                   5 active+recovering+degraded
+recovery io 19608 kB/s, 11 objects/s
+  client io 1195 kB/s wr, 0 op/s rd, 149 op/s wr
+2017-06-02 01:44:02.677058 7f245119b700 -1 asok(0x7f244c000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.24082.139793870623104.asok': (13) Permission denied
+
+2017-06-02 09:43:58,358 INFO cluster.py [line:238] PG number is 512
+2017-06-02 09:43:58,358 INFO cluster.py [line:239] usefull PG number is 63
+2017-06-02 09:44:58,361 INFO cluster.py [line:247] cost 61 seconds, left 5756 seconds when check the ceph status
+2017-06-02 09:44:58,361 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-02 09:44:59,305 INFO cluster.py [line:213]    cluster 3dcaba34-d49b-4025-99c6-d9a43d4b0fda
+     health HEALTH_WARN
+            430 pgs degraded
+            3 pgs recovering
+            427 pgs recovery_wait
+            353 pgs stuck unclean
+            recovery 7193/768032 objects degraded (0.937%)
+     monmap e1: 1 mons at {ubuntu-238=192.168.28.238:6789/0}
+            election epoch 3, quorum 0 ubuntu-238
+     osdmap e3317: 10 osds: 10 up, 10 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v53860: 512 pgs, 1 pools, 1492 GB data, 375 kobjects
+            999 GB used, 5991 GB / 6991 GB avail
+            7193/768032 objects degraded (0.937%)
+                 427 active+recovery_wait+degraded
+                  82 active+clean
+                   3 active+recovering+degraded
+recovery io 17649 kB/s, 10 objects/s
+  client io 1953 kB/s wr, 0 op/s rd, 244 op/s wr
+2017-06-02 01:45:03.678641 7fa2aad7d700 -1 asok(0x7fa2a4000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.24626.140336512897408.asok': (13) Permission denied
+
+2017-06-02 09:44:59,312 INFO cluster.py [line:238] PG number is 512
+2017-06-02 09:44:59,312 INFO cluster.py [line:239] usefull PG number is 82
+2017-06-02 09:45:59,313 INFO cluster.py [line:247] cost 61 seconds, left 5695 seconds when check the ceph status
+2017-06-02 09:45:59,315 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-02 09:46:00,263 INFO cluster.py [line:213]    cluster 3dcaba34-d49b-4025-99c6-d9a43d4b0fda
+     health HEALTH_WARN
+            425 pgs degraded
+            3 pgs recovering
+            422 pgs recovery_wait
+            425 pgs stuck unclean
+            recovery 6779/768032 objects degraded (0.883%)
+     monmap e1: 1 mons at {ubuntu-238=192.168.28.238:6789/0}
+            election epoch 3, quorum 0 ubuntu-238
+     osdmap e3317: 10 osds: 10 up, 10 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v53912: 512 pgs, 1 pools, 1492 GB data, 375 kobjects
+            1000 GB used, 5991 GB / 6991 GB avail
+            6779/768032 objects degraded (0.883%)
+                 422 active+recovery_wait+degraded
+                  87 active+clean
+                   3 active+recovering+degraded
+recovery io 29498 kB/s, 11 objects/s
+  client io 1545 kB/s wr, 0 op/s rd, 193 op/s wr
+2017-06-02 01:46:04.633365 7fe384468700 -1 asok(0x7fe37c000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.25155.140615014683008.asok': (13) Permission denied
+
+2017-06-02 09:46:00,266 INFO cluster.py [line:238] PG number is 512
+2017-06-02 09:46:00,266 INFO cluster.py [line:239] usefull PG number is 87
+2017-06-02 09:47:00,269 INFO cluster.py [line:247] cost 61 seconds, left 5634 seconds when check the ceph status
+2017-06-02 09:47:00,269 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-02 09:47:01,236 INFO cluster.py [line:213]    cluster 3dcaba34-d49b-4025-99c6-d9a43d4b0fda
+     health HEALTH_WARN
+            419 pgs degraded
+            3 pgs recovering
+            416 pgs recovery_wait
+            419 pgs stuck unclean
+            recovery 6368/768032 objects degraded (0.829%)
+     monmap e1: 1 mons at {ubuntu-238=192.168.28.238:6789/0}
+            election epoch 3, quorum 0 ubuntu-238
+     osdmap e3317: 10 osds: 10 up, 10 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v53966: 512 pgs, 1 pools, 1492 GB data, 375 kobjects
+            1000 GB used, 5991 GB / 6991 GB avail
+            6368/768032 objects degraded (0.829%)
+                 416 active+recovery_wait+degraded
+                  93 active+clean
+                   3 active+recovering+degraded
+recovery io 19025 kB/s, 8 objects/s
+  client io 2606 kB/s wr, 0 op/s rd, 325 op/s wr
+2017-06-02 01:47:05.551598 7f2e6dc55700 -1 asok(0x7f2e68000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.25668.139837290058112.asok': (13) Permission denied
+
+2017-06-02 09:47:01,236 INFO cluster.py [line:238] PG number is 512
+2017-06-02 09:47:01,236 INFO cluster.py [line:239] usefull PG number is 93
+2017-06-02 09:48:01,240 INFO cluster.py [line:247] cost 61 seconds, left 5573 seconds when check the ceph status
+2017-06-02 09:48:01,240 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-02 09:48:02,309 INFO cluster.py [line:213]    cluster 3dcaba34-d49b-4025-99c6-d9a43d4b0fda
+     health HEALTH_WARN
+            414 pgs degraded
+            3 pgs recovering
+            411 pgs recovery_wait
+            414 pgs stuck unclean
+            recovery 5965/768032 objects degraded (0.777%)
+     monmap e1: 1 mons at {ubuntu-238=192.168.28.238:6789/0}
+            election epoch 3, quorum 0 ubuntu-238
+     osdmap e3317: 10 osds: 10 up, 10 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v54019: 512 pgs, 1 pools, 1492 GB data, 375 kobjects
+            1000 GB used, 5990 GB / 6991 GB avail
+            5965/768032 objects degraded (0.777%)
+                 411 active+recovery_wait+degraded
+                  98 active+clean
+                   3 active+recovering+degraded
+recovery io 11385 kB/s, 8 objects/s
+  client io 1721 kB/s wr, 0 op/s rd, 215 op/s wr
+2017-06-02 01:48:06.542093 7f416dc01700 -1 asok(0x7f4168000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.26189.139918894436736.asok': (13) Permission denied
+
+2017-06-02 09:48:02,312 INFO cluster.py [line:238] PG number is 512
+2017-06-02 09:48:02,313 INFO cluster.py [line:239] usefull PG number is 98
+2017-06-02 09:49:02,315 INFO cluster.py [line:247] cost 61 seconds, left 5512 seconds when check the ceph status
+2017-06-02 09:49:02,318 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-02 09:49:03,276 INFO cluster.py [line:213]    cluster 3dcaba34-d49b-4025-99c6-d9a43d4b0fda
+     health HEALTH_WARN
+            411 pgs degraded
+            2 pgs recovering
+            409 pgs recovery_wait
+            411 pgs stuck unclean
+            recovery 5584/768032 objects degraded (0.727%)
+     monmap e1: 1 mons at {ubuntu-238=192.168.28.238:6789/0}
+            election epoch 3, quorum 0 ubuntu-238
+     osdmap e3317: 10 osds: 10 up, 10 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v54071: 512 pgs, 1 pools, 1492 GB data, 375 kobjects
+            1000 GB used, 5990 GB / 6991 GB avail
+            5584/768032 objects degraded (0.727%)
+                 409 active+recovery_wait+degraded
+                 101 active+clean
+                   2 active+recovering+degraded
+recovery io 1100 kB/s, 0 objects/s
+  client io 1640 kB/s wr, 0 op/s rd, 205 op/s wr
+2017-06-02 01:49:07.600596 7f2d311eb700 -1 asok(0x7f2d2c000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.26704.139831988457856.asok': (13) Permission denied
+
+2017-06-02 09:49:03,276 INFO cluster.py [line:238] PG number is 512
+2017-06-02 09:49:03,276 INFO cluster.py [line:239] usefull PG number is 101
+2017-06-02 09:50:03,280 INFO cluster.py [line:247] cost 61 seconds, left 5451 seconds when check the ceph status
+2017-06-02 09:50:03,283 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-02 09:50:04,198 INFO cluster.py [line:213]    cluster 3dcaba34-d49b-4025-99c6-d9a43d4b0fda
+     health HEALTH_WARN
+            411 pgs degraded
+            2 pgs recovering
+            409 pgs recovery_wait
+            411 pgs stuck unclean
+            recovery 5215/768032 objects degraded (0.679%)
+     monmap e1: 1 mons at {ubuntu-238=192.168.28.238:6789/0}
+            election epoch 3, quorum 0 ubuntu-238
+     osdmap e3317: 10 osds: 10 up, 10 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v54123: 512 pgs, 1 pools, 1492 GB data, 375 kobjects
+            1001 GB used, 5990 GB / 6991 GB avail
+            5215/768032 objects degraded (0.679%)
+                 409 active+recovery_wait+degraded
+                 101 active+clean
+                   2 active+recovering+degraded
+recovery io 9894 kB/s, 4 objects/s
+  client io 1839 kB/s wr, 0 op/s rd, 229 op/s wr
+2017-06-02 01:50:08.560961 7fa4346b9700 -1 asok(0x7fa42c000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.27216.140343089566080.asok': (13) Permission denied
+
+2017-06-02 09:50:04,200 INFO cluster.py [line:238] PG number is 512
+2017-06-02 09:50:04,201 INFO cluster.py [line:239] usefull PG number is 101
+2017-06-02 09:51:04,203 INFO cluster.py [line:247] cost 61 seconds, left 5390 seconds when check the ceph status
+2017-06-02 09:51:04,203 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-02 09:51:05,170 INFO cluster.py [line:213]    cluster 3dcaba34-d49b-4025-99c6-d9a43d4b0fda
+     health HEALTH_WARN
+            411 pgs degraded
+            2 pgs recovering
+            409 pgs recovery_wait
+            411 pgs stuck unclean
+            recovery 4837/768032 objects degraded (0.630%)
+     monmap e1: 1 mons at {ubuntu-238=192.168.28.238:6789/0}
+            election epoch 3, quorum 0 ubuntu-238
+     osdmap e3317: 10 osds: 10 up, 10 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v54176: 512 pgs, 1 pools, 1492 GB data, 375 kobjects
+            1001 GB used, 5990 GB / 6991 GB avail
+            4837/768032 objects degraded (0.630%)
+                 409 active+recovery_wait+degraded
+                 101 active+clean
+                   2 active+recovering+degraded
+recovery io 33479 kB/s, 12 objects/s
+  client io 3419 kB/s wr, 0 op/s rd, 427 op/s wr
+2017-06-02 01:51:09.481672 7f25f5f51700 -1 asok(0x7f25f0000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.27756.139800917053824.asok': (13) Permission denied
+
+2017-06-02 09:51:05,171 INFO cluster.py [line:238] PG number is 512
+2017-06-02 09:51:05,174 INFO cluster.py [line:239] usefull PG number is 101
+2017-06-02 09:52:05,174 INFO cluster.py [line:247] cost 61 seconds, left 5329 seconds when check the ceph status
+2017-06-02 09:52:05,174 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-02 09:52:06,358 INFO cluster.py [line:213]    cluster 3dcaba34-d49b-4025-99c6-d9a43d4b0fda
+     health HEALTH_WARN
+            410 pgs degraded
+            2 pgs recovering
+            408 pgs recovery_wait
+            410 pgs stuck unclean
+            recovery 4477/768032 objects degraded (0.583%)
+     monmap e1: 1 mons at {ubuntu-238=192.168.28.238:6789/0}
+            election epoch 3, quorum 0 ubuntu-238
+     osdmap e3317: 10 osds: 10 up, 10 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v54229: 512 pgs, 1 pools, 1492 GB data, 375 kobjects
+            1001 GB used, 5989 GB / 6991 GB avail
+            4477/768032 objects degraded (0.583%)
+                 408 active+recovery_wait+degraded
+                 102 active+clean
+                   2 active+recovering+degraded
+recovery io 28586 kB/s, 13 objects/s
+  client io 4064 kB/s wr, 0 op/s rd, 508 op/s wr
+2017-06-02 01:52:10.515370 7f2d2c406700 -1 asok(0x7f2d24000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.28281.139831854240128.asok': (13) Permission denied
+
+2017-06-02 09:52:06,359 INFO cluster.py [line:238] PG number is 512
+2017-06-02 09:52:06,361 INFO cluster.py [line:239] usefull PG number is 102
+2017-06-02 09:53:06,372 INFO cluster.py [line:247] cost 61 seconds, left 5268 seconds when check the ceph status
+2017-06-02 09:53:06,374 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-02 09:53:07,473 INFO cluster.py [line:213]    cluster 3dcaba34-d49b-4025-99c6-d9a43d4b0fda
+     health HEALTH_WARN
+            410 pgs degraded
+            2 pgs recovering
+            408 pgs recovery_wait
+            410 pgs stuck unclean
+            recovery 4123/768032 objects degraded (0.537%)
+     monmap e1: 1 mons at {ubuntu-238=192.168.28.238:6789/0}
+            election epoch 3, quorum 0 ubuntu-238
+     osdmap e3317: 10 osds: 10 up, 10 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v54282: 512 pgs, 1 pools, 1492 GB data, 375 kobjects
+            1001 GB used, 5989 GB / 6991 GB avail
+            4123/768032 objects degraded (0.537%)
+                 408 active+recovery_wait+degraded
+                 102 active+clean
+                   2 active+recovering+degraded
+recovery io 5498 kB/s, 3 objects/s
+  client io 2260 kB/s wr, 0 op/s rd, 282 op/s wr
+2017-06-02 01:53:11.594488 7f679f710700 -1 asok(0x7f6798000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.28802.140082908500352.asok': (13) Permission denied
+
+2017-06-02 09:53:07,476 INFO cluster.py [line:238] PG number is 512
+2017-06-02 09:53:07,479 INFO cluster.py [line:239] usefull PG number is 102
+2017-06-02 09:54:07,480 INFO cluster.py [line:247] cost 61 seconds, left 5207 seconds when check the ceph status
+2017-06-02 09:54:07,483 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-02 09:54:08,549 INFO cluster.py [line:213]    cluster 3dcaba34-d49b-4025-99c6-d9a43d4b0fda
+     health HEALTH_WARN
+            401 pgs degraded
+            1 pgs recovering
+            400 pgs recovery_wait
+            401 pgs stuck unclean
+            recovery 3757/768032 objects degraded (0.489%)
+     monmap e1: 1 mons at {ubuntu-238=192.168.28.238:6789/0}
+            election epoch 3, quorum 0 ubuntu-238
+     osdmap e3317: 10 osds: 10 up, 10 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v54335: 512 pgs, 1 pools, 1492 GB data, 375 kobjects
+            1002 GB used, 5989 GB / 6991 GB avail
+            3757/768032 objects degraded (0.489%)
+                 400 active+recovery_wait+degraded
+                 111 active+clean
+                   1 active+recovering+degraded
+recovery io 592 kB/s, 0 objects/s
+  client io 1774 kB/s wr, 0 op/s rd, 221 op/s wr
+2017-06-02 01:54:12.746403 7f20867c0700 -1 asok(0x7f2080000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.29322.139777563169152.asok': (13) Permission denied
+
+2017-06-02 09:54:08,549 INFO cluster.py [line:238] PG number is 512
+2017-06-02 09:54:08,549 INFO cluster.py [line:239] usefull PG number is 111
+2017-06-02 09:55:08,552 INFO cluster.py [line:247] cost 61 seconds, left 5146 seconds when check the ceph status
+2017-06-02 09:55:08,552 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-02 09:55:09,719 INFO cluster.py [line:213]    cluster 3dcaba34-d49b-4025-99c6-d9a43d4b0fda
+     health HEALTH_WARN
+            399 pgs degraded
+            2 pgs recovering
+            397 pgs recovery_wait
+            399 pgs stuck unclean
+            recovery 3415/768032 objects degraded (0.445%)
+     monmap e1: 1 mons at {ubuntu-238=192.168.28.238:6789/0}
+            election epoch 3, quorum 0 ubuntu-238
+     osdmap e3317: 10 osds: 10 up, 10 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v54388: 512 pgs, 1 pools, 1492 GB data, 375 kobjects
+            1002 GB used, 5988 GB / 6991 GB avail
+            3415/768032 objects degraded (0.445%)
+                 397 active+recovery_wait+degraded
+                 113 active+clean
+                   2 active+recovering+degraded
+recovery io 15036 kB/s, 6 objects/s
+  client io 2568 kB/s wr, 0 op/s rd, 321 op/s wr
+2017-06-02 01:55:13.878101 7f6ed4db7700 -1 asok(0x7f6ed0000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.29838.140113912795520.asok': (13) Permission denied
+
+2017-06-02 09:55:09,721 INFO cluster.py [line:238] PG number is 512
+2017-06-02 09:55:09,723 INFO cluster.py [line:239] usefull PG number is 113
+2017-06-02 09:56:09,740 INFO cluster.py [line:247] cost 61 seconds, left 5085 seconds when check the ceph status
+2017-06-02 09:56:09,740 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-02 09:56:10,674 INFO cluster.py [line:213]    cluster 3dcaba34-d49b-4025-99c6-d9a43d4b0fda
+     health HEALTH_WARN
+            391 pgs degraded
+            2 pgs recovering
+            389 pgs recovery_wait
+            391 pgs stuck unclean
+            recovery 3063/768032 objects degraded (0.399%)
+     monmap e1: 1 mons at {ubuntu-238=192.168.28.238:6789/0}
+            election epoch 3, quorum 0 ubuntu-238
+     osdmap e3317: 10 osds: 10 up, 10 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v54442: 512 pgs, 1 pools, 1492 GB data, 375 kobjects
+            1002 GB used, 5988 GB / 6991 GB avail
+            3063/768032 objects degraded (0.399%)
+                 389 active+recovery_wait+degraded
+                 121 active+clean
+                   2 active+recovering+degraded
+recovery io 25846 kB/s, 10 objects/s
+  client io 4394 kB/s wr, 0 op/s rd, 549 op/s wr
+2017-06-02 01:56:15.035155 7ffb86fc1700 -1 asok(0x7ffb80000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.30367.140718161006976.asok': (13) Permission denied
+
+2017-06-02 09:56:10,674 INFO cluster.py [line:238] PG number is 512
+2017-06-02 09:56:10,674 INFO cluster.py [line:239] usefull PG number is 121
+2017-06-02 09:57:10,677 INFO cluster.py [line:247] cost 61 seconds, left 5024 seconds when check the ceph status
+2017-06-02 09:57:10,677 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-02 09:57:11,644 INFO cluster.py [line:213]    cluster 3dcaba34-d49b-4025-99c6-d9a43d4b0fda
+     health HEALTH_WARN
+            379 pgs degraded
+            2 pgs recovering
+            377 pgs recovery_wait
+            379 pgs stuck unclean
+            recovery 2694/768032 objects degraded (0.351%)
+     monmap e1: 1 mons at {ubuntu-238=192.168.28.238:6789/0}
+            election epoch 3, quorum 0 ubuntu-238
+     osdmap e3317: 10 osds: 10 up, 10 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v54495: 512 pgs, 1 pools, 1492 GB data, 375 kobjects
+            1003 GB used, 5988 GB / 6991 GB avail
+            2694/768032 objects degraded (0.351%)
+                 377 active+recovery_wait+degraded
+                 133 active+clean
+                   2 active+recovering+degraded
+recovery io 15225 kB/s, 6 objects/s
+  client io 4495 kB/s wr, 0 op/s rd, 561 op/s wr
+2017-06-02 01:57:15.980584 7ff00caee700 -1 asok(0x7ff008000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.30883.140668903100800.asok': (13) Permission denied
+
+2017-06-02 09:57:11,661 INFO cluster.py [line:238] PG number is 512
+2017-06-02 09:57:11,661 INFO cluster.py [line:239] usefull PG number is 133
+2017-06-02 09:58:11,661 INFO cluster.py [line:247] cost 61 seconds, left 4963 seconds when check the ceph status
+2017-06-02 09:58:11,664 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-02 09:58:12,648 INFO cluster.py [line:213]    cluster 3dcaba34-d49b-4025-99c6-d9a43d4b0fda
+     health HEALTH_WARN
+            359 pgs degraded
+            2 pgs recovering
+            357 pgs recovery_wait
+            359 pgs stuck unclean
+            recovery 2326/768032 objects degraded (0.303%)
+     monmap e1: 1 mons at {ubuntu-238=192.168.28.238:6789/0}
+            election epoch 3, quorum 0 ubuntu-238
+     osdmap e3317: 10 osds: 10 up, 10 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v54549: 512 pgs, 1 pools, 1492 GB data, 375 kobjects
+            1003 GB used, 5987 GB / 6991 GB avail
+            2326/768032 objects degraded (0.303%)
+                 357 active+recovery_wait+degraded
+                 153 active+clean
+                   2 active+recovering+degraded
+recovery io 7563 kB/s, 6 objects/s
+  client io 2616 kB/s wr, 0 op/s rd, 327 op/s wr
+2017-06-02 01:58:16.954420 7fb267a4c700 -1 asok(0x7fb260000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.31413.140404091523456.asok': (13) Permission denied
+
+2017-06-02 09:58:12,648 INFO cluster.py [line:238] PG number is 512
+2017-06-02 09:58:12,648 INFO cluster.py [line:239] usefull PG number is 153
+2017-06-02 09:59:12,648 INFO cluster.py [line:247] cost 61 seconds, left 4902 seconds when check the ceph status
+2017-06-02 09:59:12,650 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-02 09:59:13,634 INFO cluster.py [line:213]    cluster 3dcaba34-d49b-4025-99c6-d9a43d4b0fda
+     health HEALTH_WARN
+            321 pgs degraded
+            2 pgs recovering
+            319 pgs recovery_wait
+            321 pgs stuck unclean
+            recovery 1956/768032 objects degraded (0.255%)
+     monmap e1: 1 mons at {ubuntu-238=192.168.28.238:6789/0}
+            election epoch 3, quorum 0 ubuntu-238
+     osdmap e3317: 10 osds: 10 up, 10 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v54602: 512 pgs, 1 pools, 1492 GB data, 375 kobjects
+            1003 GB used, 5987 GB / 6991 GB avail
+            1956/768032 objects degraded (0.255%)
+                 319 active+recovery_wait+degraded
+                 191 active+clean
+                   2 active+recovering+degraded
+recovery io 6626 kB/s, 5 objects/s
+  client io 2585 kB/s wr, 0 op/s rd, 323 op/s wr
+2017-06-02 01:59:17.956623 7f26ff798700 -1 asok(0x7f26f8000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.31934.139805346238848.asok': (13) Permission denied
+
+2017-06-02 09:59:13,634 INFO cluster.py [line:238] PG number is 512
+2017-06-02 09:59:13,634 INFO cluster.py [line:239] usefull PG number is 191
+2017-06-02 10:00:13,641 INFO cluster.py [line:247] cost 61 seconds, left 4841 seconds when check the ceph status
+2017-06-02 10:00:13,641 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-02 10:00:14,783 INFO cluster.py [line:213]    cluster 3dcaba34-d49b-4025-99c6-d9a43d4b0fda
+     health HEALTH_WARN
+            279 pgs degraded
+            2 pgs recovering
+            277 pgs recovery_wait
+            279 pgs stuck unclean
+            recovery 1576/768032 objects degraded (0.205%)
+     monmap e1: 1 mons at {ubuntu-238=192.168.28.238:6789/0}
+            election epoch 3, quorum 0 ubuntu-238
+     osdmap e3317: 10 osds: 10 up, 10 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v54654: 512 pgs, 1 pools, 1492 GB data, 375 kobjects
+            1004 GB used, 5987 GB / 6991 GB avail
+            1576/768032 objects degraded (0.205%)
+                 277 active+recovery_wait+degraded
+                 233 active+clean
+                   2 active+recovering+degraded
+recovery io 5410 kB/s, 3 objects/s
+  client io 3229 kB/s wr, 0 op/s rd, 403 op/s wr
+2017-06-02 02:00:18.931747 7fc9daeb5700 -1 asok(0x7fc9d4000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.32449.140504821928320.asok': (13) Permission denied
+
+2017-06-02 10:00:14,783 INFO cluster.py [line:238] PG number is 512
+2017-06-02 10:00:14,783 INFO cluster.py [line:239] usefull PG number is 233
+2017-06-02 10:01:14,796 INFO cluster.py [line:247] cost 61 seconds, left 4780 seconds when check the ceph status
+2017-06-02 10:01:14,796 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-02 10:01:15,905 INFO cluster.py [line:213]    cluster 3dcaba34-d49b-4025-99c6-d9a43d4b0fda
+     health HEALTH_WARN
+            237 pgs degraded
+            3 pgs recovering
+            234 pgs recovery_wait
+            237 pgs stuck unclean
+            recovery 1179/768032 objects degraded (0.154%)
+     monmap e1: 1 mons at {ubuntu-238=192.168.28.238:6789/0}
+            election epoch 3, quorum 0 ubuntu-238
+     osdmap e3317: 10 osds: 10 up, 10 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v54707: 512 pgs, 1 pools, 1492 GB data, 375 kobjects
+            1004 GB used, 5987 GB / 6991 GB avail
+            1179/768032 objects degraded (0.154%)
+                 275 active+clean
+                 234 active+recovery_wait+degraded
+                   3 active+recovering+degraded
+recovery io 26194 kB/s, 12 objects/s
+  client io 5095 kB/s wr, 0 op/s rd, 636 op/s wr
+2017-06-02 02:01:20.056210 7faeb0acc700 -1 asok(0x7faeac000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.32968.140388186722688.asok': (13) Permission denied
+
+2017-06-02 10:01:15,905 INFO cluster.py [line:238] PG number is 512
+2017-06-02 10:01:15,905 INFO cluster.py [line:239] usefull PG number is 275
+2017-06-02 10:02:15,917 INFO cluster.py [line:247] cost 61 seconds, left 4719 seconds when check the ceph status
+2017-06-02 10:02:15,917 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-02 10:02:16,875 INFO cluster.py [line:213]    cluster 3dcaba34-d49b-4025-99c6-d9a43d4b0fda
+     health HEALTH_WARN
+            186 pgs degraded
+            3 pgs recovering
+            183 pgs recovery_wait
+            186 pgs stuck unclean
+            recovery 796/768032 objects degraded (0.104%)
+     monmap e1: 1 mons at {ubuntu-238=192.168.28.238:6789/0}
+            election epoch 3, quorum 0 ubuntu-238
+     osdmap e3317: 10 osds: 10 up, 10 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v54761: 512 pgs, 1 pools, 1492 GB data, 375 kobjects
+            1004 GB used, 5986 GB / 6991 GB avail
+            796/768032 objects degraded (0.104%)
+                 326 active+clean
+                 183 active+recovery_wait+degraded
+                   3 active+recovering+degraded
+recovery io 18830 kB/s, 8 objects/s
+  client io 2721 kB/s wr, 0 op/s rd, 340 op/s wr
+2017-06-02 02:02:21.189541 7fdb1d32e700 -1 asok(0x7fdb18000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.33496.140578977223040.asok': (13) Permission denied
+
+2017-06-02 10:02:16,875 INFO cluster.py [line:238] PG number is 512
+2017-06-02 10:02:16,875 INFO cluster.py [line:239] usefull PG number is 326
+2017-06-02 10:03:16,885 INFO cluster.py [line:247] cost 61 seconds, left 4658 seconds when check the ceph status
+2017-06-02 10:03:16,885 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-02 10:03:17,857 INFO cluster.py [line:213]    cluster 3dcaba34-d49b-4025-99c6-d9a43d4b0fda
+     health HEALTH_WARN
+            106 pgs degraded
+            2 pgs recovering
+            104 pgs recovery_wait
+            106 pgs stuck unclean
+            recovery 416/768032 objects degraded (0.054%)
+     monmap e1: 1 mons at {ubuntu-238=192.168.28.238:6789/0}
+            election epoch 3, quorum 0 ubuntu-238
+     osdmap e3317: 10 osds: 10 up, 10 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v54813: 512 pgs, 1 pools, 1492 GB data, 375 kobjects
+            1005 GB used, 5986 GB / 6991 GB avail
+            416/768032 objects degraded (0.054%)
+                 406 active+clean
+                 104 active+recovery_wait+degraded
+                   2 active+recovering+degraded
+recovery io 28028 kB/s, 12 objects/s
+  client io 2932 kB/s wr, 0 op/s rd, 366 op/s wr
+2017-06-02 02:03:22.185192 7f645c8f0700 -1 asok(0x7f6458000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.34021.140068949856640.asok': (13) Permission denied
+
+2017-06-02 10:03:17,857 INFO cluster.py [line:238] PG number is 512
+2017-06-02 10:03:17,857 INFO cluster.py [line:239] usefull PG number is 406
+2017-06-02 10:04:17,858 INFO cluster.py [line:247] cost 61 seconds, left 4597 seconds when check the ceph status
+2017-06-02 10:04:17,858 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-02 10:04:18,622 INFO cluster.py [line:213]    cluster 3dcaba34-d49b-4025-99c6-d9a43d4b0fda
+     health HEALTH_WARN
+            2 pgs degraded
+            1 pgs recovering
+            1 pgs recovery_wait
+            2 pgs stuck unclean
+            recovery 18/768032 objects degraded (0.002%)
+     monmap e1: 1 mons at {ubuntu-238=192.168.28.238:6789/0}
+            election epoch 3, quorum 0 ubuntu-238
+     osdmap e3317: 10 osds: 10 up, 10 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v54867: 512 pgs, 1 pools, 1492 GB data, 375 kobjects
+            1005 GB used, 5986 GB / 6991 GB avail
+            18/768032 objects degraded (0.002%)
+                 510 active+clean
+                   1 active+recovery_wait+degraded
+                   1 active+recovering+degraded
+  client io 3607 kB/s wr, 0 op/s rd, 450 op/s wr
+2017-06-02 02:04:23.119702 7f0988049700 -1 asok(0x7f0980000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.34549.139678778921344.asok': (13) Permission denied
+
+2017-06-02 10:04:18,622 INFO cluster.py [line:238] PG number is 512
+2017-06-02 10:04:18,622 INFO cluster.py [line:239] usefull PG number is 510
+2017-06-02 10:05:18,624 INFO cluster.py [line:247] cost 61 seconds, left 4536 seconds when check the ceph status
+2017-06-02 10:05:18,624 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-02 10:05:19,345 INFO cluster.py [line:213]    cluster 3dcaba34-d49b-4025-99c6-d9a43d4b0fda
+     health HEALTH_OK
+     monmap e1: 1 mons at {ubuntu-238=192.168.28.238:6789/0}
+            election epoch 3, quorum 0 ubuntu-238
+     osdmap e3317: 10 osds: 10 up, 10 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v54917: 512 pgs, 1 pools, 1492 GB data, 375 kobjects
+            1005 GB used, 5985 GB / 6991 GB avail
+                 512 active+clean
+  client io 6616 kB/s wr, 0 op/s rd, 827 op/s wr
+2017-06-02 02:05:23.916148 7fda74a81700 -1 asok(0x7fda70000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.35072.140576158650752.asok': (13) Permission denied
+
+2017-06-02 10:05:19,345 INFO cluster.py [line:238] PG number is 512
+2017-06-02 10:05:19,345 INFO cluster.py [line:239] usefull PG number is 512
+2017-06-02 10:05:19,345 INFO cluster.py [line:302] osd on node ubuntu-237 were init successfully
+2017-06-02 10:05:19,345 INFO node.py [line:97] init osd on node ubuntu-238
+2017-06-02 10:05:19,704 INFO node.py [line:112] osd.0  ---> processId 21010
+2017-06-02 10:05:19,704 INFO node.py [line:112] osd.1  ---> processId 21439
+2017-06-02 10:05:19,704 INFO node.py [line:112] osd.2  ---> processId 21908
+2017-06-02 10:05:19,704 INFO node.py [line:112] osd.3  ---> processId 22338
+2017-06-02 10:05:19,704 INFO node.py [line:112] osd.4  ---> processId 22807
+2017-06-02 10:05:19,704 INFO osd.py [line:28] node is  ubuntu-238
+2017-06-02 10:05:19,704 INFO osd.py [line:29] execute command is sudo -i stop ceph-osd id=0 & sleep 3
+2017-06-02 10:05:25,219 INFO osd.py [line:32] osd osd.0 is shutdown successfully
+2017-06-02 10:05:30,221 INFO osd.py [line:102] node is  ubuntu-238
+2017-06-02 10:05:30,221 INFO osd.py [line:103] execute command is sudo -i ceph-osd -i 0 & sleep 30
+2017-06-02 10:06:00,515 INFO osd.py [line:107] osd osd.0 is start successfully
+2017-06-02 10:06:00,515 INFO osd.py [line:28] node is  ubuntu-238
+2017-06-02 10:06:00,515 INFO osd.py [line:29] execute command is sudo -i stop ceph-osd id=1 & sleep 3
+2017-06-02 10:06:06,428 INFO osd.py [line:32] osd osd.1 is shutdown successfully
+2017-06-02 10:06:11,436 INFO osd.py [line:102] node is  ubuntu-238
+2017-06-02 10:06:11,436 INFO osd.py [line:103] execute command is sudo -i ceph-osd -i 1 & sleep 30
+2017-06-02 10:06:41,727 INFO osd.py [line:107] osd osd.1 is start successfully
+2017-06-02 10:06:41,727 INFO osd.py [line:28] node is  ubuntu-238
+2017-06-02 10:06:41,727 INFO osd.py [line:29] execute command is sudo -i stop ceph-osd id=2 & sleep 3
+2017-06-02 10:06:46,614 INFO osd.py [line:32] osd osd.2 is shutdown successfully
+2017-06-02 10:06:51,624 INFO osd.py [line:102] node is  ubuntu-238
+2017-06-02 10:06:51,624 INFO osd.py [line:103] execute command is sudo -i ceph-osd -i 2 & sleep 30
+2017-06-02 10:07:21,884 INFO osd.py [line:107] osd osd.2 is start successfully
+2017-06-02 10:07:21,884 INFO osd.py [line:28] node is  ubuntu-238
+2017-06-02 10:07:21,884 INFO osd.py [line:29] execute command is sudo -i stop ceph-osd id=3 & sleep 3
+2017-06-02 10:07:26,822 INFO osd.py [line:32] osd osd.3 is shutdown successfully
+2017-06-02 10:07:31,822 INFO osd.py [line:102] node is  ubuntu-238
+2017-06-02 10:07:31,822 INFO osd.py [line:103] execute command is sudo -i ceph-osd -i 3 & sleep 30
+2017-06-02 10:08:02,092 INFO osd.py [line:107] osd osd.3 is start successfully
+2017-06-02 10:08:02,092 INFO osd.py [line:28] node is  ubuntu-238
+2017-06-02 10:08:02,092 INFO osd.py [line:29] execute command is sudo -i stop ceph-osd id=4 & sleep 3
+2017-06-02 10:08:07,740 INFO osd.py [line:32] osd osd.4 is shutdown successfully
+2017-06-02 10:08:12,743 INFO osd.py [line:102] node is  ubuntu-238
+2017-06-02 10:08:12,743 INFO osd.py [line:103] execute command is sudo -i ceph-osd -i 4 & sleep 30
+2017-06-02 10:08:43,013 INFO osd.py [line:107] osd osd.4 is start successfully
+2017-06-02 10:08:43,311 INFO node.py [line:133] osd.0  ---> processId 14399
+2017-06-02 10:08:43,311 INFO node.py [line:133] osd.1  ---> processId 14845
+2017-06-02 10:08:43,311 INFO node.py [line:133] osd.2  ---> processId 15292
+2017-06-02 10:08:43,311 INFO node.py [line:133] osd.3  ---> processId 15738
+2017-06-02 10:08:43,311 INFO node.py [line:133] osd.4  ---> processId 16215
+2017-06-02 10:08:43,311 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-02 10:08:43,763 INFO cluster.py [line:213]    cluster 3dcaba34-d49b-4025-99c6-d9a43d4b0fda
+     health HEALTH_WARN
+            494 pgs degraded
+            3 pgs recovering
+            491 pgs recovery_wait
+            recovery 9525/768032 objects degraded (1.240%)
+     monmap e1: 1 mons at {ubuntu-238=192.168.28.238:6789/0}
+            election epoch 3, quorum 0 ubuntu-238
+     osdmap e3342: 10 osds: 10 up, 10 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v55098: 512 pgs, 1 pools, 1492 GB data, 375 kobjects
+            1006 GB used, 5985 GB / 6991 GB avail
+            9525/768032 objects degraded (1.240%)
+                 491 active+recovery_wait+degraded
+                  18 active+clean
+                   3 active+recovering+degraded
+recovery io 23150 kB/s, 11 objects/s
+  client io 1656 kB/s wr, 0 op/s rd, 207 op/s wr
+2017-06-02 02:08:48.477834 7f15206f3700 -1 asok(0x7f1518000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.16570.139728573698432.asok': (13) Permission denied
+
+2017-06-02 10:08:43,763 INFO cluster.py [line:238] PG number is 512
+2017-06-02 10:08:43,763 INFO cluster.py [line:239] usefull PG number is 18
+2017-06-02 10:09:43,766 INFO cluster.py [line:247] cost 60 seconds, left 5940 seconds when check the ceph status
+2017-06-02 10:09:43,766 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-02 10:09:44,253 INFO cluster.py [line:213]    cluster 3dcaba34-d49b-4025-99c6-d9a43d4b0fda
+     health HEALTH_WARN
+            480 pgs degraded
+            2 pgs recovering
+            478 pgs recovery_wait
+            recovery 9076/768032 objects degraded (1.182%)
+     monmap e1: 1 mons at {ubuntu-238=192.168.28.238:6789/0}
+            election epoch 3, quorum 0 ubuntu-238
+     osdmap e3342: 10 osds: 10 up, 10 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v55146: 512 pgs, 1 pools, 1492 GB data, 375 kobjects
+            1006 GB used, 5984 GB / 6991 GB avail
+            9076/768032 objects degraded (1.182%)
+                 478 active+recovery_wait+degraded
+                  32 active+clean
+                   2 active+recovering+degraded
+recovery io 23131 kB/s, 10 objects/s
+  client io 1904 kB/s wr, 0 op/s rd, 238 op/s wr
+2017-06-02 02:09:48.977957 7fb734682700 -1 asok(0x7fb72c000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.17083.140424693944704.asok': (13) Permission denied
+
+2017-06-02 10:09:44,253 INFO cluster.py [line:238] PG number is 512
+2017-06-02 10:09:44,253 INFO cluster.py [line:239] usefull PG number is 32
+2017-06-02 10:10:44,255 INFO cluster.py [line:247] cost 61 seconds, left 5879 seconds when check the ceph status
+2017-06-02 10:10:44,255 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-02 10:10:44,690 INFO cluster.py [line:213]    cluster 3dcaba34-d49b-4025-99c6-d9a43d4b0fda
+     health HEALTH_WARN
+            474 pgs degraded
+            3 pgs recovering
+            471 pgs recovery_wait
+            99 pgs stuck unclean
+            recovery 8630/768032 objects degraded (1.124%)
+     monmap e1: 1 mons at {ubuntu-238=192.168.28.238:6789/0}
+            election epoch 3, quorum 0 ubuntu-238
+     osdmap e3342: 10 osds: 10 up, 10 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v55193: 512 pgs, 1 pools, 1492 GB data, 375 kobjects
+            1006 GB used, 5984 GB / 6991 GB avail
+            8630/768032 objects degraded (1.124%)
+                 471 active+recovery_wait+degraded
+                  38 active+clean
+                   3 active+recovering+degraded
+recovery io 29331 kB/s, 14 objects/s
+  client io 2062 kB/s wr, 0 op/s rd, 257 op/s wr
+2017-06-02 02:10:49.399425 7ff2ec90f700 -1 asok(0x7ff2e8000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.17596.140681251131776.asok': (13) Permission denied
+
+2017-06-02 10:10:44,690 INFO cluster.py [line:238] PG number is 512
+2017-06-02 10:10:44,690 INFO cluster.py [line:239] usefull PG number is 38
+2017-06-02 10:11:44,706 INFO cluster.py [line:247] cost 60 seconds, left 5819 seconds when check the ceph status
+2017-06-02 10:11:44,706 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-02 10:11:45,266 INFO cluster.py [line:213]    cluster 3dcaba34-d49b-4025-99c6-d9a43d4b0fda
+     health HEALTH_WARN
+            464 pgs degraded
+            3 pgs recovering
+            461 pgs recovery_wait
+            301 pgs stuck unclean
+            recovery 8174/768032 objects degraded (1.064%)
+     monmap e1: 1 mons at {ubuntu-238=192.168.28.238:6789/0}
+            election epoch 3, quorum 0 ubuntu-238
+     osdmap e3342: 10 osds: 10 up, 10 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v55242: 512 pgs, 1 pools, 1492 GB data, 375 kobjects
+            1006 GB used, 5984 GB / 6991 GB avail
+            8174/768032 objects degraded (1.064%)
+                 461 active+recovery_wait+degraded
+                  48 active+clean
+                   3 active+recovering+degraded
+recovery io 23044 kB/s, 11 objects/s
+  client io 1082 kB/s wr, 0 op/s rd, 135 op/s wr
+2017-06-02 02:11:49.856431 7f94e7620700 -1 asok(0x7f94e0000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.18113.140277389988224.asok': (13) Permission denied
+
+2017-06-02 10:11:45,266 INFO cluster.py [line:238] PG number is 512
+2017-06-02 10:11:45,266 INFO cluster.py [line:239] usefull PG number is 48
+2017-06-02 10:12:45,282 INFO cluster.py [line:247] cost 61 seconds, left 5758 seconds when check the ceph status
+2017-06-02 10:12:45,282 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-02 10:12:45,734 INFO cluster.py [line:213]    cluster 3dcaba34-d49b-4025-99c6-d9a43d4b0fda
+     health HEALTH_WARN
+            456 pgs degraded
+            2 pgs recovering
+            454 pgs recovery_wait
+            373 pgs stuck unclean
+            recovery 7717/768032 objects degraded (1.005%)
+     monmap e1: 1 mons at {ubuntu-238=192.168.28.238:6789/0}
+            election epoch 3, quorum 0 ubuntu-238
+     osdmap e3342: 10 osds: 10 up, 10 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v55290: 512 pgs, 1 pools, 1492 GB data, 375 kobjects
+            1007 GB used, 5984 GB / 6991 GB avail
+            7717/768032 objects degraded (1.005%)
+                 454 active+recovery_wait+degraded
+                  56 active+clean
+                   2 active+recovering+degraded
+recovery io 28280 kB/s, 12 objects/s
+  client io 3569 kB/s wr, 0 op/s rd, 446 op/s wr
+2017-06-02 02:12:50.424109 7effb4dc7700 -1 asok(0x7effb0000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.18626.139636634554752.asok': (13) Permission denied
+
+2017-06-02 10:12:45,734 INFO cluster.py [line:238] PG number is 512
+2017-06-02 10:12:45,734 INFO cluster.py [line:239] usefull PG number is 56
+2017-06-02 10:13:45,739 INFO cluster.py [line:247] cost 60 seconds, left 5698 seconds when check the ceph status
+2017-06-02 10:13:45,739 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-02 10:13:46,174 INFO cluster.py [line:213]    cluster 3dcaba34-d49b-4025-99c6-d9a43d4b0fda
+     health HEALTH_WARN
+            456 pgs degraded
+            2 pgs recovering
+            454 pgs recovery_wait
+            456 pgs stuck unclean
+            recovery 7300/768032 objects degraded (0.950%)
+     monmap e1: 1 mons at {ubuntu-238=192.168.28.238:6789/0}
+            election epoch 3, quorum 0 ubuntu-238
+     osdmap e3342: 10 osds: 10 up, 10 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v55336: 512 pgs, 1 pools, 1492 GB data, 375 kobjects
+            1007 GB used, 5984 GB / 6991 GB avail
+            7300/768032 objects degraded (0.950%)
+                 454 active+recovery_wait+degraded
+                  56 active+clean
+                   2 active+recovering+degraded
+recovery io 20920 kB/s, 7 objects/s
+  client io 1487 kB/s wr, 0 op/s rd, 185 op/s wr
+2017-06-02 02:13:50.899991 7f2fb13d9700 -1 asok(0x7f2fac000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.19138.139842725876096.asok': (13) Permission denied
+
+2017-06-02 10:13:46,174 INFO cluster.py [line:238] PG number is 512
+2017-06-02 10:13:46,174 INFO cluster.py [line:239] usefull PG number is 56
+2017-06-02 10:14:46,176 INFO cluster.py [line:247] cost 61 seconds, left 5637 seconds when check the ceph status
+2017-06-02 10:14:46,177 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-02 10:14:46,720 INFO cluster.py [line:213]    cluster 3dcaba34-d49b-4025-99c6-d9a43d4b0fda
+     health HEALTH_WARN
+            456 pgs degraded
+            2 pgs recovering
+            454 pgs recovery_wait
+            456 pgs stuck unclean
+            recovery 6864/768032 objects degraded (0.894%)
+     monmap e1: 1 mons at {ubuntu-238=192.168.28.238:6789/0}
+            election epoch 3, quorum 0 ubuntu-238
+     osdmap e3342: 10 osds: 10 up, 10 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v55384: 512 pgs, 1 pools, 1492 GB data, 375 kobjects
+            1007 GB used, 5984 GB / 6991 GB avail
+            6864/768032 objects degraded (0.894%)
+                 454 active+recovery_wait+degraded
+                  56 active+clean
+                   2 active+recovering+degraded
+recovery io 14849 kB/s, 6 objects/s
+  client io 1080 kB/s wr, 0 op/s rd, 135 op/s wr
+2017-06-02 02:14:51.300847 7f0a159ec700 -1 asok(0x7f0a10000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.19666.139681194840448.asok': (13) Permission denied
+
+2017-06-02 10:14:46,721 INFO cluster.py [line:238] PG number is 512
+2017-06-02 10:14:46,723 INFO cluster.py [line:239] usefull PG number is 56
+2017-06-02 10:15:46,724 INFO cluster.py [line:247] cost 60 seconds, left 5577 seconds when check the ceph status
+2017-06-02 10:15:46,724 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-02 10:15:47,302 INFO cluster.py [line:213]    cluster 3dcaba34-d49b-4025-99c6-d9a43d4b0fda
+     health HEALTH_WARN
+            454 pgs degraded
+            2 pgs recovering
+            452 pgs recovery_wait
+            454 pgs stuck unclean
+            recovery 6507/768032 objects degraded (0.847%)
+     monmap e1: 1 mons at {ubuntu-238=192.168.28.238:6789/0}
+            election epoch 3, quorum 0 ubuntu-238
+     osdmap e3342: 10 osds: 10 up, 10 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v55428: 512 pgs, 1 pools, 1492 GB data, 375 kobjects
+            1007 GB used, 5983 GB / 6991 GB avail
+            6507/768032 objects degraded (0.847%)
+                 452 active+recovery_wait+degraded
+                  58 active+clean
+                   2 active+recovering+degraded
+recovery io 34299 kB/s, 17 objects/s
+  client io 3619 kB/s wr, 0 op/s rd, 452 op/s wr
+2017-06-02 02:15:51.888631 7f947d885700 -1 asok(0x7f9478000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.20192.140275645157760.asok': (13) Permission denied
+
+2017-06-02 10:15:47,302 INFO cluster.py [line:238] PG number is 512
+2017-06-02 10:15:47,302 INFO cluster.py [line:239] usefull PG number is 58
+2017-06-02 10:16:47,311 INFO cluster.py [line:247] cost 61 seconds, left 5516 seconds when check the ceph status
+2017-06-02 10:16:47,311 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-02 10:16:47,872 INFO cluster.py [line:213]    cluster 3dcaba34-d49b-4025-99c6-d9a43d4b0fda
+     health HEALTH_WARN
+            454 pgs degraded
+            2 pgs recovering
+            452 pgs recovery_wait
+            454 pgs stuck unclean
+            recovery 6099/768032 objects degraded (0.794%)
+     monmap e1: 1 mons at {ubuntu-238=192.168.28.238:6789/0}
+            election epoch 3, quorum 0 ubuntu-238
+     osdmap e3342: 10 osds: 10 up, 10 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v55476: 512 pgs, 1 pools, 1492 GB data, 375 kobjects
+            1007 GB used, 5983 GB / 6991 GB avail
+            6099/768032 objects degraded (0.794%)
+                 452 active+recovery_wait+degraded
+                  58 active+clean
+                   2 active+recovering+degraded
+recovery io 13542 kB/s, 8 objects/s
+  client io 3334 kB/s wr, 0 op/s rd, 416 op/s wr
+2017-06-02 02:16:52.460108 7f534dca9700 -1 asok(0x7f5348000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.20710.139995666977152.asok': (13) Permission denied
+
+2017-06-02 10:16:47,872 INFO cluster.py [line:238] PG number is 512
+2017-06-02 10:16:47,872 INFO cluster.py [line:239] usefull PG number is 58
+2017-06-02 10:17:47,874 INFO cluster.py [line:247] cost 60 seconds, left 5456 seconds when check the ceph status
+2017-06-02 10:17:47,875 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-02 10:17:48,433 INFO cluster.py [line:213]    cluster 3dcaba34-d49b-4025-99c6-d9a43d4b0fda
+     health HEALTH_WARN
+            454 pgs degraded
+            2 pgs recovering
+            452 pgs recovery_wait
+            454 pgs stuck unclean
+            recovery 5679/768032 objects degraded (0.739%)
+     monmap e1: 1 mons at {ubuntu-238=192.168.28.238:6789/0}
+            election epoch 3, quorum 0 ubuntu-238
+     osdmap e3342: 10 osds: 10 up, 10 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v55524: 512 pgs, 1 pools, 1492 GB data, 375 kobjects
+            1008 GB used, 5983 GB / 6991 GB avail
+            5679/768032 objects degraded (0.739%)
+                 452 active+recovery_wait+degraded
+                  58 active+clean
+                   2 active+recovering+degraded
+recovery io 32235 kB/s, 15 objects/s
+  client io 4058 kB/s wr, 0 op/s rd, 507 op/s wr
+2017-06-02 02:17:53.009610 7fdc43e53700 -1 asok(0x7fdc3c000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.21226.140583876170112.asok': (13) Permission denied
+
+2017-06-02 10:17:48,434 INFO cluster.py [line:238] PG number is 512
+2017-06-02 10:17:48,434 INFO cluster.py [line:239] usefull PG number is 58
+2017-06-02 10:18:48,447 INFO cluster.py [line:247] cost 61 seconds, left 5395 seconds when check the ceph status
+2017-06-02 10:18:48,447 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-02 10:18:48,976 INFO cluster.py [line:213]    cluster 3dcaba34-d49b-4025-99c6-d9a43d4b0fda
+     health HEALTH_WARN
+            453 pgs degraded
+            2 pgs recovering
+            451 pgs recovery_wait
+            453 pgs stuck unclean
+            recovery 5246/768032 objects degraded (0.683%)
+     monmap e1: 1 mons at {ubuntu-238=192.168.28.238:6789/0}
+            election epoch 3, quorum 0 ubuntu-238
+     osdmap e3342: 10 osds: 10 up, 10 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v55573: 512 pgs, 1 pools, 1492 GB data, 375 kobjects
+            1008 GB used, 5983 GB / 6991 GB avail
+            5246/768032 objects degraded (0.683%)
+                 451 active+recovery_wait+degraded
+                  59 active+clean
+                   2 active+recovering+degraded
+recovery io 38448 kB/s, 15 objects/s
+  client io 4441 kB/s wr, 0 op/s rd, 555 op/s wr
+2017-06-02 02:18:53.689586 7fa8e1d21700 -1 asok(0x7fa8dc000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.21741.140363222225280.asok': (13) Permission denied
+
+2017-06-02 10:18:48,976 INFO cluster.py [line:238] PG number is 512
+2017-06-02 10:18:48,976 INFO cluster.py [line:239] usefull PG number is 59
+2017-06-02 10:19:48,979 INFO cluster.py [line:247] cost 60 seconds, left 5335 seconds when check the ceph status
+2017-06-02 10:19:48,979 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-02 10:19:49,477 INFO cluster.py [line:213]    cluster 3dcaba34-d49b-4025-99c6-d9a43d4b0fda
+     health HEALTH_WARN
+            452 pgs degraded
+            2 pgs recovering
+            450 pgs recovery_wait
+            452 pgs stuck unclean
+            recovery 4833/768032 objects degraded (0.629%)
+     monmap e1: 1 mons at {ubuntu-238=192.168.28.238:6789/0}
+            election epoch 3, quorum 0 ubuntu-238
+     osdmap e3342: 10 osds: 10 up, 10 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v55621: 512 pgs, 1 pools, 1492 GB data, 375 kobjects
+            1008 GB used, 5982 GB / 6991 GB avail
+            4833/768032 objects degraded (0.629%)
+                 450 active+recovery_wait+degraded
+                  60 active+clean
+                   2 active+recovering+degraded
+recovery io 20422 kB/s, 9 objects/s
+  client io 5266 kB/s wr, 0 op/s rd, 658 op/s wr
+2017-06-02 02:19:54.136609 7f9fed7a5700 -1 asok(0x7f9fe8000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.22260.140324768846208.asok': (13) Permission denied
+
+2017-06-02 10:19:49,477 INFO cluster.py [line:238] PG number is 512
+2017-06-02 10:19:49,477 INFO cluster.py [line:239] usefull PG number is 60
+2017-06-02 10:20:49,490 INFO cluster.py [line:247] cost 61 seconds, left 5274 seconds when check the ceph status
+2017-06-02 10:20:49,490 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-02 10:20:49,927 INFO cluster.py [line:213]    cluster 3dcaba34-d49b-4025-99c6-d9a43d4b0fda
+     health HEALTH_WARN
+            452 pgs degraded
+            2 pgs recovering
+            450 pgs recovery_wait
+            452 pgs stuck unclean
+            recovery 4427/768032 objects degraded (0.576%)
+     monmap e1: 1 mons at {ubuntu-238=192.168.28.238:6789/0}
+            election epoch 3, quorum 0 ubuntu-238
+     osdmap e3342: 10 osds: 10 up, 10 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v55669: 512 pgs, 1 pools, 1492 GB data, 375 kobjects
+            1009 GB used, 5982 GB / 6991 GB avail
+            4427/768032 objects degraded (0.576%)
+                 450 active+recovery_wait+degraded
+                  60 active+clean
+                   2 active+recovering+degraded
+recovery io 26009 kB/s, 10 objects/s
+  client io 4416 kB/s wr, 0 op/s rd, 552 op/s wr
+2017-06-02 02:20:54.656340 7f8c7ed2b700 -1 asok(0x7f8c78000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.22797.140241285419392.asok': (13) Permission denied
+
+2017-06-02 10:20:49,927 INFO cluster.py [line:238] PG number is 512
+2017-06-02 10:20:49,927 INFO cluster.py [line:239] usefull PG number is 60
+2017-06-02 10:21:49,943 INFO cluster.py [line:247] cost 60 seconds, left 5214 seconds when check the ceph status
+2017-06-02 10:21:49,948 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-02 10:21:50,361 INFO cluster.py [line:213]    cluster 3dcaba34-d49b-4025-99c6-d9a43d4b0fda
+     health HEALTH_WARN
+            452 pgs degraded
+            2 pgs recovering
+            450 pgs recovery_wait
+            452 pgs stuck unclean
+            recovery 4030/768032 objects degraded (0.525%)
+     monmap e1: 1 mons at {ubuntu-238=192.168.28.238:6789/0}
+            election epoch 3, quorum 0 ubuntu-238
+     osdmap e3342: 10 osds: 10 up, 10 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v55718: 512 pgs, 1 pools, 1492 GB data, 375 kobjects
+            1009 GB used, 5982 GB / 6991 GB avail
+            4030/768032 objects degraded (0.525%)
+                 450 active+recovery_wait+degraded
+                  60 active+clean
+                   2 active+recovering+degraded
+recovery io 41874 kB/s, 15 objects/s
+  client io 3297 kB/s wr, 0 op/s rd, 412 op/s wr
+2017-06-02 02:21:55.085405 7f611e331700 -1 asok(0x7f6118000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.23317.140054991212928.asok': (13) Permission denied
+
+2017-06-02 10:21:50,362 INFO cluster.py [line:238] PG number is 512
+2017-06-02 10:21:50,365 INFO cluster.py [line:239] usefull PG number is 60
+2017-06-02 10:22:50,381 INFO cluster.py [line:247] cost 61 seconds, left 5153 seconds when check the ceph status
+2017-06-02 10:22:50,381 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-02 10:22:50,799 INFO cluster.py [line:213]    cluster 3dcaba34-d49b-4025-99c6-d9a43d4b0fda
+     health HEALTH_WARN
+            451 pgs degraded
+            2 pgs recovering
+            449 pgs recovery_wait
+            451 pgs stuck unclean
+            recovery 3655/768032 objects degraded (0.476%)
+     monmap e1: 1 mons at {ubuntu-238=192.168.28.238:6789/0}
+            election epoch 3, quorum 0 ubuntu-238
+     osdmap e3342: 10 osds: 10 up, 10 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v55766: 512 pgs, 1 pools, 1492 GB data, 375 kobjects
+            1009 GB used, 5981 GB / 6991 GB avail
+            3655/768032 objects degraded (0.476%)
+                 449 active+recovery_wait+degraded
+                  61 active+clean
+                   2 active+recovering+degraded
+recovery io 20050 kB/s, 7 objects/s
+  client io 4869 kB/s wr, 0 op/s rd, 608 op/s wr
+2017-06-02 02:22:55.522135 7f0f6f1a1700 -1 asok(0x7f0f68000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.23834.139704146071936.asok': (13) Permission denied
+
+2017-06-02 10:22:50,799 INFO cluster.py [line:238] PG number is 512
+2017-06-02 10:22:50,799 INFO cluster.py [line:239] usefull PG number is 61
+2017-06-02 10:23:50,812 INFO cluster.py [line:247] cost 60 seconds, left 5093 seconds when check the ceph status
+2017-06-02 10:23:50,812 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-02 10:23:51,266 INFO cluster.py [line:213]    cluster 3dcaba34-d49b-4025-99c6-d9a43d4b0fda
+     health HEALTH_WARN
+            449 pgs degraded
+            2 pgs recovering
+            447 pgs recovery_wait
+            449 pgs stuck unclean
+            recovery 3259/768032 objects degraded (0.424%)
+     monmap e1: 1 mons at {ubuntu-238=192.168.28.238:6789/0}
+            election epoch 3, quorum 0 ubuntu-238
+     osdmap e3342: 10 osds: 10 up, 10 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v55815: 512 pgs, 1 pools, 1492 GB data, 375 kobjects
+            1010 GB used, 5981 GB / 6991 GB avail
+            3259/768032 objects degraded (0.424%)
+                 447 active+recovery_wait+degraded
+                  63 active+clean
+                   2 active+recovering+degraded
+recovery io 15879 kB/s, 7 objects/s
+  client io 5651 kB/s wr, 0 op/s rd, 706 op/s wr
+2017-06-02 02:23:55.978597 7f8a5f436700 -1 asok(0x7f8a58000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.24356.140232158613888.asok': (13) Permission denied
+
+2017-06-02 10:23:51,266 INFO cluster.py [line:238] PG number is 512
+2017-06-02 10:23:51,266 INFO cluster.py [line:239] usefull PG number is 63
+2017-06-02 10:24:51,266 INFO cluster.py [line:247] cost 61 seconds, left 5032 seconds when check the ceph status
+2017-06-02 10:24:51,266 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-02 10:24:51,703 INFO cluster.py [line:213]    cluster 3dcaba34-d49b-4025-99c6-d9a43d4b0fda
+     health HEALTH_WARN
+            448 pgs degraded
+            2 pgs recovering
+            446 pgs recovery_wait
+            448 pgs stuck unclean
+            recovery 2885/768032 objects degraded (0.376%)
+     monmap e1: 1 mons at {ubuntu-238=192.168.28.238:6789/0}
+            election epoch 3, quorum 0 ubuntu-238
+     osdmap e3342: 10 osds: 10 up, 10 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v55863: 512 pgs, 1 pools, 1492 GB data, 375 kobjects
+            1010 GB used, 5980 GB / 6991 GB avail
+            2885/768032 objects degraded (0.376%)
+                 446 active+recovery_wait+degraded
+                  64 active+clean
+                   2 active+recovering+degraded
+recovery io 22236 kB/s, 11 objects/s
+  client io 4924 kB/s wr, 0 op/s rd, 615 op/s wr
+2017-06-02 02:24:56.418043 7fa10a8ea700 -1 asok(0x7fa104000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.24868.140329533575552.asok': (13) Permission denied
+
+2017-06-02 10:24:51,703 INFO cluster.py [line:238] PG number is 512
+2017-06-02 10:24:51,703 INFO cluster.py [line:239] usefull PG number is 64
+2017-06-02 10:25:51,710 INFO cluster.py [line:247] cost 60 seconds, left 4972 seconds when check the ceph status
+2017-06-02 10:25:51,710 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-02 10:25:52,164 INFO cluster.py [line:213]    cluster 3dcaba34-d49b-4025-99c6-d9a43d4b0fda
+     health HEALTH_WARN
+            440 pgs degraded
+            2 pgs recovering
+            438 pgs recovery_wait
+            440 pgs stuck unclean
+            recovery 2537/768032 objects degraded (0.330%)
+     monmap e1: 1 mons at {ubuntu-238=192.168.28.238:6789/0}
+            election epoch 3, quorum 0 ubuntu-238
+     osdmap e3342: 10 osds: 10 up, 10 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v55912: 512 pgs, 1 pools, 1492 GB data, 375 kobjects
+            1011 GB used, 5980 GB / 6991 GB avail
+            2537/768032 objects degraded (0.330%)
+                 438 active+recovery_wait+degraded
+                  72 active+clean
+                   2 active+recovering+degraded
+recovery io 15772 kB/s, 7 objects/s
+  client io 7296 kB/s wr, 0 op/s rd, 912 op/s wr
+2017-06-02 02:25:56.891287 7f5f9fb1b700 -1 asok(0x7f5f98000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.25384.140048548761984.asok': (13) Permission denied
+
+2017-06-02 10:25:52,164 INFO cluster.py [line:238] PG number is 512
+2017-06-02 10:25:52,165 INFO cluster.py [line:239] usefull PG number is 72
+2017-06-02 10:26:52,178 INFO cluster.py [line:247] cost 61 seconds, left 4911 seconds when check the ceph status
+2017-06-02 10:26:52,178 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-02 10:26:52,631 INFO cluster.py [line:213]    cluster 3dcaba34-d49b-4025-99c6-d9a43d4b0fda
+     health HEALTH_WARN
+            433 pgs degraded
+            2 pgs recovering
+            431 pgs recovery_wait
+            433 pgs stuck unclean
+            recovery 2203/768032 objects degraded (0.287%)
+     monmap e1: 1 mons at {ubuntu-238=192.168.28.238:6789/0}
+            election epoch 3, quorum 0 ubuntu-238
+     osdmap e3342: 10 osds: 10 up, 10 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v55962: 512 pgs, 1 pools, 1492 GB data, 375 kobjects
+            1011 GB used, 5979 GB / 6991 GB avail
+            2203/768032 objects degraded (0.287%)
+                 431 active+recovery_wait+degraded
+                  79 active+clean
+                   2 active+recovering+degraded
+recovery io 22958 kB/s, 11 objects/s
+  client io 9131 kB/s wr, 0 op/s rd, 1141 op/s wr
+2017-06-02 02:26:57.359254 7f4e58162700 -1 asok(0x7f4e50000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.25905.139974326358400.asok': (13) Permission denied
+
+2017-06-02 10:26:52,631 INFO cluster.py [line:238] PG number is 512
+2017-06-02 10:26:52,631 INFO cluster.py [line:239] usefull PG number is 79
+2017-06-02 10:27:52,634 INFO cluster.py [line:247] cost 60 seconds, left 4851 seconds when check the ceph status
+2017-06-02 10:27:52,634 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-02 10:27:53,069 INFO cluster.py [line:213]    cluster 3dcaba34-d49b-4025-99c6-d9a43d4b0fda
+     health HEALTH_WARN
+            428 pgs degraded
+            2 pgs recovering
+            426 pgs recovery_wait
+            428 pgs stuck unclean
+            recovery 1881/768032 objects degraded (0.245%)
+     monmap e1: 1 mons at {ubuntu-238=192.168.28.238:6789/0}
+            election epoch 3, quorum 0 ubuntu-238
+     osdmap e3342: 10 osds: 10 up, 10 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v56010: 512 pgs, 1 pools, 1492 GB data, 375 kobjects
+            1012 GB used, 5979 GB / 6991 GB avail
+            1881/768032 objects degraded (0.245%)
+                 426 active+recovery_wait+degraded
+                  84 active+clean
+                   2 active+recovering+degraded
+recovery io 19908 kB/s, 9 objects/s
+  client io 8762 kB/s wr, 0 op/s rd, 1095 op/s wr
+2017-06-02 02:27:57.778726 7f596641e700 -1 asok(0x7f5960000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.26424.140021839434112.asok': (13) Permission denied
+
+2017-06-02 10:27:53,069 INFO cluster.py [line:238] PG number is 512
+2017-06-02 10:27:53,069 INFO cluster.py [line:239] usefull PG number is 84
+2017-06-02 10:28:53,071 INFO cluster.py [line:247] cost 61 seconds, left 4790 seconds when check the ceph status
+2017-06-02 10:28:53,071 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-02 10:28:53,618 INFO cluster.py [line:213]    cluster 3dcaba34-d49b-4025-99c6-d9a43d4b0fda
+     health HEALTH_WARN
+            427 pgs degraded
+            2 pgs recovering
+            425 pgs recovery_wait
+            427 pgs stuck unclean
+            recovery 1601/768032 objects degraded (0.208%)
+     monmap e1: 1 mons at {ubuntu-238=192.168.28.238:6789/0}
+            election epoch 3, quorum 0 ubuntu-238
+     osdmap e3342: 10 osds: 10 up, 10 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v56058: 512 pgs, 1 pools, 1492 GB data, 375 kobjects
+            1012 GB used, 5978 GB / 6991 GB avail
+            1601/768032 objects degraded (0.208%)
+                 425 active+recovery_wait+degraded
+                  85 active+clean
+                   2 active+recovering+degraded
+recovery io 13253 kB/s, 6 objects/s
+  client io 10909 kB/s wr, 0 op/s rd, 1363 op/s wr
+2017-06-02 02:28:58.346545 7f82d479f700 -1 asok(0x7f82cc000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.26952.140199745032576.asok': (13) Permission denied
+
+2017-06-02 10:28:53,618 INFO cluster.py [line:238] PG number is 512
+2017-06-02 10:28:53,618 INFO cluster.py [line:239] usefull PG number is 85
+2017-06-02 10:29:53,621 INFO cluster.py [line:247] cost 60 seconds, left 4730 seconds when check the ceph status
+2017-06-02 10:29:53,621 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-02 10:29:54,089 INFO cluster.py [line:213]    cluster 3dcaba34-d49b-4025-99c6-d9a43d4b0fda
+     health HEALTH_WARN
+            419 pgs degraded
+            1 pgs recovering
+            418 pgs recovery_wait
+            419 pgs stuck unclean
+            recovery 1330/768032 objects degraded (0.173%)
+     monmap e1: 1 mons at {ubuntu-238=192.168.28.238:6789/0}
+            election epoch 3, quorum 0 ubuntu-238
+     osdmap e3342: 10 osds: 10 up, 10 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v56107: 512 pgs, 1 pools, 1492 GB data, 375 kobjects
+            1013 GB used, 5977 GB / 6991 GB avail
+            1330/768032 objects degraded (0.173%)
+                 418 active+recovery_wait+degraded
+                  93 active+clean
+                   1 active+recovering+degraded
+recovery io 25546 kB/s, 10 objects/s
+  client io 9609 kB/s wr, 0 op/s rd, 1201 op/s wr
+2017-06-02 02:29:58.802967 7fad1f204700 -1 asok(0x7fad18000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.27465.140381408727424.asok': (13) Permission denied
+
+2017-06-02 10:29:54,089 INFO cluster.py [line:238] PG number is 512
+2017-06-02 10:29:54,089 INFO cluster.py [line:239] usefull PG number is 93
+2017-06-02 10:30:54,101 INFO cluster.py [line:247] cost 61 seconds, left 4669 seconds when check the ceph status
+2017-06-02 10:30:54,101 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-02 10:30:54,538 INFO cluster.py [line:213]    cluster 3dcaba34-d49b-4025-99c6-d9a43d4b0fda
+     health HEALTH_WARN
+            389 pgs degraded
+            3 pgs recovering
+            386 pgs recovery_wait
+            389 pgs stuck unclean
+            recovery 1067/768032 objects degraded (0.139%)
+     monmap e1: 1 mons at {ubuntu-238=192.168.28.238:6789/0}
+            election epoch 3, quorum 0 ubuntu-238
+     osdmap e3342: 10 osds: 10 up, 10 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v56155: 512 pgs, 1 pools, 1492 GB data, 375 kobjects
+            1014 GB used, 5976 GB / 6991 GB avail
+            1067/768032 objects degraded (0.139%)
+                 386 active+recovery_wait+degraded
+                 123 active+clean
+                   3 active+recovering+degraded
+recovery io 14193 kB/s, 5 objects/s
+  client io 8323 kB/s wr, 0 op/s rd, 1040 op/s wr
+2017-06-02 02:30:59.262555 7f9248637700 -1 asok(0x7f9240000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.27978.140266115699072.asok': (13) Permission denied
+
+2017-06-02 10:30:54,538 INFO cluster.py [line:238] PG number is 512
+2017-06-02 10:30:54,538 INFO cluster.py [line:239] usefull PG number is 123
+2017-06-02 10:31:54,551 INFO cluster.py [line:247] cost 60 seconds, left 4609 seconds when check the ceph status
+2017-06-02 10:31:54,551 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-02 10:31:55,035 INFO cluster.py [line:213]    cluster 3dcaba34-d49b-4025-99c6-d9a43d4b0fda
+     health HEALTH_WARN
+            338 pgs degraded
+            3 pgs recovering
+            335 pgs recovery_wait
+            338 pgs stuck unclean
+            recovery 792/768032 objects degraded (0.103%)
+     monmap e1: 1 mons at {ubuntu-238=192.168.28.238:6789/0}
+            election epoch 3, quorum 0 ubuntu-238
+     osdmap e3342: 10 osds: 10 up, 10 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v56203: 512 pgs, 1 pools, 1492 GB data, 375 kobjects
+            1015 GB used, 5975 GB / 6991 GB avail
+            792/768032 objects degraded (0.103%)
+                 335 active+recovery_wait+degraded
+                 174 active+clean
+                   3 active+recovering+degraded
+recovery io 17091 kB/s, 7 objects/s
+  client io 10070 kB/s wr, 0 op/s rd, 1258 op/s wr
+2017-06-02 02:31:59.738421 7f86fa74f700 -1 asok(0x7f86f4000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.28493.140217595990400.asok': (13) Permission denied
+
+2017-06-02 10:31:55,035 INFO cluster.py [line:238] PG number is 512
+2017-06-02 10:31:55,035 INFO cluster.py [line:239] usefull PG number is 174
+2017-06-02 10:32:55,039 INFO cluster.py [line:247] cost 61 seconds, left 4548 seconds when check the ceph status
+2017-06-02 10:32:55,039 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-02 10:32:55,477 INFO cluster.py [line:213]    cluster 3dcaba34-d49b-4025-99c6-d9a43d4b0fda
+     health HEALTH_WARN
+            283 pgs degraded
+            2 pgs recovering
+            281 pgs recovery_wait
+            283 pgs stuck unclean
+            recovery 503/768032 objects degraded (0.065%)
+     monmap e1: 1 mons at {ubuntu-238=192.168.28.238:6789/0}
+            election epoch 3, quorum 0 ubuntu-238
+     osdmap e3342: 10 osds: 10 up, 10 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v56253: 512 pgs, 1 pools, 1492 GB data, 375 kobjects
+            1016 GB used, 5974 GB / 6991 GB avail
+            503/768032 objects degraded (0.065%)
+                 281 active+recovery_wait+degraded
+                 229 active+clean
+                   2 active+recovering+degraded
+recovery io 10304 kB/s, 4 objects/s
+  client io 7885 kB/s wr, 0 op/s rd, 985 op/s wr
+2017-06-02 02:33:00.205270 7f25f70b8700 -1 asok(0x7f25f0000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.29006.139800917053824.asok': (13) Permission denied
+
+2017-06-02 10:32:55,477 INFO cluster.py [line:238] PG number is 512
+2017-06-02 10:32:55,477 INFO cluster.py [line:239] usefull PG number is 229
+2017-06-02 10:33:55,486 INFO cluster.py [line:247] cost 60 seconds, left 4488 seconds when check the ceph status
+2017-06-02 10:33:55,486 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-02 10:33:55,937 INFO cluster.py [line:213]    cluster 3dcaba34-d49b-4025-99c6-d9a43d4b0fda
+     health HEALTH_WARN
+            192 pgs degraded
+            1 pgs recovering
+            191 pgs recovery_wait
+            192 pgs stuck unclean
+            recovery 241/768032 objects degraded (0.031%)
+     monmap e1: 1 mons at {ubuntu-238=192.168.28.238:6789/0}
+            election epoch 3, quorum 0 ubuntu-238
+     osdmap e3342: 10 osds: 10 up, 10 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v56302: 512 pgs, 1 pools, 1492 GB data, 375 kobjects
+            1017 GB used, 5974 GB / 6991 GB avail
+            241/768032 objects degraded (0.031%)
+                 320 active+clean
+                 191 active+recovery_wait+degraded
+                   1 active+recovering+degraded
+recovery io 6153 kB/s, 2 objects/s
+  client io 8283 kB/s wr, 0 op/s rd, 1035 op/s wr
+2017-06-02 02:34:00.647474 7f791246e700 -1 asok(0x7f790c000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.29521.140157869101440.asok': (13) Permission denied
+
+2017-06-02 10:33:55,937 INFO cluster.py [line:238] PG number is 512
+2017-06-02 10:33:55,937 INFO cluster.py [line:239] usefull PG number is 320
+2017-06-02 10:34:55,944 INFO cluster.py [line:247] cost 60 seconds, left 4428 seconds when check the ceph status
+2017-06-02 10:34:55,944 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-02 10:34:56,368 INFO cluster.py [line:213]    cluster 3dcaba34-d49b-4025-99c6-d9a43d4b0fda
+     health HEALTH_OK
+     monmap e1: 1 mons at {ubuntu-238=192.168.28.238:6789/0}
+            election epoch 3, quorum 0 ubuntu-238
+     osdmap e3342: 10 osds: 10 up, 10 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v56351: 512 pgs, 1 pools, 1492 GB data, 375 kobjects
+            1018 GB used, 5973 GB / 6991 GB avail
+                 512 active+clean
+recovery io 2993 kB/s, 1 objects/s
+  client io 10541 kB/s wr, 0 op/s rd, 1317 op/s wr
+2017-06-02 02:35:01.092540 7f5059053700 -1 asok(0x7f5054000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.30034.139982983401856.asok': (13) Permission denied
+
+2017-06-02 10:34:56,368 INFO cluster.py [line:238] PG number is 512
+2017-06-02 10:34:56,368 INFO cluster.py [line:239] usefull PG number is 512
+2017-06-02 10:34:56,368 INFO cluster.py [line:302] osd on node ubuntu-238 were init successfully
+2017-06-02 10:34:56,368 INFO TC39_shutdown_osd_on_single_node.py [line:31] start to check cluster status before case running
+2017-06-02 10:34:56,479 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-02 10:34:57,265 INFO cluster.py [line:213]    cluster 3dcaba34-d49b-4025-99c6-d9a43d4b0fda
+     health HEALTH_OK
+     monmap e1: 1 mons at {ubuntu-238=192.168.28.238:6789/0}
+            election epoch 3, quorum 0 ubuntu-238
+     osdmap e3342: 10 osds: 10 up, 10 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v56352: 512 pgs, 1 pools, 1492 GB data, 375 kobjects
+            1018 GB used, 5972 GB / 6991 GB avail
+                 512 active+clean
+  client io 8904 kB/s wr, 0 op/s rd, 1113 op/s wr
+2017-06-02 02:35:01.738107 7f92483bb700 -1 asok(0x7f9240000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.49361.140266115699072.asok': (13) Permission denied
+
+2017-06-02 10:34:57,265 INFO cluster.py [line:238] PG number is 512
+2017-06-02 10:34:57,265 INFO cluster.py [line:239] usefull PG number is 512
+2017-06-02 10:34:57,265 INFO TC39_shutdown_osd_on_single_node.py [line:34] health status is OK
+2017-06-02 10:34:57,265 INFO TC39_shutdown_osd_on_single_node.py [line:39] 
+Step1: Check IO from clients
+2017-06-02 10:34:58,858 INFO client.py [line:169] 0
+stdin: is not a tty
+
+2017-06-02 10:34:58,858 INFO client.py [line:171] IO is running
+2017-06-02 10:35:58,861 INFO TC39_shutdown_osd_on_single_node.py [line:48] 
+Step 2: stop osd and check IO
+2017-06-02 10:35:58,861 INFO TC39_shutdown_osd_on_single_node.py [line:51] 
+Now operate osd on ubuntu-237
+2017-06-02 10:35:58,861 INFO TC39_shutdown_osd_on_single_node.py [line:54] 
+Now operate osd.5
+2017-06-02 10:35:58,861 INFO TC39_shutdown_osd_on_single_node.py [line:57] Set the osd.5 pid for kill
+2017-06-02 10:35:59,319 INFO node.py [line:150] osd.5  ---> processId 20348
+2017-06-02 10:35:59,319 INFO node.py [line:150] osd.6  ---> processId 20794
+2017-06-02 10:35:59,319 INFO node.py [line:150] osd.7  ---> processId 21256
+2017-06-02 10:35:59,319 INFO node.py [line:150] osd.8  ---> processId 21702
+2017-06-02 10:35:59,319 INFO node.py [line:150] osd.9  ---> processId 22166
+2017-06-02 10:35:59,319 INFO TC39_shutdown_osd_on_single_node.py [line:59] shutdown osd.5 by kill
+2017-06-02 10:35:59,319 INFO osd.py [line:53] execute command is sudo -i kill 20348 & sleep 3
+2017-06-02 10:36:08,283 INFO TC39_shutdown_osd_on_single_node.py [line:65] start osd.5
+2017-06-02 10:36:08,283 INFO osd.py [line:102] node is  ubuntu-237
+2017-06-02 10:36:08,283 INFO osd.py [line:103] execute command is sudo -i ceph-osd -i 5 & sleep 30

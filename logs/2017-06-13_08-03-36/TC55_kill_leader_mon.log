@@ -1,0 +1,501 @@
+2017-06-13 09:21:02,751 INFO TC55_kill_leader_mon.py [line:26] 
+This test case will do the following steps:
+1. start IO on 10 images with randwrite and verify
+2. login the leader monitor, and kill the mon process
+3. check cluster status, Io status and cluster quorum status
+4. start another RBD, check contious IO
+5. start the killed monitor
+6. check cluster status, does the leader monitor will be back????
+
+2017-06-13 09:21:03,462 INFO monitors.py [line:126]    "quorum_leader_name": "taheo125",
+stdin: is not a tty
+
+2017-06-13 09:21:03,463 INFO monitors.py [line:129]    "quorum_leader_name": "taheo125",
+2017-06-13 09:21:05,467 INFO TC55_kill_leader_mon.py [line:32] start to check cluster status before case running
+2017-06-13 09:21:07,470 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-13 09:21:07,849 INFO cluster.py [line:213]    cluster c1b31c6e-ebc7-4c97-98ec-d59964f99e42
+     health HEALTH_OK
+     monmap e3: 3 mons at {taheo125=192.168.40.125:6789/0,tahoe126=192.168.40.126:6789/0,tahoe127=192.168.40.127:6789/0}
+            election epoch 14, quorum 0,1,2 taheo125,tahoe126,tahoe127
+     osdmap e429: 18 osds: 18 up, 18 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v50021: 3216 pgs, 13 pools, 1498 GB data, 375 kobjects
+            2055 GB used, 4134 GB / 6189 GB avail
+                3216 active+clean
+  client io 2168 kB/s rd, 447 op/s rd, 0 op/s wr
+stdin: is not a tty
+
+2017-06-13 09:21:07,849 INFO cluster.py [line:238] PG number is 3216
+2017-06-13 09:21:07,849 INFO cluster.py [line:239] usefull PG number is 3216
+2017-06-13 09:21:07,850 INFO TC55_kill_leader_mon.py [line:35] health status is OK
+2017-06-13 09:21:07,850 INFO TC55_kill_leader_mon.py [line:41] 
+Step1: Check IO from clients
+2017-06-13 09:21:08,291 INFO client.py [line:172] ['oot      33296      1  0 Jun12 ?        00:00:00 sudo -i fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=client100 -pool=reliablityTestPool -rbdname=client100rbdImg1 -rw=randwrite -bs=8K -size=200G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=client100rbdImg1', 'root      33298  33296 68 Jun12 ?        01:06:19 fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=client100 -pool=reliablityTestPool -rbdname=client100rbdImg1 -rw=randwrite -bs=8K -size=200G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=client100rbdImg1', 'root      33365      1  0 Jun12 ?        00:00:00 sudo -i fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=client100 -pool=reliablityTestPool -rbdname=client100rbdImg2 -rw=randwrite -bs=8K -size=300G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=client100rbdImg2', 'root      33366  33365 90 Jun12 ?        01:26:47 fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=client100 -pool=reliablityTestPool -rbdname=client100rbdImg2 -rw=randwrite -bs=8K -size=300G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=client100rbdImg2', 'root      33436      1  0 Jun12 ?        00:00:00 sudo -i fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=client100 -pool=reliablityTestPool -rbdname=client100rbdImg3 -rw=randwrite -bs=8K -size=400G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=client100rbdImg3', 'root      33439  33436 99 Jun12 ?        01:46:55 fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=client100 -pool=reliablityTestPool -rbdname=client100rbdImg3 -rw=randwrite -bs=8K -size=400G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=client100rbdImg3', 'root      33508      1  0 Jun12 ?        00:00:00 sudo -i fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=client100 -pool=reliablityTestPool -rbdname=client100rbdImg4 -rw=randwrite -bs=8K -size=500G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=client100rbdImg4', 'root      33510  33508 99 Jun12 ?        02:10:00 fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=client100 -pool=reliablityTestPool -rbdname=client100rbdImg4 -rw=randwrite -bs=8K -size=500G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=client100rbdImg4', 'denali   154261 154256  0 01:21 ?        00:00:00 bash -c sudo -i ps -ef | grep fio ', 'denali   154263 154261  0 01:21 ?        00:00:00 grep fio', 'stdin: is not a tty', '']
+2017-06-13 09:21:08,291 INFO client.py [line:174] IO is running
+2017-06-13 09:22:08,351 INFO monitors.py [line:55] mon is  taheo125
+2017-06-13 09:22:08,351 INFO monitors.py [line:56] execute command is sudo -i stop ceph-mon id=taheo125 & sleep 5
+2017-06-13 09:22:13,582 ERROR monitors.py [line:61] Error when shutdown mon taheo125
+2017-06-13 09:22:13,582 ERROR monitors.py [line:62] sudo -i stop ceph-mon id=taheo125 & sleep 5
+2017-06-13 09:22:13,582 ERROR monitors.py [line:63] tdin: is not a tty
+stop: Unknown instance: ceph/taheo125
+
+2017-06-13 09:22:13,582 INFO monitors.py [line:68] mon is  taheo125
+2017-06-13 09:22:13,583 INFO monitors.py [line:69] execute command is sudo -i ceph-mon -i taheo125 & sleep 30
+2017-06-13 09:22:43,768 ERROR monitors.py [line:75] Error when start mon taheo125
+2017-06-13 09:22:43,769 ERROR monitors.py [line:76] sudo -i ceph-mon -i taheo125 & sleep 30
+2017-06-13 09:22:43,769 ERROR monitors.py [line:77] tdin: is not a tty
+2017-06-13 09:22:17.385480 7fb41376d4c0 -1 asok(0x7fb40fd351c0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-mon.taheo125.asok': (17) File exists
+IO error: lock /var/lib/ceph/mon/ceph-taheo125/store.db/LOCK: Resource temporarily unavailable
+2017-06-13 09:22:17.402586 7fb41376d4c0 -1 error opening mon data directory at '/var/lib/ceph/mon/ceph-taheo125': (22) Invalid argument
+
+2017-06-13 09:22:43,769 INFO monitors.py [line:55] mon is  taheo126
+2017-06-13 09:22:43,769 INFO monitors.py [line:56] execute command is sudo -i stop ceph-mon id=taheo126 & sleep 5
+2017-06-13 09:22:48,954 ERROR monitors.py [line:61] Error when shutdown mon taheo126
+2017-06-13 09:22:48,955 ERROR monitors.py [line:62] sudo -i stop ceph-mon id=taheo126 & sleep 5
+2017-06-13 09:22:48,955 ERROR monitors.py [line:63] tdin: is not a tty
+stop: Unknown instance: ceph/taheo126
+
+2017-06-13 09:22:48,955 INFO monitors.py [line:68] mon is  taheo126
+2017-06-13 09:22:48,955 INFO monitors.py [line:69] execute command is sudo -i ceph-mon -i taheo126 & sleep 30
+2017-06-13 09:23:19,139 ERROR monitors.py [line:75] Error when start mon taheo126
+2017-06-13 09:23:19,139 ERROR monitors.py [line:76] sudo -i ceph-mon -i taheo126 & sleep 30
+2017-06-13 09:23:19,139 ERROR monitors.py [line:77] tdin: is not a tty
+monitor data directory at '/var/lib/ceph/mon/ceph-taheo126' does not exist: have you run 'mkfs'?
+
+2017-06-13 09:23:19,139 INFO monitors.py [line:55] mon is  taheo127
+2017-06-13 09:23:19,139 INFO monitors.py [line:56] execute command is sudo -i stop ceph-mon id=taheo127 & sleep 5
+2017-06-13 09:23:24,438 ERROR monitors.py [line:61] Error when shutdown mon taheo127
+2017-06-13 09:23:24,438 ERROR monitors.py [line:62] sudo -i stop ceph-mon id=taheo127 & sleep 5
+2017-06-13 09:23:24,438 ERROR monitors.py [line:63] tdin: is not a tty
+stop: Unknown instance: ceph/taheo127
+
+2017-06-13 09:23:24,438 INFO monitors.py [line:68] mon is  taheo127
+2017-06-13 09:23:24,438 INFO monitors.py [line:69] execute command is sudo -i ceph-mon -i taheo127 & sleep 30
+2017-06-13 09:23:54,660 ERROR monitors.py [line:75] Error when start mon taheo127
+2017-06-13 09:23:54,660 ERROR monitors.py [line:76] sudo -i ceph-mon -i taheo127 & sleep 30
+2017-06-13 09:23:54,660 ERROR monitors.py [line:77] tdin: is not a tty
+monitor data directory at '/var/lib/ceph/mon/ceph-taheo127' does not exist: have you run 'mkfs'?
+
+2017-06-13 09:23:54,660 INFO TC55_kill_leader_mon.py [line:52] 
+Step2: kill leader mon 10 times
+2017-06-13 09:23:54,916 INFO monitors.py [line:45] ['oot     38012     1  2 09:20 ?        00:00:05 ceph-mon -i taheo125', 'denali   48762 48756  0 09:23 ?        00:00:00 bash -c ps -ef | grep ceph-mon', 'denali   48764 48762  0 09:23 ?        00:00:00 grep ceph-mon', '']
+2017-06-13 09:23:54,917 INFO monitors.py [line:51] mon pid is 38012
+2017-06-13 09:23:54,917 INFO monitors.py [line:92] execute command is sudo -i kill -9 38012 & sleep 3
+2017-06-13 09:24:28,846 INFO monitors.py [line:126]    "quorum_leader_name": "tahoe126",
+stdin: is not a tty
+
+2017-06-13 09:24:28,846 INFO monitors.py [line:129]    "quorum_leader_name": "tahoe126",
+2017-06-13 09:24:28,846 INFO TC55_kill_leader_mon.py [line:63] now the leader mon is tahoe126
+2017-06-13 09:24:28,846 INFO monitors.py [line:68] mon is  taheo125
+2017-06-13 09:24:28,846 INFO monitors.py [line:69] execute command is sudo -i ceph-mon -i taheo125 & sleep 30
+2017-06-13 09:24:59,031 INFO monitors.py [line:73] mon taheo125 is start successfully
+2017-06-13 09:24:59,031 INFO monitors.py [line:103] node is  taheo125
+2017-06-13 09:24:59,031 INFO monitors.py [line:104] execute command is ps -ef | grep 'ceph-mon' 
+2017-06-13 09:24:59,251 INFO monitors.py [line:106] oot     54527     1  3 09:24 ?        00:00:00 ceph-mon -i taheo125
+denali   64657 64656  0 09:25 ?        00:00:00 bash -c ps -ef | grep 'ceph-mon' 
+denali   64659 64657  0 09:25 ?        00:00:00 grep ceph-mon
+
+2017-06-13 09:24:59,251 INFO monitors.py [line:114] taheo125 is alrady started
+2017-06-13 09:25:59,267 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-13 09:25:59,659 INFO cluster.py [line:213]    cluster c1b31c6e-ebc7-4c97-98ec-d59964f99e42
+     health HEALTH_OK
+     monmap e3: 3 mons at {taheo125=192.168.40.125:6789/0,tahoe126=192.168.40.126:6789/0,tahoe127=192.168.40.127:6789/0}
+            election epoch 18, quorum 0,1,2 taheo125,tahoe126,tahoe127
+     osdmap e429: 18 osds: 18 up, 18 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v50124: 3216 pgs, 13 pools, 1498 GB data, 375 kobjects
+            2055 GB used, 4134 GB / 6189 GB avail
+                3216 active+clean
+  client io 644 kB/s rd, 265 op/s rd, 0 op/s wr
+stdin: is not a tty
+
+2017-06-13 09:25:59,659 INFO cluster.py [line:238] PG number is 3216
+2017-06-13 09:25:59,659 INFO cluster.py [line:239] usefull PG number is 3216
+2017-06-13 09:25:59,659 INFO TC55_kill_leader_mon.py [line:75] stop mon service on taheo125 in cluster successfully
+2017-06-13 09:26:00,265 INFO monitors.py [line:126]    "quorum_leader_name": "taheo125",
+stdin: is not a tty
+
+2017-06-13 09:26:00,265 INFO monitors.py [line:129]    "quorum_leader_name": "taheo125",
+2017-06-13 09:26:00,266 INFO TC55_kill_leader_mon.py [line:91] now the leader mon is taheo125
+2017-06-13 09:26:00,266 INFO TC55_kill_leader_mon.py [line:93] taheo125 is back
+2017-06-13 09:26:00,482 INFO client.py [line:172] ['oot      33296      1  0 Jun12 ?        00:00:00 sudo -i fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=client100 -pool=reliablityTestPool -rbdname=client100rbdImg1 -rw=randwrite -bs=8K -size=200G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=client100rbdImg1', 'root      33298  33296 68 Jun12 ?        01:09:33 fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=client100 -pool=reliablityTestPool -rbdname=client100rbdImg1 -rw=randwrite -bs=8K -size=200G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=client100rbdImg1', 'root      33365      1  0 Jun12 ?        00:00:00 sudo -i fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=client100 -pool=reliablityTestPool -rbdname=client100rbdImg2 -rw=randwrite -bs=8K -size=300G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=client100rbdImg2', 'root      33366  33365 89 Jun12 ?        01:29:59 fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=client100 -pool=reliablityTestPool -rbdname=client100rbdImg2 -rw=randwrite -bs=8K -size=300G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=client100rbdImg2', 'root      33436      1  0 Jun12 ?        00:00:00 sudo -i fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=client100 -pool=reliablityTestPool -rbdname=client100rbdImg3 -rw=randwrite -bs=8K -size=400G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=client100rbdImg3', 'root      33439  33436 99 Jun12 ?        01:50:05 fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=client100 -pool=reliablityTestPool -rbdname=client100rbdImg3 -rw=randwrite -bs=8K -size=400G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=client100rbdImg3', 'root      33508      1  0 Jun12 ?        00:00:00 sudo -i fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=client100 -pool=reliablityTestPool -rbdname=client100rbdImg4 -rw=randwrite -bs=8K -size=500G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=client100rbdImg4', 'root      33510  33508 99 Jun12 ?        02:13:12 fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=client100 -pool=reliablityTestPool -rbdname=client100rbdImg4 -rw=randwrite -bs=8K -size=500G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=client100rbdImg4', 'denali   169502 169501  0 01:26 ?        00:00:00 bash -c sudo -i ps -ef | grep fio ', 'denali   169504 169502  0 01:26 ?        00:00:00 grep fio', 'stdin: is not a tty', '']
+2017-06-13 09:26:00,483 INFO client.py [line:174] IO is running
+2017-06-13 09:26:00,738 INFO monitors.py [line:45] ['enali   13894 13893  0 09:26 ?        00:00:00 bash -c ps -ef | grep ceph-mon', 'denali   13896 13894  0 09:26 ?        00:00:00 grep ceph-mon', 'root     54527     1  2 09:24 ?        00:00:02 ceph-mon -i taheo125', '']
+2017-06-13 09:26:00,739 INFO monitors.py [line:51] mon pid is 54527
+2017-06-13 09:26:00,739 INFO monitors.py [line:92] execute command is sudo -i kill -9 54527 & sleep 3
+2017-06-13 09:26:37,824 INFO monitors.py [line:126]    "quorum_leader_name": "tahoe126",
+stdin: is not a tty
+
+2017-06-13 09:26:37,824 INFO monitors.py [line:129]    "quorum_leader_name": "tahoe126",
+2017-06-13 09:26:37,825 INFO TC55_kill_leader_mon.py [line:63] now the leader mon is tahoe126
+2017-06-13 09:26:37,825 INFO monitors.py [line:68] mon is  taheo125
+2017-06-13 09:26:37,825 INFO monitors.py [line:69] execute command is sudo -i ceph-mon -i taheo125 & sleep 30
+2017-06-13 09:27:08,042 INFO monitors.py [line:73] mon taheo125 is start successfully
+2017-06-13 09:27:08,043 INFO monitors.py [line:103] node is  taheo125
+2017-06-13 09:27:08,043 INFO monitors.py [line:104] execute command is ps -ef | grep 'ceph-mon' 
+2017-06-13 09:27:08,330 INFO monitors.py [line:106] oot     22069     1  3 09:26 ?        00:00:01 ceph-mon -i taheo125
+denali   32765 32760  0 09:27 ?        00:00:00 bash -c ps -ef | grep 'ceph-mon' 
+denali   32768 32765  0 09:27 ?        00:00:00 grep ceph-mon
+
+2017-06-13 09:27:08,330 INFO monitors.py [line:114] taheo125 is alrady started
+2017-06-13 09:28:08,391 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-13 09:28:08,826 INFO cluster.py [line:213]    cluster c1b31c6e-ebc7-4c97-98ec-d59964f99e42
+     health HEALTH_OK
+     monmap e3: 3 mons at {taheo125=192.168.40.125:6789/0,tahoe126=192.168.40.126:6789/0,tahoe127=192.168.40.127:6789/0}
+            election epoch 22, quorum 0,1,2 taheo125,tahoe126,tahoe127
+     osdmap e429: 18 osds: 18 up, 18 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v50165: 3216 pgs, 13 pools, 1498 GB data, 375 kobjects
+            2055 GB used, 4134 GB / 6189 GB avail
+                3216 active+clean
+  client io 248 MB/s rd, 31937 op/s rd, 0 op/s wr
+stdin: is not a tty
+
+2017-06-13 09:28:08,826 INFO cluster.py [line:238] PG number is 3216
+2017-06-13 09:28:08,826 INFO cluster.py [line:239] usefull PG number is 3216
+2017-06-13 09:28:08,826 INFO TC55_kill_leader_mon.py [line:75] stop mon service on taheo125 in cluster successfully
+2017-06-13 09:28:09,444 INFO monitors.py [line:126]    "quorum_leader_name": "taheo125",
+stdin: is not a tty
+
+2017-06-13 09:28:09,444 INFO monitors.py [line:129]    "quorum_leader_name": "taheo125",
+2017-06-13 09:28:09,445 INFO TC55_kill_leader_mon.py [line:91] now the leader mon is taheo125
+2017-06-13 09:28:09,445 INFO TC55_kill_leader_mon.py [line:93] taheo125 is back
+2017-06-13 09:28:09,703 INFO client.py [line:172] ['oot      33296      1  0 Jun12 ?        00:00:00 sudo -i fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=client100 -pool=reliablityTestPool -rbdname=client100rbdImg1 -rw=randwrite -bs=8K -size=200G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=client100rbdImg1', 'root      33298  33296 68 Jun12 ?        01:10:59 fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=client100 -pool=reliablityTestPool -rbdname=client100rbdImg1 -rw=randwrite -bs=8K -size=200G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=client100rbdImg1', 'root      33365      1  0 Jun12 ?        00:00:00 sudo -i fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=client100 -pool=reliablityTestPool -rbdname=client100rbdImg2 -rw=randwrite -bs=8K -size=300G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=client100rbdImg2', 'root      33366  33365 88 Jun12 ?        01:31:25 fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=client100 -pool=reliablityTestPool -rbdname=client100rbdImg2 -rw=randwrite -bs=8K -size=300G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=client100rbdImg2', 'root      33436      1  0 Jun12 ?        00:00:00 sudo -i fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=client100 -pool=reliablityTestPool -rbdname=client100rbdImg3 -rw=randwrite -bs=8K -size=400G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=client100rbdImg3', 'root      33439  33436 99 Jun12 ?        01:51:28 fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=client100 -pool=reliablityTestPool -rbdname=client100rbdImg3 -rw=randwrite -bs=8K -size=400G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=client100rbdImg3', 'root      33508      1  0 Jun12 ?        00:00:00 sudo -i fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=client100 -pool=reliablityTestPool -rbdname=client100rbdImg4 -rw=randwrite -bs=8K -size=500G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=client100rbdImg4', 'root      33510  33508 99 Jun12 ?        02:14:37 fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=client100 -pool=reliablityTestPool -rbdname=client100rbdImg4 -rw=randwrite -bs=8K -size=500G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=client100rbdImg4', 'denali   175924 175922  0 01:28 ?        00:00:00 bash -c sudo -i ps -ef | grep fio ', 'denali   175926 175924  0 01:28 ?        00:00:00 grep fio', 'stdin: is not a tty', '']
+2017-06-13 09:28:09,703 INFO client.py [line:174] IO is running
+2017-06-13 09:28:09,956 INFO monitors.py [line:45] ['oot     22069     1  2 09:26 ?        00:00:02 ceph-mon -i taheo125', 'denali   55177 55176  0 09:28 ?        00:00:00 bash -c ps -ef | grep ceph-mon', 'denali   55179 55177  0 09:28 ?        00:00:00 grep ceph-mon', '']
+2017-06-13 09:28:09,956 INFO monitors.py [line:51] mon pid is 22069
+2017-06-13 09:28:09,956 INFO monitors.py [line:92] execute command is sudo -i kill -9 22069 & sleep 3
+2017-06-13 09:28:43,780 INFO monitors.py [line:126]    "quorum_leader_name": "tahoe126",
+stdin: is not a tty
+
+2017-06-13 09:28:43,780 INFO monitors.py [line:129]    "quorum_leader_name": "tahoe126",
+2017-06-13 09:28:43,780 INFO TC55_kill_leader_mon.py [line:63] now the leader mon is tahoe126
+2017-06-13 09:28:43,780 INFO monitors.py [line:68] mon is  taheo125
+2017-06-13 09:28:43,780 INFO monitors.py [line:69] execute command is sudo -i ceph-mon -i taheo125 & sleep 30
+2017-06-13 09:29:13,933 INFO monitors.py [line:73] mon taheo125 is start successfully
+2017-06-13 09:29:13,933 INFO monitors.py [line:103] node is  taheo125
+2017-06-13 09:29:13,933 INFO monitors.py [line:104] execute command is ps -ef | grep 'ceph-mon' 
+2017-06-13 09:29:14,188 INFO monitors.py [line:106] oot     62009     1  3 09:28 ?        00:00:01 ceph-mon -i taheo125
+denali   72812 72811  0 09:29 ?        00:00:00 bash -c ps -ef | grep 'ceph-mon' 
+denali   72814 72812  0 09:29 ?        00:00:00 grep ceph-mon
+
+2017-06-13 09:29:14,188 INFO monitors.py [line:114] taheo125 is alrady started
+2017-06-13 09:30:14,198 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-13 09:30:14,613 INFO cluster.py [line:213]    cluster c1b31c6e-ebc7-4c97-98ec-d59964f99e42
+     health HEALTH_OK
+     monmap e3: 3 mons at {taheo125=192.168.40.125:6789/0,tahoe126=192.168.40.126:6789/0,tahoe127=192.168.40.127:6789/0}
+            election epoch 26, quorum 0,1,2 taheo125,tahoe126,tahoe127
+     osdmap e429: 18 osds: 18 up, 18 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v50206: 3216 pgs, 13 pools, 1498 GB data, 375 kobjects
+            2055 GB used, 4134 GB / 6189 GB avail
+                3216 active+clean
+  client io 194 MB/s rd, 25069 op/s rd, 0 op/s wr
+stdin: is not a tty
+
+2017-06-13 09:30:14,613 INFO cluster.py [line:238] PG number is 3216
+2017-06-13 09:30:14,614 INFO cluster.py [line:239] usefull PG number is 3216
+2017-06-13 09:30:14,614 INFO TC55_kill_leader_mon.py [line:75] stop mon service on taheo125 in cluster successfully
+2017-06-13 09:30:15,162 INFO monitors.py [line:126]    "quorum_leader_name": "taheo125",
+stdin: is not a tty
+
+2017-06-13 09:30:15,162 INFO monitors.py [line:129]    "quorum_leader_name": "taheo125",
+2017-06-13 09:30:15,162 INFO TC55_kill_leader_mon.py [line:91] now the leader mon is taheo125
+2017-06-13 09:30:15,162 INFO TC55_kill_leader_mon.py [line:93] taheo125 is back
+2017-06-13 09:30:15,381 INFO client.py [line:172] ['oot      33296      1  0 Jun12 ?        00:00:00 sudo -i fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=client100 -pool=reliablityTestPool -rbdname=client100rbdImg1 -rw=randwrite -bs=8K -size=200G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=client100rbdImg1', 'root      33298  33296 68 Jun12 ?        01:12:22 fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=client100 -pool=reliablityTestPool -rbdname=client100rbdImg1 -rw=randwrite -bs=8K -size=200G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=client100rbdImg1', 'root      33365      1  0 Jun12 ?        00:00:00 sudo -i fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=client100 -pool=reliablityTestPool -rbdname=client100rbdImg2 -rw=randwrite -bs=8K -size=300G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=client100rbdImg2', 'root      33366  33365 88 Jun12 ?        01:32:48 fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=client100 -pool=reliablityTestPool -rbdname=client100rbdImg2 -rw=randwrite -bs=8K -size=300G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=client100rbdImg2', 'root      33436      1  0 Jun12 ?        00:00:00 sudo -i fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=client100 -pool=reliablityTestPool -rbdname=client100rbdImg3 -rw=randwrite -bs=8K -size=400G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=client100rbdImg3', 'root      33439  33436 99 Jun12 ?        01:52:50 fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=client100 -pool=reliablityTestPool -rbdname=client100rbdImg3 -rw=randwrite -bs=8K -size=400G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=client100rbdImg3', 'root      33508      1  0 Jun12 ?        00:00:00 sudo -i fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=client100 -pool=reliablityTestPool -rbdname=client100rbdImg4 -rw=randwrite -bs=8K -size=500G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=client100rbdImg4', 'root      33510  33508 99 Jun12 ?        02:16:00 fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=client100 -pool=reliablityTestPool -rbdname=client100rbdImg4 -rw=randwrite -bs=8K -size=500G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=client100rbdImg4', 'denali   182145 182144  0 01:30 ?        00:00:00 bash -c sudo -i ps -ef | grep fio ', 'denali   182147 182145  0 01:30 ?        00:00:00 grep fio', 'stdin: is not a tty', '']
+2017-06-13 09:30:15,381 INFO client.py [line:174] IO is running
+2017-06-13 09:30:15,632 INFO monitors.py [line:45] ['enali   22504 22503  0 09:30 ?        00:00:00 bash -c ps -ef | grep ceph-mon', 'denali   22506 22504  0 09:30 ?        00:00:00 grep ceph-mon', 'root     62009     1  3 09:28 ?        00:00:02 ceph-mon -i taheo125', '']
+2017-06-13 09:30:15,632 INFO monitors.py [line:51] mon pid is 62009
+2017-06-13 09:30:15,632 INFO monitors.py [line:92] execute command is sudo -i kill -9 62009 & sleep 3
+2017-06-13 09:30:49,476 INFO monitors.py [line:126]    "quorum_leader_name": "tahoe126",
+stdin: is not a tty
+
+2017-06-13 09:30:49,477 INFO monitors.py [line:129]    "quorum_leader_name": "tahoe126",
+2017-06-13 09:30:49,477 INFO TC55_kill_leader_mon.py [line:63] now the leader mon is tahoe126
+2017-06-13 09:30:49,477 INFO monitors.py [line:68] mon is  taheo125
+2017-06-13 09:30:49,477 INFO monitors.py [line:69] execute command is sudo -i ceph-mon -i taheo125 & sleep 30
+2017-06-13 09:31:19,698 INFO monitors.py [line:73] mon taheo125 is start successfully
+2017-06-13 09:31:19,698 INFO monitors.py [line:103] node is  taheo125
+2017-06-13 09:31:19,698 INFO monitors.py [line:104] execute command is ps -ef | grep 'ceph-mon' 
+2017-06-13 09:31:19,939 INFO monitors.py [line:106] oot     29736     1  3 09:30 ?        00:00:00 ceph-mon -i taheo125
+denali   39937 39928  0 09:31 ?        00:00:00 bash -c ps -ef | grep 'ceph-mon' 
+denali   39943 39937  0 09:31 ?        00:00:00 grep ceph-mon
+
+2017-06-13 09:31:19,939 INFO monitors.py [line:114] taheo125 is alrady started
+2017-06-13 09:32:19,993 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-13 09:32:20,389 INFO cluster.py [line:213]    cluster c1b31c6e-ebc7-4c97-98ec-d59964f99e42
+     health HEALTH_OK
+     monmap e3: 3 mons at {taheo125=192.168.40.125:6789/0,tahoe126=192.168.40.126:6789/0,tahoe127=192.168.40.127:6789/0}
+            election epoch 30, quorum 0,1,2 taheo125,tahoe126,tahoe127
+     osdmap e429: 18 osds: 18 up, 18 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v50249: 3216 pgs, 13 pools, 1498 GB data, 375 kobjects
+            2055 GB used, 4134 GB / 6189 GB avail
+                3216 active+clean
+  client io 196 MB/s rd, 25264 op/s rd, 0 op/s wr
+stdin: is not a tty
+
+2017-06-13 09:32:20,390 INFO cluster.py [line:238] PG number is 3216
+2017-06-13 09:32:20,390 INFO cluster.py [line:239] usefull PG number is 3216
+2017-06-13 09:32:20,390 INFO TC55_kill_leader_mon.py [line:75] stop mon service on taheo125 in cluster successfully
+2017-06-13 09:32:21,026 INFO monitors.py [line:126]    "quorum_leader_name": "taheo125",
+stdin: is not a tty
+
+2017-06-13 09:32:21,026 INFO monitors.py [line:129]    "quorum_leader_name": "taheo125",
+2017-06-13 09:32:21,026 INFO TC55_kill_leader_mon.py [line:91] now the leader mon is taheo125
+2017-06-13 09:32:21,026 INFO TC55_kill_leader_mon.py [line:93] taheo125 is back
+2017-06-13 09:32:21,246 INFO client.py [line:172] ['oot      33296      1  0 Jun12 ?        00:00:00 sudo -i fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=client100 -pool=reliablityTestPool -rbdname=client100rbdImg1 -rw=randwrite -bs=8K -size=200G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=client100rbdImg1', 'root      33298  33296 68 Jun12 ?        01:13:44 fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=client100 -pool=reliablityTestPool -rbdname=client100rbdImg1 -rw=randwrite -bs=8K -size=200G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=client100rbdImg1', 'root      33365      1  0 Jun12 ?        00:00:00 sudo -i fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=client100 -pool=reliablityTestPool -rbdname=client100rbdImg2 -rw=randwrite -bs=8K -size=300G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=client100rbdImg2', 'root      33366  33365 87 Jun12 ?        01:34:10 fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=client100 -pool=reliablityTestPool -rbdname=client100rbdImg2 -rw=randwrite -bs=8K -size=300G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=client100rbdImg2', 'root      33436      1  0 Jun12 ?        00:00:00 sudo -i fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=client100 -pool=reliablityTestPool -rbdname=client100rbdImg3 -rw=randwrite -bs=8K -size=400G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=client100rbdImg3', 'root      33439  33436 99 Jun12 ?        01:54:10 fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=client100 -pool=reliablityTestPool -rbdname=client100rbdImg3 -rw=randwrite -bs=8K -size=400G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=client100rbdImg3', 'root      33508      1  0 Jun12 ?        00:00:00 sudo -i fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=client100 -pool=reliablityTestPool -rbdname=client100rbdImg4 -rw=randwrite -bs=8K -size=500G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=client100rbdImg4', 'root      33510  33508 99 Jun12 ?        02:17:22 fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=client100 -pool=reliablityTestPool -rbdname=client100rbdImg4 -rw=randwrite -bs=8K -size=500G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=client100rbdImg4', 'denali   188510 188509  0 01:32 ?        00:00:00 bash -c sudo -i ps -ef | grep fio ', 'denali   188512 188510  0 01:32 ?        00:00:00 grep fio', 'stdin: is not a tty', '']
+2017-06-13 09:32:21,246 INFO client.py [line:174] IO is running
+2017-06-13 09:32:21,493 INFO monitors.py [line:45] ['oot     29736     1  3 09:30 ?        00:00:02 ceph-mon -i taheo125', 'denali   62758 62754  0 09:32 ?        00:00:00 bash -c ps -ef | grep ceph-mon', 'denali   62761 62758  0 09:32 ?        00:00:00 grep ceph-mon', '']
+2017-06-13 09:32:21,494 INFO monitors.py [line:51] mon pid is 29736
+2017-06-13 09:32:21,494 INFO monitors.py [line:92] execute command is sudo -i kill -9 29736 & sleep 3
+2017-06-13 09:32:55,443 INFO monitors.py [line:126]    "quorum_leader_name": "tahoe126",
+stdin: is not a tty
+
+2017-06-13 09:32:55,443 INFO monitors.py [line:129]    "quorum_leader_name": "tahoe126",
+2017-06-13 09:32:55,443 INFO TC55_kill_leader_mon.py [line:63] now the leader mon is tahoe126
+2017-06-13 09:32:55,443 INFO monitors.py [line:68] mon is  taheo125
+2017-06-13 09:32:55,443 INFO monitors.py [line:69] execute command is sudo -i ceph-mon -i taheo125 & sleep 30
+2017-06-13 09:33:25,696 INFO monitors.py [line:73] mon taheo125 is start successfully
+2017-06-13 09:33:25,697 INFO monitors.py [line:103] node is  taheo125
+2017-06-13 09:33:25,697 INFO monitors.py [line:104] execute command is ps -ef | grep 'ceph-mon' 
+2017-06-13 09:33:25,928 INFO monitors.py [line:106] enali    7115  7114  0 09:33 ?        00:00:00 bash -c ps -ef | grep 'ceph-mon' 
+denali    7117  7115  0 09:33 ?        00:00:00 grep ceph-mon
+root     68503     1  3 09:32 ?        00:00:01 ceph-mon -i taheo125
+
+2017-06-13 09:33:25,928 INFO monitors.py [line:114] taheo125 is alrady started
+2017-06-13 09:34:25,989 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-13 09:34:26,406 INFO cluster.py [line:213]    cluster c1b31c6e-ebc7-4c97-98ec-d59964f99e42
+     health HEALTH_OK
+     monmap e3: 3 mons at {taheo125=192.168.40.125:6789/0,tahoe126=192.168.40.126:6789/0,tahoe127=192.168.40.127:6789/0}
+            election epoch 34, quorum 0,1,2 taheo125,tahoe126,tahoe127
+     osdmap e429: 18 osds: 18 up, 18 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v50291: 3216 pgs, 13 pools, 1498 GB data, 375 kobjects
+            2055 GB used, 4134 GB / 6189 GB avail
+                3216 active+clean
+  client io 203 MB/s rd, 26169 op/s rd, 0 op/s wr
+stdin: is not a tty
+
+2017-06-13 09:34:26,406 INFO cluster.py [line:238] PG number is 3216
+2017-06-13 09:34:26,406 INFO cluster.py [line:239] usefull PG number is 3216
+2017-06-13 09:34:26,406 INFO TC55_kill_leader_mon.py [line:75] stop mon service on taheo125 in cluster successfully
+2017-06-13 09:34:26,963 INFO monitors.py [line:126]    "quorum_leader_name": "taheo125",
+stdin: is not a tty
+
+2017-06-13 09:34:26,963 INFO monitors.py [line:129]    "quorum_leader_name": "taheo125",
+2017-06-13 09:34:26,963 INFO TC55_kill_leader_mon.py [line:91] now the leader mon is taheo125
+2017-06-13 09:34:26,963 INFO TC55_kill_leader_mon.py [line:93] taheo125 is back
+2017-06-13 09:34:27,217 INFO client.py [line:172] ['oot      33296      1  0 Jun12 ?        00:00:00 sudo -i fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=client100 -pool=reliablityTestPool -rbdname=client100rbdImg1 -rw=randwrite -bs=8K -size=200G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=client100rbdImg1', 'root      33298  33296 68 Jun12 ?        01:15:07 fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=client100 -pool=reliablityTestPool -rbdname=client100rbdImg1 -rw=randwrite -bs=8K -size=200G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=client100rbdImg1', 'root      33365      1  0 Jun12 ?        00:00:00 sudo -i fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=client100 -pool=reliablityTestPool -rbdname=client100rbdImg2 -rw=randwrite -bs=8K -size=300G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=client100rbdImg2', 'root      33366  33365 87 Jun12 ?        01:35:32 fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=client100 -pool=reliablityTestPool -rbdname=client100rbdImg2 -rw=randwrite -bs=8K -size=300G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=client100rbdImg2', 'root      33436      1  0 Jun12 ?        00:00:00 sudo -i fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=client100 -pool=reliablityTestPool -rbdname=client100rbdImg3 -rw=randwrite -bs=8K -size=400G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=client100rbdImg3', 'root      33439  33436 99 Jun12 ?        01:55:31 fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=client100 -pool=reliablityTestPool -rbdname=client100rbdImg3 -rw=randwrite -bs=8K -size=400G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=client100rbdImg3', 'root      33508      1  0 Jun12 ?        00:00:00 sudo -i fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=client100 -pool=reliablityTestPool -rbdname=client100rbdImg4 -rw=randwrite -bs=8K -size=500G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=client100rbdImg4', 'root      33510  33508 99 Jun12 ?        02:18:45 fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=client100 -pool=reliablityTestPool -rbdname=client100rbdImg4 -rw=randwrite -bs=8K -size=500G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=client100rbdImg4', 'denali   194465 194464  0 01:34 ?        00:00:00 bash -c sudo -i ps -ef | grep fio ', 'denali   194467 194465  0 01:34 ?        00:00:00 grep fio', 'stdin: is not a tty', '']
+2017-06-13 09:34:27,218 INFO client.py [line:174] IO is running
+2017-06-13 09:34:27,499 INFO monitors.py [line:45] ['enali   29919 29917  0 09:34 ?        00:00:00 bash -c ps -ef | grep ceph-mon', 'denali   29921 29919  0 09:34 ?        00:00:00 grep ceph-mon', 'root     68503     1  3 09:32 ?        00:00:02 ceph-mon -i taheo125', '']
+2017-06-13 09:34:27,500 INFO monitors.py [line:51] mon pid is 68503
+2017-06-13 09:34:27,500 INFO monitors.py [line:92] execute command is sudo -i kill -9 68503 & sleep 3
+2017-06-13 09:35:01,312 INFO monitors.py [line:126]    "quorum_leader_name": "tahoe126",
+stdin: is not a tty
+
+2017-06-13 09:35:01,312 INFO monitors.py [line:129]    "quorum_leader_name": "tahoe126",
+2017-06-13 09:35:01,313 INFO TC55_kill_leader_mon.py [line:63] now the leader mon is tahoe126
+2017-06-13 09:35:01,313 INFO monitors.py [line:68] mon is  taheo125
+2017-06-13 09:35:01,313 INFO monitors.py [line:69] execute command is sudo -i ceph-mon -i taheo125 & sleep 30
+2017-06-13 09:35:31,555 INFO monitors.py [line:73] mon taheo125 is start successfully
+2017-06-13 09:35:31,555 INFO monitors.py [line:103] node is  taheo125
+2017-06-13 09:35:31,555 INFO monitors.py [line:104] execute command is ps -ef | grep 'ceph-mon' 
+2017-06-13 09:35:31,790 INFO monitors.py [line:106] oot     36400     1  3 09:35 ?        00:00:01 ceph-mon -i taheo125
+denali   47555 47509  0 09:35 ?        00:00:00 bash -c ps -ef | grep 'ceph-mon' 
+denali   47557 47555  0 09:35 ?        00:00:00 grep ceph-mon
+
+2017-06-13 09:35:31,790 INFO monitors.py [line:114] taheo125 is alrady started
+2017-06-13 09:36:31,849 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-13 09:36:32,230 INFO cluster.py [line:213]    cluster c1b31c6e-ebc7-4c97-98ec-d59964f99e42
+     health HEALTH_OK
+     monmap e3: 3 mons at {taheo125=192.168.40.125:6789/0,tahoe126=192.168.40.126:6789/0,tahoe127=192.168.40.127:6789/0}
+            election epoch 38, quorum 0,1,2 taheo125,tahoe126,tahoe127
+     osdmap e429: 18 osds: 18 up, 18 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v50330: 3216 pgs, 13 pools, 1498 GB data, 375 kobjects
+            2055 GB used, 4134 GB / 6189 GB avail
+                3216 active+clean
+  client io 204 MB/s rd, 26299 op/s rd, 0 op/s wr
+stdin: is not a tty
+
+2017-06-13 09:36:32,230 INFO cluster.py [line:238] PG number is 3216
+2017-06-13 09:36:32,230 INFO cluster.py [line:239] usefull PG number is 3216
+2017-06-13 09:36:32,230 INFO TC55_kill_leader_mon.py [line:75] stop mon service on taheo125 in cluster successfully
+2017-06-13 09:36:32,794 INFO monitors.py [line:126]    "quorum_leader_name": "taheo125",
+stdin: is not a tty
+
+2017-06-13 09:36:32,795 INFO monitors.py [line:129]    "quorum_leader_name": "taheo125",
+2017-06-13 09:36:32,795 INFO TC55_kill_leader_mon.py [line:91] now the leader mon is taheo125
+2017-06-13 09:36:32,795 INFO TC55_kill_leader_mon.py [line:93] taheo125 is back
+2017-06-13 09:36:33,047 INFO client.py [line:172] ['enali     5311   5306  0 01:36 ?        00:00:00 bash -c sudo -i ps -ef | grep fio ', 'denali     5313   5311  0 01:36 ?        00:00:00 grep fio', 'root      33296      1  0 Jun12 ?        00:00:00 sudo -i fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=client100 -pool=reliablityTestPool -rbdname=client100rbdImg1 -rw=randwrite -bs=8K -size=200G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=client100rbdImg1', 'root      33298  33296 68 Jun12 ?        01:16:31 fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=client100 -pool=reliablityTestPool -rbdname=client100rbdImg1 -rw=randwrite -bs=8K -size=200G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=client100rbdImg1', 'root      33365      1  0 Jun12 ?        00:00:00 sudo -i fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=client100 -pool=reliablityTestPool -rbdname=client100rbdImg2 -rw=randwrite -bs=8K -size=300G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=client100rbdImg2', 'root      33366  33365 86 Jun12 ?        01:36:56 fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=client100 -pool=reliablityTestPool -rbdname=client100rbdImg2 -rw=randwrite -bs=8K -size=300G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=client100rbdImg2', 'root      33436      1  0 Jun12 ?        00:00:00 sudo -i fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=client100 -pool=reliablityTestPool -rbdname=client100rbdImg3 -rw=randwrite -bs=8K -size=400G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=client100rbdImg3', 'root      33439  33436 99 Jun12 ?        01:56:53 fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=client100 -pool=reliablityTestPool -rbdname=client100rbdImg3 -rw=randwrite -bs=8K -size=400G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=client100rbdImg3', 'root      33508      1  0 Jun12 ?        00:00:00 sudo -i fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=client100 -pool=reliablityTestPool -rbdname=client100rbdImg4 -rw=randwrite -bs=8K -size=500G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=client100rbdImg4', 'root      33510  33508 99 Jun12 ?        02:20:09 fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=client100 -pool=reliablityTestPool -rbdname=client100rbdImg4 -rw=randwrite -bs=8K -size=500G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=client100rbdImg4', 'stdin: is not a tty', '']
+2017-06-13 09:36:33,048 INFO client.py [line:174] IO is running
+2017-06-13 09:36:33,297 INFO monitors.py [line:45] ['oot     36400     1  3 09:35 ?        00:00:03 ceph-mon -i taheo125', 'denali   70037 70036  0 09:36 ?        00:00:00 bash -c ps -ef | grep ceph-mon', 'denali   70039 70037  0 09:36 ?        00:00:00 grep ceph-mon', '']
+2017-06-13 09:36:33,297 INFO monitors.py [line:51] mon pid is 36400
+2017-06-13 09:36:33,297 INFO monitors.py [line:92] execute command is sudo -i kill -9 36400 & sleep 3
+2017-06-13 09:37:10,092 INFO monitors.py [line:126]    "quorum_leader_name": "tahoe126",
+stdin: is not a tty
+
+2017-06-13 09:37:10,093 INFO monitors.py [line:129]    "quorum_leader_name": "tahoe126",
+2017-06-13 09:37:10,093 INFO TC55_kill_leader_mon.py [line:63] now the leader mon is tahoe126
+2017-06-13 09:37:10,093 INFO monitors.py [line:68] mon is  taheo125
+2017-06-13 09:37:10,093 INFO monitors.py [line:69] execute command is sudo -i ceph-mon -i taheo125 & sleep 30
+2017-06-13 09:37:40,298 INFO monitors.py [line:73] mon taheo125 is start successfully
+2017-06-13 09:37:40,298 INFO monitors.py [line:103] node is  taheo125
+2017-06-13 09:37:40,298 INFO monitors.py [line:104] execute command is ps -ef | grep 'ceph-mon' 
+2017-06-13 09:37:40,533 INFO monitors.py [line:106] oot      4307     1  3 09:37 ?        00:00:00 ceph-mon -i taheo125
+denali   15438 15425  0 09:37 ?        00:00:00 bash -c ps -ef | grep 'ceph-mon' 
+denali   15444 15438  0 09:37 ?        00:00:00 grep ceph-mon
+
+2017-06-13 09:37:40,533 INFO monitors.py [line:114] taheo125 is alrady started
+2017-06-13 09:38:40,583 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-13 09:38:40,994 INFO cluster.py [line:213]    cluster c1b31c6e-ebc7-4c97-98ec-d59964f99e42
+     health HEALTH_OK
+     monmap e3: 3 mons at {taheo125=192.168.40.125:6789/0,tahoe126=192.168.40.126:6789/0,tahoe127=192.168.40.127:6789/0}
+            election epoch 42, quorum 0,1,2 taheo125,tahoe126,tahoe127
+     osdmap e429: 18 osds: 18 up, 18 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v50372: 3216 pgs, 13 pools, 1498 GB data, 375 kobjects
+            2055 GB used, 4134 GB / 6189 GB avail
+                3216 active+clean
+  client io 201 MB/s rd, 26019 op/s rd, 0 op/s wr
+stdin: is not a tty
+
+2017-06-13 09:38:40,994 INFO cluster.py [line:238] PG number is 3216
+2017-06-13 09:38:40,994 INFO cluster.py [line:239] usefull PG number is 3216
+2017-06-13 09:38:40,994 INFO TC55_kill_leader_mon.py [line:75] stop mon service on taheo125 in cluster successfully
+2017-06-13 09:38:41,622 INFO monitors.py [line:126]    "quorum_leader_name": "taheo125",
+stdin: is not a tty
+
+2017-06-13 09:38:41,622 INFO monitors.py [line:129]    "quorum_leader_name": "taheo125",
+2017-06-13 09:38:41,622 INFO TC55_kill_leader_mon.py [line:91] now the leader mon is taheo125
+2017-06-13 09:38:41,622 INFO TC55_kill_leader_mon.py [line:93] taheo125 is back
+2017-06-13 09:38:41,874 INFO client.py [line:172] ['enali    11676  11674  0 01:38 ?        00:00:00 bash -c sudo -i ps -ef | grep fio ', 'denali    11678  11676  0 01:38 ?        00:00:00 grep fio', 'root      33296      1  0 Jun12 ?        00:00:00 sudo -i fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=client100 -pool=reliablityTestPool -rbdname=client100rbdImg1 -rw=randwrite -bs=8K -size=200G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=client100rbdImg1', 'root      33298  33296 68 Jun12 ?        01:17:56 fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=client100 -pool=reliablityTestPool -rbdname=client100rbdImg1 -rw=randwrite -bs=8K -size=200G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=client100rbdImg1', 'root      33365      1  0 Jun12 ?        00:00:00 sudo -i fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=client100 -pool=reliablityTestPool -rbdname=client100rbdImg2 -rw=randwrite -bs=8K -size=300G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=client100rbdImg2', 'root      33366  33365 86 Jun12 ?        01:38:20 fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=client100 -pool=reliablityTestPool -rbdname=client100rbdImg2 -rw=randwrite -bs=8K -size=300G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=client100rbdImg2', 'root      33436      1  0 Jun12 ?        00:00:00 sudo -i fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=client100 -pool=reliablityTestPool -rbdname=client100rbdImg3 -rw=randwrite -bs=8K -size=400G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=client100rbdImg3', 'root      33439  33436 99 Jun12 ?        01:58:17 fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=client100 -pool=reliablityTestPool -rbdname=client100rbdImg3 -rw=randwrite -bs=8K -size=400G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=client100rbdImg3', 'root      33508      1  0 Jun12 ?        00:00:00 sudo -i fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=client100 -pool=reliablityTestPool -rbdname=client100rbdImg4 -rw=randwrite -bs=8K -size=500G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=client100rbdImg4', 'root      33510  33508 99 Jun12 ?        02:21:34 fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=client100 -pool=reliablityTestPool -rbdname=client100rbdImg4 -rw=randwrite -bs=8K -size=500G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=client100rbdImg4', 'stdin: is not a tty', '']
+2017-06-13 09:38:41,874 INFO client.py [line:174] IO is running
+2017-06-13 09:38:42,144 INFO monitors.py [line:45] ['oot      4307     1  3 09:37 ?        00:00:02 ceph-mon -i taheo125', 'denali   38391 38390  0 09:38 ?        00:00:00 bash -c ps -ef | grep ceph-mon', 'denali   38393 38391  0 09:38 ?        00:00:00 grep ceph-mon', '']
+2017-06-13 09:38:42,144 INFO monitors.py [line:51] mon pid is 4307
+2017-06-13 09:38:42,145 INFO monitors.py [line:92] execute command is sudo -i kill -9 4307 & sleep 3
+2017-06-13 09:39:16,015 INFO monitors.py [line:126]    "quorum_leader_name": "tahoe126",
+stdin: is not a tty
+
+2017-06-13 09:39:16,016 INFO monitors.py [line:129]    "quorum_leader_name": "tahoe126",
+2017-06-13 09:39:16,016 INFO TC55_kill_leader_mon.py [line:63] now the leader mon is tahoe126
+2017-06-13 09:39:16,016 INFO monitors.py [line:68] mon is  taheo125
+2017-06-13 09:39:16,016 INFO monitors.py [line:69] execute command is sudo -i ceph-mon -i taheo125 & sleep 30
+2017-06-13 09:39:46,207 INFO monitors.py [line:73] mon taheo125 is start successfully
+2017-06-13 09:39:46,208 INFO monitors.py [line:103] node is  taheo125
+2017-06-13 09:39:46,208 INFO monitors.py [line:104] execute command is ps -ef | grep 'ceph-mon' 
+2017-06-13 09:39:46,440 INFO monitors.py [line:106] oot     45989     1  3 09:39 ?        00:00:00 ceph-mon -i taheo125
+denali   56955 56933  0 09:39 ?        00:00:00 bash -c ps -ef | grep 'ceph-mon' 
+denali   56960 56955  0 09:39 ?        00:00:00 grep ceph-mon
+
+2017-06-13 09:39:46,440 INFO monitors.py [line:114] taheo125 is alrady started
+2017-06-13 09:40:46,500 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-13 09:40:46,889 INFO cluster.py [line:213]    cluster c1b31c6e-ebc7-4c97-98ec-d59964f99e42
+     health HEALTH_OK
+     monmap e3: 3 mons at {taheo125=192.168.40.125:6789/0,tahoe126=192.168.40.126:6789/0,tahoe127=192.168.40.127:6789/0}
+            election epoch 46, quorum 0,1,2 taheo125,tahoe126,tahoe127
+     osdmap e429: 18 osds: 18 up, 18 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v50411: 3216 pgs, 13 pools, 1498 GB data, 375 kobjects
+            2055 GB used, 4134 GB / 6189 GB avail
+                3216 active+clean
+  client io 217 MB/s rd, 28102 op/s rd, 0 op/s wr
+stdin: is not a tty
+
+2017-06-13 09:40:46,889 INFO cluster.py [line:238] PG number is 3216
+2017-06-13 09:40:46,889 INFO cluster.py [line:239] usefull PG number is 3216
+2017-06-13 09:40:46,890 INFO TC55_kill_leader_mon.py [line:75] stop mon service on taheo125 in cluster successfully
+2017-06-13 09:40:47,478 INFO monitors.py [line:126]    "quorum_leader_name": "taheo125",
+stdin: is not a tty
+
+2017-06-13 09:40:47,478 INFO monitors.py [line:129]    "quorum_leader_name": "taheo125",
+2017-06-13 09:40:47,478 INFO TC55_kill_leader_mon.py [line:91] now the leader mon is taheo125
+2017-06-13 09:40:47,478 INFO TC55_kill_leader_mon.py [line:93] taheo125 is back
+2017-06-13 09:40:47,726 INFO client.py [line:172] ['enali    17883  17882  0 01:40 ?        00:00:00 bash -c sudo -i ps -ef | grep fio ', 'denali    17885  17883  0 01:40 ?        00:00:00 grep fio', 'root      33296      1  0 Jun12 ?        00:00:00 sudo -i fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=client100 -pool=reliablityTestPool -rbdname=client100rbdImg1 -rw=randwrite -bs=8K -size=200G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=client100rbdImg1', 'root      33298  33296 68 Jun12 ?        01:19:19 fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=client100 -pool=reliablityTestPool -rbdname=client100rbdImg1 -rw=randwrite -bs=8K -size=200G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=client100rbdImg1', 'root      33365      1  0 Jun12 ?        00:00:00 sudo -i fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=client100 -pool=reliablityTestPool -rbdname=client100rbdImg2 -rw=randwrite -bs=8K -size=300G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=client100rbdImg2', 'root      33366  33365 86 Jun12 ?        01:39:42 fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=client100 -pool=reliablityTestPool -rbdname=client100rbdImg2 -rw=randwrite -bs=8K -size=300G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=client100rbdImg2', 'root      33436      1  0 Jun12 ?        00:00:00 sudo -i fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=client100 -pool=reliablityTestPool -rbdname=client100rbdImg3 -rw=randwrite -bs=8K -size=400G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=client100rbdImg3', 'root      33439  33436 99 Jun12 ?        01:59:39 fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=client100 -pool=reliablityTestPool -rbdname=client100rbdImg3 -rw=randwrite -bs=8K -size=400G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=client100rbdImg3', 'root      33508      1  0 Jun12 ?        00:00:00 sudo -i fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=client100 -pool=reliablityTestPool -rbdname=client100rbdImg4 -rw=randwrite -bs=8K -size=500G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=client100rbdImg4', 'root      33510  33508 99 Jun12 ?        02:22:56 fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=client100 -pool=reliablityTestPool -rbdname=client100rbdImg4 -rw=randwrite -bs=8K -size=500G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=client100rbdImg4', 'stdin: is not a tty', '']
+2017-06-13 09:40:47,726 INFO client.py [line:174] IO is running
+2017-06-13 09:40:47,975 INFO monitors.py [line:45] ['enali    7107  7106  0 09:40 ?        00:00:00 bash -c ps -ef | grep ceph-mon', 'denali    7109  7107  0 09:40 ?        00:00:00 grep ceph-mon', 'root     45989     1  3 09:39 ?        00:00:02 ceph-mon -i taheo125', '']
+2017-06-13 09:40:47,975 INFO monitors.py [line:51] mon pid is 45989
+2017-06-13 09:40:47,975 INFO monitors.py [line:92] execute command is sudo -i kill -9 45989 & sleep 3
+2017-06-13 09:41:21,775 INFO monitors.py [line:126]    "quorum_leader_name": "tahoe126",
+stdin: is not a tty
+
+2017-06-13 09:41:21,775 INFO monitors.py [line:129]    "quorum_leader_name": "tahoe126",
+2017-06-13 09:41:21,775 INFO TC55_kill_leader_mon.py [line:63] now the leader mon is tahoe126
+2017-06-13 09:41:21,776 INFO monitors.py [line:68] mon is  taheo125
+2017-06-13 09:41:21,776 INFO monitors.py [line:69] execute command is sudo -i ceph-mon -i taheo125 & sleep 30
+2017-06-13 09:41:51,996 INFO monitors.py [line:73] mon taheo125 is start successfully
+2017-06-13 09:41:51,996 INFO monitors.py [line:103] node is  taheo125
+2017-06-13 09:41:51,997 INFO monitors.py [line:104] execute command is ps -ef | grep 'ceph-mon' 
+2017-06-13 09:41:52,277 INFO monitors.py [line:106] oot     12022     1  3 09:41 ?        00:00:00 ceph-mon -i taheo125
+denali   22680 22669  0 09:41 ?        00:00:00 bash -c ps -ef | grep 'ceph-mon' 
+denali   22682 22680  0 09:41 ?        00:00:00 grep ceph-mon
+
+2017-06-13 09:41:52,277 INFO monitors.py [line:114] taheo125 is alrady started
+2017-06-13 09:42:52,338 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-13 09:42:52,696 INFO cluster.py [line:213]    cluster c1b31c6e-ebc7-4c97-98ec-d59964f99e42
+     health HEALTH_OK
+     monmap e3: 3 mons at {taheo125=192.168.40.125:6789/0,tahoe126=192.168.40.126:6789/0,tahoe127=192.168.40.127:6789/0}
+            election epoch 50, quorum 0,1,2 taheo125,tahoe126,tahoe127
+     osdmap e429: 18 osds: 18 up, 18 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v50452: 3216 pgs, 13 pools, 1498 GB data, 375 kobjects
+            2055 GB used, 4134 GB / 6189 GB avail
+                3216 active+clean
+  client io 203 MB/s rd, 26178 op/s rd, 0 op/s wr
+stdin: is not a tty
+
+2017-06-13 09:42:52,696 INFO cluster.py [line:238] PG number is 3216
+2017-06-13 09:42:52,697 INFO cluster.py [line:239] usefull PG number is 3216
+2017-06-13 09:42:52,697 INFO TC55_kill_leader_mon.py [line:75] stop mon service on taheo125 in cluster successfully
+2017-06-13 09:42:53,305 INFO monitors.py [line:126]    "quorum_leader_name": "taheo125",
+stdin: is not a tty
+
+2017-06-13 09:42:53,305 INFO monitors.py [line:129]    "quorum_leader_name": "taheo125",
+2017-06-13 09:42:53,305 INFO TC55_kill_leader_mon.py [line:91] now the leader mon is taheo125
+2017-06-13 09:42:53,306 INFO TC55_kill_leader_mon.py [line:93] taheo125 is back
+2017-06-13 09:42:53,523 INFO client.py [line:172] ['enali    24065  24064  0 01:42 ?        00:00:00 bash -c sudo -i ps -ef | grep fio ', 'denali    24067  24065  0 01:42 ?        00:00:00 grep fio', 'root      33296      1  0 Jun12 ?        00:00:00 sudo -i fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=client100 -pool=reliablityTestPool -rbdname=client100rbdImg1 -rw=randwrite -bs=8K -size=200G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=client100rbdImg1', 'root      33298  33296 68 Jun12 ?        01:20:41 fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=client100 -pool=reliablityTestPool -rbdname=client100rbdImg1 -rw=randwrite -bs=8K -size=200G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=client100rbdImg1', 'root      33365      1  0 Jun12 ?        00:00:00 sudo -i fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=client100 -pool=reliablityTestPool -rbdname=client100rbdImg2 -rw=randwrite -bs=8K -size=300G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=client100rbdImg2', 'root      33366  33365 85 Jun12 ?        01:41:05 fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=client100 -pool=reliablityTestPool -rbdname=client100rbdImg2 -rw=randwrite -bs=8K -size=300G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=client100rbdImg2', 'root      33436      1  0 Jun12 ?        00:00:00 sudo -i fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=client100 -pool=reliablityTestPool -rbdname=client100rbdImg3 -rw=randwrite -bs=8K -size=400G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=client100rbdImg3', 'root      33439  33436 99 Jun12 ?        02:01:01 fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=client100 -pool=reliablityTestPool -rbdname=client100rbdImg3 -rw=randwrite -bs=8K -size=400G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=client100rbdImg3', 'root      33508      1  0 Jun12 ?        00:00:00 sudo -i fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=client100 -pool=reliablityTestPool -rbdname=client100rbdImg4 -rw=randwrite -bs=8K -size=500G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=client100rbdImg4', 'root      33510  33508 99 Jun12 ?        02:24:19 fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=client100 -pool=reliablityTestPool -rbdname=client100rbdImg4 -rw=randwrite -bs=8K -size=500G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=client100rbdImg4', 'stdin: is not a tty', '']
+2017-06-13 09:42:53,524 INFO client.py [line:174] IO is running
+2017-06-13 09:42:53,778 INFO monitors.py [line:45] ['oot     12022     1  3 09:41 ?        00:00:02 ceph-mon -i taheo125', 'denali   45492 45491  0 09:42 ?        00:00:00 bash -c ps -ef | grep ceph-mon', 'denali   45494 45492  0 09:42 ?        00:00:00 grep ceph-mon', '']
+2017-06-13 09:42:53,779 INFO monitors.py [line:51] mon pid is 12022
+2017-06-13 09:42:53,779 INFO monitors.py [line:92] execute command is sudo -i kill -9 12022 & sleep 3
+2017-06-13 09:43:27,603 INFO monitors.py [line:126]    "quorum_leader_name": "tahoe126",
+stdin: is not a tty
+
+2017-06-13 09:43:27,603 INFO monitors.py [line:129]    "quorum_leader_name": "tahoe126",
+2017-06-13 09:43:27,603 INFO TC55_kill_leader_mon.py [line:63] now the leader mon is tahoe126
+2017-06-13 09:43:27,603 INFO monitors.py [line:68] mon is  taheo125
+2017-06-13 09:43:27,604 INFO monitors.py [line:69] execute command is sudo -i ceph-mon -i taheo125 & sleep 30
+2017-06-13 09:43:57,821 INFO monitors.py [line:73] mon taheo125 is start successfully
+2017-06-13 09:43:57,821 INFO monitors.py [line:103] node is  taheo125
+2017-06-13 09:43:57,821 INFO monitors.py [line:104] execute command is ps -ef | grep 'ceph-mon' 
+2017-06-13 09:43:58,073 INFO monitors.py [line:106] oot     53277     1  3 09:43 ?        00:00:00 ceph-mon -i taheo125
+denali   63958 63947  0 09:44 ?        00:00:00 bash -c ps -ef | grep 'ceph-mon' 
+denali   63961 63958  0 09:44 ?        00:00:00 grep ceph-mon
+
+2017-06-13 09:43:58,073 INFO monitors.py [line:114] taheo125 is alrady started
+2017-06-13 09:44:58,130 INFO cluster.py [line:211] execute command is sudo -i ceph -s
+2017-06-13 09:44:58,530 INFO cluster.py [line:213]    cluster c1b31c6e-ebc7-4c97-98ec-d59964f99e42
+     health HEALTH_OK
+     monmap e3: 3 mons at {taheo125=192.168.40.125:6789/0,tahoe126=192.168.40.126:6789/0,tahoe127=192.168.40.127:6789/0}
+            election epoch 54, quorum 0,1,2 taheo125,tahoe126,tahoe127
+     osdmap e429: 18 osds: 18 up, 18 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v50494: 3216 pgs, 13 pools, 1498 GB data, 375 kobjects
+            2055 GB used, 4134 GB / 6189 GB avail
+                3216 active+clean
+  client io 195 MB/s rd, 25238 op/s rd, 0 op/s wr
+stdin: is not a tty
+
+2017-06-13 09:44:58,531 INFO cluster.py [line:238] PG number is 3216
+2017-06-13 09:44:58,531 INFO cluster.py [line:239] usefull PG number is 3216
+2017-06-13 09:44:58,531 INFO TC55_kill_leader_mon.py [line:75] stop mon service on taheo125 in cluster successfully
+2017-06-13 09:44:59,098 INFO monitors.py [line:126]    "quorum_leader_name": "taheo125",
+stdin: is not a tty
+
+2017-06-13 09:44:59,098 INFO monitors.py [line:129]    "quorum_leader_name": "taheo125",
+2017-06-13 09:44:59,098 INFO TC55_kill_leader_mon.py [line:91] now the leader mon is taheo125
+2017-06-13 09:44:59,099 INFO TC55_kill_leader_mon.py [line:93] taheo125 is back
+2017-06-13 09:44:59,316 INFO client.py [line:172] ['enali    30343  30342  0 01:45 ?        00:00:00 bash -c sudo -i ps -ef | grep fio ', 'denali    30345  30343  0 01:45 ?        00:00:00 grep fio', 'root      33296      1  0 Jun12 ?        00:00:00 sudo -i fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=client100 -pool=reliablityTestPool -rbdname=client100rbdImg1 -rw=randwrite -bs=8K -size=200G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=client100rbdImg1', 'root      33298  33296 68 Jun12 ?        01:22:05 fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=client100 -pool=reliablityTestPool -rbdname=client100rbdImg1 -rw=randwrite -bs=8K -size=200G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=client100rbdImg1', 'root      33365      1  0 Jun12 ?        00:00:00 sudo -i fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=client100 -pool=reliablityTestPool -rbdname=client100rbdImg2 -rw=randwrite -bs=8K -size=300G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=client100rbdImg2', 'root      33366  33365 85 Jun12 ?        01:42:29 fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=client100 -pool=reliablityTestPool -rbdname=client100rbdImg2 -rw=randwrite -bs=8K -size=300G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=client100rbdImg2', 'root      33436      1  0 Jun12 ?        00:00:00 sudo -i fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=client100 -pool=reliablityTestPool -rbdname=client100rbdImg3 -rw=randwrite -bs=8K -size=400G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=client100rbdImg3', 'root      33439  33436 99 Jun12 ?        02:02:23 fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=client100 -pool=reliablityTestPool -rbdname=client100rbdImg3 -rw=randwrite -bs=8K -size=400G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=client100rbdImg3', 'root      33508      1  0 Jun12 ?        00:00:00 sudo -i fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=client100 -pool=reliablityTestPool -rbdname=client100rbdImg4 -rw=randwrite -bs=8K -size=500G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=client100rbdImg4', 'root      33510  33508 99 Jun12 ?        02:25:42 fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=client100 -pool=reliablityTestPool -rbdname=client100rbdImg4 -rw=randwrite -bs=8K -size=500G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=client100rbdImg4', 'stdin: is not a tty', '']
+2017-06-13 09:44:59,316 INFO client.py [line:174] IO is running
+2017-06-13 09:44:59,316 INFO TC55_kill_leader_mon.py [line:102] case runs complete

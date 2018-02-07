@@ -1,0 +1,10 @@
+2017-05-24 12:11:50,749 INFO TC39_shutdown_osd_on_single_node.py [line:24] 
+This test case will do the following steps:
+1. start IO on 10 images with randwrite and verify
+2. login the first node 
+3. stop all osds in sequence
+4. start all osds in sequence
+5. check the cluster status
+6. repeat step 2-5 on the other node
+
+2017-05-24 12:11:50,752 INFO TC39_shutdown_osd_on_single_node.py [line:25] the timeout is 6000

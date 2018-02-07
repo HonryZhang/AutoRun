@@ -1,0 +1,5 @@
+2017-05-24 14:28:42,367 INFO monitors.py [line:123]    "quorum_leader_name": "denali01",
+
+2017-05-24 14:28:42,367 INFO monitors.py [line:126]    "quorum_leader_name": "denali01",
+2017-05-24 14:28:42,367 INFO initConfig.py [line:18] Init osd process
+2017-05-24 14:28:43,349 ERROR node.py [line:55] pool reliablityTestPool created failed

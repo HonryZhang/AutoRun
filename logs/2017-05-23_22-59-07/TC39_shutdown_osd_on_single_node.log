@@ -1,0 +1,27 @@
+2017-05-23 22:59:07,459 INFO TC39_shutdown_osd_on_single_node.py [line:24] 
+This test case will do the following steps:
+1. start IO on 10 images with randwrite and verify
+2. login the first node 
+3. stop all osds in sequence
+4. start all osds in sequence
+5. check the cluster status
+6. repeat step 2-5 on the other node
+
+2017-05-23 22:59:07,461 INFO TC39_shutdown_osd_on_single_node.py [line:25] the timeout is 6000
+2017-05-23 22:59:40,878 INFO monitors.py [line:123]    "quorum_leader_name": "denali01",
+
+2017-05-23 22:59:40,881 INFO monitors.py [line:126]    "quorum_leader_name": "denali01",
+2017-05-23 22:59:40,884 INFO TC39_shutdown_osd_on_single_node.py [line:44] 
+Step 2: stop osd and check IO
+2017-05-23 22:59:40,885 INFO TC39_shutdown_osd_on_single_node.py [line:45] 
+3
+2017-05-23 22:59:40,885 INFO TC39_shutdown_osd_on_single_node.py [line:47] 
+3
+2017-05-23 22:59:40,888 INFO TC39_shutdown_osd_on_single_node.py [line:50] 
+Now operate osd.0
+2017-05-23 22:59:40,891 INFO TC39_shutdown_osd_on_single_node.py [line:52] Set the osd.0 pid for kill
+2017-05-23 22:59:56,063 INFO node.py [line:166] osd.0  ---> processId 14153
+2017-05-23 22:59:56,063 INFO node.py [line:166] osd.1  ---> processId 
+2017-05-23 22:59:56,065 INFO node.py [line:166] osd.2  ---> processId 27189
+2017-05-23 22:59:56,065 INFO TC39_shutdown_osd_on_single_node.py [line:54] shutdown osd.0 by kill
+2017-05-23 22:59:56,069 INFO osd.py [line:51] execute command is sudo -i kill 14153 & sleep 3

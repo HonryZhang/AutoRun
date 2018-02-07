@@ -1,0 +1,37 @@
+2017-05-26 23:54:53,818 INFO monitors.py [line:126]    "quorum_leader_name": "osdnode2",
+stdin: is not a tty
+
+2017-05-26 23:54:53,819 INFO monitors.py [line:129]    "quorum_leader_name": "osdnode2",
+2017-05-26 23:54:59,755 INFO client.py [line:169] ['enali   28618 28617  0 15:55 ?        00:00:00 bash -c sudo -i ps -ef | grep fio', 'denali   28620 28618  0 15:55 ?        00:00:00 grep fio', 'stdin: is not a tty', '']
+2017-05-26 23:54:59,757 INFO client.py [line:174] IO stopped
+2017-05-26 23:54:59,759 INFO client.py [line:175] start IO again
+2017-05-26 23:54:59,763 INFO base.py [line:37] 
+Now start IO on  linlirbdImg0
+2017-05-26 23:55:08,894 INFO client.py [line:138] nohup sudo -i fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=linli -pool=reliablityTestPool -rbdname=linlirbdImg0 -rw=randwrite -bs=8K -size=1G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=linlirbdImg0
+2017-05-26 23:55:13,862 INFO base.py [line:37] 
+Now start IO on  linlirbdImg1
+2017-05-26 23:55:20,622 INFO client.py [line:138] nohup sudo -i fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=linli -pool=reliablityTestPool -rbdname=linlirbdImg1 -rw=randwrite -bs=8K -size=2G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=linlirbdImg1
+2017-05-26 23:55:25,664 INFO base.py [line:37] 
+Now start IO on  linlirbdImg2
+2017-05-26 23:55:31,717 INFO client.py [line:138] nohup sudo -i fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=linli -pool=reliablityTestPool -rbdname=linlirbdImg2 -rw=randwrite -bs=8K -size=3G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=linlirbdImg2
+2017-05-26 23:55:37,640 INFO base.py [line:37] 
+Now start IO on  linlirbdImg3
+2017-05-26 23:55:44,842 INFO client.py [line:138] nohup sudo -i fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=linli -pool=reliablityTestPool -rbdname=linlirbdImg3 -rw=randwrite -bs=8K -size=4G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=linlirbdImg3
+2017-05-26 23:55:49,862 INFO base.py [line:37] 
+Now start IO on  linlirbdImg4
+2017-05-26 23:55:55,486 INFO client.py [line:138] nohup sudo -i fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=linli -pool=reliablityTestPool -rbdname=linlirbdImg4 -rw=randwrite -bs=8K -size=5G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=linlirbdImg4
+2017-05-26 23:56:00,746 INFO base.py [line:37] 
+Now start IO on  linlirbdImg5
+2017-05-26 23:56:07,233 INFO client.py [line:138] nohup sudo -i fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=linli -pool=reliablityTestPool -rbdname=linlirbdImg5 -rw=randwrite -bs=8K -size=6G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=linlirbdImg5
+2017-05-26 23:56:13,898 INFO base.py [line:37] 
+Now start IO on  linlirbdImg6
+2017-05-26 23:56:19,549 INFO client.py [line:138] nohup sudo -i fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=linli -pool=reliablityTestPool -rbdname=linlirbdImg6 -rw=randwrite -bs=8K -size=7G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=linlirbdImg6
+2017-05-26 23:56:27,157 INFO base.py [line:37] 
+Now start IO on  linlirbdImg7
+2017-05-26 23:56:32,743 INFO client.py [line:138] nohup sudo -i fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=linli -pool=reliablityTestPool -rbdname=linlirbdImg7 -rw=randwrite -bs=8K -size=8G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=linlirbdImg7
+2017-05-26 23:56:38,732 INFO base.py [line:37] 
+Now start IO on  linlirbdImg8
+2017-05-26 23:56:45,789 INFO client.py [line:138] nohup sudo -i fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=linli -pool=reliablityTestPool -rbdname=linlirbdImg8 -rw=randwrite -bs=8K -size=9G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=linlirbdImg8
+2017-05-26 23:56:50,788 INFO base.py [line:37] 
+Now start IO on  linlirbdImg9
+2017-05-26 23:56:56,773 INFO client.py [line:138] nohup sudo -i fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=linli -pool=reliablityTestPool -rbdname=linlirbdImg9 -rw=randwrite -bs=8K -size=10G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=linlirbdImg9

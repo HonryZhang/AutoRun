@@ -1,0 +1,15 @@
+2017-05-23 12:07:54,848 INFO monitors.py [line:123]    "quorum_leader_name": "denali01",
+
+2017-05-23 12:07:54,848 INFO monitors.py [line:126]    "quorum_leader_name": "denali01",
+2017-05-23 12:07:54,848 INFO initConfig.py [line:18] Init osd process
+2017-05-23 12:08:18,391 INFO node.py [line:96] image clientrbdImg0 create successfully
+2017-05-23 12:08:19,173 INFO node.py [line:96] image clientrbdImg1 create successfully
+2017-05-23 12:08:19,905 INFO node.py [line:96] image clientrbdImg2 create successfully
+2017-05-23 12:08:20,608 INFO node.py [line:96] image clientrbdImg3 create successfully
+2017-05-23 12:08:21,418 INFO node.py [line:96] image clientrbdImg4 create successfully
+2017-05-23 12:08:22,105 INFO node.py [line:96] image clientrbdImg5 create successfully
+2017-05-23 12:08:22,855 INFO node.py [line:96] image clientrbdImg6 create successfully
+2017-05-23 12:08:23,650 INFO node.py [line:96] image clientrbdImg7 create successfully
+2017-05-23 12:08:24,368 INFO node.py [line:96] image clientrbdImg8 create successfully
+2017-05-23 12:08:25,101 INFO node.py [line:96] image clientrbdImg9 create successfully
+2017-05-23 12:08:25,101 INFO initConfig.py [line:46] Init config complete

@@ -1,0 +1,53 @@
+2017-05-25 17:48:51,516 INFO monitors.py [line:126]    "quorum_leader_name": "osdnode2",
+
+2017-05-25 17:48:51,516 INFO monitors.py [line:129]    "quorum_leader_name": "osdnode2",
+2017-05-25 17:48:51,516 INFO base.py [line:35] 
+Now start IO on  linlirbdImg0
+2017-05-25 17:48:52,552 INFO client.py [line:126] pid info is 15739
+2017-05-25 17:48:52,552 INFO client.py [line:126] pid info is 15740
+2017-05-25 17:48:52,552 INFO base.py [line:35] 
+Now start IO on  linlirbdImg1
+2017-05-25 17:48:53,648 INFO client.py [line:126] pid info is 15772
+2017-05-25 17:48:53,648 INFO client.py [line:126] pid info is 15773
+2017-05-25 17:48:53,648 INFO base.py [line:35] 
+Now start IO on  linlirbdImg2
+2017-05-25 17:48:54,887 INFO client.py [line:126] pid info is 15805
+2017-05-25 17:48:54,887 INFO client.py [line:126] pid info is 15806
+2017-05-25 17:48:54,887 INFO base.py [line:35] 
+Now start IO on  linlirbdImg3
+2017-05-25 17:48:55,921 INFO client.py [line:126] pid info is 15838
+2017-05-25 17:48:55,921 INFO client.py [line:126] pid info is 15839
+2017-05-25 17:48:55,921 INFO base.py [line:35] 
+Now start IO on  linlirbdImg4
+2017-05-25 17:48:56,989 INFO client.py [line:126] pid info is 15871
+2017-05-25 17:48:56,989 INFO client.py [line:126] pid info is 15872
+2017-05-25 17:48:56,989 INFO base.py [line:35] 
+Now start IO on  linlirbdImg5
+2017-05-25 17:48:58,154 INFO client.py [line:126] pid info is 15903
+2017-05-25 17:48:58,154 INFO client.py [line:126] pid info is 15904
+2017-05-25 17:48:58,154 INFO base.py [line:35] 
+Now start IO on  linlirbdImg6
+2017-05-25 17:48:59,372 INFO client.py [line:126] pid info is 15936
+2017-05-25 17:48:59,372 INFO client.py [line:126] pid info is 15937
+2017-05-25 17:48:59,372 INFO base.py [line:35] 
+Now start IO on  linlirbdImg7
+2017-05-25 17:49:00,581 INFO client.py [line:126] pid info is 15969
+2017-05-25 17:49:00,581 INFO client.py [line:126] pid info is 15970
+2017-05-25 17:49:00,581 INFO base.py [line:35] 
+Now start IO on  linlirbdImg8
+2017-05-25 17:49:01,709 INFO client.py [line:126] pid info is 16001
+2017-05-25 17:49:01,709 INFO client.py [line:126] pid info is 16002
+2017-05-25 17:49:01,709 INFO base.py [line:35] 
+Now start IO on  linlirbdImg9
+2017-05-25 17:49:02,759 INFO client.py [line:126] pid info is 16034
+2017-05-25 17:49:02,759 INFO client.py [line:126] pid info is 16035
+2017-05-25 17:49:03,276 INFO client.py [line:169] home/denali
+
+2017-05-25 17:49:04,450 INFO client.py [line:147] IO is running
+2017-05-25 17:49:04,450 INFO client.py [line:130] Stop io again
+2017-05-25 17:49:05,036 INFO client.py [line:133] sudo -i killall fio -s 9 
+2017-05-25 17:49:05,036 INFO client.py [line:134] tdin: is not a tty
+
+2017-05-25 17:49:05,036 ERROR client.py [line:136] Error when kill fio process
+2017-05-25 17:49:05,036 ERROR client.py [line:137] tdin: is not a tty
+

@@ -1,0 +1,10 @@
+2017-05-27 00:04:32,572 INFO monitors.py [line:126]    "quorum_leader_name": "osdnode2",
+stdin: is not a tty
+
+2017-05-27 00:04:32,572 INFO monitors.py [line:129]    "quorum_leader_name": "osdnode2",
+2017-05-27 00:04:39,227 INFO client.py [line:169] ['enali   29004 29003  0 16:04 ?        00:00:00 bash -c sudo -i ps -ef | grep fio', 'denali   29006 29004  0 16:04 ?        00:00:00 grep fio', 'stdin: is not a tty', '']
+2017-05-27 00:04:39,230 INFO client.py [line:174] IO stopped
+2017-05-27 00:04:39,233 INFO client.py [line:175] start IO again
+2017-05-27 00:04:39,237 INFO base.py [line:37] 
+Now start IO on  linlirbdImg0
+2017-05-27 00:04:47,243 INFO client.py [line:138] nohup sudo -i fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=linli -pool=reliablityTestPool -rbdname=linlirbdImg0 -rw=randwrite -bs=8K -size=1G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=linlirbdImg0

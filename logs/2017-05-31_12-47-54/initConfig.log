@@ -1,0 +1,27 @@
+2017-05-31 12:47:58,117 INFO monitors.py [line:126]    "quorum_leader_name": "osdnode2",
+stdin: is not a tty
+
+2017-05-31 12:47:58,121 INFO monitors.py [line:129]    "quorum_leader_name": "osdnode2",
+2017-05-31 12:47:58,127 INFO initConfig.py [line:18] Init osd process
+2017-05-31 12:47:59,483 ERROR node.py [line:54] tdin: is not a tty
+pool 'reliablityTestPool' created
+
+2017-05-31 12:47:59,486 INFO node.py [line:62] pool reliablityTestPool created successfully
+2017-05-31 12:48:00,045 INFO node.py [line:78] pool reliablityTestPool was founded
+2017-05-31 12:48:00,484 INFO node.py [line:83] pgnumber is 512 in  reliablityTestPool 
+2017-05-31 12:48:03,042 ERROR client.py [line:115] tdin: is not a tty
+
+2017-05-31 12:48:03,042 INFO client.py [line:120] image linlirbdImg0 create successfully
+2017-05-31 12:48:03,602 ERROR client.py [line:115] tdin: is not a tty
+
+2017-05-31 12:48:03,605 INFO client.py [line:120] image linlirbdImg1 create successfully
+2017-05-31 12:48:04,210 ERROR client.py [line:115] tdin: is not a tty
+
+2017-05-31 12:48:04,213 INFO client.py [line:120] image linlirbdImg2 create successfully
+2017-05-31 12:48:04,783 ERROR client.py [line:115] tdin: is not a tty
+
+2017-05-31 12:48:04,788 INFO client.py [line:120] image linlirbdImg3 create successfully
+2017-05-31 12:48:05,400 ERROR client.py [line:115] tdin: is not a tty
+
+2017-05-31 12:48:05,403 INFO client.py [line:120] image linlirbdImg4 create successfully
+2017-05-31 12:48:05,405 INFO initConfig.py [line:46] Init config complete

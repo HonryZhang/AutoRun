@@ -1,0 +1,8 @@
+2017-05-22 18:45:40,489 INFO monitors.py [line:123]    "quorum_leader_name": "denali01",
+
+2017-05-22 18:45:40,493 INFO monitors.py [line:126]    "quorum_leader_name": "denali01",
+2017-05-22 18:45:40,493 INFO client.py [line:67] exe command is: sudo -i  mkfs -t ext2 /dev/nbd5
+2017-05-22 18:46:28,832 INFO client.py [line:97] fio command is: nohup sudo -i fio -direct=1 -name=nbdfiletest -iodepth=4 -overwrite=1 -nrfiles=100 -ioengine=libaio -bs=8k -rw=randwrite -verify=md5 -verify_fatal=1 -verify_interval=512 -verify_dump=1 -do_verify=1 -directory=/mnt/nbd5 size=10G
+2017-05-22 18:46:29,614 INFO client.py [line:106] pid info is 22332
+2017-05-22 18:46:29,614 INFO client.py [line:106] pid info is 22333
+2017-05-22 18:46:29,614 INFO client.py [line:106] pid info is 22350

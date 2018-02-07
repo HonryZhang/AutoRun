@@ -1,0 +1,41 @@
+2017-05-23 23:09:36,858 INFO TC39_shutdown_osd_on_single_node.py [line:24] 
+This test case will do the following steps:
+1. start IO on 10 images with randwrite and verify
+2. login the first node 
+3. stop all osds in sequence
+4. start all osds in sequence
+5. check the cluster status
+6. repeat step 2-5 on the other node
+
+2017-05-23 23:09:36,864 INFO TC39_shutdown_osd_on_single_node.py [line:25] the timeout is 6000
+2017-05-23 23:10:05,891 INFO monitors.py [line:123]    "quorum_leader_name": "denali01",
+
+2017-05-23 23:10:05,895 INFO monitors.py [line:126]    "quorum_leader_name": "denali01",
+2017-05-23 23:10:05,901 INFO TC39_shutdown_osd_on_single_node.py [line:44] 
+Step 2: stop osd and check IO
+2017-05-23 23:10:05,903 INFO TC39_shutdown_osd_on_single_node.py [line:47] 
+Now operate osd on denali01
+2017-05-23 23:10:05,907 INFO TC39_shutdown_osd_on_single_node.py [line:50] 
+Now operate osd.0
+2017-05-23 23:10:05,913 INFO TC39_shutdown_osd_on_single_node.py [line:50] 
+Now operate osd.1
+2017-05-23 23:10:05,917 INFO TC39_shutdown_osd_on_single_node.py [line:50] 
+Now operate osd.2
+2017-05-23 23:10:05,921 INFO TC39_shutdown_osd_on_single_node.py [line:47] 
+Now operate osd on denali02
+2017-05-23 23:10:05,923 INFO TC39_shutdown_osd_on_single_node.py [line:50] 
+Now operate osd.3
+2017-05-23 23:10:05,926 INFO TC39_shutdown_osd_on_single_node.py [line:50] 
+Now operate osd.4
+2017-05-23 23:10:05,927 INFO TC39_shutdown_osd_on_single_node.py [line:50] 
+Now operate osd.5
+2017-05-23 23:10:05,930 INFO TC39_shutdown_osd_on_single_node.py [line:47] 
+Now operate osd on denali03
+2017-05-23 23:10:05,936 INFO TC39_shutdown_osd_on_single_node.py [line:50] 
+Now operate osd.6
+2017-05-23 23:10:05,937 INFO TC39_shutdown_osd_on_single_node.py [line:50] 
+Now operate osd.7
+2017-05-23 23:10:05,940 INFO TC39_shutdown_osd_on_single_node.py [line:50] 
+Now operate osd.8
+2017-05-23 23:10:05,946 INFO TC39_shutdown_osd_on_single_node.py [line:88] 
+Step3:stop IO from clients

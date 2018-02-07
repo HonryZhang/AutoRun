@@ -1,0 +1,30 @@
+2017-05-23 22:44:44,371 INFO TC39_shutdown_osd_on_single_node.py [line:24] 
+This test case will do the following steps:
+1. start IO on 10 images with randwrite and verify
+2. login the first node 
+3. stop all osds in sequence
+4. start all osds in sequence
+5. check the cluster status
+6. repeat step 2-5 on the other node
+
+2017-05-23 22:44:44,374 INFO TC39_shutdown_osd_on_single_node.py [line:25] the timeout is 6000
+2017-05-23 22:45:16,947 INFO monitors.py [line:123]    "quorum_leader_name": "denali01",
+
+2017-05-23 22:45:16,947 INFO monitors.py [line:126]    "quorum_leader_name": "denali01",
+2017-05-23 22:45:16,948 INFO TC39_shutdown_osd_on_single_node.py [line:44] 
+Step 2: stop osd and check IO
+2017-05-23 22:45:16,948 INFO TC39_shutdown_osd_on_single_node.py [line:46] 
+3
+2017-05-23 22:45:16,951 INFO TC39_shutdown_osd_on_single_node.py [line:49] 
+Now operate osd.0
+2017-05-23 22:45:16,953 INFO TC39_shutdown_osd_on_single_node.py [line:51] Set the osd.0 pid for kill
+2017-05-23 22:45:35,125 INFO node.py [line:166] osd.0  ---> processId 20132
+2017-05-23 22:45:35,128 INFO node.py [line:166] osd.1  ---> processId 
+2017-05-23 22:45:35,128 INFO node.py [line:166] osd.2  ---> processId 27189
+2017-05-23 22:45:35,131 INFO TC39_shutdown_osd_on_single_node.py [line:53] shutdown osd.0 by kill
+2017-05-23 22:45:35,131 INFO osd.py [line:51] execute command is sudo -i kill 20132 & sleep 3
+2017-05-23 22:45:56,811 INFO client.py [line:159] home/denali
+
+2017-05-23 22:46:09,946 INFO TC39_shutdown_osd_on_single_node.py [line:58] start osd.0
+2017-05-23 22:46:09,948 INFO osd.py [line:100] node is  denali01
+2017-05-23 22:46:09,948 INFO osd.py [line:101] execute command is sudo -i ceph-osd -i 0 & sleep 30

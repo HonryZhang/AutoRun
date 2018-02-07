@@ -1,0 +1,4 @@
+2017-05-26 17:57:49,298 INFO monitors.py [line:126]    "quorum_leader_name": "osdnode2",
+
+2017-05-26 17:57:49,298 INFO monitors.py [line:129]    "quorum_leader_name": "osdnode2",
+2017-05-26 17:57:49,875 INFO client.py [line:150] IO is running

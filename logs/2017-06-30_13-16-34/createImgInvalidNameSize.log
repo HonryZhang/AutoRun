@@ -1,0 +1,39 @@
+2017-06-30 13:16:36,227 INFO createImgInvalidNameSize.py [line:20] 
+create/delete pool, image, snap, clone
+
+2017-06-30 13:16:38,926 INFO monitors.py [line:126]    "quorum_leader_name": "denali1",
+stdin: is not a tty
+
+2017-06-30 13:16:38,926 INFO monitors.py [line:129]    "quorum_leader_name": "denali1",
+2017-06-30 13:16:49,351 INFO loginlogout.py [line:13] login
+2017-06-30 13:16:56,256 INFO loginlogout.py [line:24] now we have loggin
+2017-06-30 13:16:58,301 INFO createImgInvalidNameSize.py [line:34] create the pool with name UITestpool
+2017-06-30 13:16:58,301 INFO poolManagement.py [line:50] Create pool
+2017-06-30 13:17:52,993 INFO createImgInvalidNameSize.py [line:39] create the pool with invalid name UITestpool-
+2017-06-30 13:17:52,993 INFO poolManagement.py [line:50] Create pool
+2017-06-30 13:18:19,615 INFO poolManagement.py [line:84] The info you input for pool is illegal 
+2017-06-30 13:18:19,663 INFO poolManagement.py [line:86] 名称仅允许字母、数字、下划线(第1位除外),长度为3-30位
+2017-06-30 13:18:25,023 INFO createImgInvalidNameSize.py [line:44] create the pool with invalid pool size -10
+2017-06-30 13:18:25,023 INFO poolManagement.py [line:50] Create pool
+2017-06-30 13:18:51,733 INFO poolManagement.py [line:84] The info you input for pool is illegal 
+2017-06-30 13:18:51,798 INFO poolManagement.py [line:86] 请输入正确的规划容量大小
+2017-06-30 13:18:57,224 INFO createImgInvalidNameSize.py [line:49] create the image with invalid name UITestImg-
+2017-06-30 13:18:57,224 INFO poolManagement.py [line:135] create block device img 
+2017-06-30 13:19:20,924 INFO poolManagement.py [line:178] 
+2017-06-30 13:19:20,924 INFO poolManagement.py [line:179] The info you input for image is illegal 
+2017-06-30 13:19:26,506 INFO createImgInvalidNameSize.py [line:54] create the image with invalid size 01TB 
+2017-06-30 13:19:26,506 INFO poolManagement.py [line:135] create block device img 
+2017-06-30 13:20:26,793 INFO poolManagement.py [line:237] Delete block device img 
+2017-06-30 13:20:42,338 INFO poolManagement.py [line:244] 1
+2017-06-30 13:20:42,369 INFO poolManagement.py [line:247] UITestImg
+2017-06-30 13:20:42,595 INFO poolManagement.py [line:255] 确定要删除这个镜像: UITestImg?
+
+此操作不可恢复
+2017-06-30 13:20:53,752 INFO poolManagement.py [line:102] delete pool
+2017-06-30 13:21:01,420 INFO poolManagement.py [line:111] 1
+2017-06-30 13:21:01,460 INFO poolManagement.py [line:113] UITestpool
+2017-06-30 13:21:01,687 INFO poolManagement.py [line:120] 确定删除这个存储池: UITestpool?
+
+此操作不可恢复
+2017-06-30 13:21:29,266 INFO loginlogout.py [line:32] logout
+2017-06-30 13:21:30,690 INFO createImgInvalidNameSize.py [line:64] logout

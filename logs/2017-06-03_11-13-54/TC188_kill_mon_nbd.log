@@ -1,0 +1,974 @@
+2017-06-03 14:20:50,069 INFO TC188_kill_mon_nbd.py [line:29] 
+This test case will do the following steps:
+1. start IO on 10 images with randwrite and verify
+2. login the leader monitor, and kill the mon process
+3. check cluster status, Io status and cluster quorum status
+4. login the new leader monitor, and kill the mon process
+5. check cluster status, Io status and cluster quorum status
+6. start the first killed monitor
+7. check cluster status, does the leader monitor will be back????
+8. start the first killed monitor
+9. check cluster status, does the leader monitor will be back????
+
+2017-06-03 14:20:50,786 INFO monitors.py [line:126]    "quorum_leader_name": "ubuntu-A",
+stdin: is not a tty
+
+2017-06-03 14:20:50,786 INFO monitors.py [line:129]    "quorum_leader_name": "ubuntu-A",
+2017-06-03 14:20:50,787 INFO TC188_kill_mon_nbd.py [line:32] start to check cluster status before case running
+2017-06-03 14:20:52,791 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-03 14:20:53,157 INFO cluster.py [line:213]    cluster e93f3143-8693-4060-a247-132bae28385e
+     health HEALTH_OK
+     monmap e3: 3 mons at {ubuntu-A=192.168.40.170:6789/0,ubuntu-B=192.168.40.171:6789/0,ubuntu-C=192.168.40.172:6789/0}
+            election epoch 12, quorum 0,1,2 ubuntu-A,ubuntu-B,ubuntu-C
+     osdmap e2142: 20 osds: 20 up, 16 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v11497: 1536 pgs, 2 pools, 300 GB data, 80382 objects
+            733 GB used, 44566 GB / 45300 GB avail
+                1536 active+clean
+  client io 22471 kB/s wr, 0 op/s rd, 2807 op/s wr
+2017-06-03 06:20:54.917523 7f3836760700 -1 asok(0x7f3830000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.856.139879300206976.asok': (13) Permission denied
+
+2017-06-03 14:20:53,158 INFO cluster.py [line:238] PG number is 1536
+2017-06-03 14:20:53,158 INFO cluster.py [line:239] usefull PG number is 1536
+2017-06-03 14:20:53,158 INFO TC188_kill_mon_nbd.py [line:35] health status is OK
+2017-06-03 14:20:55,163 INFO TC188_kill_mon_nbd.py [line:43] 
+Step1: start IO from clients
+2017-06-03 14:20:55,684 INFO client.py [line:172] 4
+stdin: is not a tty
+
+2017-06-03 14:20:55,684 INFO client.py [line:174] IO is running
+2017-06-03 14:21:55,708 INFO TC188_kill_mon_nbd.py [line:51] 
+Step2: kill leader mon 10 times
+2017-06-03 14:21:55,709 INFO monitors.py [line:55] mon is  ubuntu-A
+2017-06-03 14:21:55,709 INFO monitors.py [line:56] execute command is sudo -i stop ceph-mon id=ubuntu-A & sleep 5
+2017-06-03 14:22:00,894 ERROR monitors.py [line:61] Error when shutdown mon ubuntu-A
+2017-06-03 14:22:00,894 ERROR monitors.py [line:62] sudo -i stop ceph-mon id=ubuntu-A & sleep 5
+2017-06-03 14:22:00,895 ERROR monitors.py [line:63] tdin: is not a tty
+stop: Unknown instance: ceph/ubuntu-A
+
+2017-06-03 14:22:00,895 INFO monitors.py [line:68] mon is  ubuntu-A
+2017-06-03 14:22:00,895 INFO monitors.py [line:69] execute command is sudo -i ceph-mon -i ubuntu-A & sleep 30
+2017-06-03 14:22:31,081 ERROR monitors.py [line:75] Error when start mon ubuntu-A
+2017-06-03 14:22:31,082 ERROR monitors.py [line:76] sudo -i ceph-mon -i ubuntu-A & sleep 30
+2017-06-03 14:22:31,082 ERROR monitors.py [line:77] tdin: is not a tty
+2017-06-03 06:22:02.980705 2ae875bfb200 -1 asok(0x2ae8795351c0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-mon.ubuntu-A.asok': (17) File exists
+IO error: lock /var/lib/ceph/mon/ceph-ubuntu-A/store.db/LOCK: Resource temporarily unavailable
+2017-06-03 06:22:02.994215 2ae875bfb200 -1 error opening mon data directory at '/var/lib/ceph/mon/ceph-ubuntu-A': (22) Invalid argument
+
+2017-06-03 14:22:31,082 INFO monitors.py [line:55] mon is  ubuntu-A
+2017-06-03 14:22:31,082 INFO monitors.py [line:56] execute command is sudo -i stop ceph-mon id=ubuntu-A & sleep 5
+2017-06-03 14:22:36,381 ERROR monitors.py [line:61] Error when shutdown mon ubuntu-A
+2017-06-03 14:22:36,381 ERROR monitors.py [line:62] sudo -i stop ceph-mon id=ubuntu-A & sleep 5
+2017-06-03 14:22:36,381 ERROR monitors.py [line:63] tdin: is not a tty
+stop: Unknown instance: ceph/ubuntu-A
+
+2017-06-03 14:22:36,381 INFO monitors.py [line:68] mon is  ubuntu-A
+2017-06-03 14:22:36,382 INFO monitors.py [line:69] execute command is sudo -i ceph-mon -i ubuntu-A & sleep 30
+2017-06-03 14:23:06,567 ERROR monitors.py [line:75] Error when start mon ubuntu-A
+2017-06-03 14:23:06,567 ERROR monitors.py [line:76] sudo -i ceph-mon -i ubuntu-A & sleep 30
+2017-06-03 14:23:06,567 ERROR monitors.py [line:77] tdin: is not a tty
+2017-06-03 06:22:38.464899 2aad7c8f8200 -1 asok(0x2aad801351c0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-mon.ubuntu-A.asok': (17) File exists
+IO error: lock /var/lib/ceph/mon/ceph-ubuntu-A/store.db/LOCK: Resource temporarily unavailable
+2017-06-03 06:22:38.476272 2aad7c8f8200 -1 error opening mon data directory at '/var/lib/ceph/mon/ceph-ubuntu-A': (22) Invalid argument
+
+2017-06-03 14:23:06,846 INFO monitors.py [line:45] ['enali    2203  2202  0 06:23 ?        00:00:00 bash -c ps -ef | grep ceph-mon', 'denali    2205  2203  0 06:23 ?        00:00:00 grep ceph-mon', 'root     60856     1  1 05:56 ?        00:00:20 ceph-mon -i ubuntu-A', '']
+2017-06-03 14:23:06,846 INFO monitors.py [line:51] mon pid is 60856
+2017-06-03 14:23:06,847 INFO monitors.py [line:92] execute command is sudo -i kill -9 60856 & sleep 3
+2017-06-03 14:23:40,689 INFO monitors.py [line:126]    "quorum_leader_name": "ubuntu-B",
+stdin: is not a tty
+
+2017-06-03 14:23:40,689 INFO monitors.py [line:129]    "quorum_leader_name": "ubuntu-B",
+2017-06-03 14:23:40,689 INFO TC188_kill_mon_nbd.py [line:67] now the leader mon is ubuntu-B
+2017-06-03 14:23:40,964 INFO monitors.py [line:45] ['enali    2644  2643  0 06:23 ?        00:00:00 bash -c ps -ef | grep ceph-mon', 'denali    2646  2644  0 06:23 ?        00:00:00 grep ceph-mon', '']
+2017-06-03 14:23:40,964 INFO monitors.py [line:51] mon pid is 60856
+2017-06-03 14:23:40,964 INFO monitors.py [line:92] execute command is sudo -i kill -9 60856 & sleep 3
+2017-06-03 14:24:17,823 INFO monitors.py [line:126]    "quorum_leader_name": "ubuntu-B",
+stdin: is not a tty
+
+2017-06-03 14:24:17,824 INFO monitors.py [line:129]    "quorum_leader_name": "ubuntu-B",
+2017-06-03 14:24:17,824 INFO TC188_kill_mon_nbd.py [line:78] now the leader mon is ubuntu-B
+2017-06-03 14:24:17,824 INFO monitors.py [line:68] mon is  ubuntu-A
+2017-06-03 14:24:17,824 INFO monitors.py [line:69] execute command is sudo -i ceph-mon -i ubuntu-A & sleep 30
+2017-06-03 14:24:48,010 INFO monitors.py [line:73] mon ubuntu-A is start successfully
+2017-06-03 14:24:48,010 INFO monitors.py [line:103] node is  ubuntu-A
+2017-06-03 14:24:48,010 INFO monitors.py [line:104] execute command is ps -ef | grep 'ceph-mon' 
+2017-06-03 14:24:48,250 INFO monitors.py [line:106] oot      3065     1  1 06:24 ?        00:00:00 ceph-mon -i ubuntu-A
+denali    3330  3329  0 06:24 ?        00:00:00 bash -c ps -ef | grep 'ceph-mon' 
+denali    3332  3330  0 06:24 ?        00:00:00 grep ceph-mon
+
+2017-06-03 14:24:48,250 INFO monitors.py [line:114] ubuntu-A is alrady started
+2017-06-03 14:25:48,298 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-03 14:25:48,663 INFO cluster.py [line:213]    cluster e93f3143-8693-4060-a247-132bae28385e
+     health HEALTH_OK
+     monmap e3: 3 mons at {ubuntu-A=192.168.40.170:6789/0,ubuntu-B=192.168.40.171:6789/0,ubuntu-C=192.168.40.172:6789/0}
+            election epoch 16, quorum 0,1,2 ubuntu-A,ubuntu-B,ubuntu-C
+     osdmap e2142: 20 osds: 20 up, 16 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v11687: 1536 pgs, 2 pools, 300 GB data, 80412 objects
+            733 GB used, 44566 GB / 45300 GB avail
+                1536 active+clean
+  client io 2661 B/s rd, 25293 kB/s wr, 1 op/s rd, 3161 op/s wr
+2017-06-03 06:25:50.428996 7f1d2c882700 -1 asok(0x7f1d28000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.4226.139763201872256.asok': (13) Permission denied
+
+2017-06-03 14:25:48,664 INFO cluster.py [line:238] PG number is 1536
+2017-06-03 14:25:48,664 INFO cluster.py [line:239] usefull PG number is 1536
+2017-06-03 14:25:48,664 INFO TC188_kill_mon_nbd.py [line:88] stop mon service on ubuntu-A in cluster successfully
+2017-06-03 14:25:49,262 INFO monitors.py [line:126]    "quorum_leader_name": "ubuntu-A",
+stdin: is not a tty
+
+2017-06-03 14:25:49,262 INFO monitors.py [line:129]    "quorum_leader_name": "ubuntu-A",
+2017-06-03 14:25:49,263 INFO TC188_kill_mon_nbd.py [line:104] now the leader mon is ubuntu-A
+2017-06-03 14:25:49,263 INFO TC188_kill_mon_nbd.py [line:106] ubuntu-A is back
+2017-06-03 14:25:49,263 INFO monitors.py [line:68] mon is  ubuntu-A
+2017-06-03 14:25:49,263 INFO monitors.py [line:69] execute command is sudo -i ceph-mon -i ubuntu-A & sleep 30
+2017-06-03 14:26:19,480 ERROR monitors.py [line:75] Error when start mon ubuntu-A
+2017-06-03 14:26:19,481 ERROR monitors.py [line:76] sudo -i ceph-mon -i ubuntu-A & sleep 30
+2017-06-03 14:26:19,481 ERROR monitors.py [line:77] tdin: is not a tty
+2017-06-03 06:25:51.376994 2b11560b7200 -1 asok(0x2b11599351c0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-mon.ubuntu-A.asok': (17) File exists
+IO error: lock /var/lib/ceph/mon/ceph-ubuntu-A/store.db/LOCK: Resource temporarily unavailable
+2017-06-03 06:25:51.391399 2b11560b7200 -1 error opening mon data directory at '/var/lib/ceph/mon/ceph-ubuntu-A': (22) Invalid argument
+
+2017-06-03 14:26:19,481 INFO monitors.py [line:103] node is  ubuntu-A
+2017-06-03 14:26:19,481 INFO monitors.py [line:104] execute command is ps -ef | grep 'ceph-mon' 
+2017-06-03 14:26:19,760 INFO monitors.py [line:106] oot      3065     1  1 06:24 ?        00:00:01 ceph-mon -i ubuntu-A
+denali    4801  4800  0 06:26 ?        00:00:00 bash -c ps -ef | grep 'ceph-mon' 
+denali    4803  4801  0 06:26 ?        00:00:00 grep ceph-mon
+
+2017-06-03 14:26:19,761 INFO monitors.py [line:114] ubuntu-A is alrady started
+2017-06-03 14:27:20,032 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-03 14:27:20,378 INFO cluster.py [line:213]    cluster e93f3143-8693-4060-a247-132bae28385e
+     health HEALTH_OK
+     monmap e3: 3 mons at {ubuntu-A=192.168.40.170:6789/0,ubuntu-B=192.168.40.171:6789/0,ubuntu-C=192.168.40.172:6789/0}
+            election epoch 16, quorum 0,1,2 ubuntu-A,ubuntu-B,ubuntu-C
+     osdmap e2142: 20 osds: 20 up, 16 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v11723: 1536 pgs, 2 pools, 300 GB data, 80420 objects
+            733 GB used, 44566 GB / 45300 GB avail
+                1536 active+clean
+  client io 33398 kB/s rd, 13804 kB/s wr, 4174 op/s rd, 1725 op/s wr
+2017-06-03 06:27:22.121171 7f023a974700 -1 asok(0x7f0234000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.5636.139647439081856.asok': (13) Permission denied
+
+2017-06-03 14:27:20,378 INFO cluster.py [line:238] PG number is 1536
+2017-06-03 14:27:20,378 INFO cluster.py [line:239] usefull PG number is 1536
+2017-06-03 14:27:20,378 INFO TC188_kill_mon_nbd.py [line:121] stop mon service on ubuntu-A in cluster successfully
+2017-06-03 14:27:20,958 INFO client.py [line:172] 4
+stdin: is not a tty
+
+2017-06-03 14:27:20,958 INFO client.py [line:174] IO is running
+2017-06-03 14:27:21,360 INFO monitors.py [line:126]    "quorum_leader_name": "ubuntu-A",
+stdin: is not a tty
+
+2017-06-03 14:27:21,360 INFO monitors.py [line:129]    "quorum_leader_name": "ubuntu-A",
+2017-06-03 14:27:21,361 INFO TC188_kill_mon_nbd.py [line:141] now the leader mon is ubuntu-A
+2017-06-03 14:27:21,361 INFO TC188_kill_mon_nbd.py [line:143] ubuntu-A is back
+2017-06-03 14:27:21,604 INFO monitors.py [line:45] ['oot      3065     1  1 06:24 ?        00:00:02 ceph-mon -i ubuntu-A', 'denali    5703  5702  0 06:27 ?        00:00:00 bash -c ps -ef | grep ceph-mon', 'denali    5705  5703  0 06:27 ?        00:00:00 grep ceph-mon', '']
+2017-06-03 14:27:21,604 INFO monitors.py [line:51] mon pid is 3065
+2017-06-03 14:27:21,604 INFO monitors.py [line:92] execute command is sudo -i kill -9 3065 & sleep 3
+2017-06-03 14:27:55,447 INFO monitors.py [line:126]    "quorum_leader_name": "ubuntu-B",
+stdin: is not a tty
+
+2017-06-03 14:27:55,447 INFO monitors.py [line:129]    "quorum_leader_name": "ubuntu-B",
+2017-06-03 14:27:55,448 INFO TC188_kill_mon_nbd.py [line:67] now the leader mon is ubuntu-B
+2017-06-03 14:27:55,727 INFO monitors.py [line:45] ['enali    6053  6052  0 06:27 ?        00:00:00 bash -c ps -ef | grep ceph-mon', 'denali    6055  6053  0 06:27 ?        00:00:00 grep ceph-mon', '']
+2017-06-03 14:27:55,727 INFO monitors.py [line:51] mon pid is 3065
+2017-06-03 14:27:55,728 INFO monitors.py [line:92] execute command is sudo -i kill -9 3065 & sleep 3
+2017-06-03 14:28:29,598 INFO monitors.py [line:126]    "quorum_leader_name": "ubuntu-B",
+stdin: is not a tty
+
+2017-06-03 14:28:29,598 INFO monitors.py [line:129]    "quorum_leader_name": "ubuntu-B",
+2017-06-03 14:28:29,599 INFO TC188_kill_mon_nbd.py [line:78] now the leader mon is ubuntu-B
+2017-06-03 14:28:29,599 INFO monitors.py [line:68] mon is  ubuntu-A
+2017-06-03 14:28:29,599 INFO monitors.py [line:69] execute command is sudo -i ceph-mon -i ubuntu-A & sleep 30
+2017-06-03 14:28:59,815 INFO monitors.py [line:73] mon ubuntu-A is start successfully
+2017-06-03 14:28:59,816 INFO monitors.py [line:103] node is  ubuntu-A
+2017-06-03 14:28:59,816 INFO monitors.py [line:104] execute command is ps -ef | grep 'ceph-mon' 
+2017-06-03 14:29:00,060 INFO monitors.py [line:106] oot      6410     1  2 06:28 ?        00:00:00 ceph-mon -i ubuntu-A
+denali    6676  6675  0 06:29 ?        00:00:00 bash -c ps -ef | grep 'ceph-mon' 
+denali    6678  6676  0 06:29 ?        00:00:00 grep ceph-mon
+
+2017-06-03 14:29:00,060 INFO monitors.py [line:114] ubuntu-A is alrady started
+2017-06-03 14:30:00,118 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-03 14:30:00,545 INFO cluster.py [line:213]    cluster e93f3143-8693-4060-a247-132bae28385e
+     health HEALTH_OK
+     monmap e3: 3 mons at {ubuntu-A=192.168.40.170:6789/0,ubuntu-B=192.168.40.171:6789/0,ubuntu-C=192.168.40.172:6789/0}
+            election epoch 20, quorum 0,1,2 ubuntu-A,ubuntu-B,ubuntu-C
+     osdmap e2142: 20 osds: 20 up, 16 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v11781: 1536 pgs, 2 pools, 300 GB data, 80436 objects
+            733 GB used, 44566 GB / 45300 GB avail
+                1536 active+clean
+  client io 32782 kB/s rd, 14025 kB/s wr, 4097 op/s rd, 1753 op/s wr
+2017-06-03 06:30:02.281174 7f30d2110700 -1 asok(0x7f30cc000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.7176.139847557714304.asok': (13) Permission denied
+
+2017-06-03 14:30:00,545 INFO cluster.py [line:238] PG number is 1536
+2017-06-03 14:30:00,545 INFO cluster.py [line:239] usefull PG number is 1536
+2017-06-03 14:30:00,546 INFO TC188_kill_mon_nbd.py [line:88] stop mon service on ubuntu-A in cluster successfully
+2017-06-03 14:30:01,205 INFO monitors.py [line:126]    "quorum_leader_name": "ubuntu-A",
+stdin: is not a tty
+
+2017-06-03 14:30:01,205 INFO monitors.py [line:129]    "quorum_leader_name": "ubuntu-A",
+2017-06-03 14:30:01,205 INFO TC188_kill_mon_nbd.py [line:104] now the leader mon is ubuntu-A
+2017-06-03 14:30:01,206 INFO TC188_kill_mon_nbd.py [line:106] ubuntu-A is back
+2017-06-03 14:30:01,206 INFO monitors.py [line:68] mon is  ubuntu-A
+2017-06-03 14:30:01,206 INFO monitors.py [line:69] execute command is sudo -i ceph-mon -i ubuntu-A & sleep 30
+2017-06-03 14:30:31,391 ERROR monitors.py [line:75] Error when start mon ubuntu-A
+2017-06-03 14:30:31,391 ERROR monitors.py [line:76] sudo -i ceph-mon -i ubuntu-A & sleep 30
+2017-06-03 14:30:31,391 ERROR monitors.py [line:77] tdin: is not a tty
+2017-06-03 06:30:03.290714 2b40107c3200 -1 asok(0x2b40141351c0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-mon.ubuntu-A.asok': (17) File exists
+IO error: lock /var/lib/ceph/mon/ceph-ubuntu-A/store.db/LOCK: Resource temporarily unavailable
+2017-06-03 06:30:03.303917 2b40107c3200 -1 error opening mon data directory at '/var/lib/ceph/mon/ceph-ubuntu-A': (22) Invalid argument
+
+2017-06-03 14:30:31,391 INFO monitors.py [line:103] node is  ubuntu-A
+2017-06-03 14:30:31,391 INFO monitors.py [line:104] execute command is ps -ef | grep 'ceph-mon' 
+2017-06-03 14:30:31,632 INFO monitors.py [line:106] oot      6410     1  1 06:28 ?        00:00:01 ceph-mon -i ubuntu-A
+denali    7509  7507  0 06:30 ?        00:00:00 bash -c ps -ef | grep 'ceph-mon' 
+denali    7511  7509  0 06:30 ?        00:00:00 grep ceph-mon
+
+2017-06-03 14:30:31,632 INFO monitors.py [line:114] ubuntu-A is alrady started
+2017-06-03 14:31:31,921 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-03 14:31:32,299 INFO cluster.py [line:213]    cluster e93f3143-8693-4060-a247-132bae28385e
+     health HEALTH_OK
+     monmap e3: 3 mons at {ubuntu-A=192.168.40.170:6789/0,ubuntu-B=192.168.40.171:6789/0,ubuntu-C=192.168.40.172:6789/0}
+            election epoch 20, quorum 0,1,2 ubuntu-A,ubuntu-B,ubuntu-C
+     osdmap e2142: 20 osds: 20 up, 16 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v11818: 1536 pgs, 2 pools, 300 GB data, 80444 objects
+            733 GB used, 44566 GB / 45300 GB avail
+                1536 active+clean
+  client io 31740 kB/s rd, 13869 kB/s wr, 3967 op/s rd, 1733 op/s wr
+2017-06-03 06:31:34.048093 7ff6fda0c700 -1 asok(0x7ff6f8000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.8006.140698699436416.asok': (13) Permission denied
+
+2017-06-03 14:31:32,299 INFO cluster.py [line:238] PG number is 1536
+2017-06-03 14:31:32,299 INFO cluster.py [line:239] usefull PG number is 1536
+2017-06-03 14:31:32,300 INFO TC188_kill_mon_nbd.py [line:121] stop mon service on ubuntu-A in cluster successfully
+2017-06-03 14:31:32,876 INFO client.py [line:172] 4
+stdin: is not a tty
+
+2017-06-03 14:31:32,876 INFO client.py [line:174] IO is running
+2017-06-03 14:31:33,271 INFO monitors.py [line:126]    "quorum_leader_name": "ubuntu-A",
+stdin: is not a tty
+
+2017-06-03 14:31:33,271 INFO monitors.py [line:129]    "quorum_leader_name": "ubuntu-A",
+2017-06-03 14:31:33,271 INFO TC188_kill_mon_nbd.py [line:141] now the leader mon is ubuntu-A
+2017-06-03 14:31:33,271 INFO TC188_kill_mon_nbd.py [line:143] ubuntu-A is back
+2017-06-03 14:31:33,524 INFO monitors.py [line:45] ['oot      6410     1  1 06:28 ?        00:00:02 ceph-mon -i ubuntu-A', 'denali    8101  8096  0 06:31 ?        00:00:00 bash -c ps -ef | grep ceph-mon', 'denali    8103  8101  0 06:31 ?        00:00:00 grep ceph-mon', '']
+2017-06-03 14:31:33,524 INFO monitors.py [line:51] mon pid is 6410
+2017-06-03 14:31:33,524 INFO monitors.py [line:92] execute command is sudo -i kill -9 6410 & sleep 3
+2017-06-03 14:32:07,349 INFO monitors.py [line:126]    "quorum_leader_name": "ubuntu-B",
+stdin: is not a tty
+
+2017-06-03 14:32:07,349 INFO monitors.py [line:129]    "quorum_leader_name": "ubuntu-B",
+2017-06-03 14:32:07,349 INFO TC188_kill_mon_nbd.py [line:67] now the leader mon is ubuntu-B
+2017-06-03 14:32:07,629 INFO monitors.py [line:45] ['enali    8429  8428  0 06:32 ?        00:00:00 bash -c ps -ef | grep ceph-mon', 'denali    8431  8429  0 06:32 ?        00:00:00 grep ceph-mon', '']
+2017-06-03 14:32:07,629 INFO monitors.py [line:51] mon pid is 6410
+2017-06-03 14:32:07,629 INFO monitors.py [line:92] execute command is sudo -i kill -9 6410 & sleep 3
+2017-06-03 14:32:44,626 INFO monitors.py [line:126]    "quorum_leader_name": "ubuntu-B",
+stdin: is not a tty
+
+2017-06-03 14:32:44,627 INFO monitors.py [line:129]    "quorum_leader_name": "ubuntu-B",
+2017-06-03 14:32:44,627 INFO TC188_kill_mon_nbd.py [line:78] now the leader mon is ubuntu-B
+2017-06-03 14:32:44,627 INFO monitors.py [line:68] mon is  ubuntu-A
+2017-06-03 14:32:44,627 INFO monitors.py [line:69] execute command is sudo -i ceph-mon -i ubuntu-A & sleep 30
+2017-06-03 14:33:14,813 INFO monitors.py [line:73] mon ubuntu-A is start successfully
+2017-06-03 14:33:14,813 INFO monitors.py [line:103] node is  ubuntu-A
+2017-06-03 14:33:14,813 INFO monitors.py [line:104] execute command is ps -ef | grep 'ceph-mon' 
+2017-06-03 14:33:15,054 INFO monitors.py [line:106] oot      8828     1  2 06:32 ?        00:00:00 ceph-mon -i ubuntu-A
+denali    9093  9092  0 06:33 ?        00:00:00 bash -c ps -ef | grep 'ceph-mon' 
+denali    9095  9093  0 06:33 ?        00:00:00 grep ceph-mon
+
+2017-06-03 14:33:15,054 INFO monitors.py [line:114] ubuntu-A is alrady started
+2017-06-03 14:34:15,114 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-03 14:34:15,506 INFO cluster.py [line:213]    cluster e93f3143-8693-4060-a247-132bae28385e
+     health HEALTH_OK
+     monmap e3: 3 mons at {ubuntu-A=192.168.40.170:6789/0,ubuntu-B=192.168.40.171:6789/0,ubuntu-C=192.168.40.172:6789/0}
+            election epoch 24, quorum 0,1,2 ubuntu-A,ubuntu-B,ubuntu-C
+     osdmap e2142: 20 osds: 20 up, 16 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v11879: 1536 pgs, 2 pools, 300 GB data, 80461 objects
+            733 GB used, 44566 GB / 45300 GB avail
+                1536 active+clean
+  client io 29222 kB/s rd, 13753 kB/s wr, 3653 op/s rd, 1719 op/s wr
+2017-06-03 06:34:17.240667 7fb608642700 -1 asok(0x7fb600000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.9595.140419660779904.asok': (13) Permission denied
+
+2017-06-03 14:34:15,506 INFO cluster.py [line:238] PG number is 1536
+2017-06-03 14:34:15,506 INFO cluster.py [line:239] usefull PG number is 1536
+2017-06-03 14:34:15,506 INFO TC188_kill_mon_nbd.py [line:88] stop mon service on ubuntu-A in cluster successfully
+2017-06-03 14:34:16,129 INFO monitors.py [line:126]    "quorum_leader_name": "ubuntu-A",
+stdin: is not a tty
+
+2017-06-03 14:34:16,129 INFO monitors.py [line:129]    "quorum_leader_name": "ubuntu-A",
+2017-06-03 14:34:16,129 INFO TC188_kill_mon_nbd.py [line:104] now the leader mon is ubuntu-A
+2017-06-03 14:34:16,129 INFO TC188_kill_mon_nbd.py [line:106] ubuntu-A is back
+2017-06-03 14:34:16,130 INFO monitors.py [line:68] mon is  ubuntu-A
+2017-06-03 14:34:16,130 INFO monitors.py [line:69] execute command is sudo -i ceph-mon -i ubuntu-A & sleep 30
+2017-06-03 14:34:46,347 ERROR monitors.py [line:75] Error when start mon ubuntu-A
+2017-06-03 14:34:46,347 ERROR monitors.py [line:76] sudo -i ceph-mon -i ubuntu-A & sleep 30
+2017-06-03 14:34:46,347 ERROR monitors.py [line:77] tdin: is not a tty
+2017-06-03 06:34:18.248052 2afde3381200 -1 asok(0x2afde6d351c0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-mon.ubuntu-A.asok': (17) File exists
+IO error: lock /var/lib/ceph/mon/ceph-ubuntu-A/store.db/LOCK: Resource temporarily unavailable
+2017-06-03 06:34:18.261805 2afde3381200 -1 error opening mon data directory at '/var/lib/ceph/mon/ceph-ubuntu-A': (22) Invalid argument
+
+2017-06-03 14:34:46,347 INFO monitors.py [line:103] node is  ubuntu-A
+2017-06-03 14:34:46,348 INFO monitors.py [line:104] execute command is ps -ef | grep 'ceph-mon' 
+2017-06-03 14:34:46,585 INFO monitors.py [line:106] oot      8828     1  1 06:32 ?        00:00:01 ceph-mon -i ubuntu-A
+denali    9930  9928  0 06:34 ?        00:00:00 bash -c ps -ef | grep 'ceph-mon' 
+denali    9932  9930  0 06:34 ?        00:00:00 grep ceph-mon
+
+2017-06-03 14:34:46,585 INFO monitors.py [line:114] ubuntu-A is alrady started
+2017-06-03 14:35:46,888 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-03 14:35:47,292 INFO cluster.py [line:213]    cluster e93f3143-8693-4060-a247-132bae28385e
+     health HEALTH_OK
+     monmap e3: 3 mons at {ubuntu-A=192.168.40.170:6789/0,ubuntu-B=192.168.40.171:6789/0,ubuntu-C=192.168.40.172:6789/0}
+            election epoch 24, quorum 0,1,2 ubuntu-A,ubuntu-B,ubuntu-C
+     osdmap e2142: 20 osds: 20 up, 16 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v11915: 1536 pgs, 2 pools, 300 GB data, 80470 objects
+            733 GB used, 44566 GB / 45300 GB avail
+                1536 active+clean
+  client io 30648 kB/s rd, 13795 kB/s wr, 3831 op/s rd, 1724 op/s wr
+2017-06-03 06:35:49.037623 7f35c1120700 -1 asok(0x7f35bc000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.10434.139868764115328.asok': (13) Permission denied
+
+2017-06-03 14:35:47,292 INFO cluster.py [line:238] PG number is 1536
+2017-06-03 14:35:47,292 INFO cluster.py [line:239] usefull PG number is 1536
+2017-06-03 14:35:47,293 INFO TC188_kill_mon_nbd.py [line:121] stop mon service on ubuntu-A in cluster successfully
+2017-06-03 14:35:47,873 INFO client.py [line:172] 4
+stdin: is not a tty
+
+2017-06-03 14:35:47,873 INFO client.py [line:174] IO is running
+2017-06-03 14:35:48,381 INFO monitors.py [line:126]    "quorum_leader_name": "ubuntu-A",
+stdin: is not a tty
+
+2017-06-03 14:35:48,381 INFO monitors.py [line:129]    "quorum_leader_name": "ubuntu-A",
+2017-06-03 14:35:48,381 INFO TC188_kill_mon_nbd.py [line:141] now the leader mon is ubuntu-A
+2017-06-03 14:35:48,381 INFO TC188_kill_mon_nbd.py [line:143] ubuntu-A is back
+2017-06-03 14:35:48,657 INFO monitors.py [line:45] ['oot      8828     1  1 06:32 ?        00:00:02 ceph-mon -i ubuntu-A', 'denali   10503 10502  0 06:35 ?        00:00:00 bash -c ps -ef | grep ceph-mon', 'denali   10505 10503  0 06:35 ?        00:00:00 grep ceph-mon', '']
+2017-06-03 14:35:48,657 INFO monitors.py [line:51] mon pid is 8828
+2017-06-03 14:35:48,657 INFO monitors.py [line:92] execute command is sudo -i kill -9 8828 & sleep 3
+2017-06-03 14:36:22,601 INFO monitors.py [line:126]    "quorum_leader_name": "ubuntu-B",
+stdin: is not a tty
+
+2017-06-03 14:36:22,601 INFO monitors.py [line:129]    "quorum_leader_name": "ubuntu-B",
+2017-06-03 14:36:22,602 INFO TC188_kill_mon_nbd.py [line:67] now the leader mon is ubuntu-B
+2017-06-03 14:36:22,886 INFO monitors.py [line:45] ['enali   10854 10853  0 06:36 ?        00:00:00 bash -c ps -ef | grep ceph-mon', 'denali   10856 10854  0 06:36 ?        00:00:00 grep ceph-mon', '']
+2017-06-03 14:36:22,886 INFO monitors.py [line:51] mon pid is 8828
+2017-06-03 14:36:22,886 INFO monitors.py [line:92] execute command is sudo -i kill -9 8828 & sleep 3
+2017-06-03 14:36:56,762 INFO monitors.py [line:126]    "quorum_leader_name": "ubuntu-B",
+stdin: is not a tty
+
+2017-06-03 14:36:56,762 INFO monitors.py [line:129]    "quorum_leader_name": "ubuntu-B",
+2017-06-03 14:36:56,762 INFO TC188_kill_mon_nbd.py [line:78] now the leader mon is ubuntu-B
+2017-06-03 14:36:56,762 INFO monitors.py [line:68] mon is  ubuntu-A
+2017-06-03 14:36:56,762 INFO monitors.py [line:69] execute command is sudo -i ceph-mon -i ubuntu-A & sleep 30
+2017-06-03 14:37:26,980 INFO monitors.py [line:73] mon ubuntu-A is start successfully
+2017-06-03 14:37:26,980 INFO monitors.py [line:103] node is  ubuntu-A
+2017-06-03 14:37:26,981 INFO monitors.py [line:104] execute command is ps -ef | grep 'ceph-mon' 
+2017-06-03 14:37:27,222 INFO monitors.py [line:106] oot     11211     1  2 06:36 ?        00:00:00 ceph-mon -i ubuntu-A
+denali   11477 11476  0 06:37 ?        00:00:00 bash -c ps -ef | grep 'ceph-mon' 
+denali   11479 11477  0 06:37 ?        00:00:00 grep ceph-mon
+
+2017-06-03 14:37:27,222 INFO monitors.py [line:114] ubuntu-A is alrady started
+2017-06-03 14:38:27,242 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-03 14:38:27,619 INFO cluster.py [line:213]    cluster e93f3143-8693-4060-a247-132bae28385e
+     health HEALTH_OK
+     monmap e3: 3 mons at {ubuntu-A=192.168.40.170:6789/0,ubuntu-B=192.168.40.171:6789/0,ubuntu-C=192.168.40.172:6789/0}
+            election epoch 28, quorum 0,1,2 ubuntu-A,ubuntu-B,ubuntu-C
+     osdmap e2142: 20 osds: 20 up, 16 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v11973: 1536 pgs, 2 pools, 300 GB data, 80486 objects
+            733 GB used, 44566 GB / 45300 GB avail
+                1536 active+clean
+  client io 30308 kB/s rd, 13815 kB/s wr, 3790 op/s rd, 1727 op/s wr
+2017-06-03 06:38:29.365369 7f8be5b7b700 -1 asok(0x7f8be0000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.11981.140238735282560.asok': (13) Permission denied
+
+2017-06-03 14:38:27,620 INFO cluster.py [line:238] PG number is 1536
+2017-06-03 14:38:27,620 INFO cluster.py [line:239] usefull PG number is 1536
+2017-06-03 14:38:27,620 INFO TC188_kill_mon_nbd.py [line:88] stop mon service on ubuntu-A in cluster successfully
+2017-06-03 14:38:28,283 INFO monitors.py [line:126]    "quorum_leader_name": "ubuntu-A",
+stdin: is not a tty
+
+2017-06-03 14:38:28,283 INFO monitors.py [line:129]    "quorum_leader_name": "ubuntu-A",
+2017-06-03 14:38:28,284 INFO TC188_kill_mon_nbd.py [line:104] now the leader mon is ubuntu-A
+2017-06-03 14:38:28,284 INFO TC188_kill_mon_nbd.py [line:106] ubuntu-A is back
+2017-06-03 14:38:28,284 INFO monitors.py [line:68] mon is  ubuntu-A
+2017-06-03 14:38:28,284 INFO monitors.py [line:69] execute command is sudo -i ceph-mon -i ubuntu-A & sleep 30
+2017-06-03 14:38:58,508 ERROR monitors.py [line:75] Error when start mon ubuntu-A
+2017-06-03 14:38:58,508 ERROR monitors.py [line:76] sudo -i ceph-mon -i ubuntu-A & sleep 30
+2017-06-03 14:38:58,508 ERROR monitors.py [line:77] tdin: is not a tty
+2017-06-03 06:38:30.407168 2af3d8515200 -1 asok(0x2af3dbd351c0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-mon.ubuntu-A.asok': (17) File exists
+IO error: lock /var/lib/ceph/mon/ceph-ubuntu-A/store.db/LOCK: Resource temporarily unavailable
+2017-06-03 06:38:30.422826 2af3d8515200 -1 error opening mon data directory at '/var/lib/ceph/mon/ceph-ubuntu-A': (22) Invalid argument
+
+2017-06-03 14:38:58,508 INFO monitors.py [line:103] node is  ubuntu-A
+2017-06-03 14:38:58,508 INFO monitors.py [line:104] execute command is ps -ef | grep 'ceph-mon' 
+2017-06-03 14:38:58,756 INFO monitors.py [line:106] oot     11211     1  1 06:36 ?        00:00:01 ceph-mon -i ubuntu-A
+denali   12316 12315  0 06:39 ?        00:00:00 bash -c ps -ef | grep 'ceph-mon' 
+denali   12319 12316  0 06:39 ?        00:00:00 grep ceph-mon
+
+2017-06-03 14:38:58,757 INFO monitors.py [line:114] ubuntu-A is alrady started
+2017-06-03 14:39:59,066 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-03 14:39:59,461 INFO cluster.py [line:213]    cluster e93f3143-8693-4060-a247-132bae28385e
+     health HEALTH_OK
+     monmap e3: 3 mons at {ubuntu-A=192.168.40.170:6789/0,ubuntu-B=192.168.40.171:6789/0,ubuntu-C=192.168.40.172:6789/0}
+            election epoch 28, quorum 0,1,2 ubuntu-A,ubuntu-B,ubuntu-C
+     osdmap e2142: 20 osds: 20 up, 16 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v12010: 1536 pgs, 2 pools, 300 GB data, 80494 objects
+            733 GB used, 44566 GB / 45300 GB avail
+                1536 active+clean
+  client io 32567 kB/s rd, 13804 kB/s wr, 4070 op/s rd, 1725 op/s wr
+2017-06-03 06:40:01.196430 7f6745d2d700 -1 asok(0x7f6740000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.12818.140081432105344.asok': (13) Permission denied
+
+2017-06-03 14:39:59,461 INFO cluster.py [line:238] PG number is 1536
+2017-06-03 14:39:59,461 INFO cluster.py [line:239] usefull PG number is 1536
+2017-06-03 14:39:59,461 INFO TC188_kill_mon_nbd.py [line:121] stop mon service on ubuntu-A in cluster successfully
+2017-06-03 14:40:00,039 INFO client.py [line:172] 4
+stdin: is not a tty
+
+2017-06-03 14:40:00,039 INFO client.py [line:174] IO is running
+2017-06-03 14:40:00,442 INFO monitors.py [line:126]    "quorum_leader_name": "ubuntu-A",
+stdin: is not a tty
+
+2017-06-03 14:40:00,442 INFO monitors.py [line:129]    "quorum_leader_name": "ubuntu-A",
+2017-06-03 14:40:00,442 INFO TC188_kill_mon_nbd.py [line:141] now the leader mon is ubuntu-A
+2017-06-03 14:40:00,442 INFO TC188_kill_mon_nbd.py [line:143] ubuntu-A is back
+2017-06-03 14:40:00,676 INFO monitors.py [line:45] ['oot     11211     1  1 06:36 ?        00:00:02 ceph-mon -i ubuntu-A', 'denali   12926 12925  0 06:40 ?        00:00:00 bash -c ps -ef | grep ceph-mon', 'denali   12928 12926  0 06:40 ?        00:00:00 grep ceph-mon', '']
+2017-06-03 14:40:00,676 INFO monitors.py [line:51] mon pid is 11211
+2017-06-03 14:40:00,677 INFO monitors.py [line:92] execute command is sudo -i kill -9 11211 & sleep 3
+2017-06-03 14:40:34,563 INFO monitors.py [line:126]    "quorum_leader_name": "ubuntu-B",
+stdin: is not a tty
+
+2017-06-03 14:40:34,563 INFO monitors.py [line:129]    "quorum_leader_name": "ubuntu-B",
+2017-06-03 14:40:34,564 INFO TC188_kill_mon_nbd.py [line:67] now the leader mon is ubuntu-B
+2017-06-03 14:40:34,807 INFO monitors.py [line:45] ['enali   13259 13258  0 06:40 ?        00:00:00 bash -c ps -ef | grep ceph-mon', 'denali   13261 13259  0 06:40 ?        00:00:00 grep ceph-mon', '']
+2017-06-03 14:40:34,807 INFO monitors.py [line:51] mon pid is 11211
+2017-06-03 14:40:34,807 INFO monitors.py [line:92] execute command is sudo -i kill -9 11211 & sleep 3
+2017-06-03 14:41:11,651 INFO monitors.py [line:126]    "quorum_leader_name": "ubuntu-B",
+stdin: is not a tty
+
+2017-06-03 14:41:11,651 INFO monitors.py [line:129]    "quorum_leader_name": "ubuntu-B",
+2017-06-03 14:41:11,651 INFO TC188_kill_mon_nbd.py [line:78] now the leader mon is ubuntu-B
+2017-06-03 14:41:11,651 INFO monitors.py [line:68] mon is  ubuntu-A
+2017-06-03 14:41:11,652 INFO monitors.py [line:69] execute command is sudo -i ceph-mon -i ubuntu-A & sleep 30
+2017-06-03 14:41:41,837 INFO monitors.py [line:73] mon ubuntu-A is start successfully
+2017-06-03 14:41:41,837 INFO monitors.py [line:103] node is  ubuntu-A
+2017-06-03 14:41:41,838 INFO monitors.py [line:104] execute command is ps -ef | grep 'ceph-mon' 
+2017-06-03 14:41:42,081 INFO monitors.py [line:106] oot     13632     1  2 06:41 ?        00:00:00 ceph-mon -i ubuntu-A
+denali   13897 13896  0 06:41 ?        00:00:00 bash -c ps -ef | grep 'ceph-mon' 
+denali   13899 13897  0 06:41 ?        00:00:00 grep ceph-mon
+
+2017-06-03 14:41:42,082 INFO monitors.py [line:114] ubuntu-A is alrady started
+2017-06-03 14:42:42,130 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-03 14:42:42,513 INFO cluster.py [line:213]    cluster e93f3143-8693-4060-a247-132bae28385e
+     health HEALTH_OK
+     monmap e3: 3 mons at {ubuntu-A=192.168.40.170:6789/0,ubuntu-B=192.168.40.171:6789/0,ubuntu-C=192.168.40.172:6789/0}
+            election epoch 32, quorum 0,1,2 ubuntu-A,ubuntu-B,ubuntu-C
+     osdmap e2142: 20 osds: 20 up, 16 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v12071: 1536 pgs, 2 pools, 300 GB data, 80508 objects
+            733 GB used, 44566 GB / 45300 GB avail
+                1536 active+clean
+  client io 31121 kB/s rd, 14139 kB/s wr, 3890 op/s rd, 1766 op/s wr
+2017-06-03 06:42:44.260315 7fb18cf72700 -1 asok(0x7fb188000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.14393.140400467644800.asok': (13) Permission denied
+
+2017-06-03 14:42:42,513 INFO cluster.py [line:238] PG number is 1536
+2017-06-03 14:42:42,513 INFO cluster.py [line:239] usefull PG number is 1536
+2017-06-03 14:42:42,513 INFO TC188_kill_mon_nbd.py [line:88] stop mon service on ubuntu-A in cluster successfully
+2017-06-03 14:42:43,183 INFO monitors.py [line:126]    "quorum_leader_name": "ubuntu-A",
+stdin: is not a tty
+
+2017-06-03 14:42:43,183 INFO monitors.py [line:129]    "quorum_leader_name": "ubuntu-A",
+2017-06-03 14:42:43,183 INFO TC188_kill_mon_nbd.py [line:104] now the leader mon is ubuntu-A
+2017-06-03 14:42:43,183 INFO TC188_kill_mon_nbd.py [line:106] ubuntu-A is back
+2017-06-03 14:42:43,183 INFO monitors.py [line:68] mon is  ubuntu-A
+2017-06-03 14:42:43,183 INFO monitors.py [line:69] execute command is sudo -i ceph-mon -i ubuntu-A & sleep 30
+2017-06-03 14:43:13,369 ERROR monitors.py [line:75] Error when start mon ubuntu-A
+2017-06-03 14:43:13,369 ERROR monitors.py [line:76] sudo -i ceph-mon -i ubuntu-A & sleep 30
+2017-06-03 14:43:13,370 ERROR monitors.py [line:77] tdin: is not a tty
+2017-06-03 06:42:45.267577 2b679636b200 -1 asok(0x2b6799d351c0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-mon.ubuntu-A.asok': (17) File exists
+IO error: lock /var/lib/ceph/mon/ceph-ubuntu-A/store.db/LOCK: Resource temporarily unavailable
+2017-06-03 06:42:45.284100 2b679636b200 -1 error opening mon data directory at '/var/lib/ceph/mon/ceph-ubuntu-A': (22) Invalid argument
+
+2017-06-03 14:43:13,370 INFO monitors.py [line:103] node is  ubuntu-A
+2017-06-03 14:43:13,370 INFO monitors.py [line:104] execute command is ps -ef | grep 'ceph-mon' 
+2017-06-03 14:43:13,609 INFO monitors.py [line:106] oot     13632     1  1 06:41 ?        00:00:01 ceph-mon -i ubuntu-A
+denali   14723 14722  0 06:43 ?        00:00:00 bash -c ps -ef | grep 'ceph-mon' 
+denali   14725 14723  0 06:43 ?        00:00:00 grep ceph-mon
+
+2017-06-03 14:43:13,609 INFO monitors.py [line:114] ubuntu-A is alrady started
+2017-06-03 14:44:13,906 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-03 14:44:14,277 INFO cluster.py [line:213]    cluster e93f3143-8693-4060-a247-132bae28385e
+     health HEALTH_OK
+     monmap e3: 3 mons at {ubuntu-A=192.168.40.170:6789/0,ubuntu-B=192.168.40.171:6789/0,ubuntu-C=192.168.40.172:6789/0}
+            election epoch 32, quorum 0,1,2 ubuntu-A,ubuntu-B,ubuntu-C
+     osdmap e2142: 20 osds: 20 up, 16 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v12107: 1536 pgs, 2 pools, 300 GB data, 80517 objects
+            733 GB used, 44566 GB / 45300 GB avail
+                1536 active+clean
+  client io 30301 kB/s rd, 14029 kB/s wr, 3789 op/s rd, 1754 op/s wr
+2017-06-03 06:44:16.021578 7f660a328700 -1 asok(0x7f6604000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.15220.140076130505088.asok': (13) Permission denied
+
+2017-06-03 14:44:14,277 INFO cluster.py [line:238] PG number is 1536
+2017-06-03 14:44:14,277 INFO cluster.py [line:239] usefull PG number is 1536
+2017-06-03 14:44:14,277 INFO TC188_kill_mon_nbd.py [line:121] stop mon service on ubuntu-A in cluster successfully
+2017-06-03 14:44:14,857 INFO client.py [line:172] 4
+stdin: is not a tty
+
+2017-06-03 14:44:14,857 INFO client.py [line:174] IO is running
+2017-06-03 14:44:15,257 INFO monitors.py [line:126]    "quorum_leader_name": "ubuntu-A",
+stdin: is not a tty
+
+2017-06-03 14:44:15,257 INFO monitors.py [line:129]    "quorum_leader_name": "ubuntu-A",
+2017-06-03 14:44:15,257 INFO TC188_kill_mon_nbd.py [line:141] now the leader mon is ubuntu-A
+2017-06-03 14:44:15,257 INFO TC188_kill_mon_nbd.py [line:143] ubuntu-A is back
+2017-06-03 14:44:15,537 INFO monitors.py [line:45] ['oot     13632     1  1 06:41 ?        00:00:02 ceph-mon -i ubuntu-A', 'denali   15313 15312  0 06:44 ?        00:00:00 bash -c ps -ef | grep ceph-mon', 'denali   15315 15313  0 06:44 ?        00:00:00 grep ceph-mon', '']
+2017-06-03 14:44:15,537 INFO monitors.py [line:51] mon pid is 13632
+2017-06-03 14:44:15,537 INFO monitors.py [line:92] execute command is sudo -i kill -9 13632 & sleep 3
+2017-06-03 14:44:49,360 INFO monitors.py [line:126]    "quorum_leader_name": "ubuntu-B",
+stdin: is not a tty
+
+2017-06-03 14:44:49,360 INFO monitors.py [line:129]    "quorum_leader_name": "ubuntu-B",
+2017-06-03 14:44:49,360 INFO TC188_kill_mon_nbd.py [line:67] now the leader mon is ubuntu-B
+2017-06-03 14:44:49,633 INFO monitors.py [line:45] ['enali   15647 15646  0 06:44 ?        00:00:00 bash -c ps -ef | grep ceph-mon', 'denali   15650 15647  0 06:44 ?        00:00:00 grep ceph-mon', '']
+2017-06-03 14:44:49,633 INFO monitors.py [line:51] mon pid is 13632
+2017-06-03 14:44:49,633 INFO monitors.py [line:92] execute command is sudo -i kill -9 13632 & sleep 3
+2017-06-03 14:45:23,575 INFO monitors.py [line:126]    "quorum_leader_name": "ubuntu-B",
+stdin: is not a tty
+
+2017-06-03 14:45:23,576 INFO monitors.py [line:129]    "quorum_leader_name": "ubuntu-B",
+2017-06-03 14:45:23,576 INFO TC188_kill_mon_nbd.py [line:78] now the leader mon is ubuntu-B
+2017-06-03 14:45:23,576 INFO monitors.py [line:68] mon is  ubuntu-A
+2017-06-03 14:45:23,576 INFO monitors.py [line:69] execute command is sudo -i ceph-mon -i ubuntu-A & sleep 30
+2017-06-03 14:45:53,793 INFO monitors.py [line:73] mon ubuntu-A is start successfully
+2017-06-03 14:45:53,793 INFO monitors.py [line:103] node is  ubuntu-A
+2017-06-03 14:45:53,793 INFO monitors.py [line:104] execute command is ps -ef | grep 'ceph-mon' 
+2017-06-03 14:45:54,038 INFO monitors.py [line:106] oot     16007     1  2 06:45 ?        00:00:00 ceph-mon -i ubuntu-A
+denali   16279 16278  0 06:45 ?        00:00:00 bash -c ps -ef | grep 'ceph-mon' 
+denali   16281 16279  0 06:45 ?        00:00:00 grep ceph-mon
+
+2017-06-03 14:45:54,038 INFO monitors.py [line:114] ubuntu-A is alrady started
+2017-06-03 14:46:54,067 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-03 14:46:54,459 INFO cluster.py [line:213]    cluster e93f3143-8693-4060-a247-132bae28385e
+     health HEALTH_OK
+     monmap e3: 3 mons at {ubuntu-A=192.168.40.170:6789/0,ubuntu-B=192.168.40.171:6789/0,ubuntu-C=192.168.40.172:6789/0}
+            election epoch 36, quorum 0,1,2 ubuntu-A,ubuntu-B,ubuntu-C
+     osdmap e2142: 20 osds: 20 up, 16 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v12165: 1536 pgs, 2 pools, 300 GB data, 80531 objects
+            733 GB used, 44566 GB / 45300 GB avail
+                1536 active+clean
+  client io 33595 kB/s rd, 13752 kB/s wr, 4199 op/s rd, 1718 op/s wr
+2017-06-03 06:46:56.196893 7f05c6448700 -1 asok(0x7f05c0000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.16774.139662672793984.asok': (13) Permission denied
+
+2017-06-03 14:46:54,459 INFO cluster.py [line:238] PG number is 1536
+2017-06-03 14:46:54,460 INFO cluster.py [line:239] usefull PG number is 1536
+2017-06-03 14:46:54,460 INFO TC188_kill_mon_nbd.py [line:88] stop mon service on ubuntu-A in cluster successfully
+2017-06-03 14:46:55,120 INFO monitors.py [line:126]    "quorum_leader_name": "ubuntu-A",
+stdin: is not a tty
+
+2017-06-03 14:46:55,120 INFO monitors.py [line:129]    "quorum_leader_name": "ubuntu-A",
+2017-06-03 14:46:55,120 INFO TC188_kill_mon_nbd.py [line:104] now the leader mon is ubuntu-A
+2017-06-03 14:46:55,120 INFO TC188_kill_mon_nbd.py [line:106] ubuntu-A is back
+2017-06-03 14:46:55,121 INFO monitors.py [line:68] mon is  ubuntu-A
+2017-06-03 14:46:55,121 INFO monitors.py [line:69] execute command is sudo -i ceph-mon -i ubuntu-A & sleep 30
+2017-06-03 14:47:25,338 ERROR monitors.py [line:75] Error when start mon ubuntu-A
+2017-06-03 14:47:25,338 ERROR monitors.py [line:76] sudo -i ceph-mon -i ubuntu-A & sleep 30
+2017-06-03 14:47:25,338 ERROR monitors.py [line:77] tdin: is not a tty
+2017-06-03 06:46:57.237347 2ace031aa200 -1 asok(0x2ace06d351c0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-mon.ubuntu-A.asok': (17) File exists
+IO error: lock /var/lib/ceph/mon/ceph-ubuntu-A/store.db/LOCK: Resource temporarily unavailable
+2017-06-03 06:46:57.251455 2ace031aa200 -1 error opening mon data directory at '/var/lib/ceph/mon/ceph-ubuntu-A': (22) Invalid argument
+
+2017-06-03 14:47:25,338 INFO monitors.py [line:103] node is  ubuntu-A
+2017-06-03 14:47:25,339 INFO monitors.py [line:104] execute command is ps -ef | grep 'ceph-mon' 
+2017-06-03 14:47:25,588 INFO monitors.py [line:106] oot     16007     1  1 06:45 ?        00:00:01 ceph-mon -i ubuntu-A
+denali   17106 17105  0 06:47 ?        00:00:00 bash -c ps -ef | grep 'ceph-mon' 
+denali   17108 17106  0 06:47 ?        00:00:00 grep ceph-mon
+
+2017-06-03 14:47:25,588 INFO monitors.py [line:114] ubuntu-A is alrady started
+2017-06-03 14:48:25,874 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-03 14:48:26,261 INFO cluster.py [line:213]    cluster e93f3143-8693-4060-a247-132bae28385e
+     health HEALTH_OK
+     monmap e3: 3 mons at {ubuntu-A=192.168.40.170:6789/0,ubuntu-B=192.168.40.171:6789/0,ubuntu-C=192.168.40.172:6789/0}
+            election epoch 36, quorum 0,1,2 ubuntu-A,ubuntu-B,ubuntu-C
+     osdmap e2142: 20 osds: 20 up, 16 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v12202: 1536 pgs, 2 pools, 300 GB data, 80541 objects
+            733 GB used, 44566 GB / 45300 GB avail
+                1536 active+clean
+  client io 32763 kB/s rd, 13802 kB/s wr, 4095 op/s rd, 1724 op/s wr
+2017-06-03 06:48:28.004643 7fcf6376f700 -1 asok(0x7fcf5c000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.17634.140528578466176.asok': (13) Permission denied
+
+2017-06-03 14:48:26,262 INFO cluster.py [line:238] PG number is 1536
+2017-06-03 14:48:26,262 INFO cluster.py [line:239] usefull PG number is 1536
+2017-06-03 14:48:26,262 INFO TC188_kill_mon_nbd.py [line:121] stop mon service on ubuntu-A in cluster successfully
+2017-06-03 14:48:26,838 INFO client.py [line:172] 4
+stdin: is not a tty
+
+2017-06-03 14:48:26,838 INFO client.py [line:174] IO is running
+2017-06-03 14:48:27,229 INFO monitors.py [line:126]    "quorum_leader_name": "ubuntu-A",
+stdin: is not a tty
+
+2017-06-03 14:48:27,229 INFO monitors.py [line:129]    "quorum_leader_name": "ubuntu-A",
+2017-06-03 14:48:27,229 INFO TC188_kill_mon_nbd.py [line:141] now the leader mon is ubuntu-A
+2017-06-03 14:48:27,229 INFO TC188_kill_mon_nbd.py [line:143] ubuntu-A is back
+2017-06-03 14:48:27,512 INFO monitors.py [line:45] ['oot     16007     1  1 06:45 ?        00:00:02 ceph-mon -i ubuntu-A', 'denali   17718 17717  0 06:48 ?        00:00:00 bash -c ps -ef | grep ceph-mon', 'denali   17720 17718  0 06:48 ?        00:00:00 grep ceph-mon', '']
+2017-06-03 14:48:27,512 INFO monitors.py [line:51] mon pid is 16007
+2017-06-03 14:48:27,513 INFO monitors.py [line:92] execute command is sudo -i kill -9 16007 & sleep 3
+2017-06-03 14:49:01,422 INFO monitors.py [line:126]    "quorum_leader_name": "ubuntu-B",
+stdin: is not a tty
+
+2017-06-03 14:49:01,423 INFO monitors.py [line:129]    "quorum_leader_name": "ubuntu-B",
+2017-06-03 14:49:01,423 INFO TC188_kill_mon_nbd.py [line:67] now the leader mon is ubuntu-B
+2017-06-03 14:49:01,672 INFO monitors.py [line:45] ['enali   18075 18074  0 06:49 ?        00:00:00 bash -c ps -ef | grep ceph-mon', 'denali   18077 18075  0 06:49 ?        00:00:00 grep ceph-mon', '']
+2017-06-03 14:49:01,672 INFO monitors.py [line:51] mon pid is 16007
+2017-06-03 14:49:01,672 INFO monitors.py [line:92] execute command is sudo -i kill -9 16007 & sleep 3
+2017-06-03 14:49:35,554 INFO monitors.py [line:126]    "quorum_leader_name": "ubuntu-B",
+stdin: is not a tty
+
+2017-06-03 14:49:35,554 INFO monitors.py [line:129]    "quorum_leader_name": "ubuntu-B",
+2017-06-03 14:49:35,554 INFO TC188_kill_mon_nbd.py [line:78] now the leader mon is ubuntu-B
+2017-06-03 14:49:35,554 INFO monitors.py [line:68] mon is  ubuntu-A
+2017-06-03 14:49:35,554 INFO monitors.py [line:69] execute command is sudo -i ceph-mon -i ubuntu-A & sleep 30
+2017-06-03 14:50:05,754 INFO monitors.py [line:73] mon ubuntu-A is start successfully
+2017-06-03 14:50:05,754 INFO monitors.py [line:103] node is  ubuntu-A
+2017-06-03 14:50:05,754 INFO monitors.py [line:104] execute command is ps -ef | grep 'ceph-mon' 
+2017-06-03 14:50:05,999 INFO monitors.py [line:106] oot     18392     1  2 06:49 ?        00:00:00 ceph-mon -i ubuntu-A
+denali   18657 18656  0 06:50 ?        00:00:00 bash -c ps -ef | grep 'ceph-mon' 
+denali   18659 18657  0 06:50 ?        00:00:00 grep ceph-mon
+
+2017-06-03 14:50:05,999 INFO monitors.py [line:114] ubuntu-A is alrady started
+2017-06-03 14:51:06,059 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-03 14:51:06,451 INFO cluster.py [line:213]    cluster e93f3143-8693-4060-a247-132bae28385e
+     health HEALTH_OK
+     monmap e3: 3 mons at {ubuntu-A=192.168.40.170:6789/0,ubuntu-B=192.168.40.171:6789/0,ubuntu-C=192.168.40.172:6789/0}
+            election epoch 40, quorum 0,1,2 ubuntu-A,ubuntu-B,ubuntu-C
+     osdmap e2142: 20 osds: 20 up, 16 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v12261: 1536 pgs, 2 pools, 300 GB data, 80557 objects
+            733 GB used, 44566 GB / 45300 GB avail
+                1536 active+clean
+  client io 31782 kB/s rd, 13884 kB/s wr, 3972 op/s rd, 1735 op/s wr
+2017-06-03 06:51:08.184793 7fa820b09700 -1 asok(0x7fa81c000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.19152.140360000999808.asok': (13) Permission denied
+
+2017-06-03 14:51:06,451 INFO cluster.py [line:238] PG number is 1536
+2017-06-03 14:51:06,452 INFO cluster.py [line:239] usefull PG number is 1536
+2017-06-03 14:51:06,452 INFO TC188_kill_mon_nbd.py [line:88] stop mon service on ubuntu-A in cluster successfully
+2017-06-03 14:51:07,118 INFO monitors.py [line:126]    "quorum_leader_name": "ubuntu-A",
+stdin: is not a tty
+
+2017-06-03 14:51:07,118 INFO monitors.py [line:129]    "quorum_leader_name": "ubuntu-A",
+2017-06-03 14:51:07,119 INFO TC188_kill_mon_nbd.py [line:104] now the leader mon is ubuntu-A
+2017-06-03 14:51:07,119 INFO TC188_kill_mon_nbd.py [line:106] ubuntu-A is back
+2017-06-03 14:51:07,119 INFO monitors.py [line:68] mon is  ubuntu-A
+2017-06-03 14:51:07,119 INFO monitors.py [line:69] execute command is sudo -i ceph-mon -i ubuntu-A & sleep 30
+2017-06-03 14:51:37,304 ERROR monitors.py [line:75] Error when start mon ubuntu-A
+2017-06-03 14:51:37,304 ERROR monitors.py [line:76] sudo -i ceph-mon -i ubuntu-A & sleep 30
+2017-06-03 14:51:37,305 ERROR monitors.py [line:77] tdin: is not a tty
+2017-06-03 06:51:09.203517 2b083b9fc200 -1 asok(0x2b083f5351c0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-mon.ubuntu-A.asok': (17) File exists
+IO error: lock /var/lib/ceph/mon/ceph-ubuntu-A/store.db/LOCK: Resource temporarily unavailable
+2017-06-03 06:51:09.221356 2b083b9fc200 -1 error opening mon data directory at '/var/lib/ceph/mon/ceph-ubuntu-A': (22) Invalid argument
+
+2017-06-03 14:51:37,305 INFO monitors.py [line:103] node is  ubuntu-A
+2017-06-03 14:51:37,305 INFO monitors.py [line:104] execute command is ps -ef | grep 'ceph-mon' 
+2017-06-03 14:51:37,552 INFO monitors.py [line:106] oot     18392     1  1 06:49 ?        00:00:01 ceph-mon -i ubuntu-A
+denali   19525 19524  0 06:51 ?        00:00:00 bash -c ps -ef | grep 'ceph-mon' 
+denali   19527 19525  0 06:51 ?        00:00:00 grep ceph-mon
+
+2017-06-03 14:51:37,552 INFO monitors.py [line:114] ubuntu-A is alrady started
+2017-06-03 14:52:37,878 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-03 14:52:38,380 INFO cluster.py [line:213]    cluster e93f3143-8693-4060-a247-132bae28385e
+     health HEALTH_OK
+     monmap e3: 3 mons at {ubuntu-A=192.168.40.170:6789/0,ubuntu-B=192.168.40.171:6789/0,ubuntu-C=192.168.40.172:6789/0}
+            election epoch 40, quorum 0,1,2 ubuntu-A,ubuntu-B,ubuntu-C
+     osdmap e2142: 20 osds: 20 up, 16 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v12298: 1536 pgs, 2 pools, 300 GB data, 80565 objects
+            733 GB used, 44566 GB / 45300 GB avail
+                1536 active+clean
+  client io 33089 kB/s rd, 13893 kB/s wr, 4136 op/s rd, 1736 op/s wr
+2017-06-03 06:52:40.013141 7f245199b700 -1 asok(0x7f244c000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.20029.139793870623104.asok': (13) Permission denied
+
+2017-06-03 14:52:38,380 INFO cluster.py [line:238] PG number is 1536
+2017-06-03 14:52:38,380 INFO cluster.py [line:239] usefull PG number is 1536
+2017-06-03 14:52:38,380 INFO TC188_kill_mon_nbd.py [line:121] stop mon service on ubuntu-A in cluster successfully
+2017-06-03 14:52:38,956 INFO client.py [line:172] 4
+stdin: is not a tty
+
+2017-06-03 14:52:38,956 INFO client.py [line:174] IO is running
+2017-06-03 14:52:39,352 INFO monitors.py [line:126]    "quorum_leader_name": "ubuntu-A",
+stdin: is not a tty
+
+2017-06-03 14:52:39,352 INFO monitors.py [line:129]    "quorum_leader_name": "ubuntu-A",
+2017-06-03 14:52:39,352 INFO TC188_kill_mon_nbd.py [line:141] now the leader mon is ubuntu-A
+2017-06-03 14:52:39,352 INFO TC188_kill_mon_nbd.py [line:143] ubuntu-A is back
+2017-06-03 14:52:39,599 INFO monitors.py [line:45] ['oot     18392     1  1 06:49 ?        00:00:02 ceph-mon -i ubuntu-A', 'denali   20099 20097  0 06:52 ?        00:00:00 bash -c ps -ef | grep ceph-mon', 'denali   20101 20099  0 06:52 ?        00:00:00 grep ceph-mon', '']
+2017-06-03 14:52:39,599 INFO monitors.py [line:51] mon pid is 18392
+2017-06-03 14:52:39,599 INFO monitors.py [line:92] execute command is sudo -i kill -9 18392 & sleep 3
+2017-06-03 14:53:13,480 INFO monitors.py [line:126]    "quorum_leader_name": "ubuntu-B",
+stdin: is not a tty
+
+2017-06-03 14:53:13,480 INFO monitors.py [line:129]    "quorum_leader_name": "ubuntu-B",
+2017-06-03 14:53:13,480 INFO TC188_kill_mon_nbd.py [line:67] now the leader mon is ubuntu-B
+2017-06-03 14:53:13,741 INFO monitors.py [line:45] ['enali   20448 20447  0 06:53 ?        00:00:00 bash -c ps -ef | grep ceph-mon', 'denali   20450 20448  0 06:53 ?        00:00:00 grep ceph-mon', '']
+2017-06-03 14:53:13,741 INFO monitors.py [line:51] mon pid is 18392
+2017-06-03 14:53:13,742 INFO monitors.py [line:92] execute command is sudo -i kill -9 18392 & sleep 3
+2017-06-03 14:53:47,618 INFO monitors.py [line:126]    "quorum_leader_name": "ubuntu-B",
+stdin: is not a tty
+
+2017-06-03 14:53:47,618 INFO monitors.py [line:129]    "quorum_leader_name": "ubuntu-B",
+2017-06-03 14:53:47,618 INFO TC188_kill_mon_nbd.py [line:78] now the leader mon is ubuntu-B
+2017-06-03 14:53:47,618 INFO monitors.py [line:68] mon is  ubuntu-A
+2017-06-03 14:53:47,618 INFO monitors.py [line:69] execute command is sudo -i ceph-mon -i ubuntu-A & sleep 30
+2017-06-03 14:54:17,811 INFO monitors.py [line:73] mon ubuntu-A is start successfully
+2017-06-03 14:54:17,811 INFO monitors.py [line:103] node is  ubuntu-A
+2017-06-03 14:54:17,811 INFO monitors.py [line:104] execute command is ps -ef | grep 'ceph-mon' 
+2017-06-03 14:54:18,022 INFO monitors.py [line:106] oot     20804     1  2 06:53 ?        00:00:00 ceph-mon -i ubuntu-A
+denali   21071 21070  0 06:54 ?        00:00:00 bash -c ps -ef | grep 'ceph-mon' 
+denali   21073 21071  0 06:54 ?        00:00:00 grep ceph-mon
+
+2017-06-03 14:54:18,022 INFO monitors.py [line:114] ubuntu-A is alrady started
+2017-06-03 14:55:18,054 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-03 14:55:18,442 INFO cluster.py [line:213]    cluster e93f3143-8693-4060-a247-132bae28385e
+     health HEALTH_OK
+     monmap e3: 3 mons at {ubuntu-A=192.168.40.170:6789/0,ubuntu-B=192.168.40.171:6789/0,ubuntu-C=192.168.40.172:6789/0}
+            election epoch 44, quorum 0,1,2 ubuntu-A,ubuntu-B,ubuntu-C
+     osdmap e2142: 20 osds: 20 up, 16 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v12355: 1536 pgs, 2 pools, 300 GB data, 80581 objects
+            733 GB used, 44566 GB / 45300 GB avail
+                1536 active+clean
+  client io 28304 kB/s rd, 13658 kB/s wr, 3538 op/s rd, 1706 op/s wr
+2017-06-03 06:55:20.183022 7f9ed2573700 -1 asok(0x7f9ecc000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.21569.140320004116864.asok': (13) Permission denied
+
+2017-06-03 14:55:18,442 INFO cluster.py [line:238] PG number is 1536
+2017-06-03 14:55:18,442 INFO cluster.py [line:239] usefull PG number is 1536
+2017-06-03 14:55:18,442 INFO TC188_kill_mon_nbd.py [line:88] stop mon service on ubuntu-A in cluster successfully
+2017-06-03 14:55:19,125 INFO monitors.py [line:126]    "quorum_leader_name": "ubuntu-A",
+stdin: is not a tty
+
+2017-06-03 14:55:19,125 INFO monitors.py [line:129]    "quorum_leader_name": "ubuntu-A",
+2017-06-03 14:55:19,125 INFO TC188_kill_mon_nbd.py [line:104] now the leader mon is ubuntu-A
+2017-06-03 14:55:19,125 INFO TC188_kill_mon_nbd.py [line:106] ubuntu-A is back
+2017-06-03 14:55:19,125 INFO monitors.py [line:68] mon is  ubuntu-A
+2017-06-03 14:55:19,125 INFO monitors.py [line:69] execute command is sudo -i ceph-mon -i ubuntu-A & sleep 30
+2017-06-03 14:55:49,343 ERROR monitors.py [line:75] Error when start mon ubuntu-A
+2017-06-03 14:55:49,343 ERROR monitors.py [line:76] sudo -i ceph-mon -i ubuntu-A & sleep 30
+2017-06-03 14:55:49,343 ERROR monitors.py [line:77] tdin: is not a tty
+2017-06-03 06:55:21.245591 2acd7df92200 -1 asok(0x2acd819351c0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-mon.ubuntu-A.asok': (17) File exists
+IO error: lock /var/lib/ceph/mon/ceph-ubuntu-A/store.db/LOCK: Resource temporarily unavailable
+2017-06-03 06:55:21.259612 2acd7df92200 -1 error opening mon data directory at '/var/lib/ceph/mon/ceph-ubuntu-A': (22) Invalid argument
+
+2017-06-03 14:55:49,343 INFO monitors.py [line:103] node is  ubuntu-A
+2017-06-03 14:55:49,343 INFO monitors.py [line:104] execute command is ps -ef | grep 'ceph-mon' 
+2017-06-03 14:55:49,626 INFO monitors.py [line:106] oot     20804     1  1 06:53 ?        00:00:01 ceph-mon -i ubuntu-A
+denali   21899 21898  0 06:55 ?        00:00:00 bash -c ps -ef | grep 'ceph-mon' 
+denali   21901 21899  0 06:55 ?        00:00:00 grep ceph-mon
+
+2017-06-03 14:55:49,626 INFO monitors.py [line:114] ubuntu-A is alrady started
+2017-06-03 14:56:50,063 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-03 14:56:50,509 INFO cluster.py [line:213]    cluster e93f3143-8693-4060-a247-132bae28385e
+     health HEALTH_OK
+     monmap e3: 3 mons at {ubuntu-A=192.168.40.170:6789/0,ubuntu-B=192.168.40.171:6789/0,ubuntu-C=192.168.40.172:6789/0}
+            election epoch 44, quorum 0,1,2 ubuntu-A,ubuntu-B,ubuntu-C
+     osdmap e2142: 20 osds: 20 up, 16 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v12393: 1536 pgs, 2 pools, 300 GB data, 80591 objects
+            733 GB used, 44566 GB / 45300 GB avail
+                1536 active+clean
+  client io 30702 kB/s rd, 13658 kB/s wr, 3839 op/s rd, 1707 op/s wr
+2017-06-03 06:56:52.198280 7f149f535700 -1 asok(0x7f1498000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.22396.139726426214784.asok': (13) Permission denied
+
+2017-06-03 14:56:50,509 INFO cluster.py [line:238] PG number is 1536
+2017-06-03 14:56:50,509 INFO cluster.py [line:239] usefull PG number is 1536
+2017-06-03 14:56:50,510 INFO TC188_kill_mon_nbd.py [line:121] stop mon service on ubuntu-A in cluster successfully
+2017-06-03 14:56:51,085 INFO client.py [line:172] 4
+stdin: is not a tty
+
+2017-06-03 14:56:51,085 INFO client.py [line:174] IO is running
+2017-06-03 14:56:51,465 INFO monitors.py [line:126]    "quorum_leader_name": "ubuntu-A",
+stdin: is not a tty
+
+2017-06-03 14:56:51,465 INFO monitors.py [line:129]    "quorum_leader_name": "ubuntu-A",
+2017-06-03 14:56:51,465 INFO TC188_kill_mon_nbd.py [line:141] now the leader mon is ubuntu-A
+2017-06-03 14:56:51,465 INFO TC188_kill_mon_nbd.py [line:143] ubuntu-A is back
+2017-06-03 14:56:51,712 INFO monitors.py [line:45] ['oot     20804     1  1 06:53 ?        00:00:02 ceph-mon -i ubuntu-A', 'denali   22464 22463  0 06:56 ?        00:00:00 bash -c ps -ef | grep ceph-mon', 'denali   22466 22464  0 06:56 ?        00:00:00 grep ceph-mon', '']
+2017-06-03 14:56:51,713 INFO monitors.py [line:51] mon pid is 20804
+2017-06-03 14:56:51,713 INFO monitors.py [line:92] execute command is sudo -i kill -9 20804 & sleep 3
+2017-06-03 14:57:25,602 INFO monitors.py [line:126]    "quorum_leader_name": "ubuntu-B",
+stdin: is not a tty
+
+2017-06-03 14:57:25,602 INFO monitors.py [line:129]    "quorum_leader_name": "ubuntu-B",
+2017-06-03 14:57:25,603 INFO TC188_kill_mon_nbd.py [line:67] now the leader mon is ubuntu-B
+2017-06-03 14:57:25,870 INFO monitors.py [line:45] ['enali   22825 22824  0 06:57 ?        00:00:00 bash -c ps -ef | grep ceph-mon', 'denali   22827 22825  0 06:57 ?        00:00:00 grep ceph-mon', '']
+2017-06-03 14:57:25,870 INFO monitors.py [line:51] mon pid is 20804
+2017-06-03 14:57:25,870 INFO monitors.py [line:92] execute command is sudo -i kill -9 20804 & sleep 3
+2017-06-03 14:57:59,897 INFO monitors.py [line:126]    "quorum_leader_name": "ubuntu-B",
+stdin: is not a tty
+
+2017-06-03 14:57:59,897 INFO monitors.py [line:129]    "quorum_leader_name": "ubuntu-B",
+2017-06-03 14:57:59,897 INFO TC188_kill_mon_nbd.py [line:78] now the leader mon is ubuntu-B
+2017-06-03 14:57:59,897 INFO monitors.py [line:68] mon is  ubuntu-A
+2017-06-03 14:57:59,897 INFO monitors.py [line:69] execute command is sudo -i ceph-mon -i ubuntu-A & sleep 30
+2017-06-03 14:58:30,083 INFO monitors.py [line:73] mon ubuntu-A is start successfully
+2017-06-03 14:58:30,083 INFO monitors.py [line:103] node is  ubuntu-A
+2017-06-03 14:58:30,083 INFO monitors.py [line:104] execute command is ps -ef | grep 'ceph-mon' 
+2017-06-03 14:58:30,330 INFO monitors.py [line:106] oot     23183     1  2 06:58 ?        00:00:00 ceph-mon -i ubuntu-A
+denali   23450 23449  0 06:58 ?        00:00:00 bash -c ps -ef | grep 'ceph-mon' 
+denali   23452 23450  0 06:58 ?        00:00:00 grep ceph-mon
+
+2017-06-03 14:58:30,330 INFO monitors.py [line:114] ubuntu-A is alrady started
+2017-06-03 14:59:30,391 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-03 14:59:30,772 INFO cluster.py [line:213]    cluster e93f3143-8693-4060-a247-132bae28385e
+     health HEALTH_OK
+     monmap e3: 3 mons at {ubuntu-A=192.168.40.170:6789/0,ubuntu-B=192.168.40.171:6789/0,ubuntu-C=192.168.40.172:6789/0}
+            election epoch 48, quorum 0,1,2 ubuntu-A,ubuntu-B,ubuntu-C
+     osdmap e2142: 20 osds: 20 up, 16 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v12451: 1536 pgs, 2 pools, 300 GB data, 80605 objects
+            733 GB used, 44566 GB / 45300 GB avail
+                1536 active+clean
+  client io 29487 kB/s rd, 13688 kB/s wr, 3685 op/s rd, 1710 op/s wr
+2017-06-03 06:59:32.521851 7f3b8240b700 -1 asok(0x7f3b7c000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.23949.139893460177280.asok': (13) Permission denied
+
+2017-06-03 14:59:30,773 INFO cluster.py [line:238] PG number is 1536
+2017-06-03 14:59:30,773 INFO cluster.py [line:239] usefull PG number is 1536
+2017-06-03 14:59:30,773 INFO TC188_kill_mon_nbd.py [line:88] stop mon service on ubuntu-A in cluster successfully
+2017-06-03 14:59:31,430 INFO monitors.py [line:126]    "quorum_leader_name": "ubuntu-A",
+stdin: is not a tty
+
+2017-06-03 14:59:31,430 INFO monitors.py [line:129]    "quorum_leader_name": "ubuntu-A",
+2017-06-03 14:59:31,430 INFO TC188_kill_mon_nbd.py [line:104] now the leader mon is ubuntu-A
+2017-06-03 14:59:31,430 INFO TC188_kill_mon_nbd.py [line:106] ubuntu-A is back
+2017-06-03 14:59:31,430 INFO monitors.py [line:68] mon is  ubuntu-A
+2017-06-03 14:59:31,430 INFO monitors.py [line:69] execute command is sudo -i ceph-mon -i ubuntu-A & sleep 30
+2017-06-03 15:00:01,616 ERROR monitors.py [line:75] Error when start mon ubuntu-A
+2017-06-03 15:00:01,616 ERROR monitors.py [line:76] sudo -i ceph-mon -i ubuntu-A & sleep 30
+2017-06-03 15:00:01,616 ERROR monitors.py [line:77] tdin: is not a tty
+2017-06-03 06:59:33.513168 2b7b3f9a3200 -1 asok(0x2b7b435351c0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-mon.ubuntu-A.asok': (17) File exists
+IO error: lock /var/lib/ceph/mon/ceph-ubuntu-A/store.db/LOCK: Resource temporarily unavailable
+2017-06-03 06:59:33.526114 2b7b3f9a3200 -1 error opening mon data directory at '/var/lib/ceph/mon/ceph-ubuntu-A': (22) Invalid argument
+
+2017-06-03 15:00:01,616 INFO monitors.py [line:103] node is  ubuntu-A
+2017-06-03 15:00:01,617 INFO monitors.py [line:104] execute command is ps -ef | grep 'ceph-mon' 
+2017-06-03 15:00:01,859 INFO monitors.py [line:106] oot     23183     1  1 06:58 ?        00:00:01 ceph-mon -i ubuntu-A
+denali   24287 24286  0 07:00 ?        00:00:00 bash -c ps -ef | grep 'ceph-mon' 
+denali   24289 24287  0 07:00 ?        00:00:00 grep ceph-mon
+
+2017-06-03 15:00:01,859 INFO monitors.py [line:114] ubuntu-A is alrady started
+2017-06-03 15:01:02,137 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-03 15:01:02,530 INFO cluster.py [line:213]    cluster e93f3143-8693-4060-a247-132bae28385e
+     health HEALTH_OK
+     monmap e3: 3 mons at {ubuntu-A=192.168.40.170:6789/0,ubuntu-B=192.168.40.171:6789/0,ubuntu-C=192.168.40.172:6789/0}
+            election epoch 48, quorum 0,1,2 ubuntu-A,ubuntu-B,ubuntu-C
+     osdmap e2142: 20 osds: 20 up, 16 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v12488: 1536 pgs, 2 pools, 300 GB data, 80615 objects
+            733 GB used, 44566 GB / 45300 GB avail
+                1536 active+clean
+  client io 30794 kB/s rd, 13670 kB/s wr, 3849 op/s rd, 1708 op/s wr
+2017-06-03 07:01:04.270198 7f911c823700 -1 asok(0x7f9118000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.24793.140261149643136.asok': (13) Permission denied
+
+2017-06-03 15:01:02,530 INFO cluster.py [line:238] PG number is 1536
+2017-06-03 15:01:02,531 INFO cluster.py [line:239] usefull PG number is 1536
+2017-06-03 15:01:02,531 INFO TC188_kill_mon_nbd.py [line:121] stop mon service on ubuntu-A in cluster successfully
+2017-06-03 15:01:03,104 INFO client.py [line:172] 4
+stdin: is not a tty
+
+2017-06-03 15:01:03,105 INFO client.py [line:174] IO is running
+2017-06-03 15:01:03,503 INFO monitors.py [line:126]    "quorum_leader_name": "ubuntu-A",
+stdin: is not a tty
+
+2017-06-03 15:01:03,503 INFO monitors.py [line:129]    "quorum_leader_name": "ubuntu-A",
+2017-06-03 15:01:03,504 INFO TC188_kill_mon_nbd.py [line:141] now the leader mon is ubuntu-A
+2017-06-03 15:01:03,504 INFO TC188_kill_mon_nbd.py [line:143] ubuntu-A is back
+2017-06-03 15:01:03,748 INFO monitors.py [line:45] ['oot     23183     1  1 06:58 ?        00:00:02 ceph-mon -i ubuntu-A', 'denali   24903 24902  0 07:01 ?        00:00:00 bash -c ps -ef | grep ceph-mon', 'denali   24905 24903  0 07:01 ?        00:00:00 grep ceph-mon', '']
+2017-06-03 15:01:03,748 INFO monitors.py [line:51] mon pid is 23183
+2017-06-03 15:01:03,748 INFO monitors.py [line:92] execute command is sudo -i kill -9 23183 & sleep 3
+2017-06-03 15:01:37,780 INFO monitors.py [line:126]    "quorum_leader_name": "ubuntu-B",
+stdin: is not a tty
+
+2017-06-03 15:01:37,780 INFO monitors.py [line:129]    "quorum_leader_name": "ubuntu-B",
+2017-06-03 15:01:37,781 INFO TC188_kill_mon_nbd.py [line:67] now the leader mon is ubuntu-B
+2017-06-03 15:01:38,027 INFO monitors.py [line:45] ['enali   25215 25212  0 07:01 ?        00:00:00 bash -c ps -ef | grep ceph-mon', 'denali   25221 25215  0 07:01 ?        00:00:00 grep ceph-mon', '']
+2017-06-03 15:01:38,028 INFO monitors.py [line:51] mon pid is 23183
+2017-06-03 15:01:38,028 INFO monitors.py [line:92] execute command is sudo -i kill -9 23183 & sleep 3
+2017-06-03 15:02:14,916 INFO monitors.py [line:126]    "quorum_leader_name": "ubuntu-B",
+stdin: is not a tty
+
+2017-06-03 15:02:14,916 INFO monitors.py [line:129]    "quorum_leader_name": "ubuntu-B",
+2017-06-03 15:02:14,916 INFO TC188_kill_mon_nbd.py [line:78] now the leader mon is ubuntu-B
+2017-06-03 15:02:14,916 INFO monitors.py [line:68] mon is  ubuntu-A
+2017-06-03 15:02:14,916 INFO monitors.py [line:69] execute command is sudo -i ceph-mon -i ubuntu-A & sleep 30
+2017-06-03 15:02:45,102 INFO monitors.py [line:73] mon ubuntu-A is start successfully
+2017-06-03 15:02:45,102 INFO monitors.py [line:103] node is  ubuntu-A
+2017-06-03 15:02:45,102 INFO monitors.py [line:104] execute command is ps -ef | grep 'ceph-mon' 
+2017-06-03 15:02:45,351 INFO monitors.py [line:106] oot     25608     1  2 07:02 ?        00:00:00 ceph-mon -i ubuntu-A
+denali   25874 25873  0 07:02 ?        00:00:00 bash -c ps -ef | grep 'ceph-mon' 
+denali   25876 25874  0 07:02 ?        00:00:00 grep ceph-mon
+
+2017-06-03 15:02:45,351 INFO monitors.py [line:114] ubuntu-A is alrady started
+2017-06-03 15:03:45,411 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-03 15:03:45,800 INFO cluster.py [line:213]    cluster e93f3143-8693-4060-a247-132bae28385e
+     health HEALTH_OK
+     monmap e3: 3 mons at {ubuntu-A=192.168.40.170:6789/0,ubuntu-B=192.168.40.171:6789/0,ubuntu-C=192.168.40.172:6789/0}
+            election epoch 52, quorum 0,1,2 ubuntu-A,ubuntu-B,ubuntu-C
+     osdmap e2142: 20 osds: 20 up, 16 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v12549: 1536 pgs, 2 pools, 300 GB data, 80631 objects
+            733 GB used, 44566 GB / 45300 GB avail
+                1536 active+clean
+  client io 32862 kB/s rd, 13805 kB/s wr, 4107 op/s rd, 1725 op/s wr
+2017-06-03 07:03:47.549566 7fc91a127700 -1 asok(0x7fc914000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.26371.140501600702848.asok': (13) Permission denied
+
+2017-06-03 15:03:45,800 INFO cluster.py [line:238] PG number is 1536
+2017-06-03 15:03:45,801 INFO cluster.py [line:239] usefull PG number is 1536
+2017-06-03 15:03:45,801 INFO TC188_kill_mon_nbd.py [line:88] stop mon service on ubuntu-A in cluster successfully
+2017-06-03 15:03:46,468 INFO monitors.py [line:126]    "quorum_leader_name": "ubuntu-A",
+stdin: is not a tty
+
+2017-06-03 15:03:46,468 INFO monitors.py [line:129]    "quorum_leader_name": "ubuntu-A",
+2017-06-03 15:03:46,468 INFO TC188_kill_mon_nbd.py [line:104] now the leader mon is ubuntu-A
+2017-06-03 15:03:46,469 INFO TC188_kill_mon_nbd.py [line:106] ubuntu-A is back
+2017-06-03 15:03:46,469 INFO monitors.py [line:68] mon is  ubuntu-A
+2017-06-03 15:03:46,469 INFO monitors.py [line:69] execute command is sudo -i ceph-mon -i ubuntu-A & sleep 30
+2017-06-03 15:04:16,799 ERROR monitors.py [line:75] Error when start mon ubuntu-A
+2017-06-03 15:04:16,799 ERROR monitors.py [line:76] sudo -i ceph-mon -i ubuntu-A & sleep 30
+2017-06-03 15:04:16,799 ERROR monitors.py [line:77] tdin: is not a tty
+2017-06-03 07:03:48.584347 2b815fe80200 -1 asok(0x2b81639351c0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-mon.ubuntu-A.asok': (17) File exists
+IO error: lock /var/lib/ceph/mon/ceph-ubuntu-A/store.db/LOCK: Resource temporarily unavailable
+2017-06-03 07:03:48.598285 2b815fe80200 -1 error opening mon data directory at '/var/lib/ceph/mon/ceph-ubuntu-A': (22) Invalid argument
+
+2017-06-03 15:04:16,799 INFO monitors.py [line:103] node is  ubuntu-A
+2017-06-03 15:04:16,800 INFO monitors.py [line:104] execute command is ps -ef | grep 'ceph-mon' 
+2017-06-03 15:04:17,039 INFO monitors.py [line:106] oot     25608     1  1 07:02 ?        00:00:01 ceph-mon -i ubuntu-A
+denali   26705 26704  0 07:04 ?        00:00:00 bash -c ps -ef | grep 'ceph-mon' 
+denali   26707 26705  0 07:04 ?        00:00:00 grep ceph-mon
+
+2017-06-03 15:04:17,039 INFO monitors.py [line:114] ubuntu-A is alrady started
+2017-06-03 15:05:17,337 INFO cluster.py [line:211] execute command is ceph -s
+2017-06-03 15:05:17,721 INFO cluster.py [line:213]    cluster e93f3143-8693-4060-a247-132bae28385e
+     health HEALTH_OK
+     monmap e3: 3 mons at {ubuntu-A=192.168.40.170:6789/0,ubuntu-B=192.168.40.171:6789/0,ubuntu-C=192.168.40.172:6789/0}
+            election epoch 52, quorum 0,1,2 ubuntu-A,ubuntu-B,ubuntu-C
+     osdmap e2142: 20 osds: 20 up, 16 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v12585: 1536 pgs, 2 pools, 300 GB data, 80639 objects
+            733 GB used, 44566 GB / 45300 GB avail
+                1536 active+clean
+  client io 30917 kB/s rd, 13778 kB/s wr, 3864 op/s rd, 1721 op/s wr
+2017-06-03 07:05:19.467298 7f7c7f16f700 -1 asok(0x7f7c78000fe0) AdminSocketConfigObs::init: failed: AdminSocket::bind_and_listen: failed to bind the UNIX domain socket to '/var/run/ceph/ceph-client.admin.27211.140172565942656.asok': (13) Permission denied
+
+2017-06-03 15:05:17,722 INFO cluster.py [line:238] PG number is 1536
+2017-06-03 15:05:17,722 INFO cluster.py [line:239] usefull PG number is 1536
+2017-06-03 15:05:17,722 INFO TC188_kill_mon_nbd.py [line:121] stop mon service on ubuntu-A in cluster successfully
+2017-06-03 15:05:18,406 INFO client.py [line:172] 4
+stdin: is not a tty
+
+2017-06-03 15:05:18,406 INFO client.py [line:174] IO is running
+2017-06-03 15:05:18,833 INFO monitors.py [line:126]    "quorum_leader_name": "ubuntu-A",
+stdin: is not a tty
+
+2017-06-03 15:05:18,833 INFO monitors.py [line:129]    "quorum_leader_name": "ubuntu-A",
+2017-06-03 15:05:18,833 INFO TC188_kill_mon_nbd.py [line:141] now the leader mon is ubuntu-A
+2017-06-03 15:05:18,834 INFO TC188_kill_mon_nbd.py [line:143] ubuntu-A is back
+2017-06-03 15:05:18,834 INFO TC188_kill_mon_nbd.py [line:150] case runs complete

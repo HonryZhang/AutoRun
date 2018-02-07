@@ -1,0 +1,11 @@
+poolName = 'reliablityTestPool'
+#imageBaseName = 'reliablityTestImage'
+increment = '100G'
+baseSize = '100G'
+imageNum = 5
+timeOut = 6000
+pgNumber = 512
+rate = 400
+IOMode = 'nbd'
+#exeDir = '/usr/share/denali-ceph/'
+exeDir = '/usr/local/bin/scripts/create_cluster_scripts/bluestore/'

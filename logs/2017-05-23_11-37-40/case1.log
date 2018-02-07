@@ -1,0 +1,12 @@
+2017-05-23 11:37:46,943 INFO monitors.py [line:123] raceback (most recent call last):
+  File "/usr/local/bin/ceph", line 118, in <module>
+    import rados
+ImportError: librados.so.2: cannot map zero-fill pages: Cannot allocate memory
+
+2017-05-23 11:37:46,943 INFO monitors.py [line:126] raceback (most recent call last):
+2017-05-23 11:37:46,943 INFO monitors.py [line:126]   File "/usr/local/bin/ceph", line 118, in <module>
+2017-05-23 11:37:46,943 INFO monitors.py [line:126]     import rados
+2017-05-23 11:37:46,957 INFO monitors.py [line:126] ImportError: librados.so.2: cannot map zero-fill pages: Cannot allocate memory
+2017-05-23 11:37:46,957 INFO monitors.py [line:126] 
+2017-05-23 11:37:46,957 INFO client.py [line:67] exe command is: sudo -i  mkfs -t ext2 /dev/nbd5
+2017-05-23 11:38:03,668 INFO client.py [line:97] fio command is: nohup sudo -i fio -direct=1 -name=nbdfiletest -iodepth=4 -overwrite=1 -nrfiles=100 -ioengine=libaio -bs=8k -rw=randwrite -verify=md5 -verify_fatal=1 -verify_interval=512 -verify_dump=1 -do_verify=1 -directory=/mnt/nbd5 -size=10G

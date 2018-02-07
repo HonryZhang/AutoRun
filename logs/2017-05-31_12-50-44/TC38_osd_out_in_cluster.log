@@ -1,0 +1,183 @@
+2017-05-31 12:50:44,605 INFO TC38_osd_out_in_cluster.py [line:25] 
+This test case will do the following steps:
+1. start IO on 10 images with randwrite and verify
+2. login the first node 
+3. out all osds in sequence
+4. stop all osds in sequence
+5. start all osds in sequence
+6. add in all osds in sequence
+7. check the cluster status
+8. repeat step 2-7 on the other node
+
+2017-05-31 12:50:45,950 INFO monitors.py [line:126]    "quorum_leader_name": "osdnode2",
+stdin: is not a tty
+
+2017-05-31 12:50:45,953 INFO monitors.py [line:129]    "quorum_leader_name": "osdnode2",
+2017-05-31 12:50:45,957 INFO TC38_osd_out_in_cluster.py [line:30] start to check cluster status before case running
+2017-05-31 12:50:46,048 INFO cluster.py [line:211] execute command is ceph -s
+2017-05-31 12:50:46,496 INFO cluster.py [line:213]    cluster 82f4312d-32e6-446d-ad7c-3d845851566c
+     health HEALTH_OK
+     monmap e1: 1 mons at {osdnode2=192.168.28.237:6789/0}
+            election epoch 3, quorum 0 osdnode2
+     osdmap e50: 10 osds: 10 up, 10 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v126: 768 pgs, 2 pools, 96334 bytes data, 16 objects
+            88366 MB used, 6905 GB / 6991 GB avail
+                 768 active+clean
+
+2017-05-31 12:50:46,505 INFO cluster.py [line:238] PG number is 768
+2017-05-31 12:50:46,506 INFO cluster.py [line:239] usefull PG number is 768
+2017-05-31 12:50:46,509 INFO TC38_osd_out_in_cluster.py [line:33] health status is OK
+2017-05-31 12:50:46,513 INFO TC38_osd_out_in_cluster.py [line:38] 
+Step1: Check IO from clients
+2017-05-31 12:50:47,813 INFO client.py [line:169] ['enali    2455  2454  0 04:50 ?        00:00:00 bash -c sudo -i ps -ef | grep fio', 'denali    2457  2455  0 04:50 ?        00:00:00 grep fio', 'stdin: is not a tty', '']
+2017-05-31 12:50:47,816 INFO client.py [line:174] IO stopped
+2017-05-31 12:50:47,819 INFO client.py [line:175] start IO again
+2017-05-31 12:50:47,822 INFO base.py [line:37] 
+Now start IO on  linlirbdImg0
+2017-05-31 12:50:48,509 INFO client.py [line:138] nohup sudo -i fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=linli -pool=reliablityTestPool -rbdname=linlirbdImg0 -rw=randwrite -bs=8K -size=100G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=linlirbdImg0
+2017-05-31 12:50:49,153 INFO base.py [line:37] 
+Now start IO on  linlirbdImg1
+2017-05-31 12:50:49,753 INFO client.py [line:138] nohup sudo -i fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=linli -pool=reliablityTestPool -rbdname=linlirbdImg1 -rw=randwrite -bs=8K -size=200G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=linlirbdImg1
+2017-05-31 12:50:50,394 INFO base.py [line:37] 
+Now start IO on  linlirbdImg2
+2017-05-31 12:50:51,127 INFO client.py [line:138] nohup sudo -i fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=linli -pool=reliablityTestPool -rbdname=linlirbdImg2 -rw=randwrite -bs=8K -size=300G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=linlirbdImg2
+2017-05-31 12:50:51,628 INFO base.py [line:37] 
+Now start IO on  linlirbdImg3
+2017-05-31 12:50:52,193 INFO client.py [line:138] nohup sudo -i fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=linli -pool=reliablityTestPool -rbdname=linlirbdImg3 -rw=randwrite -bs=8K -size=400G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=linlirbdImg3
+2017-05-31 12:50:52,802 INFO base.py [line:37] 
+Now start IO on  linlirbdImg4
+2017-05-31 12:50:53,520 INFO client.py [line:138] nohup sudo -i fio -direct=1 -iodepth_batch_complete=1 -ioengine=rbd -clientname=linli -pool=reliablityTestPool -rbdname=linlirbdImg4 -rw=randwrite -bs=8K -size=500G -norandommap=1 -randrepeat=0 -verify=md5 -verify_fatal=1 -verify_dump=1 -do_verify=1 -overwrite=1 -iodepth=256 -name=linlirbdImg4
+2017-05-31 12:51:54,132 INFO TC38_osd_out_in_cluster.py [line:46] 
+Step 2: Out the osd and check IO
+2017-05-31 12:51:54,140 INFO TC38_osd_out_in_cluster.py [line:50] 
+Now operate osdnode2
+2017-05-31 12:51:54,141 INFO TC38_osd_out_in_cluster.py [line:51] 5
+2017-05-31 12:51:54,142 INFO TC38_osd_out_in_cluster.py [line:52] 
+Now operate osd.0
+2017-05-31 12:51:54,144 INFO TC38_osd_out_in_cluster.py [line:53] out osd.0
+2017-05-31 12:51:54,144 INFO osd.py [line:62] execute command is sudo -i ceph osd out osd.0 & sleep 3
+2017-05-31 12:51:57,785 INFO osd.py [line:67] osd.0 is already out cluster
+2017-05-31 12:51:57,786 INFO TC38_osd_out_in_cluster.py [line:55] check if IO error
+2017-05-31 12:51:58,578 INFO osd.py [line:77] execute command is sudo -i ceph osd in osd.0 & sleep 3
+2017-05-31 12:52:02,043 INFO osd.py [line:80] osd.0 is already in cluster
+2017-05-31 12:52:32,614 INFO cluster.py [line:211] execute command is ceph -s
+2017-05-31 12:52:33,312 INFO cluster.py [line:213]    cluster 82f4312d-32e6-446d-ad7c-3d845851566c
+     health HEALTH_OK
+     monmap e1: 1 mons at {osdnode2=192.168.28.237:6789/0}
+            election epoch 3, quorum 0 osdnode2
+     osdmap e57: 10 osds: 10 up, 10 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v221: 768 pgs, 2 pools, 398 GB data, 172 kobjects
+            92681 MB used, 6901 GB / 6991 GB avail
+                 768 active+clean
+  client io 699 kB/s rd, 21689 kB/s wr, 524 op/s rd, 3969 op/s wr
+
+2017-05-31 12:52:33,315 INFO cluster.py [line:238] PG number is 768
+2017-05-31 12:52:33,316 INFO cluster.py [line:239] usefull PG number is 768
+2017-05-31 12:52:33,318 INFO TC38_osd_out_in_cluster.py [line:85] stop osd.0 in cluster successfully
+2017-05-31 12:52:33,319 INFO TC38_osd_out_in_cluster.py [line:50] 
+Now operate osdnode2
+2017-05-31 12:52:33,319 INFO TC38_osd_out_in_cluster.py [line:51] 5
+2017-05-31 12:52:33,321 INFO TC38_osd_out_in_cluster.py [line:52] 
+Now operate osd.1
+2017-05-31 12:52:33,322 INFO TC38_osd_out_in_cluster.py [line:53] out osd.1
+2017-05-31 12:52:33,325 INFO osd.py [line:62] execute command is sudo -i ceph osd out osd.1 & sleep 3
+2017-05-31 12:52:36,792 INFO osd.py [line:67] osd.1 is already out cluster
+2017-05-31 12:52:36,793 INFO TC38_osd_out_in_cluster.py [line:55] check if IO error
+2017-05-31 12:52:37,414 INFO osd.py [line:77] execute command is sudo -i ceph osd in osd.1 & sleep 3
+2017-05-31 12:52:41,104 INFO osd.py [line:80] osd.1 is already in cluster
+2017-05-31 12:53:11,630 INFO cluster.py [line:211] execute command is ceph -s
+2017-05-31 12:53:12,328 INFO cluster.py [line:213]    cluster 82f4312d-32e6-446d-ad7c-3d845851566c
+     health HEALTH_OK
+     monmap e1: 1 mons at {osdnode2=192.168.28.237:6789/0}
+            election epoch 3, quorum 0 osdnode2
+     osdmap e64: 10 osds: 10 up, 10 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v259: 768 pgs, 2 pools, 509 GB data, 212 kobjects
+            94458 MB used, 6899 GB / 6991 GB avail
+                 768 active+clean
+  client io 268 kB/s rd, 21576 kB/s wr, 201 op/s rd, 3613 op/s wr
+
+2017-05-31 12:53:12,339 INFO cluster.py [line:238] PG number is 768
+2017-05-31 12:53:12,345 INFO cluster.py [line:239] usefull PG number is 768
+2017-05-31 12:53:12,346 INFO TC38_osd_out_in_cluster.py [line:85] stop osd.1 in cluster successfully
+2017-05-31 12:53:12,349 INFO TC38_osd_out_in_cluster.py [line:50] 
+Now operate osdnode2
+2017-05-31 12:53:12,352 INFO TC38_osd_out_in_cluster.py [line:51] 5
+2017-05-31 12:53:12,355 INFO TC38_osd_out_in_cluster.py [line:52] 
+Now operate osd.2
+2017-05-31 12:53:12,357 INFO TC38_osd_out_in_cluster.py [line:53] out osd.2
+2017-05-31 12:53:12,358 INFO osd.py [line:62] execute command is sudo -i ceph osd out osd.2 & sleep 3
+2017-05-31 12:53:15,867 INFO osd.py [line:67] osd.2 is already out cluster
+2017-05-31 12:53:15,868 INFO TC38_osd_out_in_cluster.py [line:55] check if IO error
+2017-05-31 12:53:16,460 INFO osd.py [line:77] execute command is sudo -i ceph osd in osd.2 & sleep 3
+2017-05-31 12:53:20,099 INFO osd.py [line:80] osd.2 is already in cluster
+2017-05-31 12:53:50,697 INFO cluster.py [line:211] execute command is ceph -s
+2017-05-31 12:53:51,378 INFO cluster.py [line:213]    cluster 82f4312d-32e6-446d-ad7c-3d845851566c
+     health HEALTH_OK
+     monmap e1: 1 mons at {osdnode2=192.168.28.237:6789/0}
+            election epoch 3, quorum 0 osdnode2
+     osdmap e73: 10 osds: 10 up, 10 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v296: 768 pgs, 2 pools, 602 GB data, 243 kobjects
+            96201 MB used, 6897 GB / 6991 GB avail
+                 768 active+clean
+  client io 5138 kB/s rd, 25385 kB/s wr, 3741 op/s rd, 4905 op/s wr
+
+2017-05-31 12:53:51,387 INFO cluster.py [line:238] PG number is 768
+2017-05-31 12:53:51,388 INFO cluster.py [line:239] usefull PG number is 768
+2017-05-31 12:53:51,390 INFO TC38_osd_out_in_cluster.py [line:85] stop osd.2 in cluster successfully
+2017-05-31 12:53:51,392 INFO TC38_osd_out_in_cluster.py [line:50] 
+Now operate osdnode2
+2017-05-31 12:53:51,394 INFO TC38_osd_out_in_cluster.py [line:51] 5
+2017-05-31 12:53:51,395 INFO TC38_osd_out_in_cluster.py [line:52] 
+Now operate osd.3
+2017-05-31 12:53:51,398 INFO TC38_osd_out_in_cluster.py [line:53] out osd.3
+2017-05-31 12:53:51,400 INFO osd.py [line:62] execute command is sudo -i ceph osd out osd.3 & sleep 3
+2017-05-31 12:53:54,901 INFO osd.py [line:67] osd.3 is already out cluster
+2017-05-31 12:53:54,901 INFO TC38_osd_out_in_cluster.py [line:55] check if IO error
+2017-05-31 12:53:55,503 INFO osd.py [line:77] execute command is sudo -i ceph osd in osd.3 & sleep 3
+2017-05-31 12:53:59,020 INFO osd.py [line:80] osd.3 is already in cluster
+2017-05-31 12:54:29,683 INFO cluster.py [line:211] execute command is ceph -s
+2017-05-31 12:54:30,364 INFO cluster.py [line:213]    cluster 82f4312d-32e6-446d-ad7c-3d845851566c
+     health HEALTH_OK
+     monmap e1: 1 mons at {osdnode2=192.168.28.237:6789/0}
+            election epoch 3, quorum 0 osdnode2
+     osdmap e83: 10 osds: 10 up, 10 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v334: 768 pgs, 2 pools, 681 GB data, 268 kobjects
+            97876 MB used, 6895 GB / 6991 GB avail
+                 768 active+clean
+  client io 7856 kB/s rd, 24431 kB/s wr, 5653 op/s rd, 5107 op/s wr
+
+2017-05-31 12:54:30,371 INFO cluster.py [line:238] PG number is 768
+2017-05-31 12:54:30,374 INFO cluster.py [line:239] usefull PG number is 768
+2017-05-31 12:54:30,375 INFO TC38_osd_out_in_cluster.py [line:85] stop osd.3 in cluster successfully
+2017-05-31 12:54:30,380 INFO TC38_osd_out_in_cluster.py [line:50] 
+Now operate osdnode2
+2017-05-31 12:54:30,381 INFO TC38_osd_out_in_cluster.py [line:51] 5
+2017-05-31 12:54:30,384 INFO TC38_osd_out_in_cluster.py [line:52] 
+Now operate osd.4
+2017-05-31 12:54:30,387 INFO TC38_osd_out_in_cluster.py [line:53] out osd.4
+2017-05-31 12:54:30,388 INFO osd.py [line:62] execute command is sudo -i ceph osd out osd.4 & sleep 3
+2017-05-31 12:54:33,861 INFO osd.py [line:67] osd.4 is already out cluster
+2017-05-31 12:54:33,862 INFO TC38_osd_out_in_cluster.py [line:55] check if IO error
+2017-05-31 12:54:34,492 INFO osd.py [line:77] execute command is sudo -i ceph osd in osd.4 & sleep 3
+2017-05-31 12:54:38,043 INFO osd.py [line:80] osd.4 is already in cluster
+2017-05-31 12:55:08,658 INFO cluster.py [line:211] execute command is ceph -s
+2017-05-31 12:55:09,385 INFO cluster.py [line:213]    cluster 82f4312d-32e6-446d-ad7c-3d845851566c
+     health HEALTH_OK
+     monmap e1: 1 mons at {osdnode2=192.168.28.237:6789/0}
+            election epoch 3, quorum 0 osdnode2
+     osdmap e90: 10 osds: 10 up, 10 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v372: 768 pgs, 2 pools, 753 GB data, 288 kobjects
+            99767 MB used, 6894 GB / 6991 GB avail
+                 768 active+clean
+  client io 6158 kB/s rd, 29358 kB/s wr, 4434 op/s rd, 5399 op/s wr
+
+2017-05-31 12:55:09,395 INFO cluster.py [line:238] PG number is 768
+2017-05-31 12:55:09,398 INFO cluster.py [line:239] usefull PG number is 768
+2017-05-31 12:55:09,400 INFO TC38_osd_out_in_cluster.py [line:85] stop osd.4 in cluster successfully
+2017-05-31 12:55:10,125 INFO TC38_osd_out_in_cluster.py [line:103] TC38_osd_out_in_cluster runs complete

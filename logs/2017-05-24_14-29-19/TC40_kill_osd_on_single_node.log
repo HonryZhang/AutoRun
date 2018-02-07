@@ -1,0 +1,733 @@
+2017-05-24 14:48:52,275 INFO TC40_kill_osd_on_single_node.py [line:24] 
+This test case will do the following steps:
+1. start IO on 10 images with randwrite and verify
+2. login the first node 
+3. kill all osds in sequence
+4. start all osds in sequence
+5. check the cluster status
+6. repeat step 2-5 on the other node
+
+2017-05-24 14:48:53,805 INFO monitors.py [line:123]    "quorum_leader_name": "denali01",
+
+2017-05-24 14:48:53,805 INFO monitors.py [line:126]    "quorum_leader_name": "denali01",
+2017-05-24 14:48:53,805 INFO node.py [line:113] init osd on node denali01
+2017-05-24 14:48:54,461 INFO node.py [line:128] osd.0  ---> processId 3815
+2017-05-24 14:48:54,461 INFO node.py [line:128] osd.1  ---> processId 5993
+2017-05-24 14:48:54,461 INFO node.py [line:128] osd.2  ---> processId 24280
+2017-05-24 14:48:54,461 INFO node.py [line:128] osd.0  ---> processId 
+2017-05-24 14:48:54,461 INFO node.py [line:128] osd.1  ---> processId 
+2017-05-24 14:48:54,461 INFO node.py [line:128] osd.2  ---> processId 
+2017-05-24 14:48:54,461 INFO osd.py [line:26] node is  denali01
+2017-05-24 14:48:54,461 INFO osd.py [line:27] execute command is sudo -i stop ceph-osd id=0 & sleep 3
+2017-05-24 14:48:58,099 ERROR osd.py [line:32] Error when shutdown osdosd.0
+2017-05-24 14:48:58,099 ERROR osd.py [line:33] sudo -i stop ceph-osd id=0 & sleep 3
+2017-05-24 14:48:58,099 ERROR osd.py [line:34] tdin: is not a tty
+stop: Unknown instance: ceph/0
+
+2017-05-24 14:49:03,102 INFO osd.py [line:100] node is  denali01
+2017-05-24 14:49:03,102 INFO osd.py [line:101] execute command is sudo -i ceph-osd -i 0 & sleep 30
+2017-05-24 14:49:33,851 INFO osd.py [line:105] osd osd.0 is start successfully
+2017-05-24 14:49:33,851 INFO osd.py [line:26] node is  denali01
+2017-05-24 14:49:33,851 INFO osd.py [line:27] execute command is sudo -i stop ceph-osd id=1 & sleep 3
+2017-05-24 14:49:37,473 ERROR osd.py [line:32] Error when shutdown osdosd.1
+2017-05-24 14:49:37,473 ERROR osd.py [line:33] sudo -i stop ceph-osd id=1 & sleep 3
+2017-05-24 14:49:37,473 ERROR osd.py [line:34] tdin: is not a tty
+stop: Unknown instance: ceph/1
+
+2017-05-24 14:49:42,483 INFO osd.py [line:100] node is  denali01
+2017-05-24 14:49:42,483 INFO osd.py [line:101] execute command is sudo -i ceph-osd -i 1 & sleep 30
+2017-05-24 14:50:13,092 INFO osd.py [line:105] osd osd.1 is start successfully
+2017-05-24 14:50:13,092 INFO osd.py [line:26] node is  denali01
+2017-05-24 14:50:13,092 INFO osd.py [line:27] execute command is sudo -i stop ceph-osd id=2 & sleep 3
+2017-05-24 14:50:16,698 ERROR osd.py [line:32] Error when shutdown osdosd.2
+2017-05-24 14:50:16,698 ERROR osd.py [line:33] sudo -i stop ceph-osd id=2 & sleep 3
+2017-05-24 14:50:16,698 ERROR osd.py [line:34] tdin: is not a tty
+stop: Unknown instance: ceph/2
+
+2017-05-24 14:50:21,709 INFO osd.py [line:100] node is  denali01
+2017-05-24 14:50:21,709 INFO osd.py [line:101] execute command is sudo -i ceph-osd -i 2 & sleep 30
+2017-05-24 14:50:52,359 INFO osd.py [line:105] osd osd.2 is start successfully
+2017-05-24 14:50:52,359 INFO osd.py [line:26] node is  denali01
+2017-05-24 14:50:52,359 INFO osd.py [line:27] execute command is sudo -i stop ceph-osd id=0 & sleep 3
+2017-05-24 14:50:55,907 ERROR osd.py [line:32] Error when shutdown osdosd.0
+2017-05-24 14:50:55,907 ERROR osd.py [line:33] sudo -i stop ceph-osd id=0 & sleep 3
+2017-05-24 14:50:55,907 ERROR osd.py [line:34] tdin: is not a tty
+stop: Unknown instance: ceph/0
+
+2017-05-24 14:51:00,915 INFO osd.py [line:100] node is  denali01
+2017-05-24 14:51:00,915 INFO osd.py [line:101] execute command is sudo -i ceph-osd -i 0 & sleep 30
+2017-05-24 14:51:31,536 INFO osd.py [line:105] osd osd.0 is start successfully
+2017-05-24 14:51:31,536 INFO osd.py [line:26] node is  denali01
+2017-05-24 14:51:31,536 INFO osd.py [line:27] execute command is sudo -i stop ceph-osd id=1 & sleep 3
+2017-05-24 14:51:35,109 ERROR osd.py [line:32] Error when shutdown osdosd.1
+2017-05-24 14:51:35,109 ERROR osd.py [line:33] sudo -i stop ceph-osd id=1 & sleep 3
+2017-05-24 14:51:35,109 ERROR osd.py [line:34] tdin: is not a tty
+stop: Unknown instance: ceph/1
+
+2017-05-24 14:51:40,121 INFO osd.py [line:100] node is  denali01
+2017-05-24 14:51:40,121 INFO osd.py [line:101] execute command is sudo -i ceph-osd -i 1 & sleep 30
+2017-05-24 14:52:10,730 INFO osd.py [line:105] osd osd.1 is start successfully
+2017-05-24 14:52:10,730 INFO osd.py [line:26] node is  denali01
+2017-05-24 14:52:10,730 INFO osd.py [line:27] execute command is sudo -i stop ceph-osd id=2 & sleep 3
+2017-05-24 14:52:14,351 ERROR osd.py [line:32] Error when shutdown osdosd.2
+2017-05-24 14:52:14,351 ERROR osd.py [line:33] sudo -i stop ceph-osd id=2 & sleep 3
+2017-05-24 14:52:14,351 ERROR osd.py [line:34] tdin: is not a tty
+stop: Unknown instance: ceph/2
+
+2017-05-24 14:52:19,359 INFO osd.py [line:100] node is  denali01
+2017-05-24 14:52:19,359 INFO osd.py [line:101] execute command is sudo -i ceph-osd -i 2 & sleep 30
+2017-05-24 14:52:49,993 INFO osd.py [line:105] osd osd.2 is start successfully
+2017-05-24 14:52:50,697 INFO node.py [line:149] osd.0  ---> processId 3815
+2017-05-24 14:52:50,697 INFO node.py [line:149] osd.1  ---> processId 5993
+2017-05-24 14:52:50,697 INFO node.py [line:149] osd.2  ---> processId 8169
+2017-05-24 14:52:50,697 INFO node.py [line:149] osd.0  ---> processId 3815
+2017-05-24 14:52:50,697 INFO node.py [line:149] osd.1  ---> processId 5993
+2017-05-24 14:52:50,697 INFO node.py [line:149] osd.2  ---> processId 8169
+2017-05-24 14:52:50,697 INFO node.py [line:113] init osd on node denali02
+2017-05-24 14:52:51,289 INFO node.py [line:128] osd.3  ---> processId 23348
+2017-05-24 14:52:51,289 INFO node.py [line:128] osd.4  ---> processId 24060
+2017-05-24 14:52:51,289 INFO node.py [line:128] osd.5  ---> processId 20079
+2017-05-24 14:52:51,289 INFO node.py [line:128] osd.3  ---> processId 
+2017-05-24 14:52:51,289 INFO node.py [line:128] osd.4  ---> processId 
+2017-05-24 14:52:51,289 INFO node.py [line:128] osd.5  ---> processId 
+2017-05-24 14:52:51,289 INFO osd.py [line:26] node is  denali02
+2017-05-24 14:52:51,289 INFO osd.py [line:27] execute command is sudo -i stop ceph-osd id=3 & sleep 3
+2017-05-24 14:52:54,884 ERROR osd.py [line:32] Error when shutdown osdosd.3
+2017-05-24 14:52:54,884 ERROR osd.py [line:33] sudo -i stop ceph-osd id=3 & sleep 3
+2017-05-24 14:52:54,884 ERROR osd.py [line:34] tdin: is not a tty
+stop: Unknown instance: ceph/3
+
+2017-05-24 14:52:59,895 INFO osd.py [line:100] node is  denali02
+2017-05-24 14:52:59,895 INFO osd.py [line:101] execute command is sudo -i ceph-osd -i 3 & sleep 30
+2017-05-24 14:53:30,608 INFO osd.py [line:105] osd osd.3 is start successfully
+2017-05-24 14:53:30,608 INFO osd.py [line:26] node is  denali02
+2017-05-24 14:53:30,608 INFO osd.py [line:27] execute command is sudo -i stop ceph-osd id=4 & sleep 3
+2017-05-24 14:53:34,355 ERROR osd.py [line:32] Error when shutdown osdosd.4
+2017-05-24 14:53:34,355 ERROR osd.py [line:33] sudo -i stop ceph-osd id=4 & sleep 3
+2017-05-24 14:53:34,355 ERROR osd.py [line:34] tdin: is not a tty
+stop: Unknown instance: ceph/4
+
+2017-05-24 14:53:39,365 INFO osd.py [line:100] node is  denali02
+2017-05-24 14:53:39,365 INFO osd.py [line:101] execute command is sudo -i ceph-osd -i 4 & sleep 30
+2017-05-24 14:54:09,990 INFO osd.py [line:105] osd osd.4 is start successfully
+2017-05-24 14:54:09,990 INFO osd.py [line:26] node is  denali02
+2017-05-24 14:54:09,990 INFO osd.py [line:27] execute command is sudo -i stop ceph-osd id=5 & sleep 3
+2017-05-24 14:54:13,592 ERROR osd.py [line:32] Error when shutdown osdosd.5
+2017-05-24 14:54:13,592 ERROR osd.py [line:33] sudo -i stop ceph-osd id=5 & sleep 3
+2017-05-24 14:54:13,592 ERROR osd.py [line:34] tdin: is not a tty
+stop: Unknown instance: ceph/5
+
+2017-05-24 14:54:18,601 INFO osd.py [line:100] node is  denali02
+2017-05-24 14:54:18,601 INFO osd.py [line:101] execute command is sudo -i ceph-osd -i 5 & sleep 30
+2017-05-24 14:54:49,210 INFO osd.py [line:105] osd osd.5 is start successfully
+2017-05-24 14:54:49,210 INFO osd.py [line:26] node is  denali02
+2017-05-24 14:54:49,210 INFO osd.py [line:27] execute command is sudo -i stop ceph-osd id=3 & sleep 3
+2017-05-24 14:54:54,707 ERROR osd.py [line:32] Error when shutdown osdosd.3
+2017-05-24 14:54:54,707 ERROR osd.py [line:33] sudo -i stop ceph-osd id=3 & sleep 3
+2017-05-24 14:54:54,707 ERROR osd.py [line:34] tdin: is not a tty
+stop: Unknown instance: ceph/3
+
+2017-05-24 14:54:59,717 INFO osd.py [line:100] node is  denali02
+2017-05-24 14:54:59,717 INFO osd.py [line:101] execute command is sudo -i ceph-osd -i 3 & sleep 30
+2017-05-24 14:55:30,316 INFO osd.py [line:105] osd osd.3 is start successfully
+2017-05-24 14:55:30,316 INFO osd.py [line:26] node is  denali02
+2017-05-24 14:55:30,316 INFO osd.py [line:27] execute command is sudo -i stop ceph-osd id=4 & sleep 3
+2017-05-24 14:55:34,076 ERROR osd.py [line:32] Error when shutdown osdosd.4
+2017-05-24 14:55:34,076 ERROR osd.py [line:33] sudo -i stop ceph-osd id=4 & sleep 3
+2017-05-24 14:55:34,076 ERROR osd.py [line:34] tdin: is not a tty
+stop: Unknown instance: ceph/4
+
+2017-05-24 14:55:39,085 INFO osd.py [line:100] node is  denali02
+2017-05-24 14:55:39,085 INFO osd.py [line:101] execute command is sudo -i ceph-osd -i 4 & sleep 30
+2017-05-24 14:56:09,778 INFO osd.py [line:105] osd osd.4 is start successfully
+2017-05-24 14:56:09,778 INFO osd.py [line:26] node is  denali02
+2017-05-24 14:56:09,778 INFO osd.py [line:27] execute command is sudo -i stop ceph-osd id=5 & sleep 3
+2017-05-24 14:56:13,368 ERROR osd.py [line:32] Error when shutdown osdosd.5
+2017-05-24 14:56:13,368 ERROR osd.py [line:33] sudo -i stop ceph-osd id=5 & sleep 3
+2017-05-24 14:56:13,368 ERROR osd.py [line:34] tdin: is not a tty
+stop: Unknown instance: ceph/5
+
+2017-05-24 14:56:18,371 INFO osd.py [line:100] node is  denali02
+2017-05-24 14:56:18,371 INFO osd.py [line:101] execute command is sudo -i ceph-osd -i 5 & sleep 30
+2017-05-24 14:56:48,994 INFO osd.py [line:105] osd osd.5 is start successfully
+2017-05-24 14:56:49,602 INFO node.py [line:149] osd.3  ---> processId 23348
+2017-05-24 14:56:49,602 INFO node.py [line:149] osd.4  ---> processId 24060
+2017-05-24 14:56:49,602 INFO node.py [line:149] osd.5  ---> processId 24701
+2017-05-24 14:56:49,602 INFO node.py [line:149] osd.3  ---> processId 23348
+2017-05-24 14:56:49,602 INFO node.py [line:149] osd.4  ---> processId 24060
+2017-05-24 14:56:49,602 INFO node.py [line:149] osd.5  ---> processId 24701
+2017-05-24 14:56:49,602 INFO node.py [line:113] init osd on node denali03
+2017-05-24 14:56:50,213 INFO node.py [line:128] osd.6  ---> processId 24652
+2017-05-24 14:56:50,213 INFO node.py [line:128] osd.7  ---> processId 25307
+2017-05-24 14:56:50,213 INFO node.py [line:128] osd.8  ---> processId 20745
+2017-05-24 14:56:50,213 INFO node.py [line:128] osd.6  ---> processId 
+2017-05-24 14:56:50,213 INFO node.py [line:128] osd.7  ---> processId 
+2017-05-24 14:56:50,213 INFO node.py [line:128] osd.8  ---> processId 
+2017-05-24 14:56:50,213 INFO osd.py [line:26] node is  denali03
+2017-05-24 14:56:50,213 INFO osd.py [line:27] execute command is sudo -i stop ceph-osd id=6 & sleep 3
+2017-05-24 14:56:53,834 ERROR osd.py [line:32] Error when shutdown osdosd.6
+2017-05-24 14:56:53,834 ERROR osd.py [line:33] sudo -i stop ceph-osd id=6 & sleep 3
+2017-05-24 14:56:53,834 ERROR osd.py [line:34] tdin: is not a tty
+stop: Unknown instance: ceph/6
+
+2017-05-24 14:56:58,842 INFO osd.py [line:100] node is  denali03
+2017-05-24 14:56:58,842 INFO osd.py [line:101] execute command is sudo -i ceph-osd -i 6 & sleep 30
+2017-05-24 14:57:29,417 INFO osd.py [line:105] osd osd.6 is start successfully
+2017-05-24 14:57:29,417 INFO osd.py [line:26] node is  denali03
+2017-05-24 14:57:29,417 INFO osd.py [line:27] execute command is sudo -i stop ceph-osd id=7 & sleep 3
+2017-05-24 14:57:33,161 ERROR osd.py [line:32] Error when shutdown osdosd.7
+2017-05-24 14:57:33,161 ERROR osd.py [line:33] sudo -i stop ceph-osd id=7 & sleep 3
+2017-05-24 14:57:33,161 ERROR osd.py [line:34] tdin: is not a tty
+stop: Unknown instance: ceph/7
+
+2017-05-24 14:57:38,171 INFO osd.py [line:100] node is  denali03
+2017-05-24 14:57:38,171 INFO osd.py [line:101] execute command is sudo -i ceph-osd -i 7 & sleep 30
+2017-05-24 14:58:08,733 INFO osd.py [line:105] osd osd.7 is start successfully
+2017-05-24 14:58:08,733 INFO osd.py [line:26] node is  denali03
+2017-05-24 14:58:08,733 INFO osd.py [line:27] execute command is sudo -i stop ceph-osd id=8 & sleep 3
+2017-05-24 14:58:12,479 ERROR osd.py [line:32] Error when shutdown osdosd.8
+2017-05-24 14:58:12,479 ERROR osd.py [line:33] sudo -i stop ceph-osd id=8 & sleep 3
+2017-05-24 14:58:12,479 ERROR osd.py [line:34] tdin: is not a tty
+stop: Unknown instance: ceph/8
+
+2017-05-24 14:58:17,489 INFO osd.py [line:100] node is  denali03
+2017-05-24 14:58:17,489 INFO osd.py [line:101] execute command is sudo -i ceph-osd -i 8 & sleep 30
+2017-05-24 14:58:48,016 INFO osd.py [line:105] osd osd.8 is start successfully
+2017-05-24 14:58:48,016 INFO osd.py [line:26] node is  denali03
+2017-05-24 14:58:48,016 INFO osd.py [line:27] execute command is sudo -i stop ceph-osd id=6 & sleep 3
+2017-05-24 14:58:51,588 ERROR osd.py [line:32] Error when shutdown osdosd.6
+2017-05-24 14:58:51,605 ERROR osd.py [line:33] sudo -i stop ceph-osd id=6 & sleep 3
+2017-05-24 14:58:51,605 ERROR osd.py [line:34] tdin: is not a tty
+stop: Unknown instance: ceph/6
+
+2017-05-24 14:58:56,617 INFO osd.py [line:100] node is  denali03
+2017-05-24 14:58:56,617 INFO osd.py [line:101] execute command is sudo -i ceph-osd -i 6 & sleep 30
+2017-05-24 14:59:27,213 INFO osd.py [line:105] osd osd.6 is start successfully
+2017-05-24 14:59:27,213 INFO osd.py [line:26] node is  denali03
+2017-05-24 14:59:27,213 INFO osd.py [line:27] execute command is sudo -i stop ceph-osd id=7 & sleep 3
+2017-05-24 14:59:30,790 ERROR osd.py [line:32] Error when shutdown osdosd.7
+2017-05-24 14:59:30,790 ERROR osd.py [line:33] sudo -i stop ceph-osd id=7 & sleep 3
+2017-05-24 14:59:30,790 ERROR osd.py [line:34] tdin: is not a tty
+stop: Unknown instance: ceph/7
+
+2017-05-24 14:59:35,799 INFO osd.py [line:100] node is  denali03
+2017-05-24 14:59:35,799 INFO osd.py [line:101] execute command is sudo -i ceph-osd -i 7 & sleep 30
+2017-05-24 15:00:06,724 INFO osd.py [line:105] osd osd.7 is start successfully
+2017-05-24 15:00:06,724 INFO osd.py [line:26] node is  denali03
+2017-05-24 15:00:06,724 INFO osd.py [line:27] execute command is sudo -i stop ceph-osd id=8 & sleep 3
+2017-05-24 15:00:10,456 ERROR osd.py [line:32] Error when shutdown osdosd.8
+2017-05-24 15:00:10,456 ERROR osd.py [line:33] sudo -i stop ceph-osd id=8 & sleep 3
+2017-05-24 15:00:10,456 ERROR osd.py [line:34] tdin: is not a tty
+stop: Unknown instance: ceph/8
+
+2017-05-24 15:00:15,464 INFO osd.py [line:100] node is  denali03
+2017-05-24 15:00:15,464 INFO osd.py [line:101] execute command is sudo -i ceph-osd -i 8 & sleep 30
+2017-05-24 15:00:46,313 INFO osd.py [line:105] osd osd.8 is start successfully
+2017-05-24 15:00:47,874 INFO node.py [line:149] osd.6  ---> processId 24652
+2017-05-24 15:00:47,874 INFO node.py [line:149] osd.7  ---> processId 25307
+2017-05-24 15:00:47,874 INFO node.py [line:149] osd.8  ---> processId 25937
+2017-05-24 15:00:47,874 INFO node.py [line:149] osd.6  ---> processId 24652
+2017-05-24 15:00:47,874 INFO node.py [line:149] osd.7  ---> processId 25307
+2017-05-24 15:00:47,874 INFO node.py [line:149] osd.8  ---> processId 25937
+2017-05-24 15:00:47,874 INFO node.py [line:113] init osd on node denali01
+2017-05-24 15:00:49,871 INFO node.py [line:128] osd.0  ---> processId 3815
+2017-05-24 15:00:49,871 INFO node.py [line:128] osd.1  ---> processId 5993
+2017-05-24 15:00:49,871 INFO node.py [line:128] osd.2  ---> processId 8169
+2017-05-24 15:00:49,871 INFO node.py [line:128] osd.0  ---> processId 3815
+2017-05-24 15:00:49,871 INFO node.py [line:128] osd.1  ---> processId 5993
+2017-05-24 15:00:49,871 INFO node.py [line:128] osd.2  ---> processId 8169
+2017-05-24 15:00:49,871 INFO osd.py [line:26] node is  denali01
+2017-05-24 15:00:49,871 INFO osd.py [line:27] execute command is sudo -i stop ceph-osd id=0 & sleep 3
+2017-05-24 15:00:54,585 ERROR osd.py [line:32] Error when shutdown osdosd.0
+2017-05-24 15:00:54,585 ERROR osd.py [line:33] sudo -i stop ceph-osd id=0 & sleep 3
+2017-05-24 15:00:54,585 ERROR osd.py [line:34] tdin: is not a tty
+stop: Unknown instance: ceph/0
+
+2017-05-24 15:00:59,595 INFO osd.py [line:100] node is  denali01
+2017-05-24 15:00:59,595 INFO osd.py [line:101] execute command is sudo -i ceph-osd -i 0 & sleep 30
+2017-05-24 15:01:30,210 INFO osd.py [line:105] osd osd.0 is start successfully
+2017-05-24 15:01:30,210 INFO osd.py [line:26] node is  denali01
+2017-05-24 15:01:30,210 INFO osd.py [line:27] execute command is sudo -i stop ceph-osd id=1 & sleep 3
+2017-05-24 15:01:34,022 ERROR osd.py [line:32] Error when shutdown osdosd.1
+2017-05-24 15:01:34,022 ERROR osd.py [line:33] sudo -i stop ceph-osd id=1 & sleep 3
+2017-05-24 15:01:34,022 ERROR osd.py [line:34] tdin: is not a tty
+stop: Unknown instance: ceph/1
+
+2017-05-24 15:01:39,029 INFO osd.py [line:100] node is  denali01
+2017-05-24 15:01:39,029 INFO osd.py [line:101] execute command is sudo -i ceph-osd -i 1 & sleep 30
+2017-05-24 15:02:09,601 INFO osd.py [line:105] osd osd.1 is start successfully
+2017-05-24 15:02:09,601 INFO osd.py [line:26] node is  denali01
+2017-05-24 15:02:09,601 INFO osd.py [line:27] execute command is sudo -i stop ceph-osd id=2 & sleep 3
+2017-05-24 15:02:13,220 ERROR osd.py [line:32] Error when shutdown osdosd.2
+2017-05-24 15:02:13,220 ERROR osd.py [line:33] sudo -i stop ceph-osd id=2 & sleep 3
+2017-05-24 15:02:13,220 ERROR osd.py [line:34] tdin: is not a tty
+stop: Unknown instance: ceph/2
+
+2017-05-24 15:02:18,226 INFO osd.py [line:100] node is  denali01
+2017-05-24 15:02:18,226 INFO osd.py [line:101] execute command is sudo -i ceph-osd -i 2 & sleep 30
+2017-05-24 15:02:48,795 INFO osd.py [line:105] osd osd.2 is start successfully
+2017-05-24 15:02:48,795 INFO osd.py [line:26] node is  denali01
+2017-05-24 15:02:48,795 INFO osd.py [line:27] execute command is sudo -i stop ceph-osd id=0 & sleep 3
+2017-05-24 15:02:52,476 ERROR osd.py [line:32] Error when shutdown osdosd.0
+2017-05-24 15:02:52,476 ERROR osd.py [line:33] sudo -i stop ceph-osd id=0 & sleep 3
+2017-05-24 15:02:52,476 ERROR osd.py [line:34] tdin: is not a tty
+stop: Unknown instance: ceph/0
+
+2017-05-24 15:02:57,486 INFO osd.py [line:100] node is  denali01
+2017-05-24 15:02:57,486 INFO osd.py [line:101] execute command is sudo -i ceph-osd -i 0 & sleep 30
+2017-05-24 15:03:28,059 INFO osd.py [line:105] osd osd.0 is start successfully
+2017-05-24 15:03:28,059 INFO osd.py [line:26] node is  denali01
+2017-05-24 15:03:28,059 INFO osd.py [line:27] execute command is sudo -i stop ceph-osd id=1 & sleep 3
+2017-05-24 15:03:31,680 ERROR osd.py [line:32] Error when shutdown osdosd.1
+2017-05-24 15:03:31,680 ERROR osd.py [line:33] sudo -i stop ceph-osd id=1 & sleep 3
+2017-05-24 15:03:31,680 ERROR osd.py [line:34] tdin: is not a tty
+stop: Unknown instance: ceph/1
+
+2017-05-24 15:03:36,694 INFO osd.py [line:100] node is  denali01
+2017-05-24 15:03:36,694 INFO osd.py [line:101] execute command is sudo -i ceph-osd -i 1 & sleep 30
+2017-05-24 15:04:07,217 INFO osd.py [line:105] osd osd.1 is start successfully
+2017-05-24 15:04:07,217 INFO osd.py [line:26] node is  denali01
+2017-05-24 15:04:07,217 INFO osd.py [line:27] execute command is sudo -i stop ceph-osd id=2 & sleep 3
+2017-05-24 15:04:10,826 ERROR osd.py [line:32] Error when shutdown osdosd.2
+2017-05-24 15:04:10,826 ERROR osd.py [line:33] sudo -i stop ceph-osd id=2 & sleep 3
+2017-05-24 15:04:10,826 ERROR osd.py [line:34] tdin: is not a tty
+stop: Unknown instance: ceph/2
+
+2017-05-24 15:04:15,835 INFO osd.py [line:100] node is  denali01
+2017-05-24 15:04:15,835 INFO osd.py [line:101] execute command is sudo -i ceph-osd -i 2 & sleep 30
+2017-05-24 15:04:46,707 INFO osd.py [line:105] osd osd.2 is start successfully
+2017-05-24 15:04:47,690 INFO node.py [line:149] osd.0  ---> processId 3815
+2017-05-24 15:04:47,690 INFO node.py [line:149] osd.1  ---> processId 5993
+2017-05-24 15:04:47,690 INFO node.py [line:149] osd.2  ---> processId 8169
+2017-05-24 15:04:47,690 INFO node.py [line:149] osd.0  ---> processId 3815
+2017-05-24 15:04:47,690 INFO node.py [line:149] osd.1  ---> processId 5993
+2017-05-24 15:04:47,690 INFO node.py [line:149] osd.2  ---> processId 8169
+2017-05-24 15:04:47,690 INFO node.py [line:113] init osd on node denali02
+2017-05-24 15:04:48,719 INFO node.py [line:128] osd.3  ---> processId 23348
+2017-05-24 15:04:48,719 INFO node.py [line:128] osd.4  ---> processId 24060
+2017-05-24 15:04:48,719 INFO node.py [line:128] osd.5  ---> processId 24701
+2017-05-24 15:04:48,719 INFO node.py [line:128] osd.3  ---> processId 23348
+2017-05-24 15:04:48,719 INFO node.py [line:128] osd.4  ---> processId 24060
+2017-05-24 15:04:48,719 INFO node.py [line:128] osd.5  ---> processId 24701
+2017-05-24 15:04:48,719 INFO osd.py [line:26] node is  denali02
+2017-05-24 15:04:48,719 INFO osd.py [line:27] execute command is sudo -i stop ceph-osd id=3 & sleep 3
+2017-05-24 15:04:52,542 ERROR osd.py [line:32] Error when shutdown osdosd.3
+2017-05-24 15:04:52,542 ERROR osd.py [line:33] sudo -i stop ceph-osd id=3 & sleep 3
+2017-05-24 15:04:52,542 ERROR osd.py [line:34] tdin: is not a tty
+stop: Unknown instance: ceph/3
+
+2017-05-24 15:04:57,548 INFO osd.py [line:100] node is  denali02
+2017-05-24 15:04:57,548 INFO osd.py [line:101] execute command is sudo -i ceph-osd -i 3 & sleep 30
+2017-05-24 15:05:28,428 INFO osd.py [line:105] osd osd.3 is start successfully
+2017-05-24 15:05:28,428 INFO osd.py [line:26] node is  denali02
+2017-05-24 15:05:28,428 INFO osd.py [line:27] execute command is sudo -i stop ceph-osd id=4 & sleep 3
+2017-05-24 15:05:32,454 ERROR osd.py [line:32] Error when shutdown osdosd.4
+2017-05-24 15:05:32,454 ERROR osd.py [line:33] sudo -i stop ceph-osd id=4 & sleep 3
+2017-05-24 15:05:32,454 ERROR osd.py [line:34] tdin: is not a tty
+stop: Unknown instance: ceph/4
+
+2017-05-24 15:05:37,467 INFO osd.py [line:100] node is  denali02
+2017-05-24 15:05:37,467 INFO osd.py [line:101] execute command is sudo -i ceph-osd -i 4 & sleep 30
+2017-05-24 15:06:08,164 INFO osd.py [line:105] osd osd.4 is start successfully
+2017-05-24 15:06:08,164 INFO osd.py [line:26] node is  denali02
+2017-05-24 15:06:08,164 INFO osd.py [line:27] execute command is sudo -i stop ceph-osd id=5 & sleep 3
+2017-05-24 15:06:11,801 ERROR osd.py [line:32] Error when shutdown osdosd.5
+2017-05-24 15:06:11,801 ERROR osd.py [line:33] sudo -i stop ceph-osd id=5 & sleep 3
+2017-05-24 15:06:11,801 ERROR osd.py [line:34] tdin: is not a tty
+stop: Unknown instance: ceph/5
+
+2017-05-24 15:06:16,809 INFO osd.py [line:100] node is  denali02
+2017-05-24 15:06:16,809 INFO osd.py [line:101] execute command is sudo -i ceph-osd -i 5 & sleep 30
+2017-05-24 15:06:47,421 INFO osd.py [line:105] osd osd.5 is start successfully
+2017-05-24 15:06:47,421 INFO osd.py [line:26] node is  denali02
+2017-05-24 15:06:47,421 INFO osd.py [line:27] execute command is sudo -i stop ceph-osd id=3 & sleep 3
+2017-05-24 15:06:51,019 ERROR osd.py [line:32] Error when shutdown osdosd.3
+2017-05-24 15:06:51,019 ERROR osd.py [line:33] sudo -i stop ceph-osd id=3 & sleep 3
+2017-05-24 15:06:51,019 ERROR osd.py [line:34] tdin: is not a tty
+stop: Unknown instance: ceph/3
+
+2017-05-24 15:06:56,029 INFO osd.py [line:100] node is  denali02
+2017-05-24 15:06:56,029 INFO osd.py [line:101] execute command is sudo -i ceph-osd -i 3 & sleep 30
+2017-05-24 15:07:26,801 INFO osd.py [line:105] osd osd.3 is start successfully
+2017-05-24 15:07:26,801 INFO osd.py [line:26] node is  denali02
+2017-05-24 15:07:26,801 INFO osd.py [line:27] execute command is sudo -i stop ceph-osd id=4 & sleep 3
+2017-05-24 15:07:30,381 ERROR osd.py [line:32] Error when shutdown osdosd.4
+2017-05-24 15:07:30,381 ERROR osd.py [line:33] sudo -i stop ceph-osd id=4 & sleep 3
+2017-05-24 15:07:30,381 ERROR osd.py [line:34] tdin: is not a tty
+stop: Unknown instance: ceph/4
+
+2017-05-24 15:07:35,394 INFO osd.py [line:100] node is  denali02
+2017-05-24 15:07:35,394 INFO osd.py [line:101] execute command is sudo -i ceph-osd -i 4 & sleep 30
+2017-05-24 15:08:06,099 INFO osd.py [line:105] osd osd.4 is start successfully
+2017-05-24 15:08:06,099 INFO osd.py [line:26] node is  denali02
+2017-05-24 15:08:06,099 INFO osd.py [line:27] execute command is sudo -i stop ceph-osd id=5 & sleep 3
+2017-05-24 15:08:09,703 ERROR osd.py [line:32] Error when shutdown osdosd.5
+2017-05-24 15:08:09,703 ERROR osd.py [line:33] sudo -i stop ceph-osd id=5 & sleep 3
+2017-05-24 15:08:09,703 ERROR osd.py [line:34] tdin: is not a tty
+stop: Unknown instance: ceph/5
+
+2017-05-24 15:08:14,713 INFO osd.py [line:100] node is  denali02
+2017-05-24 15:08:14,713 INFO osd.py [line:101] execute command is sudo -i ceph-osd -i 5 & sleep 30
+2017-05-24 15:08:45,313 INFO osd.py [line:105] osd osd.5 is start successfully
+2017-05-24 15:08:45,953 INFO node.py [line:149] osd.3  ---> processId 23348
+2017-05-24 15:08:45,953 INFO node.py [line:149] osd.4  ---> processId 24060
+2017-05-24 15:08:45,953 INFO node.py [line:149] osd.5  ---> processId 24701
+2017-05-24 15:08:45,953 INFO node.py [line:149] osd.3  ---> processId 23348
+2017-05-24 15:08:45,953 INFO node.py [line:149] osd.4  ---> processId 24060
+2017-05-24 15:08:45,953 INFO node.py [line:149] osd.5  ---> processId 24701
+2017-05-24 15:08:45,953 INFO node.py [line:113] init osd on node denali03
+2017-05-24 15:08:46,546 INFO node.py [line:128] osd.6  ---> processId 24652
+2017-05-24 15:08:46,546 INFO node.py [line:128] osd.7  ---> processId 25307
+2017-05-24 15:08:46,546 INFO node.py [line:128] osd.8  ---> processId 25937
+2017-05-24 15:08:46,546 INFO node.py [line:128] osd.6  ---> processId 24652
+2017-05-24 15:08:46,546 INFO node.py [line:128] osd.7  ---> processId 25307
+2017-05-24 15:08:46,546 INFO node.py [line:128] osd.8  ---> processId 25937
+2017-05-24 15:08:46,546 INFO osd.py [line:26] node is  denali03
+2017-05-24 15:08:46,546 INFO osd.py [line:27] execute command is sudo -i stop ceph-osd id=6 & sleep 3
+2017-05-24 15:08:50,151 ERROR osd.py [line:32] Error when shutdown osdosd.6
+2017-05-24 15:08:50,151 ERROR osd.py [line:33] sudo -i stop ceph-osd id=6 & sleep 3
+2017-05-24 15:08:50,151 ERROR osd.py [line:34] tdin: is not a tty
+stop: Unknown instance: ceph/6
+
+2017-05-24 15:08:55,161 INFO osd.py [line:100] node is  denali03
+2017-05-24 15:08:55,161 INFO osd.py [line:101] execute command is sudo -i ceph-osd -i 6 & sleep 30
+2017-05-24 15:09:25,885 INFO osd.py [line:105] osd osd.6 is start successfully
+2017-05-24 15:09:25,885 INFO osd.py [line:26] node is  denali03
+2017-05-24 15:09:25,885 INFO osd.py [line:27] execute command is sudo -i stop ceph-osd id=7 & sleep 3
+2017-05-24 15:09:29,711 ERROR osd.py [line:32] Error when shutdown osdosd.7
+2017-05-24 15:09:29,711 ERROR osd.py [line:33] sudo -i stop ceph-osd id=7 & sleep 3
+2017-05-24 15:09:29,711 ERROR osd.py [line:34] tdin: is not a tty
+stop: Unknown instance: ceph/7
+
+2017-05-24 15:09:34,711 INFO osd.py [line:100] node is  denali03
+2017-05-24 15:09:34,711 INFO osd.py [line:101] execute command is sudo -i ceph-osd -i 7 & sleep 30
+2017-05-24 15:10:05,407 INFO osd.py [line:105] osd osd.7 is start successfully
+2017-05-24 15:10:05,407 INFO osd.py [line:26] node is  denali03
+2017-05-24 15:10:05,407 INFO osd.py [line:27] execute command is sudo -i stop ceph-osd id=8 & sleep 3
+2017-05-24 15:10:09,075 ERROR osd.py [line:32] Error when shutdown osdosd.8
+2017-05-24 15:10:09,075 ERROR osd.py [line:33] sudo -i stop ceph-osd id=8 & sleep 3
+2017-05-24 15:10:09,075 ERROR osd.py [line:34] tdin: is not a tty
+stop: Unknown instance: ceph/8
+
+2017-05-24 15:10:14,085 INFO osd.py [line:100] node is  denali03
+2017-05-24 15:10:14,085 INFO osd.py [line:101] execute command is sudo -i ceph-osd -i 8 & sleep 30
+2017-05-24 15:10:44,895 INFO osd.py [line:105] osd osd.8 is start successfully
+2017-05-24 15:10:44,895 INFO osd.py [line:26] node is  denali03
+2017-05-24 15:10:44,895 INFO osd.py [line:27] execute command is sudo -i stop ceph-osd id=6 & sleep 3
+2017-05-24 15:10:48,548 ERROR osd.py [line:32] Error when shutdown osdosd.6
+2017-05-24 15:10:48,548 ERROR osd.py [line:33] sudo -i stop ceph-osd id=6 & sleep 3
+2017-05-24 15:10:48,548 ERROR osd.py [line:34] tdin: is not a tty
+stop: Unknown instance: ceph/6
+
+2017-05-24 15:10:53,556 INFO osd.py [line:100] node is  denali03
+2017-05-24 15:10:53,556 INFO osd.py [line:101] execute command is sudo -i ceph-osd -i 6 & sleep 30
+2017-05-24 15:11:24,161 INFO osd.py [line:105] osd osd.6 is start successfully
+2017-05-24 15:11:24,161 INFO osd.py [line:26] node is  denali03
+2017-05-24 15:11:24,161 INFO osd.py [line:27] execute command is sudo -i stop ceph-osd id=7 & sleep 3
+2017-05-24 15:11:27,766 ERROR osd.py [line:32] Error when shutdown osdosd.7
+2017-05-24 15:11:27,766 ERROR osd.py [line:33] sudo -i stop ceph-osd id=7 & sleep 3
+2017-05-24 15:11:27,766 ERROR osd.py [line:34] tdin: is not a tty
+stop: Unknown instance: ceph/7
+
+2017-05-24 15:11:32,775 INFO osd.py [line:100] node is  denali03
+2017-05-24 15:11:32,775 INFO osd.py [line:101] execute command is sudo -i ceph-osd -i 7 & sleep 30
+2017-05-24 15:12:03,706 INFO osd.py [line:105] osd osd.7 is start successfully
+2017-05-24 15:12:03,706 INFO osd.py [line:26] node is  denali03
+2017-05-24 15:12:03,706 INFO osd.py [line:27] execute command is sudo -i stop ceph-osd id=8 & sleep 3
+2017-05-24 15:12:08,280 ERROR osd.py [line:32] Error when shutdown osdosd.8
+2017-05-24 15:12:08,280 ERROR osd.py [line:33] sudo -i stop ceph-osd id=8 & sleep 3
+2017-05-24 15:12:08,280 ERROR osd.py [line:34] tdin: is not a tty
+stop: Unknown instance: ceph/8
+
+2017-05-24 15:12:13,283 INFO osd.py [line:100] node is  denali03
+2017-05-24 15:12:13,283 INFO osd.py [line:101] execute command is sudo -i ceph-osd -i 8 & sleep 30
+2017-05-24 15:12:43,908 INFO osd.py [line:105] osd osd.8 is start successfully
+2017-05-24 15:12:44,486 INFO node.py [line:149] osd.6  ---> processId 24652
+2017-05-24 15:12:44,486 INFO node.py [line:149] osd.7  ---> processId 25307
+2017-05-24 15:12:44,486 INFO node.py [line:149] osd.8  ---> processId 25937
+2017-05-24 15:12:44,486 INFO node.py [line:149] osd.6  ---> processId 24652
+2017-05-24 15:12:44,486 INFO node.py [line:149] osd.7  ---> processId 25307
+2017-05-24 15:12:44,486 INFO node.py [line:149] osd.8  ---> processId 25937
+2017-05-24 15:12:44,486 INFO TC40_kill_osd_on_single_node.py [line:31] start to check cluster status before case running
+2017-05-24 15:12:44,532 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-24 15:12:45,234 INFO cluster.py [line:205]    cluster 06eb5bdc-13bc-4ee0-bcb3-b3881e7eef0a
+     health HEALTH_OK
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.33:6789/0,denali03=192.168.28.34:6789/0}
+            election epoch 6, quorum 0,1,2 denali01,denali02,denali03
+     osdmap e162: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v3624: 3016 pgs, 13 pools, 296 GB data, 83430 objects
+            22956 MB used, 316 GB / 338 GB avail
+                3016 active+clean
+  client io 12516 B/s rd, 15 op/s rd, 0 op/s wr
+
+2017-05-24 15:12:45,234 INFO cluster.py [line:230] PG number is 3016
+2017-05-24 15:12:45,234 INFO cluster.py [line:231] usefull PG number is 3016
+2017-05-24 15:12:45,234 INFO TC40_kill_osd_on_single_node.py [line:34] health status is OK
+2017-05-24 15:12:45,234 INFO TC40_kill_osd_on_single_node.py [line:39] 
+Step 1: start IO from clients
+2017-05-24 15:12:45,234 INFO base.py [line:35] 
+Now start IO on  clientrbdImg0
+2017-05-24 15:12:46,076 INFO client.py [line:125] pid info is 4714
+2017-05-24 15:12:46,076 INFO client.py [line:125] pid info is 4716
+2017-05-24 15:12:46,076 INFO base.py [line:35] 
+Now start IO on  clientrbdImg1
+2017-05-24 15:12:46,841 INFO client.py [line:125] pid info is 4744
+2017-05-24 15:12:46,841 INFO client.py [line:125] pid info is 4745
+2017-05-24 15:12:46,841 INFO base.py [line:35] 
+Now start IO on  clientrbdImg2
+2017-05-24 15:12:47,605 INFO client.py [line:125] pid info is 4813
+2017-05-24 15:12:47,605 INFO client.py [line:125] pid info is 4814
+2017-05-24 15:12:47,605 INFO base.py [line:35] 
+Now start IO on  clientrbdImg3
+2017-05-24 15:12:48,339 INFO client.py [line:125] pid info is 4863
+2017-05-24 15:12:48,339 INFO client.py [line:125] pid info is 4864
+2017-05-24 15:12:48,339 INFO base.py [line:35] 
+Now start IO on  clientrbdImg4
+2017-05-24 15:12:49,088 INFO client.py [line:125] pid info is 4912
+2017-05-24 15:12:49,088 INFO client.py [line:125] pid info is 4913
+2017-05-24 15:12:49,088 INFO base.py [line:35] 
+Now start IO on  clientrbdImg5
+2017-05-24 15:12:49,961 INFO client.py [line:125] pid info is 4961
+2017-05-24 15:12:49,961 INFO client.py [line:125] pid info is 4962
+2017-05-24 15:12:49,961 INFO base.py [line:35] 
+Now start IO on  clientrbdImg6
+2017-05-24 15:12:50,601 INFO client.py [line:125] pid info is 5082
+2017-05-24 15:12:50,601 INFO client.py [line:125] pid info is 5083
+2017-05-24 15:12:50,601 INFO base.py [line:35] 
+Now start IO on  clientrbdImg7
+2017-05-24 15:12:51,365 INFO client.py [line:125] pid info is 5128
+2017-05-24 15:12:51,365 INFO client.py [line:125] pid info is 5129
+2017-05-24 15:12:51,365 INFO base.py [line:35] 
+Now start IO on  clientrbdImg8
+2017-05-24 15:12:52,270 INFO client.py [line:125] pid info is 5172
+2017-05-24 15:12:52,270 INFO client.py [line:125] pid info is 5173
+2017-05-24 15:12:52,270 INFO base.py [line:35] 
+Now start IO on  clientrbdImg9
+2017-05-24 15:12:53,098 INFO client.py [line:125] pid info is 5229
+2017-05-24 15:12:53,098 INFO client.py [line:125] pid info is 5230
+2017-05-24 15:12:53,098 INFO base.py [line:35] 
+Now start IO on  clientrbdImg0
+2017-05-24 15:12:53,938 INFO client.py [line:125] pid info is 4714
+2017-05-24 15:12:53,938 INFO client.py [line:125] pid info is 4716
+2017-05-24 15:12:53,938 INFO client.py [line:125] pid info is 5260
+2017-05-24 15:12:53,938 INFO client.py [line:125] pid info is 5261
+2017-05-24 15:12:53,938 INFO base.py [line:35] 
+Now start IO on  clientrbdImg1
+2017-05-24 15:12:54,858 INFO client.py [line:125] pid info is 4744
+2017-05-24 15:12:54,858 INFO client.py [line:125] pid info is 4745
+2017-05-24 15:12:54,858 INFO client.py [line:125] pid info is 5309
+2017-05-24 15:12:54,858 INFO client.py [line:125] pid info is 5310
+2017-05-24 15:12:54,858 INFO base.py [line:35] 
+Now start IO on  clientrbdImg2
+2017-05-24 15:12:55,747 INFO client.py [line:125] pid info is 4813
+2017-05-24 15:12:55,747 INFO client.py [line:125] pid info is 4814
+2017-05-24 15:12:55,747 INFO client.py [line:125] pid info is 5418
+2017-05-24 15:12:55,747 INFO client.py [line:125] pid info is 5419
+2017-05-24 15:12:55,747 INFO base.py [line:35] 
+Now start IO on  clientrbdImg3
+2017-05-24 15:12:56,621 INFO client.py [line:125] pid info is 4863
+2017-05-24 15:12:56,621 INFO client.py [line:125] pid info is 4864
+2017-05-24 15:12:56,621 INFO client.py [line:125] pid info is 5480
+2017-05-24 15:12:56,621 INFO client.py [line:125] pid info is 5481
+2017-05-24 15:12:56,621 INFO base.py [line:35] 
+Now start IO on  clientrbdImg4
+2017-05-24 15:12:57,635 INFO client.py [line:125] pid info is 4912
+2017-05-24 15:12:57,635 INFO client.py [line:125] pid info is 4913
+2017-05-24 15:12:57,635 INFO client.py [line:125] pid info is 5530
+2017-05-24 15:12:57,635 INFO client.py [line:125] pid info is 5531
+2017-05-24 15:12:57,635 INFO base.py [line:35] 
+Now start IO on  clientrbdImg5
+2017-05-24 15:12:58,453 INFO client.py [line:125] pid info is 4961
+2017-05-24 15:12:58,453 INFO client.py [line:125] pid info is 4962
+2017-05-24 15:12:58,453 INFO client.py [line:125] pid info is 5579
+2017-05-24 15:12:58,453 INFO client.py [line:125] pid info is 5581
+2017-05-24 15:12:58,453 INFO base.py [line:35] 
+Now start IO on  clientrbdImg6
+2017-05-24 15:13:08,562 INFO client.py [line:125] pid info is 5082
+2017-05-24 15:13:08,562 INFO client.py [line:125] pid info is 5083
+2017-05-24 15:13:08,562 INFO client.py [line:125] pid info is 5659
+2017-05-24 15:13:08,562 INFO client.py [line:125] pid info is 5795
+2017-05-24 15:13:08,562 INFO base.py [line:35] 
+Now start IO on  clientrbdImg7
+2017-05-24 15:13:13,338 INFO client.py [line:125] pid info is 5128
+2017-05-24 15:13:13,338 INFO client.py [line:125] pid info is 5129
+2017-05-24 15:13:13,338 INFO client.py [line:125] pid info is 5913
+2017-05-24 15:13:13,338 INFO client.py [line:125] pid info is 5917
+2017-05-24 15:13:13,338 INFO base.py [line:35] 
+Now start IO on  clientrbdImg8
+2017-05-24 15:13:15,384 INFO client.py [line:125] pid info is 5172
+2017-05-24 15:13:15,384 INFO client.py [line:125] pid info is 5173
+2017-05-24 15:13:15,384 INFO client.py [line:125] pid info is 5944
+2017-05-24 15:13:15,384 INFO client.py [line:125] pid info is 5945
+2017-05-24 15:13:15,384 INFO base.py [line:35] 
+Now start IO on  clientrbdImg9
+2017-05-24 15:13:16,637 INFO client.py [line:125] pid info is 5229
+2017-05-24 15:13:16,637 INFO client.py [line:125] pid info is 5230
+2017-05-24 15:13:16,637 INFO client.py [line:125] pid info is 6064
+2017-05-24 15:13:16,637 INFO client.py [line:125] pid info is 6065
+2017-05-24 15:14:16,644 INFO TC40_kill_osd_on_single_node.py [line:43] 
+Step 2: Kill osd and check IO
+2017-05-24 15:14:16,644 INFO TC40_kill_osd_on_single_node.py [line:45] 
+Now operate node denali01
+2017-05-24 15:14:16,644 INFO TC40_kill_osd_on_single_node.py [line:48] 
+Now operate osd.0
+2017-05-24 15:14:16,644 INFO TC40_kill_osd_on_single_node.py [line:50] Set the osd.0 pid for kill
+2017-05-24 15:14:17,269 INFO node.py [line:166] osd.0  ---> processId 3815
+2017-05-24 15:14:17,269 INFO node.py [line:166] osd.1  ---> processId 5993
+2017-05-24 15:14:17,269 INFO node.py [line:166] osd.2  ---> processId 8169
+2017-05-24 15:14:17,269 INFO node.py [line:166] osd.0  ---> processId 3815
+2017-05-24 15:14:17,269 INFO node.py [line:166] osd.1  ---> processId 5993
+2017-05-24 15:14:17,269 INFO node.py [line:166] osd.2  ---> processId 8169
+2017-05-24 15:14:17,269 INFO TC40_kill_osd_on_single_node.py [line:52] shutdown osd.0 by kill
+2017-05-24 15:14:17,269 INFO osd.py [line:38] execute command is sudo -i kill -9 3815 & sleep 3
+2017-05-24 15:14:22,134 INFO client.py [line:159] home/denali
+
+2017-05-24 15:14:23,039 INFO client.py [line:159] home/denali
+
+2017-05-24 15:14:23,351 INFO TC40_kill_osd_on_single_node.py [line:57] start osd.0
+2017-05-24 15:14:23,351 INFO osd.py [line:100] node is  denali01
+2017-05-24 15:14:23,351 INFO osd.py [line:101] execute command is sudo -i ceph-osd -i 0 & sleep 30
+2017-05-24 15:14:53,927 INFO osd.py [line:105] osd osd.0 is start successfully
+2017-05-24 15:14:53,927 INFO osd.py [line:113] node is  denali01
+2017-05-24 15:14:53,927 INFO osd.py [line:114] execute command is ps -ef | grep 'ceph-osd -i 0'
+2017-05-24 15:14:54,694 INFO osd.py [line:116] oot      4482     1 22 15:14 ?        00:00:06 ceph-osd -i 0
+denali    5432  5431  0 15:14 ?        00:00:00 bash -c ps -ef | grep 'ceph-osd -i 0'
+denali    5434  5432  0 15:14 ?        00:00:00 grep ceph-osd -i 0
+
+2017-05-24 15:14:54,710 INFO osd.py [line:125] osd.0has already started
+2017-05-24 15:15:25,151 INFO client.py [line:159] home/denali
+
+2017-05-24 15:15:25,917 INFO client.py [line:159] home/denali
+
+2017-05-24 15:15:26,260 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-24 15:15:27,197 INFO cluster.py [line:205]    cluster 06eb5bdc-13bc-4ee0-bcb3-b3881e7eef0a
+     health HEALTH_OK
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.33:6789/0,denali03=192.168.28.34:6789/0}
+            election epoch 6, quorum 0,1,2 denali01,denali02,denali03
+     osdmap e171: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v3774: 3016 pgs, 13 pools, 296 GB data, 83430 objects
+            22958 MB used, 316 GB / 338 GB avail
+                3016 active+clean
+  client io 7512 B/s rd, 2586 kB/s wr, 7 op/s rd, 646 op/s wr
+
+2017-05-24 15:15:27,197 INFO cluster.py [line:230] PG number is 3016
+2017-05-24 15:15:27,197 INFO cluster.py [line:231] usefull PG number is 3016
+2017-05-24 15:15:27,197 INFO TC40_kill_osd_on_single_node.py [line:73] stop osd.0 in cluster successfully
+2017-05-24 15:15:27,197 INFO TC40_kill_osd_on_single_node.py [line:48] 
+Now operate osd.1
+2017-05-24 15:15:27,197 INFO TC40_kill_osd_on_single_node.py [line:50] Set the osd.1 pid for kill
+2017-05-24 15:15:27,900 INFO node.py [line:166] osd.0  ---> processId 4482
+2017-05-24 15:15:27,900 INFO node.py [line:166] osd.1  ---> processId 5993
+2017-05-24 15:15:27,900 INFO node.py [line:166] osd.2  ---> processId 8169
+2017-05-24 15:15:27,900 INFO node.py [line:166] osd.0  ---> processId 4482
+2017-05-24 15:15:27,900 INFO node.py [line:166] osd.1  ---> processId 5993
+2017-05-24 15:15:27,900 INFO node.py [line:166] osd.2  ---> processId 8169
+2017-05-24 15:15:27,900 INFO TC40_kill_osd_on_single_node.py [line:52] shutdown osd.1 by kill
+2017-05-24 15:15:27,900 INFO osd.py [line:38] execute command is sudo -i kill -9 5993 & sleep 3
+2017-05-24 15:15:31,987 INFO client.py [line:159] home/denali
+
+2017-05-24 15:15:33,079 INFO client.py [line:159] home/denali
+
+2017-05-24 15:15:33,454 INFO TC40_kill_osd_on_single_node.py [line:57] start osd.1
+2017-05-24 15:15:33,454 INFO osd.py [line:100] node is  denali01
+2017-05-24 15:15:33,454 INFO osd.py [line:101] execute command is sudo -i ceph-osd -i 1 & sleep 30
+2017-05-24 15:16:04,078 INFO osd.py [line:105] osd osd.1 is start successfully
+2017-05-24 15:16:04,078 INFO osd.py [line:113] node is  denali01
+2017-05-24 15:16:04,078 INFO osd.py [line:114] execute command is ps -ef | grep 'ceph-osd -i 1'
+2017-05-24 15:16:04,671 INFO osd.py [line:116] oot      6695     1 26 15:15 ?        00:00:08 ceph-osd -i 1
+denali    7642  7641  0 15:16 ?        00:00:00 bash -c ps -ef | grep 'ceph-osd -i 1'
+denali    7644  7642  0 15:16 ?        00:00:00 grep ceph-osd -i 1
+
+2017-05-24 15:16:04,671 INFO osd.py [line:125] osd.1has already started
+2017-05-24 15:16:35,095 INFO client.py [line:159] home/denali
+
+2017-05-24 15:16:36,734 INFO client.py [line:159] home/denali
+
+2017-05-24 15:16:37,219 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-24 15:16:38,483 INFO cluster.py [line:205]    cluster 06eb5bdc-13bc-4ee0-bcb3-b3881e7eef0a
+     health HEALTH_OK
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.33:6789/0,denali03=192.168.28.34:6789/0}
+            election epoch 6, quorum 0,1,2 denali01,denali02,denali03
+     osdmap e174: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v3837: 3016 pgs, 13 pools, 296 GB data, 83430 objects
+            22959 MB used, 316 GB / 338 GB avail
+                3016 active+clean
+  client io 2965 kB/s wr, 0 op/s rd, 741 op/s wr
+
+2017-05-24 15:16:38,483 INFO cluster.py [line:230] PG number is 3016
+2017-05-24 15:16:38,483 INFO cluster.py [line:231] usefull PG number is 3016
+2017-05-24 15:16:38,483 INFO TC40_kill_osd_on_single_node.py [line:73] stop osd.1 in cluster successfully
+2017-05-24 15:16:38,483 INFO TC40_kill_osd_on_single_node.py [line:48] 
+Now operate osd.2
+2017-05-24 15:16:38,483 INFO TC40_kill_osd_on_single_node.py [line:50] Set the osd.2 pid for kill
+2017-05-24 15:16:39,138 INFO node.py [line:166] osd.0  ---> processId 4482
+2017-05-24 15:16:39,138 INFO node.py [line:166] osd.1  ---> processId 6695
+2017-05-24 15:16:39,138 INFO node.py [line:166] osd.2  ---> processId 8169
+2017-05-24 15:16:39,138 INFO node.py [line:166] osd.0  ---> processId 4482
+2017-05-24 15:16:39,138 INFO node.py [line:166] osd.1  ---> processId 6695
+2017-05-24 15:16:39,138 INFO node.py [line:166] osd.2  ---> processId 8169
+2017-05-24 15:16:39,138 INFO TC40_kill_osd_on_single_node.py [line:52] shutdown osd.2 by kill
+2017-05-24 15:16:39,138 INFO osd.py [line:38] execute command is sudo -i kill -9 8169 & sleep 3
+2017-05-24 15:16:43,061 INFO client.py [line:159] home/denali
+
+2017-05-24 15:16:43,732 INFO client.py [line:159] home/denali
+
+2017-05-24 15:16:44,216 INFO TC40_kill_osd_on_single_node.py [line:57] start osd.2
+2017-05-24 15:16:44,216 INFO osd.py [line:100] node is  denali01
+2017-05-24 15:16:44,216 INFO osd.py [line:101] execute command is sudo -i ceph-osd -i 2 & sleep 30
+2017-05-24 15:17:14,907 INFO osd.py [line:105] osd osd.2 is start successfully
+2017-05-24 15:17:14,907 INFO osd.py [line:113] node is  denali01
+2017-05-24 15:17:14,907 INFO osd.py [line:114] execute command is ps -ef | grep 'ceph-osd -i 2'
+2017-05-24 15:17:15,546 INFO osd.py [line:116] oot      8919     1 22 15:16 ?        00:00:06 ceph-osd -i 2
+denali   10048 10047  0 15:17 ?        00:00:00 bash -c ps -ef | grep 'ceph-osd -i 2'
+denali   10050 10048  0 15:17 ?        00:00:00 grep ceph-osd -i 2
+
+2017-05-24 15:17:15,546 INFO osd.py [line:125] osd.2has already started
+2017-05-24 15:17:45,953 INFO client.py [line:159] home/denali
+
+2017-05-24 15:17:46,687 INFO client.py [line:159] home/denali
+
+2017-05-24 15:17:47,030 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-24 15:17:48,124 INFO cluster.py [line:205]    cluster 06eb5bdc-13bc-4ee0-bcb3-b3881e7eef0a
+     health HEALTH_OK
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.33:6789/0,denali03=192.168.28.34:6789/0}
+            election epoch 6, quorum 0,1,2 denali01,denali02,denali03
+     osdmap e177: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v3896: 3016 pgs, 13 pools, 296 GB data, 83430 objects
+            22951 MB used, 316 GB / 338 GB avail
+                3016 active+clean
+  client io 3013 kB/s wr, 0 op/s rd, 753 op/s wr
+
+2017-05-24 15:17:48,124 INFO cluster.py [line:230] PG number is 3016
+2017-05-24 15:17:48,140 INFO cluster.py [line:231] usefull PG number is 3016
+2017-05-24 15:17:48,140 INFO TC40_kill_osd_on_single_node.py [line:73] stop osd.2 in cluster successfully
+2017-05-24 15:17:48,140 INFO TC40_kill_osd_on_single_node.py [line:48] 
+Now operate osd.0
+2017-05-24 15:17:48,140 INFO TC40_kill_osd_on_single_node.py [line:50] Set the osd.0 pid for kill
+2017-05-24 15:17:48,809 INFO node.py [line:166] osd.0  ---> processId 4482
+2017-05-24 15:17:48,809 INFO node.py [line:166] osd.1  ---> processId 6695
+2017-05-24 15:17:48,809 INFO node.py [line:166] osd.2  ---> processId 8919
+2017-05-24 15:17:48,809 INFO node.py [line:166] osd.0  ---> processId 4482
+2017-05-24 15:17:48,809 INFO node.py [line:166] osd.1  ---> processId 6695
+2017-05-24 15:17:48,809 INFO node.py [line:166] osd.2  ---> processId 8919
+2017-05-24 15:17:48,809 INFO TC40_kill_osd_on_single_node.py [line:52] shutdown osd.0 by kill
+2017-05-24 15:17:48,825 INFO osd.py [line:38] execute command is sudo -i kill -9 4482 & sleep 3
+2017-05-24 15:17:52,808 INFO client.py [line:159] home/denali
+
+2017-05-24 15:17:53,604 INFO client.py [line:159] home/denali
+
+2017-05-24 15:17:53,947 INFO TC40_kill_osd_on_single_node.py [line:57] start osd.0
+2017-05-24 15:17:53,950 INFO osd.py [line:100] node is  denali01
+2017-05-24 15:17:53,950 INFO osd.py [line:101] execute command is sudo -i ceph-osd -i 0 & sleep 30
+2017-05-24 15:18:24,565 INFO osd.py [line:105] osd osd.0 is start successfully
+2017-05-24 15:18:24,565 INFO osd.py [line:113] node is  denali01
+2017-05-24 15:18:24,565 INFO osd.py [line:114] execute command is ps -ef | grep 'ceph-osd -i 0'
+2017-05-24 15:18:25,298 INFO osd.py [line:116] oot     11288     1 25 15:17 ?        00:00:07 ceph-osd -i 0
+denali   12241 12240  0 15:18 ?        00:00:00 bash -c ps -ef | grep 'ceph-osd -i 0'
+denali   12243 12241  0 15:18 ?        00:00:00 grep ceph-osd -i 0
+
+2017-05-24 15:18:25,298 INFO osd.py [line:125] osd.0has already started

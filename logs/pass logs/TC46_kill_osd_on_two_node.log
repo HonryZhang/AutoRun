@@ -1,0 +1,821 @@
+2017-05-18 11:04:54,924 INFO TC46_kill_osd_on_two_node.py [line:29] 
+This test case will do the following steps:
+1. start IO on 10 images with randwrite and verify
+2. login the first node 
+3. random pick one osd and stop them
+4. check the cluster status
+5. login the second node 
+6. random pick one osd and stop them
+7. check the cluster status
+8. start the stopped osd from the first node
+9. start the stopped osd from the second node
+10. check the cluster status
+
+2017-05-18 11:04:56,299 INFO monitors.py [line:123]    "quorum_leader_name": "denali02",
+
+2017-05-18 11:04:56,299 INFO monitors.py [line:126]    "quorum_leader_name": "denali02",
+2017-05-18 11:04:56,299 INFO TC46_kill_osd_on_two_node.py [line:34] start to check cluster status before case running
+2017-05-18 11:04:56,361 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-18 11:04:57,079 INFO cluster.py [line:206]    cluster 1f1fb6ee-7be9-4826-8de4-f0088eb3df05
+     health HEALTH_OK
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e206: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v2584: 2704 pgs, 13 pools, 268 GB data, 82868 objects
+            18200 MB used, 321 GB / 338 GB avail
+                2704 active+clean
+  client io 44330 B/s rd, 2575 kB/s wr, 36 op/s rd, 651 op/s wr
+
+2017-05-18 11:04:57,079 INFO cluster.py [line:207]       pgmap v2584: 2704 pgs, 13 pools, 268 GB data, 82868 objects
+2017-05-18 11:04:57,079 INFO cluster.py [line:210]                 2704 active+clean
+2017-05-18 11:04:57,079 INFO cluster.py [line:212] PG number is 2704
+2017-05-18 11:04:57,095 INFO cluster.py [line:214] usefull PG number is 2704
+2017-05-18 11:04:57,095 INFO TC46_kill_osd_on_two_node.py [line:37] health status is OK
+2017-05-18 11:04:57,095 INFO TC46_kill_osd_on_two_node.py [line:42] 
+Step1: start IO from clients
+2017-05-18 11:04:57,095 INFO base.py [line:19] 
+Now start IO on  reliablityTestImage0
+2017-05-18 11:04:58,530 INFO client.py [line:56] pid info is 4850
+2017-05-18 11:04:58,530 INFO base.py [line:19] 
+Now start IO on  reliablityTestImage1
+2017-05-18 11:04:59,763 INFO client.py [line:56] pid info is 4879
+2017-05-18 11:04:59,763 INFO base.py [line:19] 
+Now start IO on  reliablityTestImage2
+2017-05-18 11:05:00,948 INFO client.py [line:56] pid info is 4908
+2017-05-18 11:05:00,948 INFO base.py [line:19] 
+Now start IO on  reliablityTestImage3
+2017-05-18 11:05:02,246 INFO client.py [line:56] pid info is 4937
+2017-05-18 11:05:02,246 INFO base.py [line:19] 
+Now start IO on  reliablityTestImage4
+2017-05-18 11:05:03,480 INFO client.py [line:56] pid info is 4966
+2017-05-18 11:05:03,480 INFO base.py [line:19] 
+Now start IO on  reliablityTestImage5
+2017-05-18 11:05:04,821 INFO client.py [line:56] pid info is 4996
+2017-05-18 11:05:04,821 INFO base.py [line:19] 
+Now start IO on  reliablityTestImage6
+2017-05-18 11:05:06,131 INFO client.py [line:56] pid info is 5025
+2017-05-18 11:05:06,131 INFO base.py [line:19] 
+Now start IO on  reliablityTestImage7
+2017-05-18 11:05:07,270 INFO client.py [line:56] pid info is 5054
+2017-05-18 11:05:07,270 INFO base.py [line:19] 
+Now start IO on  reliablityTestImage8
+2017-05-18 11:05:08,427 INFO client.py [line:56] pid info is 5083
+2017-05-18 11:05:08,427 INFO base.py [line:19] 
+Now start IO on  reliablityTestImage9
+2017-05-18 11:05:09,505 INFO client.py [line:56] pid info is 5112
+2017-05-18 11:06:09,516 INFO TC46_kill_osd_on_two_node.py [line:45] 
+Step2: start kill one osd on two node 10 times
+2017-05-18 11:06:09,516 INFO osd.py [line:37] execute command is sudo -i kill -9 17425 & sleep 3
+2017-05-18 11:06:13,654 INFO client.py [line:90] home/denali
+
+2017-05-18 11:06:14,217 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-18 11:06:15,075 INFO cluster.py [line:206]    cluster 1f1fb6ee-7be9-4826-8de4-f0088eb3df05
+     health HEALTH_OK
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e211: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v2659: 2704 pgs, 13 pools, 268 GB data, 82873 objects
+            18216 MB used, 321 GB / 338 GB avail
+                2704 active+clean
+  client io 7883 B/s rd, 5071 kB/s wr, 11 op/s rd, 1267 op/s wr
+
+2017-05-18 11:06:15,091 INFO cluster.py [line:207]       pgmap v2659: 2704 pgs, 13 pools, 268 GB data, 82873 objects
+2017-05-18 11:06:15,091 INFO cluster.py [line:210]                 2704 active+clean
+2017-05-18 11:06:15,091 INFO cluster.py [line:212] PG number is 2704
+2017-05-18 11:06:15,105 INFO cluster.py [line:214] usefull PG number is 2704
+2017-05-18 11:06:15,105 INFO osd.py [line:37] execute command is sudo -i kill -9 9003 & sleep 3
+2017-05-18 11:06:18,802 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-18 11:06:19,691 INFO cluster.py [line:206]    cluster 1f1fb6ee-7be9-4826-8de4-f0088eb3df05
+     health HEALTH_OK
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e211: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v2664: 2704 pgs, 13 pools, 268 GB data, 82873 objects
+            18216 MB used, 321 GB / 338 GB avail
+                2704 active+clean
+  client io 8032 B/s rd, 2751 kB/s wr, 11 op/s rd, 687 op/s wr
+
+2017-05-18 11:06:19,707 INFO cluster.py [line:207]       pgmap v2664: 2704 pgs, 13 pools, 268 GB data, 82873 objects
+2017-05-18 11:06:19,707 INFO cluster.py [line:210]                 2704 active+clean
+2017-05-18 11:06:19,707 INFO cluster.py [line:212] PG number is 2704
+2017-05-18 11:06:19,707 INFO cluster.py [line:214] usefull PG number is 2704
+2017-05-18 11:06:20,206 INFO client.py [line:90] home/denali
+
+2017-05-18 11:06:20,706 INFO TC46_kill_osd_on_two_node.py [line:64] Kill osd on two nodes successfully
+2017-05-18 11:06:20,706 INFO osd.py [line:86] node is  denali01
+2017-05-18 11:06:20,706 INFO osd.py [line:87] execute command is sudo -i ceph-osd -i 1 & sleep 30
+2017-05-18 11:06:51,270 INFO osd.py [line:91] osd osd.1 is start successfully
+2017-05-18 11:06:51,874 INFO client.py [line:90] home/denali
+
+2017-05-18 11:06:52,319 INFO osd.py [line:86] node is  denali02
+2017-05-18 11:06:52,319 INFO osd.py [line:87] execute command is sudo -i ceph-osd -i 6 & sleep 30
+2017-05-18 11:07:23,007 INFO osd.py [line:91] osd osd.6 is start successfully
+2017-05-18 11:07:23,553 INFO client.py [line:90] home/denali
+
+2017-05-18 11:07:24,084 INFO osd.py [line:99] node is  denali01
+2017-05-18 11:07:24,084 INFO osd.py [line:100] execute command is ps -ef | grep 'ceph-osd -i 1'
+2017-05-18 11:07:24,645 INFO osd.py [line:102] enali    8074  8068  0 03:07 ?        00:00:00 bash -c ps -ef | grep 'ceph-osd -i 1'
+denali    8076  8074  0 03:07 ?        00:00:00 grep ceph-osd -i 1
+root     21745     1 16 02:44 ?        00:03:50 ceph-osd -i 1
+
+2017-05-18 11:07:24,645 INFO osd.py [line:111] osd.1is alrady started
+2017-05-18 11:07:24,645 INFO osd.py [line:99] node is  denali02
+2017-05-18 11:07:24,645 INFO osd.py [line:100] execute command is ps -ef | grep 'ceph-osd -i 6'
+2017-05-18 11:07:25,332 INFO osd.py [line:102] oot     20504     1 13 02:46 ?        00:02:49 ceph-osd -i 6
+denali   24938 24910  0 03:07 ?        00:00:00 bash -c ps -ef | grep 'ceph-osd -i 6'
+denali   24940 24938  0 03:07 ?        00:00:00 grep ceph-osd -i 6
+
+2017-05-18 11:07:25,332 INFO osd.py [line:111] osd.6is alrady started
+2017-05-18 11:07:25,332 INFO TC46_kill_osd_on_two_node.py [line:94] 
+Add osd into cluster
+2017-05-18 11:07:25,332 INFO osd.py [line:74] execute command is ceph osd in osd.1 & sleep 3
+2017-05-18 11:07:28,917 ERROR osd.py [line:80] Error when mark osd.1 in
+2017-05-18 11:07:28,917 ERROR osd.py [line:81] ceph osd in osd.1 & sleep 3
+2017-05-18 11:07:28,917 ERROR osd.py [line:82] sd.1 is already in. 
+
+2017-05-18 11:07:28,917 INFO osd.py [line:74] execute command is ceph osd in osd.6 & sleep 3
+2017-05-18 11:07:32,812 ERROR osd.py [line:80] Error when mark osd.6 in
+2017-05-18 11:07:32,812 ERROR osd.py [line:81] ceph osd in osd.6 & sleep 3
+2017-05-18 11:07:32,812 ERROR osd.py [line:82] sd.6 is already in. 
+
+2017-05-18 11:07:32,812 INFO osd.py [line:37] execute command is sudo -i kill -9  & sleep 3
+2017-05-18 11:07:36,917 INFO client.py [line:90] home/denali
+
+2017-05-18 11:07:37,463 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-18 11:07:38,368 INFO cluster.py [line:206]    cluster 1f1fb6ee-7be9-4826-8de4-f0088eb3df05
+     health HEALTH_OK
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e211: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v2733: 2704 pgs, 13 pools, 268 GB data, 82873 objects
+            18216 MB used, 321 GB / 338 GB avail
+                2704 active+clean
+  client io 8439 B/s rd, 3524 kB/s wr, 9 op/s rd, 881 op/s wr
+
+2017-05-18 11:07:38,368 INFO cluster.py [line:207]       pgmap v2733: 2704 pgs, 13 pools, 268 GB data, 82873 objects
+2017-05-18 11:07:38,368 INFO cluster.py [line:210]                 2704 active+clean
+2017-05-18 11:07:38,384 INFO cluster.py [line:212] PG number is 2704
+2017-05-18 11:07:38,384 INFO cluster.py [line:214] usefull PG number is 2704
+2017-05-18 11:07:38,384 INFO osd.py [line:37] execute command is sudo -i kill -9  & sleep 3
+2017-05-18 11:07:41,987 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-18 11:07:42,861 INFO cluster.py [line:206]    cluster 1f1fb6ee-7be9-4826-8de4-f0088eb3df05
+     health HEALTH_OK
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e211: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v2737: 2704 pgs, 13 pools, 268 GB data, 82873 objects
+            18216 MB used, 321 GB / 338 GB avail
+                2704 active+clean
+  client io 10528 B/s rd, 3961 kB/s wr, 11 op/s rd, 990 op/s wr
+
+2017-05-18 11:07:42,861 INFO cluster.py [line:207]       pgmap v2737: 2704 pgs, 13 pools, 268 GB data, 82873 objects
+2017-05-18 11:07:42,861 INFO cluster.py [line:210]                 2704 active+clean
+2017-05-18 11:07:42,861 INFO cluster.py [line:212] PG number is 2704
+2017-05-18 11:07:42,861 INFO cluster.py [line:214] usefull PG number is 2704
+2017-05-18 11:07:43,388 INFO client.py [line:90] home/denali
+
+2017-05-18 11:07:43,884 INFO TC46_kill_osd_on_two_node.py [line:64] Kill osd on two nodes successfully
+2017-05-18 11:07:43,884 INFO osd.py [line:86] node is  denali01
+2017-05-18 11:07:43,884 INFO osd.py [line:87] execute command is sudo -i ceph-osd -i 0 & sleep 30
+2017-05-18 11:08:14,461 INFO osd.py [line:91] osd osd.0 is start successfully
+2017-05-18 11:08:14,914 INFO client.py [line:90] home/denali
+
+2017-05-18 11:08:15,388 INFO osd.py [line:86] node is  denali02
+2017-05-18 11:08:15,388 INFO osd.py [line:87] execute command is sudo -i ceph-osd -i 7 & sleep 30
+2017-05-18 11:08:46,101 INFO osd.py [line:91] osd osd.7 is start successfully
+2017-05-18 11:08:46,572 INFO client.py [line:90] home/denali
+
+2017-05-18 11:08:47,089 INFO osd.py [line:99] node is  denali01
+2017-05-18 11:08:47,089 INFO osd.py [line:100] execute command is ps -ef | grep 'ceph-osd -i 0'
+2017-05-18 11:08:47,704 INFO osd.py [line:102] enali    9340  9339  0 03:08 ?        00:00:00 bash -c ps -ef | grep 'ceph-osd -i 0'
+denali    9342  9340  0 03:08 ?        00:00:00 grep ceph-osd -i 0
+root     21237     1 15 02:44 ?        00:03:41 ceph-osd -i 0
+
+2017-05-18 11:08:47,704 INFO osd.py [line:111] osd.0is alrady started
+2017-05-18 11:08:47,704 INFO osd.py [line:99] node is  denali02
+2017-05-18 11:08:47,704 INFO osd.py [line:100] execute command is ps -ef | grep 'ceph-osd -i 7'
+2017-05-18 11:08:48,339 INFO osd.py [line:102] oot     21378     1 13 02:47 ?        00:03:02 ceph-osd -i 7
+denali   27328 27327  0 03:08 ?        00:00:00 bash -c ps -ef | grep 'ceph-osd -i 7'
+denali   27330 27328  0 03:08 ?        00:00:00 grep ceph-osd -i 7
+
+2017-05-18 11:08:48,339 INFO osd.py [line:111] osd.7is alrady started
+2017-05-18 11:08:48,339 INFO TC46_kill_osd_on_two_node.py [line:94] 
+Add osd into cluster
+2017-05-18 11:08:48,339 INFO osd.py [line:74] execute command is ceph osd in osd.0 & sleep 3
+2017-05-18 11:08:51,940 ERROR osd.py [line:80] Error when mark osd.0 in
+2017-05-18 11:08:51,940 ERROR osd.py [line:81] ceph osd in osd.0 & sleep 3
+2017-05-18 11:08:51,940 ERROR osd.py [line:82] sd.0 is already in. 
+
+2017-05-18 11:08:51,940 INFO osd.py [line:74] execute command is ceph osd in osd.7 & sleep 3
+2017-05-18 11:08:55,661 ERROR osd.py [line:80] Error when mark osd.7 in
+2017-05-18 11:08:55,661 ERROR osd.py [line:81] ceph osd in osd.7 & sleep 3
+2017-05-18 11:08:55,661 ERROR osd.py [line:82] sd.7 is already in. 
+
+2017-05-18 11:08:55,661 INFO osd.py [line:37] execute command is sudo -i kill -9 17061 & sleep 3
+2017-05-18 11:08:59,635 INFO client.py [line:90] home/denali
+
+2017-05-18 11:09:00,132 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-18 11:09:01,089 INFO cluster.py [line:206]    cluster 1f1fb6ee-7be9-4826-8de4-f0088eb3df05
+     health HEALTH_OK
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e211: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v2803: 2704 pgs, 13 pools, 268 GB data, 82873 objects
+            18216 MB used, 321 GB / 338 GB avail
+                2704 active+clean
+  client io 5329 B/s rd, 1775 kB/s wr, 7 op/s rd, 443 op/s wr
+
+2017-05-18 11:09:01,091 INFO cluster.py [line:207]       pgmap v2803: 2704 pgs, 13 pools, 268 GB data, 82873 objects
+2017-05-18 11:09:01,092 INFO cluster.py [line:210]                 2704 active+clean
+2017-05-18 11:09:01,092 INFO cluster.py [line:212] PG number is 2704
+2017-05-18 11:09:01,092 INFO cluster.py [line:214] usefull PG number is 2704
+2017-05-18 11:09:01,092 INFO osd.py [line:37] execute command is sudo -i kill -9  & sleep 3
+2017-05-18 11:09:04,605 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-18 11:09:05,505 INFO cluster.py [line:206]    cluster 1f1fb6ee-7be9-4826-8de4-f0088eb3df05
+     health HEALTH_OK
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e211: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v2807: 2704 pgs, 13 pools, 268 GB data, 82873 objects
+            18216 MB used, 321 GB / 338 GB avail
+                2704 active+clean
+  client io 8028 B/s rd, 2259 kB/s wr, 11 op/s rd, 564 op/s wr
+
+2017-05-18 11:09:05,505 INFO cluster.py [line:207]       pgmap v2807: 2704 pgs, 13 pools, 268 GB data, 82873 objects
+2017-05-18 11:09:05,505 INFO cluster.py [line:210]                 2704 active+clean
+2017-05-18 11:09:05,505 INFO cluster.py [line:212] PG number is 2704
+2017-05-18 11:09:05,505 INFO cluster.py [line:214] usefull PG number is 2704
+2017-05-18 11:09:06,003 INFO client.py [line:90] home/denali
+
+2017-05-18 11:09:07,147 INFO TC46_kill_osd_on_two_node.py [line:64] Kill osd on two nodes successfully
+2017-05-18 11:09:07,147 INFO osd.py [line:86] node is  denali01
+2017-05-18 11:09:07,147 INFO osd.py [line:87] execute command is sudo -i ceph-osd -i 0 & sleep 30
+2017-05-18 11:09:37,720 INFO osd.py [line:91] osd osd.0 is start successfully
+2017-05-18 11:09:38,230 INFO client.py [line:90] home/denali
+
+2017-05-18 11:09:38,730 INFO osd.py [line:86] node is  denali02
+2017-05-18 11:09:38,730 INFO osd.py [line:87] execute command is sudo -i ceph-osd -i 8 & sleep 30
+2017-05-18 11:10:09,431 INFO osd.py [line:91] osd osd.8 is start successfully
+2017-05-18 11:10:10,102 INFO client.py [line:90] home/denali
+
+2017-05-18 11:10:10,802 INFO osd.py [line:99] node is  denali01
+2017-05-18 11:10:10,803 INFO osd.py [line:100] execute command is ps -ef | grep 'ceph-osd -i 0'
+2017-05-18 11:10:11,391 INFO osd.py [line:102] enali   10400 10399  0 03:10 ?        00:00:00 bash -c ps -ef | grep 'ceph-osd -i 0'
+denali   10402 10400  0 03:10 ?        00:00:00 grep ceph-osd -i 0
+root     21237     1 15 02:44 ?        00:03:54 ceph-osd -i 0
+
+2017-05-18 11:10:11,391 INFO osd.py [line:111] osd.0is alrady started
+2017-05-18 11:10:11,391 INFO osd.py [line:99] node is  denali02
+2017-05-18 11:10:11,391 INFO osd.py [line:100] execute command is ps -ef | grep 'ceph-osd -i 8'
+2017-05-18 11:10:12,032 INFO osd.py [line:102] oot     22416     1 18 02:47 ?        00:04:08 ceph-osd -i 8
+denali   29779 29778  0 03:10 ?        00:00:00 bash -c ps -ef | grep 'ceph-osd -i 8'
+denali   29781 29779  0 03:10 ?        00:00:00 grep ceph-osd -i 8
+
+2017-05-18 11:10:12,032 INFO osd.py [line:111] osd.8is alrady started
+2017-05-18 11:10:12,032 INFO TC46_kill_osd_on_two_node.py [line:94] 
+Add osd into cluster
+2017-05-18 11:10:12,032 INFO osd.py [line:74] execute command is ceph osd in osd.0 & sleep 3
+2017-05-18 11:10:15,588 ERROR osd.py [line:80] Error when mark osd.0 in
+2017-05-18 11:10:15,588 ERROR osd.py [line:81] ceph osd in osd.0 & sleep 3
+2017-05-18 11:10:15,588 ERROR osd.py [line:82] sd.0 is already in. 
+
+2017-05-18 11:10:15,588 INFO osd.py [line:74] execute command is ceph osd in osd.8 & sleep 3
+2017-05-18 11:10:19,147 ERROR osd.py [line:80] Error when mark osd.8 in
+2017-05-18 11:10:19,147 ERROR osd.py [line:81] ceph osd in osd.8 & sleep 3
+2017-05-18 11:10:19,147 ERROR osd.py [line:82] sd.8 is already in. 
+
+2017-05-18 11:10:19,147 INFO osd.py [line:37] execute command is sudo -i kill -9 17765 & sleep 3
+2017-05-18 11:10:23,198 INFO client.py [line:90] home/denali
+
+2017-05-18 11:10:23,690 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-18 11:10:24,877 INFO cluster.py [line:206]    cluster 1f1fb6ee-7be9-4826-8de4-f0088eb3df05
+     health HEALTH_OK
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e211: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v2872: 2704 pgs, 13 pools, 268 GB data, 82873 objects
+            18216 MB used, 321 GB / 338 GB avail
+                2704 active+clean
+  client io 5399 B/s rd, 1998 kB/s wr, 7 op/s rd, 499 op/s wr
+
+2017-05-18 11:10:24,877 INFO cluster.py [line:207]       pgmap v2872: 2704 pgs, 13 pools, 268 GB data, 82873 objects
+2017-05-18 11:10:24,877 INFO cluster.py [line:210]                 2704 active+clean
+2017-05-18 11:10:24,877 INFO cluster.py [line:212] PG number is 2704
+2017-05-18 11:10:24,891 INFO cluster.py [line:214] usefull PG number is 2704
+2017-05-18 11:10:24,891 INFO osd.py [line:37] execute command is sudo -i kill -9  & sleep 3
+2017-05-18 11:10:28,464 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-18 11:10:29,602 INFO cluster.py [line:206]    cluster 1f1fb6ee-7be9-4826-8de4-f0088eb3df05
+     health HEALTH_OK
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e211: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v2876: 2704 pgs, 13 pools, 268 GB data, 82873 objects
+            18216 MB used, 321 GB / 338 GB avail
+                2704 active+clean
+  client io 6176 B/s rd, 1610 kB/s wr, 9 op/s rd, 402 op/s wr
+
+2017-05-18 11:10:29,602 INFO cluster.py [line:207]       pgmap v2876: 2704 pgs, 13 pools, 268 GB data, 82873 objects
+2017-05-18 11:10:29,602 INFO cluster.py [line:210]                 2704 active+clean
+2017-05-18 11:10:29,602 INFO cluster.py [line:212] PG number is 2704
+2017-05-18 11:10:29,618 INFO cluster.py [line:214] usefull PG number is 2704
+2017-05-18 11:10:30,148 INFO client.py [line:90] home/denali
+
+2017-05-18 11:10:30,757 INFO TC46_kill_osd_on_two_node.py [line:64] Kill osd on two nodes successfully
+2017-05-18 11:10:30,757 INFO osd.py [line:86] node is  denali01
+2017-05-18 11:10:30,757 INFO osd.py [line:87] execute command is sudo -i ceph-osd -i 2 & sleep 30
+2017-05-18 11:11:01,464 INFO osd.py [line:91] osd osd.2 is start successfully
+2017-05-18 11:11:01,963 INFO client.py [line:90] home/denali
+
+2017-05-18 11:11:02,496 INFO osd.py [line:86] node is  denali02
+2017-05-18 11:11:02,496 INFO osd.py [line:87] execute command is sudo -i ceph-osd -i 7 & sleep 30
+2017-05-18 11:11:33,076 INFO osd.py [line:91] osd osd.7 is start successfully
+2017-05-18 11:11:33,615 INFO client.py [line:90] home/denali
+
+2017-05-18 11:11:34,082 INFO osd.py [line:99] node is  denali01
+2017-05-18 11:11:34,085 INFO osd.py [line:100] execute command is ps -ef | grep 'ceph-osd -i 2'
+2017-05-18 11:11:34,775 INFO osd.py [line:102] enali   11542 11522  0 03:11 ?        00:00:00 bash -c ps -ef | grep 'ceph-osd -i 2'
+denali   11544 11542  0 03:11 ?        00:00:00 grep ceph-osd -i 2
+root     22341     1 12 02:45 ?        00:03:15 ceph-osd -i 2
+
+2017-05-18 11:11:34,775 INFO osd.py [line:111] osd.2is alrady started
+2017-05-18 11:11:34,775 INFO osd.py [line:99] node is  denali02
+2017-05-18 11:11:34,775 INFO osd.py [line:100] execute command is ps -ef | grep 'ceph-osd -i 7'
+2017-05-18 11:11:35,434 INFO osd.py [line:102] oot     21378     1 13 02:47 ?        00:03:25 ceph-osd -i 7
+denali   32229 32228  0 03:11 ?        00:00:00 bash -c ps -ef | grep 'ceph-osd -i 7'
+denali   32231 32229  0 03:11 ?        00:00:00 grep ceph-osd -i 7
+
+2017-05-18 11:11:35,434 INFO osd.py [line:111] osd.7is alrady started
+2017-05-18 11:11:35,434 INFO TC46_kill_osd_on_two_node.py [line:94] 
+Add osd into cluster
+2017-05-18 11:11:35,434 INFO osd.py [line:74] execute command is ceph osd in osd.2 & sleep 3
+2017-05-18 11:11:39,036 ERROR osd.py [line:80] Error when mark osd.2 in
+2017-05-18 11:11:39,036 ERROR osd.py [line:81] ceph osd in osd.2 & sleep 3
+2017-05-18 11:11:39,036 ERROR osd.py [line:82] sd.2 is already in. 
+
+2017-05-18 11:11:39,036 INFO osd.py [line:74] execute command is ceph osd in osd.7 & sleep 3
+2017-05-18 11:11:42,595 ERROR osd.py [line:80] Error when mark osd.7 in
+2017-05-18 11:11:42,595 ERROR osd.py [line:81] ceph osd in osd.7 & sleep 3
+2017-05-18 11:11:42,595 ERROR osd.py [line:82] sd.7 is already in. 
+
+2017-05-18 11:11:42,595 INFO osd.py [line:37] execute command is sudo -i kill -9  & sleep 3
+2017-05-18 11:11:46,637 INFO client.py [line:90] home/denali
+
+2017-05-18 11:11:47,154 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-18 11:11:48,098 INFO cluster.py [line:206]    cluster 1f1fb6ee-7be9-4826-8de4-f0088eb3df05
+     health HEALTH_OK
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e211: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v2945: 2704 pgs, 13 pools, 268 GB data, 82873 objects
+            18216 MB used, 321 GB / 338 GB avail
+                2704 active+clean
+  client io 10438 B/s rd, 2805 kB/s wr, 11 op/s rd, 701 op/s wr
+
+2017-05-18 11:11:48,098 INFO cluster.py [line:207]       pgmap v2945: 2704 pgs, 13 pools, 268 GB data, 82873 objects
+2017-05-18 11:11:48,098 INFO cluster.py [line:210]                 2704 active+clean
+2017-05-18 11:11:48,098 INFO cluster.py [line:212] PG number is 2704
+2017-05-18 11:11:48,098 INFO cluster.py [line:214] usefull PG number is 2704
+2017-05-18 11:11:48,114 INFO osd.py [line:37] execute command is sudo -i kill -9 9873 & sleep 3
+2017-05-18 11:11:51,684 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-18 11:11:52,509 INFO cluster.py [line:206]    cluster 1f1fb6ee-7be9-4826-8de4-f0088eb3df05
+     health HEALTH_OK
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e211: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v2949: 2704 pgs, 13 pools, 268 GB data, 82873 objects
+            18216 MB used, 321 GB / 338 GB avail
+                2704 active+clean
+  client io 10462 B/s rd, 2849 kB/s wr, 11 op/s rd, 712 op/s wr
+
+2017-05-18 11:11:52,509 INFO cluster.py [line:207]       pgmap v2949: 2704 pgs, 13 pools, 268 GB data, 82873 objects
+2017-05-18 11:11:52,509 INFO cluster.py [line:210]                 2704 active+clean
+2017-05-18 11:11:52,509 INFO cluster.py [line:212] PG number is 2704
+2017-05-18 11:11:52,526 INFO cluster.py [line:214] usefull PG number is 2704
+2017-05-18 11:11:53,118 INFO client.py [line:90] home/denali
+
+2017-05-18 11:11:53,622 INFO TC46_kill_osd_on_two_node.py [line:64] Kill osd on two nodes successfully
+2017-05-18 11:11:53,625 INFO osd.py [line:86] node is  denali01
+2017-05-18 11:11:53,628 INFO osd.py [line:87] execute command is sudo -i ceph-osd -i 2 & sleep 30
+2017-05-18 11:12:24,349 INFO osd.py [line:91] osd osd.2 is start successfully
+2017-05-18 11:12:25,115 INFO client.py [line:90] home/denali
+
+2017-05-18 11:12:25,635 INFO osd.py [line:86] node is  denali02
+2017-05-18 11:12:25,635 INFO osd.py [line:87] execute command is sudo -i ceph-osd -i 7 & sleep 30
+2017-05-18 11:12:56,253 INFO osd.py [line:91] osd osd.7 is start successfully
+2017-05-18 11:12:56,740 INFO client.py [line:90] home/denali
+
+2017-05-18 11:12:57,233 INFO osd.py [line:99] node is  denali01
+2017-05-18 11:12:57,233 INFO osd.py [line:100] execute command is ps -ef | grep 'ceph-osd -i 2'
+2017-05-18 11:12:57,799 INFO osd.py [line:102] enali   12599 12598  0 03:13 ?        00:00:00 bash -c ps -ef | grep 'ceph-osd -i 2'
+denali   12601 12599  0 03:13 ?        00:00:00 grep ceph-osd -i 2
+root     22341     1 12 02:45 ?        00:03:25 ceph-osd -i 2
+
+2017-05-18 11:12:57,799 INFO osd.py [line:111] osd.2is alrady started
+2017-05-18 11:12:57,799 INFO osd.py [line:99] node is  denali02
+2017-05-18 11:12:57,799 INFO osd.py [line:100] execute command is ps -ef | grep 'ceph-osd -i 7'
+2017-05-18 11:12:58,513 INFO osd.py [line:102] enali    2428  2427  0 03:13 ?        00:00:00 bash -c ps -ef | grep 'ceph-osd -i 7'
+denali    2430  2428  0 03:13 ?        00:00:00 grep ceph-osd -i 7
+root     21378     1 13 02:47 ?        00:03:36 ceph-osd -i 7
+
+2017-05-18 11:12:58,516 INFO osd.py [line:111] osd.7is alrady started
+2017-05-18 11:12:58,517 INFO TC46_kill_osd_on_two_node.py [line:94] 
+Add osd into cluster
+2017-05-18 11:12:58,519 INFO osd.py [line:74] execute command is ceph osd in osd.2 & sleep 3
+2017-05-18 11:13:02,157 ERROR osd.py [line:80] Error when mark osd.2 in
+2017-05-18 11:13:02,157 ERROR osd.py [line:81] ceph osd in osd.2 & sleep 3
+2017-05-18 11:13:02,158 ERROR osd.py [line:82] sd.2 is already in. 
+
+2017-05-18 11:13:02,160 INFO osd.py [line:74] execute command is ceph osd in osd.7 & sleep 3
+2017-05-18 11:13:05,680 ERROR osd.py [line:80] Error when mark osd.7 in
+2017-05-18 11:13:05,680 ERROR osd.py [line:81] ceph osd in osd.7 & sleep 3
+2017-05-18 11:13:05,680 ERROR osd.py [line:82] sd.7 is already in. 
+
+2017-05-18 11:13:05,680 INFO osd.py [line:37] execute command is sudo -i kill -9  & sleep 3
+2017-05-18 11:13:09,759 INFO client.py [line:90] home/denali
+
+2017-05-18 11:13:10,289 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-18 11:13:11,288 INFO cluster.py [line:206]    cluster 1f1fb6ee-7be9-4826-8de4-f0088eb3df05
+     health HEALTH_OK
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e211: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v3020: 2704 pgs, 13 pools, 268 GB data, 82873 objects
+            18233 MB used, 321 GB / 338 GB avail
+                2704 active+clean
+  client io 7938 B/s rd, 2883 kB/s wr, 11 op/s rd, 720 op/s wr
+
+2017-05-18 11:13:11,288 INFO cluster.py [line:207]       pgmap v3020: 2704 pgs, 13 pools, 268 GB data, 82873 objects
+2017-05-18 11:13:11,288 INFO cluster.py [line:210]                 2704 active+clean
+2017-05-18 11:13:11,288 INFO cluster.py [line:212] PG number is 2704
+2017-05-18 11:13:11,302 INFO cluster.py [line:214] usefull PG number is 2704
+2017-05-18 11:13:11,302 INFO osd.py [line:37] execute command is sudo -i kill -9  & sleep 3
+2017-05-18 11:13:14,891 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-18 11:13:15,969 INFO cluster.py [line:206]    cluster 1f1fb6ee-7be9-4826-8de4-f0088eb3df05
+     health HEALTH_OK
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e211: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v3023: 2704 pgs, 13 pools, 268 GB data, 82873 objects
+            18233 MB used, 321 GB / 338 GB avail
+                2704 active+clean
+  client io 5327 B/s rd, 2224 kB/s wr, 7 op/s rd, 556 op/s wr
+
+2017-05-18 11:13:15,969 INFO cluster.py [line:207]       pgmap v3023: 2704 pgs, 13 pools, 268 GB data, 82873 objects
+2017-05-18 11:13:15,983 INFO cluster.py [line:210]                 2704 active+clean
+2017-05-18 11:13:15,983 INFO cluster.py [line:212] PG number is 2704
+2017-05-18 11:13:15,983 INFO cluster.py [line:214] usefull PG number is 2704
+2017-05-18 11:13:16,486 INFO client.py [line:90] home/denali
+
+2017-05-18 11:13:16,970 INFO TC46_kill_osd_on_two_node.py [line:64] Kill osd on two nodes successfully
+2017-05-18 11:13:16,970 INFO osd.py [line:86] node is  denali01
+2017-05-18 11:13:16,970 INFO osd.py [line:87] execute command is sudo -i ceph-osd -i 1 & sleep 30
+2017-05-18 11:13:47,729 INFO osd.py [line:91] osd osd.1 is start successfully
+2017-05-18 11:13:48,243 INFO client.py [line:90] home/denali
+
+2017-05-18 11:13:48,789 INFO osd.py [line:86] node is  denali02
+2017-05-18 11:13:48,789 INFO osd.py [line:87] execute command is sudo -i ceph-osd -i 6 & sleep 30
+2017-05-18 11:14:19,385 INFO osd.py [line:91] osd osd.6 is start successfully
+2017-05-18 11:14:19,931 INFO client.py [line:90] home/denali
+
+2017-05-18 11:14:20,447 INFO osd.py [line:99] node is  denali01
+2017-05-18 11:14:20,447 INFO osd.py [line:100] execute command is ps -ef | grep 'ceph-osd -i 1'
+2017-05-18 11:14:21,102 INFO osd.py [line:102] enali   13686 13679  0 03:14 ?        00:00:00 bash -c ps -ef | grep 'ceph-osd -i 1'
+denali   13688 13686  0 03:14 ?        00:00:00 grep ceph-osd -i 1
+root     21745     1 17 02:44 ?        00:05:04 ceph-osd -i 1
+
+2017-05-18 11:14:21,102 INFO osd.py [line:111] osd.1is alrady started
+2017-05-18 11:14:21,102 INFO osd.py [line:99] node is  denali02
+2017-05-18 11:14:21,102 INFO osd.py [line:100] execute command is ps -ef | grep 'ceph-osd -i 6'
+2017-05-18 11:14:21,696 INFO osd.py [line:102] enali    5131  5130  0 03:14 ?        00:00:00 bash -c ps -ef | grep 'ceph-osd -i 6'
+denali    5133  5131  0 03:14 ?        00:00:00 grep ceph-osd -i 6
+root     20504     1 13 02:46 ?        00:03:47 ceph-osd -i 6
+
+2017-05-18 11:14:21,696 INFO osd.py [line:111] osd.6is alrady started
+2017-05-18 11:14:21,696 INFO TC46_kill_osd_on_two_node.py [line:94] 
+Add osd into cluster
+2017-05-18 11:14:21,696 INFO osd.py [line:74] execute command is ceph osd in osd.1 & sleep 3
+2017-05-18 11:14:25,253 ERROR osd.py [line:80] Error when mark osd.1 in
+2017-05-18 11:14:25,253 ERROR osd.py [line:81] ceph osd in osd.1 & sleep 3
+2017-05-18 11:14:25,253 ERROR osd.py [line:82] sd.1 is already in. 
+
+2017-05-18 11:14:25,253 INFO osd.py [line:74] execute command is ceph osd in osd.6 & sleep 3
+2017-05-18 11:14:28,798 ERROR osd.py [line:80] Error when mark osd.6 in
+2017-05-18 11:14:28,798 ERROR osd.py [line:81] ceph osd in osd.6 & sleep 3
+2017-05-18 11:14:28,798 ERROR osd.py [line:82] sd.6 is already in. 
+
+2017-05-18 11:14:28,798 INFO osd.py [line:37] execute command is sudo -i kill -9  & sleep 3
+2017-05-18 11:14:32,869 INFO client.py [line:90] home/denali
+
+2017-05-18 11:14:33,384 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-18 11:14:34,289 INFO cluster.py [line:206]    cluster 1f1fb6ee-7be9-4826-8de4-f0088eb3df05
+     health HEALTH_OK
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e211: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v3092: 2704 pgs, 13 pools, 268 GB data, 82873 objects
+            18233 MB used, 321 GB / 338 GB avail
+                2704 active+clean
+  client io 3096 kB/s wr, 0 op/s rd, 774 op/s wr
+
+2017-05-18 11:14:34,289 INFO cluster.py [line:207]       pgmap v3092: 2704 pgs, 13 pools, 268 GB data, 82873 objects
+2017-05-18 11:14:34,289 INFO cluster.py [line:210]                 2704 active+clean
+2017-05-18 11:14:34,289 INFO cluster.py [line:212] PG number is 2704
+2017-05-18 11:14:34,305 INFO cluster.py [line:214] usefull PG number is 2704
+2017-05-18 11:14:34,305 INFO osd.py [line:37] execute command is sudo -i kill -9 9873 & sleep 3
+2017-05-18 11:14:37,878 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-18 11:14:38,923 INFO cluster.py [line:206]    cluster 1f1fb6ee-7be9-4826-8de4-f0088eb3df05
+     health HEALTH_OK
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e211: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v3096: 2704 pgs, 13 pools, 268 GB data, 82873 objects
+            18233 MB used, 321 GB / 338 GB avail
+                2704 active+clean
+  client io 10509 B/s rd, 3125 kB/s wr, 11 op/s rd, 781 op/s wr
+
+2017-05-18 11:14:38,923 INFO cluster.py [line:207]       pgmap v3096: 2704 pgs, 13 pools, 268 GB data, 82873 objects
+2017-05-18 11:14:38,923 INFO cluster.py [line:210]                 2704 active+clean
+2017-05-18 11:14:38,923 INFO cluster.py [line:212] PG number is 2704
+2017-05-18 11:14:38,923 INFO cluster.py [line:214] usefull PG number is 2704
+2017-05-18 11:14:39,469 INFO client.py [line:90] home/denali
+
+2017-05-18 11:14:40,000 INFO TC46_kill_osd_on_two_node.py [line:64] Kill osd on two nodes successfully
+2017-05-18 11:14:40,000 INFO osd.py [line:86] node is  denali01
+2017-05-18 11:14:40,000 INFO osd.py [line:87] execute command is sudo -i ceph-osd -i 0 & sleep 30
+2017-05-18 11:15:10,581 INFO osd.py [line:91] osd osd.0 is start successfully
+2017-05-18 11:15:11,111 INFO client.py [line:90] home/denali
+
+2017-05-18 11:15:11,657 INFO osd.py [line:86] node is  denali02
+2017-05-18 11:15:11,657 INFO osd.py [line:87] execute command is sudo -i ceph-osd -i 7 & sleep 30
+2017-05-18 11:15:42,315 INFO osd.py [line:91] osd osd.7 is start successfully
+2017-05-18 11:15:43,252 INFO client.py [line:90] home/denali
+
+2017-05-18 11:15:43,984 INFO osd.py [line:99] node is  denali01
+2017-05-18 11:15:43,984 INFO osd.py [line:100] execute command is ps -ef | grep 'ceph-osd -i 0'
+2017-05-18 11:15:44,578 INFO osd.py [line:102] enali   14804 14803  0 03:15 ?        00:00:00 bash -c ps -ef | grep 'ceph-osd -i 0'
+denali   14806 14804  0 03:15 ?        00:00:00 grep ceph-osd -i 0
+root     21237     1 15 02:44 ?        00:04:48 ceph-osd -i 0
+
+2017-05-18 11:15:44,578 INFO osd.py [line:111] osd.0is alrady started
+2017-05-18 11:15:44,578 INFO osd.py [line:99] node is  denali02
+2017-05-18 11:15:44,578 INFO osd.py [line:100] execute command is ps -ef | grep 'ceph-osd -i 7'
+2017-05-18 11:15:45,279 INFO osd.py [line:102] enali    7708  7685  0 03:15 ?        00:00:00 bash -c ps -ef | grep 'ceph-osd -i 7'
+denali    7710  7708  0 03:15 ?        00:00:00 grep ceph-osd -i 7
+root     21378     1 13 02:47 ?        00:04:00 ceph-osd -i 7
+
+2017-05-18 11:15:45,279 INFO osd.py [line:111] osd.7is alrady started
+2017-05-18 11:15:45,279 INFO TC46_kill_osd_on_two_node.py [line:94] 
+Add osd into cluster
+2017-05-18 11:15:45,279 INFO osd.py [line:74] execute command is ceph osd in osd.0 & sleep 3
+2017-05-18 11:15:48,930 ERROR osd.py [line:80] Error when mark osd.0 in
+2017-05-18 11:15:48,930 ERROR osd.py [line:81] ceph osd in osd.0 & sleep 3
+2017-05-18 11:15:48,930 ERROR osd.py [line:82] sd.0 is already in. 
+
+2017-05-18 11:15:48,930 INFO osd.py [line:74] execute command is ceph osd in osd.7 & sleep 3
+2017-05-18 11:15:52,506 ERROR osd.py [line:80] Error when mark osd.7 in
+2017-05-18 11:15:52,506 ERROR osd.py [line:81] ceph osd in osd.7 & sleep 3
+2017-05-18 11:15:52,506 ERROR osd.py [line:82] sd.7 is already in. 
+
+2017-05-18 11:15:52,506 INFO osd.py [line:37] execute command is sudo -i kill -9 17425 & sleep 3
+2017-05-18 11:15:56,592 INFO client.py [line:90] home/denali
+
+2017-05-18 11:15:57,108 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-18 11:15:58,062 INFO cluster.py [line:206]    cluster 1f1fb6ee-7be9-4826-8de4-f0088eb3df05
+     health HEALTH_OK
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e211: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v3169: 2704 pgs, 13 pools, 268 GB data, 82873 objects
+            18223 MB used, 321 GB / 338 GB avail
+                2704 active+clean
+  client io 34625 B/s rd, 3440 kB/s wr, 35 op/s rd, 875 op/s wr
+
+2017-05-18 11:15:58,062 INFO cluster.py [line:207]       pgmap v3169: 2704 pgs, 13 pools, 268 GB data, 82873 objects
+2017-05-18 11:15:58,062 INFO cluster.py [line:210]                 2704 active+clean
+2017-05-18 11:15:58,062 INFO cluster.py [line:212] PG number is 2704
+2017-05-18 11:15:58,078 INFO cluster.py [line:214] usefull PG number is 2704
+2017-05-18 11:15:58,078 INFO osd.py [line:37] execute command is sudo -i kill -9  & sleep 3
+2017-05-18 11:16:01,651 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-18 11:16:02,463 INFO cluster.py [line:206]    cluster 1f1fb6ee-7be9-4826-8de4-f0088eb3df05
+     health HEALTH_OK
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e211: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v3173: 2704 pgs, 13 pools, 268 GB data, 82873 objects
+            18223 MB used, 321 GB / 338 GB avail
+                2704 active+clean
+  client io 89048 B/s rd, 2991 kB/s wr, 88 op/s rd, 798 op/s wr
+
+2017-05-18 11:16:02,463 INFO cluster.py [line:207]       pgmap v3173: 2704 pgs, 13 pools, 268 GB data, 82873 objects
+2017-05-18 11:16:02,463 INFO cluster.py [line:210]                 2704 active+clean
+2017-05-18 11:16:02,463 INFO cluster.py [line:212] PG number is 2704
+2017-05-18 11:16:02,463 INFO cluster.py [line:214] usefull PG number is 2704
+2017-05-18 11:16:02,976 INFO client.py [line:90] home/denali
+
+2017-05-18 11:16:03,476 INFO TC46_kill_osd_on_two_node.py [line:64] Kill osd on two nodes successfully
+2017-05-18 11:16:03,476 INFO osd.py [line:86] node is  denali01
+2017-05-18 11:16:03,476 INFO osd.py [line:87] execute command is sudo -i ceph-osd -i 1 & sleep 30
+2017-05-18 11:16:34,213 INFO osd.py [line:91] osd osd.1 is start successfully
+2017-05-18 11:16:34,714 INFO client.py [line:90] home/denali
+
+2017-05-18 11:16:35,246 INFO osd.py [line:86] node is  denali02
+2017-05-18 11:16:35,246 INFO osd.py [line:87] execute command is sudo -i ceph-osd -i 8 & sleep 30
+2017-05-18 11:17:05,815 INFO osd.py [line:91] osd osd.8 is start successfully
+2017-05-18 11:17:06,329 INFO client.py [line:90] home/denali
+
+2017-05-18 11:17:06,828 INFO osd.py [line:99] node is  denali01
+2017-05-18 11:17:06,828 INFO osd.py [line:100] execute command is ps -ef | grep 'ceph-osd -i 1'
+2017-05-18 11:17:07,469 INFO osd.py [line:102] enali   15963 15962  0 03:17 ?        00:00:00 bash -c ps -ef | grep 'ceph-osd -i 1'
+denali   15965 15963  0 03:17 ?        00:00:00 grep ceph-osd -i 1
+root     21745     1 17 02:44 ?        00:05:36 ceph-osd -i 1
+
+2017-05-18 11:17:07,469 INFO osd.py [line:111] osd.1is alrady started
+2017-05-18 11:17:07,469 INFO osd.py [line:99] node is  denali02
+2017-05-18 11:17:07,469 INFO osd.py [line:100] execute command is ps -ef | grep 'ceph-osd -i 8'
+2017-05-18 11:17:08,092 INFO osd.py [line:102] enali   10106 10105  0 03:17 ?        00:00:00 bash -c ps -ef | grep 'ceph-osd -i 8'
+denali   10108 10106  0 03:17 ?        00:00:00 grep ceph-osd -i 8
+root     22416     1 18 02:47 ?        00:05:26 ceph-osd -i 8
+
+2017-05-18 11:17:08,092 INFO osd.py [line:111] osd.8is alrady started
+2017-05-18 11:17:08,092 INFO TC46_kill_osd_on_two_node.py [line:94] 
+Add osd into cluster
+2017-05-18 11:17:08,092 INFO osd.py [line:74] execute command is ceph osd in osd.1 & sleep 3
+2017-05-18 11:17:11,697 ERROR osd.py [line:80] Error when mark osd.1 in
+2017-05-18 11:17:11,697 ERROR osd.py [line:81] ceph osd in osd.1 & sleep 3
+2017-05-18 11:17:11,697 ERROR osd.py [line:82] sd.1 is already in. 
+
+2017-05-18 11:17:11,697 INFO osd.py [line:74] execute command is ceph osd in osd.8 & sleep 3
+2017-05-18 11:17:15,334 ERROR osd.py [line:80] Error when mark osd.8 in
+2017-05-18 11:17:15,334 ERROR osd.py [line:81] ceph osd in osd.8 & sleep 3
+2017-05-18 11:17:15,334 ERROR osd.py [line:82] sd.8 is already in. 
+
+2017-05-18 11:17:15,334 INFO osd.py [line:37] execute command is sudo -i kill -9 17425 & sleep 3
+2017-05-18 11:17:19,655 INFO client.py [line:90] home/denali
+
+2017-05-18 11:17:20,170 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-18 11:17:21,168 INFO cluster.py [line:206]    cluster 1f1fb6ee-7be9-4826-8de4-f0088eb3df05
+     health HEALTH_OK
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e211: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v3244: 2704 pgs, 13 pools, 268 GB data, 82873 objects
+            18238 MB used, 321 GB / 338 GB avail
+                2704 active+clean
+  client io 8005 B/s rd, 2689 kB/s wr, 11 op/s rd, 672 op/s wr
+
+2017-05-18 11:17:21,168 INFO cluster.py [line:207]       pgmap v3244: 2704 pgs, 13 pools, 268 GB data, 82873 objects
+2017-05-18 11:17:21,168 INFO cluster.py [line:210]                 2704 active+clean
+2017-05-18 11:17:21,184 INFO cluster.py [line:212] PG number is 2704
+2017-05-18 11:17:21,184 INFO cluster.py [line:214] usefull PG number is 2704
+2017-05-18 11:17:21,184 INFO osd.py [line:37] execute command is sudo -i kill -9  & sleep 3
+2017-05-18 11:17:24,773 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-18 11:17:26,115 INFO cluster.py [line:206]    cluster 1f1fb6ee-7be9-4826-8de4-f0088eb3df05
+     health HEALTH_OK
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e211: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v3249: 2704 pgs, 13 pools, 268 GB data, 82873 objects
+            18238 MB used, 321 GB / 338 GB avail
+                2704 active+clean
+  client io 8007 B/s rd, 2740 kB/s wr, 11 op/s rd, 685 op/s wr
+
+2017-05-18 11:17:26,115 INFO cluster.py [line:207]       pgmap v3249: 2704 pgs, 13 pools, 268 GB data, 82873 objects
+2017-05-18 11:17:26,115 INFO cluster.py [line:210]                 2704 active+clean
+2017-05-18 11:17:26,115 INFO cluster.py [line:212] PG number is 2704
+2017-05-18 11:17:26,115 INFO cluster.py [line:214] usefull PG number is 2704
+2017-05-18 11:17:26,661 INFO client.py [line:90] home/denali
+
+2017-05-18 11:17:27,255 INFO TC46_kill_osd_on_two_node.py [line:64] Kill osd on two nodes successfully
+2017-05-18 11:17:27,255 INFO osd.py [line:86] node is  denali01
+2017-05-18 11:17:27,255 INFO osd.py [line:87] execute command is sudo -i ceph-osd -i 1 & sleep 30
+2017-05-18 11:17:57,815 INFO osd.py [line:91] osd osd.1 is start successfully
+2017-05-18 11:17:58,329 INFO client.py [line:90] home/denali
+
+2017-05-18 11:17:58,813 INFO osd.py [line:86] node is  denali02
+2017-05-18 11:17:58,813 INFO osd.py [line:87] execute command is sudo -i ceph-osd -i 8 & sleep 30
+2017-05-18 11:18:29,398 INFO osd.py [line:91] osd osd.8 is start successfully
+2017-05-18 11:18:29,897 INFO client.py [line:90] home/denali
+
+2017-05-18 11:18:30,427 INFO osd.py [line:99] node is  denali01
+2017-05-18 11:18:30,427 INFO osd.py [line:100] execute command is ps -ef | grep 'ceph-osd -i 1'
+2017-05-18 11:18:31,098 INFO osd.py [line:102] enali   17028 17011  0 03:18 ?        00:00:00 bash -c ps -ef | grep 'ceph-osd -i 1'
+denali   17030 17028  0 03:18 ?        00:00:00 grep ceph-osd -i 1
+root     21745     1 17 02:44 ?        00:05:52 ceph-osd -i 1
+
+2017-05-18 11:18:31,098 INFO osd.py [line:111] osd.1is alrady started
+2017-05-18 11:18:31,098 INFO osd.py [line:99] node is  denali02
+2017-05-18 11:18:31,098 INFO osd.py [line:100] execute command is ps -ef | grep 'ceph-osd -i 8'
+2017-05-18 11:18:31,707 INFO osd.py [line:102] enali   12567 12566  0 03:18 ?        00:00:00 bash -c ps -ef | grep 'ceph-osd -i 8'
+denali   12569 12567  0 03:18 ?        00:00:00 grep ceph-osd -i 8
+root     22416     1 18 02:47 ?        00:05:43 ceph-osd -i 8
+
+2017-05-18 11:18:31,707 INFO osd.py [line:111] osd.8is alrady started
+2017-05-18 11:18:31,707 INFO TC46_kill_osd_on_two_node.py [line:94] 
+Add osd into cluster
+2017-05-18 11:18:31,707 INFO osd.py [line:74] execute command is ceph osd in osd.1 & sleep 3
+2017-05-18 11:18:35,312 ERROR osd.py [line:80] Error when mark osd.1 in
+2017-05-18 11:18:35,312 ERROR osd.py [line:81] ceph osd in osd.1 & sleep 3
+2017-05-18 11:18:35,312 ERROR osd.py [line:82] sd.1 is already in. 
+
+2017-05-18 11:18:35,312 INFO osd.py [line:74] execute command is ceph osd in osd.8 & sleep 3
+2017-05-18 11:18:38,964 ERROR osd.py [line:80] Error when mark osd.8 in
+2017-05-18 11:18:38,964 ERROR osd.py [line:81] ceph osd in osd.8 & sleep 3
+2017-05-18 11:18:38,964 ERROR osd.py [line:82] sd.8 is already in. 
+
+2017-05-18 11:18:38,964 INFO osd.py [line:37] execute command is sudo -i kill -9 17061 & sleep 3
+2017-05-18 11:18:43,020 INFO client.py [line:90] home/denali
+
+2017-05-18 11:18:43,519 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-18 11:18:44,517 INFO cluster.py [line:206]    cluster 1f1fb6ee-7be9-4826-8de4-f0088eb3df05
+     health HEALTH_OK
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e211: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v3323: 2704 pgs, 13 pools, 271 GB data, 83002 objects
+            18421 MB used, 320 GB / 338 GB avail
+                2704 active+clean
+  client io 23634 B/s rd, 3451 kB/s wr, 17 op/s rd, 868 op/s wr
+
+2017-05-18 11:18:44,517 INFO cluster.py [line:207]       pgmap v3323: 2704 pgs, 13 pools, 271 GB data, 83002 objects
+2017-05-18 11:18:44,517 INFO cluster.py [line:210]                 2704 active+clean
+2017-05-18 11:18:44,517 INFO cluster.py [line:212] PG number is 2704
+2017-05-18 11:18:44,517 INFO cluster.py [line:214] usefull PG number is 2704
+2017-05-18 11:18:44,533 INFO osd.py [line:37] execute command is sudo -i kill -9 10831 & sleep 3
+2017-05-18 11:18:48,091 INFO cluster.py [line:203] execute command is ceph -s
+2017-05-18 11:18:48,982 INFO cluster.py [line:206]    cluster 1f1fb6ee-7be9-4826-8de4-f0088eb3df05
+     health HEALTH_OK
+     monmap e3: 3 mons at {denali01=192.168.28.26:6789/0,denali02=192.168.28.12:6789/0,denali03=192.168.28.22:6789/0}
+            election epoch 8, quorum 0,1,2 denali02,denali03,denali01
+     osdmap e211: 9 osds: 9 up, 9 in
+            flags sortbitwise,require_jewel_osds,require_kraken_osds
+      pgmap v3327: 2704 pgs, 13 pools, 271 GB data, 83014 objects
+            18447 MB used, 320 GB / 338 GB avail
+                2704 active+clean
+  client io 44137 B/s rd, 3200 kB/s wr, 35 op/s rd, 807 op/s wr
+
+2017-05-18 11:18:48,982 INFO cluster.py [line:207]       pgmap v3327: 2704 pgs, 13 pools, 271 GB data, 83014 objects
+2017-05-18 11:18:48,982 INFO cluster.py [line:210]                 2704 active+clean
+2017-05-18 11:18:48,982 INFO cluster.py [line:212] PG number is 2704
+2017-05-18 11:18:48,982 INFO cluster.py [line:214] usefull PG number is 2704
+2017-05-18 11:18:49,480 INFO client.py [line:90] home/denali
+
+2017-05-18 11:18:50,012 INFO TC46_kill_osd_on_two_node.py [line:64] Kill osd on two nodes successfully
+2017-05-18 11:18:50,012 INFO osd.py [line:86] node is  denali01
+2017-05-18 11:18:50,012 INFO osd.py [line:87] execute command is sudo -i ceph-osd -i 0 & sleep 30
+2017-05-18 11:19:20,595 INFO osd.py [line:91] osd osd.0 is start successfully
+2017-05-18 11:19:21,046 INFO client.py [line:90] home/denali
+
+2017-05-18 11:19:21,576 INFO osd.py [line:86] node is  denali02
+2017-05-18 11:19:21,576 INFO osd.py [line:87] execute command is sudo -i ceph-osd -i 8 & sleep 30
+2017-05-18 11:19:52,279 INFO osd.py [line:91] osd osd.8 is start successfully
+2017-05-18 11:19:52,825 INFO client.py [line:90] home/denali
+
+2017-05-18 11:19:53,355 INFO osd.py [line:99] node is  denali01
+2017-05-18 11:19:53,355 INFO osd.py [line:100] execute command is ps -ef | grep 'ceph-osd -i 0'
+2017-05-18 11:19:54,009 INFO osd.py [line:102] enali   18162 18161  0 03:20 ?        00:00:00 bash -c ps -ef | grep 'ceph-osd -i 0'
+denali   18164 18162  0 03:20 ?        00:00:00 grep ceph-osd -i 0
+root     21237     1 15 02:44 ?        00:05:32 ceph-osd -i 0
+
+2017-05-18 11:19:54,009 INFO osd.py [line:111] osd.0is alrady started
+2017-05-18 11:19:54,009 INFO osd.py [line:99] node is  denali02
+2017-05-18 11:19:54,009 INFO osd.py [line:100] execute command is ps -ef | grep 'ceph-osd -i 8'
+2017-05-18 11:19:54,680 INFO osd.py [line:102] enali   14892 14891  0 03:20 ?        00:00:00 bash -c ps -ef | grep 'ceph-osd -i 8'
+denali   14894 14892  0 03:20 ?        00:00:00 grep ceph-osd -i 8
+root     22416     1 18 02:47 ?        00:05:59 ceph-osd -i 8
+
+2017-05-18 11:19:54,680 INFO osd.py [line:111] osd.8is alrady started
+2017-05-18 11:19:54,680 INFO TC46_kill_osd_on_two_node.py [line:94] 
+Add osd into cluster
+2017-05-18 11:19:54,680 INFO osd.py [line:74] execute command is ceph osd in osd.0 & sleep 3
+2017-05-18 11:19:58,368 ERROR osd.py [line:80] Error when mark osd.0 in
+2017-05-18 11:19:58,368 ERROR osd.py [line:81] ceph osd in osd.0 & sleep 3
+2017-05-18 11:19:58,368 ERROR osd.py [line:82] sd.0 is already in. 
+
+2017-05-18 11:19:58,368 INFO osd.py [line:74] execute command is ceph osd in osd.8 & sleep 3
+2017-05-18 11:20:01,956 ERROR osd.py [line:80] Error when mark osd.8 in
+2017-05-18 11:20:01,956 ERROR osd.py [line:81] ceph osd in osd.8 & sleep 3
+2017-05-18 11:20:01,956 ERROR osd.py [line:82] sd.8 is already in. 
+
+2017-05-18 11:20:01,956 INFO TC46_kill_osd_on_two_node.py [line:98] 
+Step3: stop IO from clients
+2017-05-18 11:20:02,486 INFO TC46_kill_osd_on_two_node.py [line:100] TC46_kill_osd_on_two_node runs complete
