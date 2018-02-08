@@ -1,3 +1,3 @@
 # AutoRun
 
-This is a Automation Framework used for Block testing.
+This is a Automation Framework used for Block Storage testing.
